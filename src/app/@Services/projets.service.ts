@@ -11,7 +11,7 @@ import { Projet } from '../@Models/projet';
 
 export class ProjetsService {
 
-  private serviceUrl = environment.baseUrl+'/projet';
+  private serviceUrl = environment.baseUrl + '/projet';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -19,25 +19,25 @@ export class ProjetsService {
     })
     };
 
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }
 
-  //Retourne un tableau de tous les Projets : Projet[]
-  getAllProjetsService() : Observable<Projet[]> {
+  // Retourne un tableau de tous les Projets : Projet[]
+  getAllProjetsService(): Observable<Projet[]> {
     return this.http.get<Projet[]>(this.serviceUrl);
   }
 
-  //Retourne le Projet créé : Projet
-  addProjetService(Projet) : Observable<Projet> {
-    return this.http.post<any>(this.serviceUrl, JSON.stringify(Projet), this.httpOptions);
+  // Retourne le Projet créé : Projet
+  addProjetService(projet): Observable<Projet> {
+    return this.http.post<any>(this.serviceUrl, JSON.stringify(projet), this.httpOptions);
   }
 
-  //Retourne le Projet modifié : Projet
-  editProjetService(Projet) : any {
-    return this.http.put<any>(this.serviceUrl, JSON.stringify(Projet), this.httpOptions);
+  // Retourne le Projet modifié : Projet
+  editProjetService(projet): any {
+    return this.http.put<any>(this.serviceUrl, JSON.stringify(projet), this.httpOptions);
   }
 
-  //Ne retourne rien
+  // Ne retourne rien
   deleteProjetService(id) {
-    return this.http.delete<any>(this.serviceUrl + '/'+id, this.httpOptions);
+    return this.http.delete<any>(this.serviceUrl + '/' + id, this.httpOptions);
   }
 }

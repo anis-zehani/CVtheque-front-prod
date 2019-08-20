@@ -11,7 +11,7 @@ import { Opportunite } from '../@Models/opportunite';
 
 export class OpportunitesService {
 
-  private serviceUrl = environment.baseUrl+'/opportunite';
+  private serviceUrl = environment.baseUrl + '/opportunite';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -19,70 +19,72 @@ export class OpportunitesService {
     })
     };
 
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }
 
-  //Retourne un tableau de touts les opportunites : Opportunite[]
-  getAllOpportunitesService(etatOpportunite) : Observable<Opportunite[]> {
-    return this.http.get<Opportunite[]>(this.serviceUrl + '/all/'+ etatOpportunite, this.httpOptions);
+  // Retourne un tableau de touts les opportunites : Opportunite[]
+  getAllOpportunitesService(etatOpportunite): Observable<Opportunite[]> {
+    return this.http.get<Opportunite[]>(this.serviceUrl + '/all/' + etatOpportunite, this.httpOptions);
   }
 
-  //Retourne un tableau de toutes les opportunites pour un Partenaire: Opportunite[]
-  getAllOpportunitesByPartenaireService(idPartenaire) : Observable<Opportunite[]> {
-    return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesByPartenaire/'+ idPartenaire, this.httpOptions);
+  // Retourne un tableau de toutes les opportunites pour un Partenaire: Opportunite[]
+  getAllOpportunitesByPartenaireService(idPartenaire): Observable<Opportunite[]> {
+    return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesByPartenaire/' + idPartenaire, this.httpOptions);
   }
 
-  //Retourne un tableau de toutes les opportunites pour une Technologie: Opportunite[]
-  getAllOpportunitesByTechnologieService(idTechnologie) : Observable<Opportunite[]> {
-    return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesByTechnologie/'+ idTechnologie, this.httpOptions);
+  // Retourne un tableau de toutes les opportunites pour une Technologie: Opportunite[]
+  getAllOpportunitesByTechnologieService(idTechnologie): Observable<Opportunite[]> {
+    return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesByTechnologie/' + idTechnologie, this.httpOptions);
   }
 
-  //Retourne un tableau de toutes les opportunites qui ont une Technologie au moins dans la liste fournie : Opportunite[]
-  getAllOpportunitesByListTechnologiesService(listeTechnologies) : Observable<Opportunite[]> {
-    return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesByListTechnologies/'+ listeTechnologies, this.httpOptions);
+  // Retourne un tableau de toutes les opportunites qui ont une Technologie au moins dans la liste fournie : Opportunite[]
+  getAllOpportunitesByListTechnologiesService(listeTechnologies): Observable<Opportunite[]> {
+    return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesByListTechnologies/' + listeTechnologies, this.httpOptions);
   }
 
-  //Retourne un tableau de toutes les opportunites pour une Certification: Opportunite[]
-  getAllOpportunitesByCertificationService(idCertification) : Observable<Opportunite[]> {
-    return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesByCertification/'+ idCertification, this.httpOptions);
+  // Retourne un tableau de toutes les opportunites pour une Certification: Opportunite[]
+  getAllOpportunitesByCertificationService(idCertification): Observable<Opportunite[]> {
+    return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesByCertification/' + idCertification, this.httpOptions);
   }
 
-  //Retourne un seul opportunite par son ID : Opportunite
-  getOneOpportuniteService(id) : Observable<Opportunite> {
-    return this.http.get<Opportunite>(this.serviceUrl + '/'+id, this.httpOptions);
+  // Retourne un seul opportunite par son ID : Opportunite
+  getOneOpportuniteService(id): Observable<Opportunite> {
+    return this.http.get<Opportunite>(this.serviceUrl + '/' + id, this.httpOptions);
   }
 
-  //Retourne le opportunite créée : Opportunite
-  addOpportuniteService(opportunite) : Observable<Opportunite> {
+  // Retourne le opportunite créée : Opportunite
+  addOpportuniteService(opportunite): Observable<Opportunite> {
     return this.http.post<any>(this.serviceUrl, JSON.stringify(opportunite), this.httpOptions);
   }
 
-  //Retourne le opportunite modifié : Opportunite
-  editOpportuniteService(opportunite) : any {
+  // Retourne le opportunite modifié : Opportunite
+  editOpportuniteService(opportunite): any {
     return this.http.put<any>(this.serviceUrl, JSON.stringify(opportunite), this.httpOptions);
   }
 
-  //Retourne le opportunite modifié : Opportunite
-  editEtatOpportuniteService(opportunite) : any {
-    return this.http.put<any>(this.serviceUrl+ '/editEtat', JSON.stringify(opportunite), this.httpOptions);
+  // Retourne le opportunite modifié : Opportunite
+  editEtatOpportuniteService(opportunite): any {
+    return this.http.put<any>(this.serviceUrl + '/editEtat', JSON.stringify(opportunite), this.httpOptions);
   }
 
-  //Ne retourne rien
+  // Ne retourne rien
   deleteOpportuniteService(id) {
-    return this.http.delete<any>(this.serviceUrl + '/'+id, this.httpOptions);
+    return this.http.delete<any>(this.serviceUrl + '/' + id, this.httpOptions);
   }
 
-  //Supprimer le lien entre une opportunité et une technologie
+  // Supprimer le lien entre une opportunité et une technologie
   deleteLinkOpportuniteTechnologieService(idOpportunite, idTechnologie) {
-    return this.http.delete<any>(this.serviceUrl + '/deleteLinkOpportuniteTechnologie/'+idOpportunite+'/'+idTechnologie, this.httpOptions);
+    return this.http.delete<any>(this.serviceUrl + '/deleteLinkOpportuniteTechnologie/' +
+    idOpportunite + '/' + idTechnologie, this.httpOptions);
   }
 
-  //Supprimer le lien entre une opportunité et une certification
+  // Supprimer le lien entre une opportunité et une certification
   deleteLinkOpportuniteCertificationService(idOpportunite, idCertification) {
-    return this.http.delete<any>(this.serviceUrl + '/deleteLinkOpportuniteCertification/'+idOpportunite+'/'+idCertification, this.httpOptions);
+    return this.http.delete<any>(this.serviceUrl + '/deleteLinkOpportuniteCertification/' +
+    idOpportunite + '/' + idCertification, this.httpOptions);
   }
 
-  //Update le lien entre une opportunité et un partenaire : met responsableOpportunite à NULL
+  // Update le lien entre une opportunité et un partenaire : met responsableOpportunite à NULL
   updateLinkOpportunitePartenaireService(idOpportunite) {
-    return this.http.put<any>(this.serviceUrl + '/updateLinkOpportunitePartenaire/'+idOpportunite, this.httpOptions);
+    return this.http.put<any>(this.serviceUrl + '/updateLinkOpportunitePartenaire/' + idOpportunite, this.httpOptions);
   }
 }

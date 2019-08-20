@@ -8,102 +8,102 @@ import { environment } from '../../environments/environment';
 })
 export class FileUploadService {
 
-  //Attention : chaque écran possède ses propres coordonnées : serviceUrl + fonction Upload
+  // Attention : chaque écran possède ses propres coordonnées : serviceUrl + fonction Upload
 
-  private serviceUrlContact = environment.baseUrl+'/contact';
-  private serviceUrlPartenaire = environment.baseUrl+'/partenaire';
-  private serviceUrlCandidat = environment.baseUrl+'/candidat';
-  private serviceUrlRappel = environment.baseUrl+'/rappel';
+  private serviceUrlContact = environment.baseUrl + '/contact';
+  private serviceUrlPartenaire = environment.baseUrl + '/partenaire';
+  private serviceUrlCandidat = environment.baseUrl + '/candidat';
+  private serviceUrlRappel = environment.baseUrl + '/rappel';
 
   constructor(private http: HttpClient) { }
 
-  addFichierRappel(file: File, id:any): Observable<HttpEvent<{}>> {
+  addFichierRappel(file: File, id: any): Observable<HttpEvent<{}>> {
 
     const formdata: FormData = new FormData();
 
     formdata.append('file', file);
- 
-    const req = new HttpRequest('POST', this.serviceUrlRappel+'/addFichier/'+id, formdata, {
+
+    const req = new HttpRequest('POST', this.serviceUrlRappel + '/addFichier/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
- 
+
     return this.http.request(req);
   }
- 
-  addPhotoContact(file: File, id:any): Observable<HttpEvent<{}>> {
+
+  addPhotoContact(file: File, id: any): Observable<HttpEvent<{}>> {
 
     const formdata: FormData = new FormData();
 
     formdata.append('file', file);
- 
+
     const req = new HttpRequest
     (
-      'POST', 
-      this.serviceUrlContact+'/addPhoto/'+id, 
-      formdata, 
+      'POST',
+      this.serviceUrlContact + '/addPhoto/' + id,
+      formdata,
       {
       reportProgress: true,
       responseType: 'text'
       }
     );
- 
+
     return this.http.request(req);
   }
 
-  addPhotoPartenaire(file: File, id:any): Observable<HttpEvent<{}>> {
+  addPhotoPartenaire(file: File, id: any): Observable<HttpEvent<{}>> {
 
     const formdata: FormData = new FormData();
 
     formdata.append('file', file);
- 
-    const req = new HttpRequest('POST', this.serviceUrlPartenaire+'/addPhoto/'+id, formdata, {
+
+    const req = new HttpRequest('POST', this.serviceUrlPartenaire + '/addPhoto/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
- 
+
     return this.http.request(req);
   }
 
-  addPhotoCandidat(photo: File, id:any): Observable<HttpEvent<{}>> {
+  addPhotoCandidat(photo: File, id: any): Observable<HttpEvent<{}>> {
 
     const formdata: FormData = new FormData();
 
     formdata.append('photo', photo);
- 
-    const req = new HttpRequest('POST', this.serviceUrlCandidat+'/addPhoto/'+id, formdata, {
+
+    const req = new HttpRequest('POST', this.serviceUrlCandidat + '/addPhoto/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
- 
+
     return this.http.request(req);
   }
 
-  addCvOdixCandidat(cvOdix: File, id:any): Observable<HttpEvent<{}>> {
+  addCvOdixCandidat(cvOdix: File, id: any): Observable<HttpEvent<{}>> {
 
     const formdata: FormData = new FormData();
 
     formdata.append('cvOdix', cvOdix);
- 
-    const req = new HttpRequest('POST', this.serviceUrlCandidat+'/addCvOdix/'+id, formdata, {
+
+    const req = new HttpRequest('POST', this.serviceUrlCandidat + '/addCvOdix/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
- 
+
     return this.http.request(req);
   }
 
-  addCvOriginalCandidat(cvOriginal: File, id:any): Observable<HttpEvent<{}>> {
+  addCvOriginalCandidat(cvOriginal: File, id: any): Observable<HttpEvent<{}>> {
 
     const formdata: FormData = new FormData();
 
     formdata.append('cvOriginal', cvOriginal);
- 
-    const req = new HttpRequest('POST', this.serviceUrlCandidat+'/addCvOriginal/'+id, formdata, {
+
+    const req = new HttpRequest('POST', this.serviceUrlCandidat + '/addCvOriginal/' + id, formdata, {
       reportProgress: true,
       responseType: 'text'
     });
- 
+
     return this.http.request(req);
   }
 }

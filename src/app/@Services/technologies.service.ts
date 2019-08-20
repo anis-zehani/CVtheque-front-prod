@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 
 export class TechnologiesService {
 
-  private serviceUrl = environment.baseUrl+'/technologie';
+  private serviceUrl = environment.baseUrl + '/technologie';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -19,25 +19,25 @@ export class TechnologiesService {
     })
     };
 
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }
 
-  //Retourne un tableau de toutes les technologies : Technologie[]
-  getAllTechnologiesService() : Observable<Technologie[]> {
+  // Retourne un tableau de toutes les technologies : Technologie[]
+  getAllTechnologiesService(): Observable<Technologie[]> {
     return this.http.get<Technologie[]>(this.serviceUrl);
   }
 
-  //Retourne la technologie créée : Technologie
-  addTechnologieService(technologie) : Observable<Technologie> {
+  // Retourne la technologie créée : Technologie
+  addTechnologieService(technologie): Observable<Technologie> {
     return this.http.post<any>(this.serviceUrl, JSON.stringify(technologie), this.httpOptions);
   }
 
-  //Retourne la technologie modifiée : Technologie
-  editTechnologieService(technologie) : any {
+  // Retourne la technologie modifiée : Technologie
+  editTechnologieService(technologie): any {
     return this.http.put<any>(this.serviceUrl, JSON.stringify(technologie), this.httpOptions);
   }
 
-  //Retourne true si la suppression est faite, false si y a erreur
-  deleteTechnologieService(id) : any {
-    return this.http.delete<any>(this.serviceUrl + '/'+id, this.httpOptions);
+  // Retourne true si la suppression est faite, false si y a erreur
+  deleteTechnologieService(id): any {
+    return this.http.delete<any>(this.serviceUrl + '/' + id, this.httpOptions);
   }
 }

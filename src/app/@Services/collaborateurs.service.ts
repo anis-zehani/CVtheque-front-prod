@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 
 export class CollaborateursService {
 
-  private serviceUrl = environment.baseUrl+'/collaborateur';
+  private serviceUrl = environment.baseUrl + '/collaborateur';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -19,30 +19,30 @@ export class CollaborateursService {
     })
     };
 
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }
 
-  //Retourne un tableau de touts les collaborateurs : Collaborateur[]
-  getAllCollaborateursService() : Observable<Collaborateur[]> {
+  // Retourne un tableau de touts les collaborateurs : Collaborateur[]
+  getAllCollaborateursService(): Observable<Collaborateur[]> {
     return this.http.get<Collaborateur[]>(this.serviceUrl);
   }
 
-  //Retourne un seul collaborateur par son ID : Collaborateur
-  getOneCollaborateurService(id) : Observable<Collaborateur> {
-    return this.http.get<Collaborateur>(this.serviceUrl + '/'+id, this.httpOptions);
+  // Retourne un seul collaborateur par son ID : Collaborateur
+  getOneCollaborateurService(id): Observable<Collaborateur> {
+    return this.http.get<Collaborateur>(this.serviceUrl + '/' + id, this.httpOptions);
   }
 
-  //Retourne le collaborateur créée : Collaborateur
-  addCollaborateurService(collaborateur) : Observable<Collaborateur> {
+  // Retourne le collaborateur créée : Collaborateur
+  addCollaborateurService(collaborateur): Observable<Collaborateur> {
     return this.http.post<any>(this.serviceUrl, JSON.stringify(collaborateur), this.httpOptions);
   }
 
-  //Retourne le collaborateur modifié : Collaborateur
-  editCollaborateurService(collaborateur) : any {
+  // Retourne le collaborateur modifié : Collaborateur
+  editCollaborateurService(collaborateur): any {
     return this.http.put<any>(this.serviceUrl, JSON.stringify(collaborateur), this.httpOptions);
   }
 
-  //Ne retourne rien
+  // Ne retourne rien
   deleteCollaborateurService(id) {
-    return this.http.delete<any>(this.serviceUrl + '/'+id, this.httpOptions);
+    return this.http.delete<any>(this.serviceUrl + '/' + id, this.httpOptions);
   }
 }
