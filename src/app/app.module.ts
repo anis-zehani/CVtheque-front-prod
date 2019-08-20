@@ -130,6 +130,9 @@ import { ShowEntrepriseComponent } from './@Components/entreprises/show-entrepri
 import { DialogAddCertificationsComponent } from './@Components/certifications/dialog-add-certifications/dialog-add-certifications.component';
 import { ListePartenairesForShowComponent } from './@Components/partenaires/liste-partenaires-for-show/liste-partenaires-for-show.component';
 import { ListeTechnologiesForSearchComponent } from './@Components/technologies/liste-technologies-for-search/liste-technologies-for-search.component';
+import { FormAddCompteCandidatComponent } from './@Components/authentification/form-add-compte-candidat/form-add-compte-candidat.component';
+import { FormAddComptePartenaireComponent } from './@Components/authentification/form-add-compte-partenaire/form-add-compte-partenaire.component';
+import { FormRecupererPasswordComponent } from './@Components/authentification/form-recuperer-password/form-recuperer-password.component';
 
 @NgModule({
   declarations: [
@@ -214,7 +217,10 @@ import { ListeTechnologiesForSearchComponent } from './@Components/technologies/
     ShowEntrepriseComponent,
     DialogAddCertificationsComponent,
     ListePartenairesForShowComponent,
-    ListeTechnologiesForSearchComponent
+    ListeTechnologiesForSearchComponent,
+    FormAddCompteCandidatComponent,
+    FormAddComptePartenaireComponent,
+    FormRecupererPasswordComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,
