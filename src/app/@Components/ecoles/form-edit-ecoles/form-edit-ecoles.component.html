@@ -1,0 +1,14 @@
+<div>
+  <h2 mat-dialog-title>Modifier l'école</h2>
+  <mat-form-field appearance="outline">
+      <mat-label>Libellé de l'école</mat-label>
+      <input matInput [(ngModel)]="data.idEcole" hidden>
+      <input matInput [(ngModel)]="data.nomEcole">
+      <mat-icon matSuffix>school</mat-icon>
+  </mat-form-field>
+  
+  <div style="display: flex;justify-content: space-between;">
+      <button mat-flat-button [mat-dialog-close]="data" style="margin-right: 10px">Confirmer</button>
+      <button mat-stroked-button mat-dialog-close style="margin-left: 10px">Annuler</button>
+  </div>
+</div>

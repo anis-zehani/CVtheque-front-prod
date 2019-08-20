@@ -1,0 +1,22 @@
+<div class="title-xs-higher" fxLayout="row" fxLayoutAlign="space-between stretch" >
+    Gestion des certifications
+</div>
+
+<div class="container" 
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="start stretch"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+
+  <!-- Container : Formulaire : Ajout Certification-->
+  <div fxFlex="25%">
+    <app-form-add-certifications (refreshTableEvent)="onRefreshTableEvent($event)"></app-form-add-certifications>
+  </div>
+
+  <!-- Container : DataGrid -->
+  <div fxFlex="75%">
+    <app-datagrid-certifications></app-datagrid-certifications>
+  </div>
+
+</div>

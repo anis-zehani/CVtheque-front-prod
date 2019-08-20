@@ -1,0 +1,44 @@
+<div class="footer" style="height: 40px;border-top: 1px solid white">
+  <!--Grands écrans-->
+  <div  fxLayout 
+        fxLayout.xs="row"
+        fxLayoutAlign="space-between center"
+        fxLayoutGap="20px"
+        fxLayoutGap.xs="20px" fxHide.lt-md="true">
+
+      <div fxFlex="10%">
+          <a routerLink="accueil"><img src="assets/img/logo.png" class="logo"></a>
+      </div>
+      
+      <div fxFlex="80%">
+
+      </div>
+
+      <div fxFlex="10%" class="footer-text">
+        Version 2.7.5
+      </div>
+
+  </div>
+
+  <!--Petits écrans-->
+  <div  fxLayout 
+        fxLayout.xs="row"
+        fxLayoutAlign="space-between center"
+        fxLayoutGap="20px"
+        fxLayoutGap.xs="20px" fxHide.gt-sm="true">
+
+      <div fxFlex="10%">
+          <a routerLink="accueil"><img src="assets/img/logo.png" class="logo"></a>
+      </div>
+      
+      <div fxFlex="60%">
+
+      </div>
+
+      <div fxFlex="30%" class="footer-text">
+        Version 2.7.4
+      </div>
+
+  </div>
+
+</div>

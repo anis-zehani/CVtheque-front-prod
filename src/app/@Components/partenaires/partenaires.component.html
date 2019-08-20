@@ -1,0 +1,62 @@
+<div class="container"
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutAlign="space-between stretch"
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="0">
+    
+    <!-- Visible sur grands écrans seulement -->
+    <div fxFlex="20%" style="background-color: #222;color: white" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="title-blanc">
+            Gestion des partenaires
+        </div>
+
+        <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()" style="margin-bottom: 15px;margin-top:5px;margin-right: 15px;margin-left: 15px;">Nouveau partenaire</button>
+    </div>
+
+    <div fxFlex="80%">
+        <div 
+            fxLayout
+            fxLayout.xs="row"
+            fxLayoutAlign="space-between stretch"
+            fxLayoutGap="10px"
+            fxLayoutGap.xs="0">
+
+        <!-- Container : Formulaire -->
+        <div fxFlex="0%">
+            <mat-sidenav-container class="sidenav-container">
+                <mat-sidenav #sidenav mode="side" class="sidenav-content"
+                            [fixedInViewport]="false" [opened]="false" [fixedTopGap]="0"
+                            [fixedBottomGap]="0">
+                            <button class="toggleButtonFermer" mat-flat-button (click)="sidenav.toggle()">Fermer</button>
+                            <div class="title">
+                                Ajouter un partenaire
+                            </div>
+                            
+                            <app-form-add-partenaires (refreshTableEvent)="onRefreshTableEvent($event)" [inputSideNav]="sidenav"></app-form-add-partenaires>
+                      
+                </mat-sidenav>
+              </mat-sidenav-container>
+        </div>
+
+        <!-- Container : DataGrid -->
+        <div fxFlex="100%">
+          <!-- Visible sur grands écrans seulement -->
+          <div class="title" fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true">
+              <!--Gestion des partenaires
+              <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()">Nouveau partenaire</button>-->
+          </div>
+
+          <!-- Visible sur petit écrans seulement -->
+          <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxHide.gt-sm="true">
+              <!--<div class="title-xs-higher">Gestion des partenaires</div>
+              <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()">Nouveau partenaire</button>-->
+          </div>
+
+          <app-datagrid-partenaires></app-datagrid-partenaires>
+
+        </div>
+        </div>
+    </div>
+
+  </div>

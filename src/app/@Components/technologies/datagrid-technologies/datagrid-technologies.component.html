@@ -1,0 +1,38 @@
+<mat-form-field appearance="outline">
+  <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
+  <mat-icon matSuffix >search</mat-icon>
+</mat-form-field>
+
+<table mat-table [dataSource]="listeTechnologies" class="mat-elevation-z2" matSort>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID.Technologie</th>
+    <td mat-cell *matCellDef="let element">{{element.id}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="nomTechnologie">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom de la technologie</th>
+    <td mat-cell *matCellDef="let element" width="85%">
+      <a class="pointer"  (click)="openDialogShowTechnologie(element.id, element.nomTechnologie, element.descriptionDetaillee)" matTooltip="Voir les détails">
+          {{element.nomTechnologie}}
+      </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="more">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let element" class="pointer" width="5%">
+        <a mat-button [matMenuTriggerFor]="menuTechnologies" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+          <mat-menu #menuTechnologies="matMenu">
+            <button mat-menu-item (click)="openDialogEditTechnologie(element.id, element.nomTechnologie, element.descriptionDetaillee)" matTooltip="Modifier la technologie" matTooltipPosition="right">Modifier la technologie</button>
+            
+            <button mat-menu-item (click)="openDialogDeleteTechnologie(element.id)" matTooltip="Supprimer la technologie" matTooltipPosition="right">Supprimer la technologie</button>
+          </mat-menu>
+      </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>

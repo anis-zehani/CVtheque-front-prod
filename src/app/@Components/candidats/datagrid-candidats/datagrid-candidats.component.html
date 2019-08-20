@@ -1,0 +1,256 @@
+<!-- Visible sur grands écrans seulement -->
+<div fxLayout
+     fxLayout.xs="row"
+     fxLayoutAlign="space-between center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="10px" fxHide.lt-md="true">
+
+    <div fxFlex="70%">
+        <mat-form-field appearance="outline">
+            <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
+            <mat-icon matSuffix >search</mat-icon>
+          </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+        <mat-form-field appearance="outline" style="color: #bd8e16;">
+            <mat-label style="color: #bd8e16;">Filtrer par l'état des candidats</mat-label>
+            <mat-select (selectionChange)="filtrerParEtat($event)" [(value)]="etatCandidat">
+                <mat-option value="True">Candidats actifs</mat-option>
+                <mat-option value="False">Candidats inactifs</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>filter_list</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+
+<!-- Visible sur petit écrans seulement -->
+<div fxLayout.xs="column"
+     fxLayoutAlign="space-evenly stretch"
+     fxHide.gt-sm="true">
+
+    <div>
+        <mat-form-field appearance="outline" >
+            <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
+            <mat-icon matSuffix >search</mat-icon>
+          </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field appearance="outline" style="color: #bd8e16;">
+            <mat-label style="color: #bd8e16;">Filtrer par l'état des candidats</mat-label>
+            <mat-select (selectionChange)="filtrerParEtat($event)" [(value)]="etatCandidat">
+                <mat-option value="True">Candidats Actifs</mat-option>
+                <mat-option value="False">Candidats Inactifs</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>filter_list</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+
+<table mat-table [dataSource]="listeCandidats" class="mat-elevation-z2" matSort>
+
+  <ng-container matColumnDef="urlPhoto">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Candidat</th>
+    <td mat-cell *matCellDef="let element" width="10%" matTooltip="Consulter la fiche du candidat">
+
+
+      <div *ngIf="element.urlPhoto; else SINON_CANDIDAT">
+          <img src="{{storageUrl}}{{element.urlPhoto}}" style="cursor: pointer"
+          (click)="openDialogShowCandidat(
+          element.id, 
+          element.identite, 
+          element.telephone, 
+          element.email, 
+          element.posteOccupe, 
+          element.descriptionDetaillee, 
+          element.urlPhoto, 
+          element.etatCandidat, 
+          element.entreprise,
+          
+          element.salaireActuel, 
+          element.pretentionSalariale,
+          element.situationFamiliale,
+
+          element.nombreEnfants, 
+          element.adresse,
+          element.dateDeNaissance, 
+          element.niveauEnFrancais,
+          element.niveauEnAnglais,
+          element.noteGlobale, 
+          element.disponibilite,
+          element.dateDemarrageCarriere, 
+          element.dateEpuisementPasseport,
+
+          element.diplome, 
+          element.visa,
+          element.curriculum,
+          
+          element.listeTechnologies,
+          element.listeOpportunites,
+          element.listeCertifications
+          )"
+          >
+      </div> 
+      <ng-template #SINON_CANDIDAT>
+          <img src="/assets/img/candidat.png" style="cursor: pointer"
+          (click)="openDialogShowCandidat(
+          element.id, 
+          element.identite, 
+          element.telephone, 
+          element.email, 
+          element.posteOccupe, 
+          element.descriptionDetaillee, 
+          element.urlPhoto, 
+          element.etatCandidat, 
+          element.entreprise,
+          
+          element.salaireActuel, 
+          element.pretentionSalariale,
+          element.situationFamiliale,
+
+          element.nombreEnfants, 
+          element.adresse,
+          element.dateDeNaissance, 
+          element.niveauEnFrancais,
+          element.niveauEnAnglais,
+          element.noteGlobale, 
+          element.disponibilite,
+          element.dateDemarrageCarriere, 
+          element.dateEpuisementPasseport,
+
+          element.diplome, 
+          element.visa,
+          element.curriculum,
+          
+          element.listeTechnologies,
+          element.listeOpportunites,
+          element.listeCertifications
+          )"
+          >
+      </ng-template>
+
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="candidat">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Coordonnées</th>
+    <td mat-cell *matCellDef="let element" width="30%">
+      <b class="label-datagrid">Identité : </b>{{element.identite}}<br>
+      <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
+      <b class="label-datagrid">Email : </b>{{element.email}}<br>
+      <b class="label-datagrid">Poste : </b>{{element.posteOccupe}}<br>
+      <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel}}<br>
+      <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
+      
+      <div style="display: flex;justify-content: flex-start;">
+          <div *ngIf="element.curriculum.urlCvOdix">
+            <b class="label-datagrid">CV Odix : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOdix}}" target="_blank" style="text-decoration: none">Afficher  </a>
+          </div>
+
+          <div *ngIf="element.curriculum.urlCvOriginal">
+            <b class="label-datagrid">  - CV Original : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOriginal}}" target="_blank"  style="text-decoration: none">Afficher</a>
+          </div>
+      </div>
+      
+      
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
+    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="50%">
+      <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
+      <div *ngIf="element.entreprise; else SINON">
+          <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
+      </div>
+      <ng-template #SINON>
+          <b class="label-datagrid">Entreprise : </b>N.D<br>
+      </ng-template>
+
+      <div *ngIf="element.disponibilite != 'Non_Mentionee'; else SINON1">
+          <b class="label-datagrid">Disponibilité : </b>{{element.disponibilite}}<br>
+      </div>
+      <ng-template #SINON1>
+          <b class="label-datagrid">Disponibilité : </b>N.D<br>
+      </ng-template>
+
+      <div *ngIf="element.situationFamiliale != 'Non_Mentionee'; else SINON2">
+          <b class="label-datagrid">Situation familiale : </b>{{element.situationFamiliale}}<br>
+      </div>
+      <ng-template #SINON2>
+          <b class="label-datagrid">Situation familiale : </b>N.D<br>
+      </ng-template>
+      
+      <div class="details-datagrid">
+          <b class="label-datagrid">Détails : </b>{{element.descriptionDetaillee}}<br>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="etat">
+    <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
+    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%">
+
+        <div *ngIf="element.etatCandidat === 'True'; else notShow">
+            <mat-slide-toggle (change)="editEtatCandidat(element.id, element.etatCandidat)" [checked]="true" matTooltip="Désactiver le candidat"></mat-slide-toggle>
+        </div>
+        
+        <ng-template #notShow>
+            <mat-slide-toggle (change)="editEtatCandidat(element.id, element.etatCandidat)" [checked]="false" matTooltip="Activer le candidat"></mat-slide-toggle>
+        </ng-template>
+        
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="more">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let element" class="pointer" width="5%">
+        <a mat-button [matMenuTriggerFor]="menuCandidats" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+          <mat-menu #menuCandidats="matMenu">
+            <button mat-menu-item 
+            (click)="openDialogEditCandidat(
+            element.id, 
+            element.identite, 
+            element.telephone, 
+            element.email, 
+            element.posteOccupe, 
+            element.descriptionDetaillee, 
+            element.urlPhoto, 
+            element.etatCandidat, 
+            element.entreprise,
+            
+            element.salaireActuel, 
+            element.pretentionSalariale,
+            element.situationFamiliale,
+      
+            element.nombreEnfants, 
+            element.adresse,
+            element.dateDeNaissance, 
+            element.niveauEnFrancais,
+            element.niveauEnAnglais,
+            element.noteGlobale, 
+            element.disponibilite,
+            element.dateDemarrageCarriere, 
+            element.dateEpuisementPasseport,
+      
+            element.diplome, 
+            element.visa,
+            element.curriculum,
+            
+            element.listeTechnologies,
+            element.listeOpportunites,
+            element.listeCertifications
+            )" 
+            matTooltip="Modifier le candidat" matTooltipPosition="right">Modifier le candidat</button>
+            
+            <button mat-menu-item (click)="openDialogDeleteCandidat(element.id)" matTooltip="Supprimer le candidat" matTooltipPosition="right">Supprimer le candidat</button>
+          </mat-menu>
+      </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>

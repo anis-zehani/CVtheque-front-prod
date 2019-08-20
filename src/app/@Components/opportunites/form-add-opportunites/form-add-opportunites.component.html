@@ -1,0 +1,82 @@
+<div class="title">
+    Ajouter une opportunité
+ </div>
+
+ <form [formGroup]="formOpportunite" (ngSubmit)="addOpportuniteController()">
+    <div fxLayout
+         fxLayout.xs="row"
+         fxLayoutAlign="space-between start"
+         fxLayoutGap="10px"
+         fxLayoutGap.xs="0">
+     
+    <!-- Container : Partie Gauche -->
+    <div fxFlex="70%"> 
+    <table>
+      <tr>
+        <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Titre de l'opportunite</mat-label>
+              <input matInput formControlName="titreOpportunite">
+              <mat-icon matSuffix>title</mat-icon>
+            </mat-form-field>
+        </td>
+        
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>TJM</mat-label>
+                <input matInput formControlName="tjmOpportunite">
+                <mat-icon matSuffix>euro_symbol</mat-icon>
+            </mat-form-field> 
+        </td>
+      </tr>
+    
+        <tr>
+           <td>
+              <app-liste-partenaires
+                 (partenaireIdEvent)="partenaireIdEventListner($event)">
+              </app-liste-partenaires>
+           </td>
+           <td>
+              <mat-form-field appearance="outline">
+                  <mat-label>Date de démarrage</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="dateDemarrageSouhaitee">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker touchUi #picker></mat-datepicker>
+              </mat-form-field>
+           </td>
+       </tr>
+       
+    </table>
+     
+          <mat-form-field appearance="outline" >
+              <mat-label>Description détaillée</mat-label>
+              <textarea matInput formControlName="descriptionOpportunite" style="height: 80px;overflow-y: auto"></textarea>
+              <mat-icon matSuffix>description</mat-icon>
+          </mat-form-field>
+    
+          <div style="display: flex;justify-content: space-between;">
+            <button mat-flat-button type="submit" (click)="inputSideNav.toggle();" style="margin-right: 10px">Ajouter une opportunité</button>
+            <button mat-stroked-button type="reset"  style="margin-left: 10px">Tout réinitialiser</button>
+          </div> 
+          <br>
+
+    </div>
+
+    <!-- Container : Partie Droite -->
+    <div fxFlex="30%">
+        <table>
+            <tr>
+                <app-liste-technologies-for-add (listeTechnologiesEvent)="listeTechnologiesOpportunitesEventListner($event)"></app-liste-technologies-for-add>
+            </tr>
+
+            <tr>
+                <app-liste-candidats-for-add (listeCandidatsEvent)="listeCandidatsOpportunitesEventListner($event)"></app-liste-candidats-for-add>
+            </tr>
+
+            <tr>
+                <app-liste-certifications-for-add (listeCertificationsEvent)="listeCertificationsOpportunitesEventListner($event)"></app-liste-certifications-for-add>
+            </tr>
+        </table>
+    </div>
+</div>
+</form>

@@ -1,0 +1,255 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #f7c341;
+}
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #f7c341;
+}
+
+.container
+{
+  min-height: 700px;
+}
+/*
+STYLE : écran "Liste des Technologies
+*/
+  .title {
+      font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      font-size: 1.175rem;
+      font-variant-ligatures: no-contextual;
+      color: #202124;
+      font-weight: 450;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+  .title-xs {
+      font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      font-size: 1.175rem;
+      font-variant-ligatures: no-contextual;
+      color: #202124;
+      font-weight: 450;
+      margin-bottom: 15px;
+    }
+
+  .title-xs-higher {
+      font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      font-size: 1.175rem;
+      font-variant-ligatures: no-contextual;
+      color: #202124;
+      font-weight: 450;
+      margin-top: 15px;
+      margin-bottom: 15px;
+  }
+
+  .title-bleu {
+      font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      font-size: 1.175rem;
+      font-variant-ligatures: no-contextual;
+      color: rgb(15, 76, 104);
+      font-weight: 400;
+      margin-top: 15px;
+      margin-bottom: 5px;
+  }
+
+  .title-blanc {
+        font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+        font-size: 1.175rem;
+        font-variant-ligatures: no-contextual;
+        color: white;
+        font-weight: 400;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        margin-left: 15px;
+  }
+
+  div.mat-dialog-title {
+      font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      font-size: 1.175rem;
+      font-variant-ligatures: no-contextual;
+      color: #202124;
+      font-weight: 450;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: #3b2d08;
+    }
+    
+  mat-form-field {
+      width:100%;
+    }
+  
+  table {
+    width:100%;
+    }
+  
+  button {
+    width:100%; /*Ne pas toucher ça*/
+    }
+  
+  button.mat-flat-button{
+    background-color: #f7c341;
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 350;
+    font-variant-ligatures: no-contextual;
+    }
+  
+  button.mat-stroked-button {
+    background-color: #f8f8f8;
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 350;
+    font-variant-ligatures: no-contextual;
+    } 
+  
+  .pointer{
+    cursor: pointer;
+    }
+  
+  .error{
+    color:red;
+    }
+  
+  .snackbar{
+    background-color:black;
+    color:#f7c341;
+    }
+
+  .snackbar .mat-simple-snackbar-action {
+    background-color: #f7c341;
+    color: black;
+  }
+
+  .snackbarErreur{
+    background-color: #c7170b;
+    color:white;
+    }
+
+  .snackbarErreur .mat-simple-snackbar-action {
+    background-color: white;
+    color:black;
+  }
+  
+  #modaleOK{
+    background-color: #f7c341;
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 350;
+    font-variant-ligatures: no-contextual;
+    }
+  
+  #modaleNonOK{
+    background-color: #f8f8f8;
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 350;
+    font-variant-ligatures: no-contextual;
+    }
+  
+/*
+STYLE : écran "edit Technologie Dialog
+*/
+    button.mat-flat-button.mat-dialog-close {
+        background-color: #f7c341;
+        float:right;
+        font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+        font-size: 0.875rem;
+        font-weight: 350;
+        font-variant-ligatures: no-contextual;
+      }
+
+    button.mat-stroked-button.mat-dialog-close {
+        background-color: #f8f8f8;
+        font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+        font-size: 0.875rem;
+        font-weight: 350;
+        font-variant-ligatures: no-contextual;
+      }                   
+
+  /*
+  STYLE : Toutes les Datagrid
+  */
+
+    td img{
+      vertical-align:middle;
+      width:80px;
+      border-radius: 50%;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .toggleButton {
+      font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      font-variant-ligatures: no-contextual;
+      width: auto;
+      border: 1px solid;
+      border-color:grey;
+    }
+
+    .toggleButtonFermer {
+      width: auto;
+      font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      font-variant-ligatures: no-contextual;
+      border: 1px solid;
+      border-color:grey;
+      border-radius: 4px;
+      margin-top: 5px;
+      float:right
+    }
+
+    .title-container-xs {
+      margin-bottom: 20px;
+    }
+
+    .simple-text {
+      font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      font-size: 0.925rem;
+      font-variant-ligatures: no-contextual;
+      color: red;
+      font-weight: 450;
+      margin-bottom: 35px;
+    }
+
+    .label-datagrid {
+      color: #bd8e16;
+    }
+
+    .details-datagrid {
+      max-height: 55px;
+      overflow-y: auto;
+    }
+
+    /*Liste show Technologies*/
+    .mat-liste {
+      font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+      font-size: 1.075rem;
+      font-variant-ligatures: no-contextual;
+      font-weight: 400;
+      color: #cf980d;
+      margin-bottom: 5px;
+    }
+
+    mat-list {
+      max-height: 400px;
+      min-height: 50px;
+      overflow: auto;
+    }
+
+    .mat-liste-contenu {
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.980rem;
+    font-variant-ligatures: no-contextual;
+    font-weight: 350;
+    color: #000;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    }
+    
+    a {
+      text-decoration: underline;
+    }

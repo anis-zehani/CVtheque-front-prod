@@ -1,0 +1,16 @@
+<form [formGroup]="formCertification" (ngSubmit)="addCertificationController()">
+  <mat-form-field appearance="outline">
+      <mat-label>Nom de la certification</mat-label>
+      <input matInput formControlName="nomCertification">
+      <mat-icon matSuffix>add_circle</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" >
+      <mat-label>Description détaillée</mat-label>
+      <textarea matInput formControlName="descriptionDetaillee" rows="8"></textarea>
+      <mat-icon matSuffix>description</mat-icon>
+  </mat-form-field>
+  
+  <button mat-flat-button type="submit" >Ajouter une certification</button><br><br>
+  <button mat-stroked-button type="reset">Tout réinitialiser</button><br><br>
+</form>

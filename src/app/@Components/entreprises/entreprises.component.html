@@ -1,0 +1,22 @@
+<div class="title-xs-higher" fxLayout="row" fxLayoutAlign="space-between stretch" >
+    Gestion des entreprises
+</div>
+
+<div class="container" 
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="start stretch"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+
+  <!-- Container : Formulaire : Ajout Entreprise-->
+  <div fxFlex="25%">
+    <app-form-add-entreprises (refreshTableEvent)="onRefreshTableEvent($event)"></app-form-add-entreprises>
+  </div>
+
+  <!-- Container : DataGrid -->
+  <div fxFlex="75%">
+    <app-datagrid-entreprises></app-datagrid-entreprises>
+  </div>
+
+</div>

@@ -1,0 +1,117 @@
+<!--DIV Pour les grands écrans--> 
+<div  fxLayout
+      fxLayout.xs="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="10px"
+      fxLayoutGap.xs="10px"
+      fxShow="true" fxHide.lt-md="true" style="margin-top: 10px">
+
+    <div fxFlex="70%">
+        <mat-form-field appearance="outline">
+            <input matInput (keyup)="filtrerTable($event.target.value)" placeholder={{title}}>
+            <mat-icon matSuffix >search</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <div fxFlex="30%">
+      <mat-form-field appearance="outline" style="color: #bd8e16;">
+        <mat-label style="color: #bd8e16;">Filtrer par priorité des rappels</mat-label>
+        <mat-select (selectionChange)="filtrerParPriorite($event)">
+            <mat-option value="Haute">Haute</mat-option>
+            <mat-option value="Normale">Normale</mat-option>
+            <mat-option value="Basse">Basse</mat-option>
+        </mat-select>
+        <mat-icon matSuffix>filter_list</mat-icon>
+      </mat-form-field>
+    </div>
+
+</div>
+
+<!--DIV Pour les petits écrans-->
+<div  fxLayout
+      fxLayout.xs="column"
+      fxLayoutAlign="center stretch"
+      fxLayoutGap="10px"
+      fxLayoutGap.xs="10px"
+      fxShow="true" fxHide.gt-sm="true">
+
+    <div>
+        <mat-form-field appearance="outline">
+            <input matInput (keyup)="filtrerTable($event.target.value)" placeholder={{title}}>
+            <mat-icon matSuffix >search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" style="color: #bd8e16;">
+          <mat-label style="color: #bd8e16;">Filtrer par priorité des rappels</mat-label>
+          <mat-select (selectionChange)="filtrerParPriorite($event)">
+              <mat-option value="Haute">Haute</mat-option>
+              <mat-option value="Normale">Normale</mat-option>
+              <mat-option value="Basse">Basse</mat-option>
+          </mat-select>
+          <mat-icon matSuffix>filter_list</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+
+<!--<table mat-table [dataSource]="listeRappels" class="mat-elevation-z2" matSort>-->
+<table mat-table [dataSource]="listeRappels" matSort>
+
+  <ng-container matColumnDef="icone">
+    <td mat-cell *matCellDef="let element" width="5%" matTooltip="Priorité du rappel">
+
+        <div *ngIf="element.priorite === 'Basse'">
+            <mat-icon matSuffix style="color: cornflowerblue; font-size: 30px">fiber_manual_record</mat-icon>
+        </div> 
+
+        <div *ngIf="element.priorite === 'Normale';">
+            <mat-icon matSuffix style="color: darkorange; font-size: 30px">fiber_manual_record</mat-icon>
+        </div> 
+
+        <div *ngIf="element.priorite === 'Haute'">
+            <mat-icon matSuffix style="color: brown; font-size: 30px">fiber_manual_record</mat-icon>
+        </div> 
+
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="separation">
+    <td mat-cell *matCellDef="let element" width="3%">
+      
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rappel">
+    <td mat-cell *matCellDef="let element" width="80%" >
+      <div *ngIf="element.detailsRappel">
+          {{element.detailsRappel}}<br>
+      </div>
+      <div *ngIf="element.projet">
+          <b>Projet : {{element.projet.nomProjet}}</b><br>
+      </div>
+
+      <div *ngIf="element.urlFichier"><!--Affiche uniquement le nom du fichier sans arborescence dossier-->
+        <b>P.J : </b><a href="{{storageUrl}}{{element.urlFichier}}" target="_blank">{{element.nomFichier | titlecase}}</a>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="more">
+    <td mat-cell *matCellDef="let element" class="pointer" width="5%">
+      <a mat-button [matMenuTriggerFor]="menuRappels" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+        <mat-menu #menuRappels="matMenu">
+          <button mat-menu-item (click)="openDialogEditRappel(element.id, element.detailsRappel, element.dateEcheance, element.remindMe, element.priorite, element.projet, element.urlFichier, element.nomFichier)" matTooltip="Modifier le rappel" matTooltipPosition="right">Modifier le rappel</button>
+          
+          <button mat-menu-item (click)="openDialogDeleteRappel(element.id)" matTooltip="Supprimer le rappel" matTooltipPosition="right">Supprimer le rappel</button>
+        </mat-menu>
+    </td>
+  </ng-container>
+
+  
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+
+
+

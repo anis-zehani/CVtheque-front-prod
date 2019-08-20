@@ -1,0 +1,16 @@
+<div class="mat-liste">
+    Certifications liées ({{Certifications.selectedOptions.selected.length}}) :
+  </div>
+<div style="max-height:250px;overflow-y: auto;">  
+    <mat-selection-list #Certifications (selectionChange)="onSelectionChange($event)" dense>
+    
+        <mat-list-option *ngFor="let certification of listeCertifications" [selected]="certification.selected" [value]="certification" checkboxPosition="before">
+            {{certification.nomCertification}}
+        </mat-list-option>
+        
+    </mat-selection-list>
+</div>
+  
+<mat-option><button mat-flat-button type="button" (click)="openDialogCertification()">Ajouter une certification</button></mat-option>
+  
+  

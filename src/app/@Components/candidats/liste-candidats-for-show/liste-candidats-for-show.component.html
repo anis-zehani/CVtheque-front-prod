@@ -1,0 +1,97 @@
+<div class="mat-liste">
+      Candidats liés ({{listeCandidats.length}}) :
+</div>
+                      
+  <div *ngIf="listeCandidats.length === 0;else SINON_CANDIDAT" class="mat-liste-contenu">
+      - Liste encore vide							
+  </div>
+
+  <ng-template #SINON_CANDIDAT>
+
+    <div style="max-height:250px;overflow-y: auto;">
+      <mat-list role="list" fxLayout="column" fxLayoutAlign="space-between stretch" dense>
+          <mat-list-item role="listitem" *ngFor="let candidat of listeCandidats">
+
+                <a fxFlex="90%" (click)="openDialogShowCandidat(
+                  candidat.id, 
+                  candidat.identite, 
+                  candidat.telephone, 
+                  candidat.email, 
+                  candidat.posteOccupe, 
+                  candidat.descriptionDetaillee, 
+                  candidat.urlPhoto, 
+                  candidat.etatCandidat, 
+                  candidat.entreprise,
+                  
+                  candidat.salaireActuel, 
+                  candidat.pretentionSalariale,
+                  candidat.situationFamiliale,
+        
+                  candidat.nombreEnfants, 
+                  candidat.adresse,
+                  candidat.dateDeNaissance, 
+                  candidat.niveauEnFrancais,
+                  candidat.niveauEnAnglais,
+                  candidat.noteGlobale, 
+                  candidat.disponibilite,
+                  candidat.dateDemarrageCarriere, 
+                  candidat.dateEpuisementPasseport,
+        
+                  candidat.diplome, 
+                  candidat.visa,
+                  candidat.curriculum,
+                  
+                  candidat.listeTechnologies,
+                  candidat.listeOpportunites,
+                  candidat.listeCertifications
+                  )">-  {{candidat.identite}}
+                  </a>
+
+                  <a mat-button [matMenuTriggerFor]="menuCandidats" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+              
+                  <mat-menu #menuCandidats="matMenu" xPosition="after">
+                    <button mat-menu-item 
+                    (click)="openDialogEditCandidat(
+                      candidat.id, 
+                      candidat.identite, 
+                      candidat.telephone, 
+                      candidat.email, 
+                      candidat.posteOccupe, 
+                      candidat.descriptionDetaillee, 
+                      candidat.urlPhoto, 
+                      candidat.etatCandidat, 
+                      candidat.entreprise,
+                      
+                      candidat.salaireActuel, 
+                      candidat.pretentionSalariale,
+                      candidat.situationFamiliale,
+                
+                      candidat.nombreEnfants, 
+                      candidat.adresse,
+                      candidat.dateDeNaissance, 
+                      candidat.niveauEnFrancais,
+                      candidat.niveauEnAnglais,
+                      candidat.noteGlobale, 
+                      candidat.disponibilite,
+                      candidat.dateDemarrageCarriere, 
+                      candidat.dateEpuisementPasseport,
+                
+                      candidat.diplome, 
+                      candidat.visa,
+                      candidat.curriculum,
+                      
+                      candidat.listeTechnologies,
+                      candidat.listeOpportunites,
+                      candidat.listeCertifications
+                    )" 
+                    matTooltip="Modifier le candidat" matTooltipPosition="right">Modifier le candidat</button>
+                
+                    <button mat-menu-item (click)="openDialogDeleteLinkCandidat(candidat.id)" matTooltip="Supprimer la liaison" matTooltipPosition="right">Supprimer la liaison</button>
+              
+                  </mat-menu>
+
+          </mat-list-item>
+      </mat-list>
+    </div>
+    
+  </ng-template>

@@ -1,0 +1,13 @@
+<div class="mat-liste">
+    Certifications liées ({{listeCertifications.length}}) :
+</div>
+<div *ngIf="listeCertifications.length===0;else SINON_CERTIFICATION" class="mat-liste-contenu">
+        - Liste encore vide							
+</div>
+<ng-template #SINON_CERTIFICATION>
+    <mat-list role="list" dense>
+        <mat-list-item role="listitem" *ngFor="let certification of listeCertifications">
+            - {{certification.nomCertification}}
+        </mat-list-item>
+    </mat-list>
+</ng-template>

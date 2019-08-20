@@ -1,0 +1,13 @@
+<div class="mat-liste">
+    Candidats liés ({{Candidats.selectedOptions.selected.length}}) :
+</div>
+<div style="max-height:250px;overflow-y: auto;">  
+    <mat-selection-list #Candidats (selectionChange)="onListeCandidatChange($event)" dense>
+    
+        <mat-list-option *ngFor="let candidat of listeCandidats" [selected]="candidat.selected" [value]="candidat" checkboxPosition="before">
+            {{candidat.identite}}
+        </mat-list-option>
+        
+    </mat-selection-list>
+</div>
+  

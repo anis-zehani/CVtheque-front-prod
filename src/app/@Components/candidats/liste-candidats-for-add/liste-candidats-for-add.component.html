@@ -1,0 +1,16 @@
+<div class="mat-liste">
+    Candidats ({{Candidats.selectedOptions.selected.length}})
+</div>
+<div style="max-height:250px;overflow-y: auto;">   
+    <mat-selection-list #Candidats (selectionChange)="onListeCandidatChange(Candidats.selectedOptions.selected)" dense>
+      
+      <mat-list-option *ngFor="let candidat of listeCandidats" [value]="candidat" checkboxPosition="before">
+          {{candidat.identite}}
+      </mat-list-option>
+      
+    </mat-selection-list> 
+</div>
+<!--<mat-option><button mat-flat-button type="button" (click)="openDialog()">Ajouter une candidat</button></mat-option>-->
+
+  
+  

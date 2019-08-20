@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Détails de la technologie</h2> 
+<div  fxLayout
+      fxLayout.xs="row"
+      fxLayoutAlign="space-between start"
+      fxLayoutGap="10px"
+      fxLayoutGap.xs="0">
+     
+<!-- Container : Partie Gauche -->
+<div fxFlex="50%"> 
+
+    <mat-form-field appearance="fill">
+        <mat-label>Libellé de la technologie</mat-label>
+        <input matInput [(ngModel)]="data.nomTechnologie" readonly="true">
+        <mat-icon matSuffix></mat-icon>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" >
+        <mat-label>Description détaillée</mat-label>
+        <textarea matInput [(ngModel)]="data.descriptionDetaillee" rows="10" style="overflow-y: auto"  readonly="true"></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+
+    <button mat-flat-button mat-dialog-close style="width: 30%">Quitter</button>
+    </div>
+
+    <!-- Container : Partie Droite -->
+    <div fxFlex="50%">
+        <table>
+                <tr>
+                    <!-- Liste Opportunités liées à cette technologie -->
+                    <app-liste-opportunites-for-show [idTechnologie]=data.id></app-liste-opportunites-for-show>
+                  </tr>
+
+                <tr>
+                    <!-- Liste Candidats liés à cette technologie --> 
+                    <app-liste-candidats-for-show [idTechnologie]=data.id></app-liste-candidats-for-show>
+                </tr>
+        </table>
+    </div>
+</div>

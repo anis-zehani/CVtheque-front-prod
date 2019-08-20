@@ -1,0 +1,62 @@
+<form [formGroup]="formContact" (ngSubmit)="addContactController()">
+  <table>
+    <tr>
+      <td>
+          <mat-form-field appearance="outline">
+            <mat-label>Identité du contact</mat-label>
+            <input matInput formControlName="identite">
+            <mat-icon matSuffix>account_circle</mat-icon>
+          </mat-form-field>
+      </td>
+      <!--  PHOTO UPLOAD   -->
+      <td>
+          <div class="image-upload">
+            <label for="file-input">
+                <mat-icon class="pointer">add_a_photo</mat-icon>
+            </label>
+            <input id="file-input" type="file" style="display: none;" (change)="selectFile($event)">
+          </div>
+      </td>
+    </tr>
+    <tr>
+       <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Téléphone</mat-label>
+              <input matInput formControlName="telephone">
+              <mat-icon matSuffix>local_phone</mat-icon>
+            </mat-form-field>  
+       </td>
+       <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Adresse email</mat-label>
+              <input matInput formControlName="email">
+              <mat-icon matSuffix>mail</mat-icon>
+            </mat-form-field>  
+       </td>
+      </tr>
+      <tr>
+         <td>
+            <app-liste-entreprises
+               (entrepriseIdEvent)="entrepriseIdEventListner($event)">
+            </app-liste-entreprises>
+         </td>
+         <td>
+            <mat-form-field appearance="outline">
+                <mat-label>Poste occupé</mat-label>
+                <input matInput formControlName="posteOccupe">
+            </mat-form-field>   
+         </td>
+     </tr>
+  </table>
+   
+        <mat-form-field appearance="outline" >
+            <mat-label>Description détaillée</mat-label>
+            <textarea matInput formControlName="descriptionDetaillee" style="height: 80px;overflow-y: auto"></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+        </mat-form-field>
+  
+        <div style="display: flex;justify-content: space-between;">
+          <button mat-flat-button type="submit" (click)="inputSideNav.toggle()" style="margin-right: 10px">Ajouter un contact</button>
+          <button mat-stroked-button type="reset"  style="margin-left: 10px">Tout réinitialiser</button>
+        </div>
+  </form>

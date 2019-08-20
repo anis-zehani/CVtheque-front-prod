@@ -1,0 +1,22 @@
+<div class="title-xs-higher" fxLayout="row" fxLayoutAlign="space-between stretch" >
+    Gestion des technologies
+</div>
+
+<div class="container" 
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="start stretch"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+
+  <!-- Container : Formulaire : Ajout Technologie-->
+  <div fxFlex="25%">
+    <app-form-add-technologies (refreshTableEvent)="onRefreshTableEvent($event)"></app-form-add-technologies>
+  </div>
+
+  <!-- Container : DataGrid -->
+  <div fxFlex="75%">
+    <app-datagrid-technologies></app-datagrid-technologies>
+  </div>
+
+</div>

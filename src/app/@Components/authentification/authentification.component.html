@@ -1,0 +1,34 @@
+<div class="container" fxLayout="column" fxLayoutAlign="start center">
+
+    <form [formGroup]="formAuthentification" (ngSubmit)="authentification()">
+
+      <div class="title-xs-higher" style="text-align: center">
+            Accès à la Plateforme
+      </div>
+
+      <mat-form-field appearance="outline">
+          <mat-label>Adresse e-mail</mat-label>
+          <input matInput formControlName="email">
+          <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput formControlName="password">
+          <mat-icon matSuffix>fingerprint</mat-icon>
+      </mat-form-field>
+    
+      <!--<button mat-flat-button (click)="save()">Entrer</button>-->
+      <button mat-flat-button>Entrer</button>
+      <br><br>
+      <!--<button mat-stroked-button mat-dialog-close >Mot de passe oublié ?</button>-->
+      <button mat-stroked-button >Mot de passe oublié ?</button>
+      <br><br><br><br>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-flat-button style="width:45%;margin-right: 10px">Créer un compte Candidat</button>
+            <button mat-flat-button style="width:45%;margin-left: 10px">Créer un compte Recruteur</button>
+      </div>
+
+    </form> 
+</div>

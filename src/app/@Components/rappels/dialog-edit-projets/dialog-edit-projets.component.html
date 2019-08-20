@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Modifier le projet</h2>
+
+<mat-form-field appearance="outline">
+    <mat-label>Intitulé du projet</mat-label>
+    <input matInput [(ngModel)]="data.id" hidden>
+    <input matInput [(ngModel)]="data.nomProjet">
+    <mat-icon matSuffix>add_circle</mat-icon>
+</mat-form-field>
+
+<mat-form-field appearance="outline" >
+    <mat-label>Détails</mat-label>
+    <textarea matInput [(ngModel)]="data.detailsProjet"></textarea>
+    <mat-icon matSuffix>description</mat-icon>
+</mat-form-field>
+
+<mat-dialog-actions style="display: flex;justify-content: end;">
+    <button mat-flat-button [mat-dialog-close]="data">Confirmer</button><br><br><br>
+    <button mat-stroked-button mat-dialog-close >Annuler</button>
+</mat-dialog-actions>
+

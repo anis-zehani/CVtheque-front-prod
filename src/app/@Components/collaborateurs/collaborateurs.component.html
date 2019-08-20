@@ -1,0 +1,22 @@
+<div class="title-xs-higher" fxLayout="row" fxLayoutAlign="space-between stretch" >
+  Gestion des collaborateurs
+</div>
+
+<div class="container" 
+   fxLayout
+   fxLayout.xs="column"
+   fxLayoutAlign="start stretch"
+   fxLayoutGap="10px"
+   fxLayoutGap.xs="0">
+
+<!-- Container : Formulaire : Ajout Collaborateur-->
+<div fxFlex="25%">
+  <app-form-add-collaborateurs (refreshTableEvent)="onRefreshTableEvent($event)"></app-form-add-collaborateurs>
+</div>
+
+<!-- Container : DataGrid -->
+<div fxFlex="75%">
+  <app-datagrid-collaborateurs></app-datagrid-collaborateurs>
+</div>
+
+</div>

@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline">
+  <mat-label>Entreprise</mat-label>
+  <mat-select [(value)]="entrepriseId" (selectionChange)="entrepriseIdEventFunction(entrepriseId)">
+    
+    <mat-option *ngFor="let entreprise of entreprises" [value]="entreprise.idEntreprise">{{entreprise.nomEntreprise}}</mat-option>
+    <mat-option><button mat-flat-button (click)="openDialog()">Ajouter une entreprise</button></mat-option>
+
+  </mat-select>
+  <mat-icon matSuffix>business</mat-icon>
+</mat-form-field>
+

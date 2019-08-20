@@ -1,0 +1,34 @@
+<mat-form-field appearance="outline">
+  <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
+  <mat-icon matSuffix >search</mat-icon>
+</mat-form-field>
+
+<table mat-table [dataSource]="listeEcoles" class="mat-elevation-z2" matSort>
+
+  <ng-container matColumnDef="idEcole">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID.École</th>
+    <td mat-cell *matCellDef="let element">{{element.idEcole}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="nomEcole">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom de l'école</th>
+    <td mat-cell *matCellDef="let element" width="85%">{{element.nomEcole}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="more">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let element" class="pointer" width="5%">
+        <a mat-button [matMenuTriggerFor]="menuEcoles" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+          <mat-menu #menuEcoles="matMenu">
+            <button mat-menu-item (click)="openDialogEditEcole(element.idEcole, element.nomEcole)" matTooltip="Modifier l'école" matTooltipPosition="right">Modifier l'école</button>
+            
+            <button mat-menu-item (click)="openDialogDeleteEcole(element.idEcole)" matTooltip="Supprimer l'école" matTooltipPosition="right">Supprimer l'école</button>
+          </mat-menu>
+      </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>

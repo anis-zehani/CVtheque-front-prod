@@ -1,0 +1,15 @@
+<div style="background-color: white;padding-top: 10px;">
+    <div class="mat-liste" style="padding-left: 15px;">
+        Filtrer par technologies ({{Technologies.selectedOptions.selected.length}}) :
+    </div>
+    <div style="max-height:200px;overflow-y: auto;">   
+        <mat-selection-list #Technologies (selectionChange)="onListeTechnologieChange(Technologies.selectedOptions.selected)" dense>
+        
+        <mat-list-option *ngFor="let technologie of listeTechnologies" [value]="technologie" checkboxPosition="before">
+            {{technologie.nomTechnologie}}
+        </mat-list-option>
+        
+        </mat-selection-list>
+    </div>
+</div>
+  

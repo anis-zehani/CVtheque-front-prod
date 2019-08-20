@@ -1,0 +1,339 @@
+<div class="title">
+        Ajouter un candidat
+</div>
+<br>
+
+<form [formGroup]="formCandidat" (ngSubmit)="addCandidatController()">
+    <div  fxLayout
+          fxLayout.xs="row"
+          fxLayoutAlign="space-between start"
+          fxLayoutGap="10px"
+          fxLayoutGap.xs="0">
+     
+    <!-- Container : Partie Gauche -->
+    <div fxFlex="75%"> 
+    <table>
+        <tr>
+            <div class="titleCandidat">
+                Contacts & Rémunération
+            </div>
+        </tr>
+        <tr>
+        <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Identité du candidat</mat-label>
+              <input matInput formControlName="identite">
+              <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Téléphone</mat-label>
+              <input matInput formControlName="telephone">
+              <mat-icon matSuffix>local_phone</mat-icon>
+            </mat-form-field>  
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Adresse email</mat-label>
+              <input matInput formControlName="email">
+              <mat-icon matSuffix>mail</mat-icon>
+            </mat-form-field>  
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>Poste occupé</mat-label>
+                <input matInput formControlName="posteOccupe">
+            </mat-form-field>   
+        </td>
+        <td>
+            <app-liste-entreprises
+                 (entrepriseIdEvent)="entrepriseIdEventListner($event)">
+            </app-liste-entreprises>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+              <mat-label>Salaire actuel</mat-label>
+              <input matInput formControlName="salaireActuel">
+              <mat-icon matSuffix>euro_symbol</mat-icon>
+            </mat-form-field>  
+        </td>
+        
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Prétention salariale</mat-label>
+                    <input matInput formControlName="pretentionSalariale">
+                    <mat-icon matSuffix>euro_symbol</mat-icon>
+                </mat-form-field>  
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Date de naissance</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dateDeNaissance">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+            </td>
+        </tr>
+  
+        <tr>
+            <div class="titleCandidat">
+                Diplômes obtenus
+            </div>
+        </tr>
+
+        <tr>
+          <td>
+              <mat-form-field appearance="outline">
+                  <mat-label>Type du diplôme</mat-label>
+                  <mat-select formControlName="typeDiplome">
+                    <mat-option value="Licence">Licence</mat-option>
+                    <mat-option value="Maitrise">Maîtrise</mat-option>
+                    <mat-option value="Master">Master</mat-option>
+                    <mat-option value="Ingenieur">Ingénieur</mat-option>
+                    <mat-option value="Doctorat">Doctorat</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>school</mat-icon>
+              </mat-form-field>    
+          </td>
+          <td>
+              <app-liste-ecoles
+                 (ecoleIdEvent)="ecoleIdEventListner($event)">
+              </app-liste-ecoles> 
+          </td>
+          <td>
+              <mat-form-field appearance="outline">
+                  <mat-label>Date obtention du diplôme</mat-label>
+                  <input matInput [matDatepicker]="picker3" formControlName="dateObtentionDiplome">
+                  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                  <mat-datepicker touchUi #picker3></mat-datepicker>
+              </mat-form-field>
+          </td>
+        </tr>
+  
+        <tr>
+            <div class="titleCandidat">
+                Visas obtenus & Disponibilité
+            </div>
+        </tr>
+  
+        <tr>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Type du visa</mat-label>
+                    <mat-select formControlName="typeVisa">
+                      <mat-option value="TypeC">C</mat-option>
+                      <mat-option value="TypeD">D</mat-option>
+                      <mat-option value="CarteDeSejour">Carte de séjour</mat-option>
+                      <mat-option value="Nationalite">Nationalité</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>class</mat-icon>
+                </mat-form-field>    
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Date début du visa</mat-label>
+                    <input matInput [matDatepicker]="picker4" formControlName="dateDebutVisa">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker4></mat-datepicker>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Date fin du visa</mat-label>
+                    <input matInput [matDatepicker]="picker5" formControlName="dateFinVisa">
+                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker5></mat-datepicker>
+                </mat-form-field>
+            </td>
+        </tr>
+  
+        <tr>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Disponibilité</mat-label>
+                    <mat-select formControlName="disponibilite">
+                      <mat-option value="Immediate">Immédiate</mat-option>
+                      <mat-option value="Sous_15_jours">Sous 15 jours</mat-option>
+                      <mat-option value="Sous_30_jours">Sous 30 jours</mat-option>
+                      <mat-option value="Sous_45_jours">Sous 45 jours</mat-option>
+                      <mat-option value="Sous_60_jours">Sous 60 jours</mat-option>
+                      <mat-option value="Sous_75_jours">Sous 75 jours</mat-option>
+                      <mat-option value="Sous_90_jours">Sous 90 jours</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>schedule</mat-icon>
+                </mat-form-field>      
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Date démarrage de carrière</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="dateDemarrageCarriere">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker1></mat-datepicker>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <mat-label>Date épuisement du passeport</mat-label>
+                    <input matInput [matDatepicker]="picker2" formControlName="dateEpuisementPasseport">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker2></mat-datepicker>
+                </mat-form-field>   
+             </td>
+        </tr>
+  
+        <tr>
+            <td>
+                <div class="titleCandidat">CV Original</div>
+                <div class="image-upload">
+                    <label for="cvoriginal">
+                        <mat-icon class="pointer">attach_file</mat-icon>
+                    </label>
+                    <input id="cvoriginal" type="file" style="display: none;" (change)="selectFile($event, 'cvoriginal')">
+                </div>
+            </td>
+
+            <td>
+
+                <div class="titleCandidat">CV Odix</div>
+                <div class="image-upload">
+                    <label for="cvodix">
+                        <mat-icon class="pointer">attach_file</mat-icon>
+                    </label>
+                    <input id="cvodix" type="file" style="display: none;" (change)="selectFile($event, 'cvodix')">
+                </div>
+            </td>
+            
+            <td>
+                <div class="titleCandidat">Photo de profil</div>
+                <div class="image-upload">
+                  <label for="photodeprofil">
+                      <mat-icon class="pointer">add_a_photo</mat-icon>
+                  </label>
+                      <input id="photodeprofil" type="file" style="display: none;" (change)="selectFile($event, 'photodeprofil')">
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <div class="titleCandidat">
+                Informations familiales
+            </div>
+        </tr>
+
+        <tr>
+           <td>
+              <mat-form-field appearance="outline">
+                  <mat-label>Situation familiale</mat-label>
+                  <mat-select formControlName="situationFamiliale">
+                    <mat-option value="Celibataire">Célibataire</mat-option>
+                    <mat-option value="Fiance">Fiancé</mat-option>
+                    <mat-option value="Marie">Marié</mat-option>
+                    <mat-option value="Divorce">Divorcé</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>wc</mat-icon>
+              </mat-form-field>    
+           </td>
+           <td>
+              <mat-form-field appearance="outline">
+                  <mat-label>Nombre d'enfants</mat-label>
+                  <mat-select formControlName="nombreEnfants">
+                    <mat-option value="0">0</mat-option>
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                    <mat-option value="4">4</mat-option>
+                    <mat-option value="5">5</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>child_care</mat-icon>
+              </mat-form-field>    
+           </td>
+           <td>
+              <mat-form-field appearance="outline">
+                <mat-label>Adresse</mat-label>
+                <input matInput formControlName="adresse">
+                <mat-icon matSuffix>add_location</mat-icon>
+              </mat-form-field>  
+          </td>
+       </tr>
+  
+       <tr>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>Niveau en français</mat-label>
+                <mat-select formControlName="niveauEnFrancais">
+                  <mat-option value="Parfait">Parfait</mat-option>
+                  <mat-option value="Bien">Bien</mat-option>
+                  <mat-option value="AssezBien">AssezBien</mat-option>
+                  <mat-option value="Passable">Passable</mat-option>
+                  <mat-option value="Mauvais">Mauvais</mat-option>
+                  <mat-option value="Nul">Nul</mat-option>
+                </mat-select>
+                <mat-icon matSuffix>business</mat-icon>
+            </mat-form-field>      
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>Niveau en anglais</mat-label>
+                <mat-select formControlName="niveauEnAnglais">
+                  <mat-option value="Parfait">Parfait</mat-option>
+                  <mat-option value="Bien">Bien</mat-option>
+                  <mat-option value="AssezBien">AssezBien</mat-option>
+                  <mat-option value="Passable">Passable</mat-option>
+                  <mat-option value="Mauvais">Mauvais</mat-option>
+                  <mat-option value="Nul">Nul</mat-option>
+                </mat-select>
+                <mat-icon matSuffix>business</mat-icon>
+            </mat-form-field>       
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>Note globale</mat-label>
+                <mat-select formControlName="noteGlobale">
+                  <mat-option value="Parfait">Parfait</mat-option>
+                  <mat-option value="Bien">Bien</mat-option>
+                  <mat-option value="AssezBien">AssezBien</mat-option>
+                  <mat-option value="Passable">Passable</mat-option>
+                  <mat-option value="Mauvais">Mauvais</mat-option>
+                  <mat-option value="Nul">Nul</mat-option>
+                </mat-select>
+                <mat-icon matSuffix>business</mat-icon>
+            </mat-form-field>       
+         </td>
+       </tr>
+    </table>
+     
+    <mat-form-field appearance="outline" >
+        <mat-label>Description détaillée</mat-label>
+        <textarea matInput formControlName="descriptionDetaillee" style="height: 80px;overflow-y: auto"></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+
+    <div style="display: flex;justify-content: space-between;">
+        <button mat-flat-button type="submit" (click)="inputSideNav.toggle()" style="width:25%;margin-right: 10px">Ajouter un candidat</button>
+        <button mat-stroked-button type="reset" style="width:25%;margin-left: 10px">Tout réinitialiser</button>
+    </div>
+    <br>
+
+    </div>
+
+    <!-- Container : Partie Droite -->
+    <div fxFlex="25%">
+        <table>
+            <tr>
+                <app-liste-technologies-for-add (listeTechnologiesEvent)="listeTechnologiesEventListner($event)"></app-liste-technologies-for-add>
+            </tr>
+            <tr>
+                <app-liste-opportunites-for-add (listeOpportunitesEvent)="listeOpportunitesEventListner($event)"></app-liste-opportunites-for-add>
+            </tr>
+            <tr>
+                <app-liste-certifications-for-add (listeCertificationsEvent)="listeCertificationsEventListner($event)"></app-liste-certifications-for-add>
+            </tr>
+        </table>
+    </div>
+</div>
+</form>

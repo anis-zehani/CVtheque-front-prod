@@ -1,0 +1,55 @@
+<div class="mat-liste">
+    Opportunités liées ({{listeOpportunites.length}}) :
+</div>
+<div *ngIf="listeOpportunites.length===0;else SINON_OPPORTUNITE" class="mat-liste-contenu">
+        - Liste encore vide							
+</div>
+<ng-template #SINON_OPPORTUNITE>
+    <div style="max-height:250px;overflow-y: auto;">  
+        <mat-list role="list" fxLayout="column" fxLayoutAlign="space-between stretch" dense>
+            <mat-list-item role="listitem" *ngFor="let opportunite of listeOpportunites">
+
+                <a fxFlex="90%" (click)="openDialogShowOpportunite
+                (
+                    opportunite.id, 
+                    opportunite.titreOpportunite, 
+                    opportunite.descriptionOpportunite, 
+                    opportunite.dateAjout, 
+                    opportunite.dateDemarrageSouhaitee, 
+                    opportunite.tjmOpportunite, 
+                    opportunite.etatOpportunite, 
+                    opportunite.responsableOpportunite, 
+                    opportunite.listeTechnologies,
+                    opportunite.listeCertifications
+                )"
+                    >-  {{opportunite.titreOpportunite}} 
+                </a>
+
+                <a mat-button [matMenuTriggerFor]="menuOpportunites" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+
+                <mat-menu #menuOpportunites="matMenu" xPosition="after">
+                        <button mat-menu-item 
+                        (click)="openDialogEditOpportunite
+                        (
+                            opportunite.id, 
+                            opportunite.titreOpportunite, 
+                            opportunite.descriptionOpportunite, 
+                            opportunite.dateAjout, 
+                            opportunite.dateDemarrageSouhaitee, 
+                            opportunite.tjmOpportunite, 
+                            opportunite.etatOpportunite, 
+                            opportunite.responsableOpportunite, 
+                            opportunite.listeTechnologies,
+                            opportunite.listeCertifications
+                        )" 
+
+                        matTooltip="Modifier l'opportunité" matTooltipPosition="right">Modifier  l'opportunité</button>
+                    
+                        <button mat-menu-item (click)="openDialogUpdateLinkAvecOpportunite(opportunite.id)" matTooltip="Supprimer la liaison" matTooltipPosition="right">Supprimer la liaison</button>
+                
+                    </mat-menu>
+
+            </mat-list-item>
+        </mat-list>
+    </div>
+</ng-template>

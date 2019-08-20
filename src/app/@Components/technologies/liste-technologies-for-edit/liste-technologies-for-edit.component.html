@@ -1,0 +1,16 @@
+<div class="mat-liste">
+    Technologies liées ({{Technologies.selectedOptions.selected.length}}) :
+  </div>
+<div style="max-height:250px;overflow-y: auto;">  
+    <mat-selection-list #Technologies (selectionChange)="onSelectionChange($event)" dense>
+    
+        <mat-list-option *ngFor="let technologie of listeTechnologies" [selected]="technologie.selected" [value]="technologie" checkboxPosition="before">
+            {{technologie.nomTechnologie}}
+        </mat-list-option>
+        
+    </mat-selection-list>
+</div>
+  
+<mat-option><button mat-flat-button type="button" (click)="openDialog()">Ajouter une technologie</button></mat-option>
+  
+  

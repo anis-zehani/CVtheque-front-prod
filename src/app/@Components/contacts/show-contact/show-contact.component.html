@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>Détails du contact</h2>
+<div>
+    <table>
+        <tr>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Identité du contact</mat-label>
+                    <input matInput [(ngModel)]="data.identite" readonly="true">
+                    <mat-icon matSuffix>account_circle</mat-icon>
+                </mat-form-field>
+            </td>
+            <td>
+                <!--Photo-->  
+                <div  style="display: flex;justify-content: start center;">  
+                    <label>
+                            <div *ngIf="data.urlPhoto;else SINON_CONTACT">
+                                <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
+                            </div>
+                            <ng-template #SINON_CONTACT>
+                                <img src="/assets/img/contact.png" matTooltip={{data.identite}}> 
+                            </ng-template>
+                    </label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Téléphone</mat-label>
+                    <input matInput [(ngModel)]="data.telephone" readonly="true">
+                    <mat-icon matSuffix>local_phone</mat-icon>
+                </mat-form-field>     
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Adresse email</mat-label>
+                    <input matInput [(ngModel)]="data.email" readonly="true">
+                    <mat-icon matSuffix>mail</mat-icon>
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!--Test si Entreprise est définie-->
+                <div *ngIf="data.entreprise;else SINON">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Entreprise actuelle</mat-label>
+                        <input matInput [(ngModel)]="data.entreprise.nomEntreprise" readonly="true">
+                    </mat-form-field>     
+                </div>
+                <ng-template #SINON>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Entreprise</mat-label>
+                        <input matInput readonly="true">
+                    </mat-form-field>      
+                </ng-template>
+                
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Poste occupé</mat-label>
+                    <input matInput [(ngModel)]="data.posteOccupe"  readonly="true">
+                    <mat-icon matSuffix>edit</mat-icon>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+
+    <mat-form-field appearance="fill" >
+        <mat-label>Description détaillée</mat-label>
+        <textarea matInput [(ngModel)]="data.descriptionDetaillee"  readonly="true" style="height: 80px;overflow-y: auto"></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+
+    <button mat-flat-button mat-dialog-close style="width: 30%">Quitter</button>
+
+</div>

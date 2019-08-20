@@ -1,0 +1,35 @@
+<!--Grands écrans-->
+<div class="container"
+      fxLayout
+      fxLayout.xs="row"
+      fxLayoutAlign="space-between stretch"
+      fxLayoutGap="10px"
+      fxLayoutGap.xs="0"
+      fxShow="true" fxHide.lt-md="true">
+    
+      <div fxFlex="20%" style="background-color: #222;">
+            <app-liste-scroll-inbox (refreshTableByInboxEvent)="onRefreshTableByInboxEvent($event)" (refreshListeScrollEvent)="onRefreshListeScrollEvent($event)"></app-liste-scroll-inbox>
+            <app-liste-scroll-projets (refreshTableByProjetEvent)="onRefreshTableByProjetEvent($event)" (refreshTableByProjetDeleteEvent)="onRefreshTableByProjetDeleteEvent()"></app-liste-scroll-projets>
+      </div>
+
+      <div fxFlex="80%">
+            <app-datagrid-rappels (refreshDatagridEvent)="onRefreshDatagridEvent($event)"></app-datagrid-rappels>
+      </div>
+</div>
+
+<!--Petis écrans-->
+<div  fxLayout
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between stretch"
+      fxShow="true" fxHide.gt-sm="true">
+    
+      <div style="background-color: #222">
+            <app-liste-scroll-inbox (refreshTableByInboxEvent)="onRefreshTableByInboxEvent($event)" (refreshListeScrollEvent)="onRefreshListeScrollEvent($event)"></app-liste-scroll-inbox>
+            <app-liste-scroll-projets (refreshTableByProjetEvent)="onRefreshTableByProjetEvent($event)" (refreshTableByProjetDeleteEvent)="onRefreshTableByProjetDeleteEvent()"></app-liste-scroll-projets>
+      </div>
+
+      <div>
+            <app-datagrid-rappels (refreshDatagridEvent)="onRefreshDatagridEvent($event)"></app-datagrid-rappels>
+      </div>
+</div>
+      

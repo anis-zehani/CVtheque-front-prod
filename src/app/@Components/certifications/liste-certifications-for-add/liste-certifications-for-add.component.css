@@ -1,0 +1,13 @@
+.mat-liste {
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 1.075rem;
+    font-variant-ligatures: no-contextual;
+    font-weight: 400;
+    color: #cf980d;
+    margin-bottom: 5px;
+}
+
+mat-selection-list {
+    max-height: 450px;
+    overflow: auto;
+}

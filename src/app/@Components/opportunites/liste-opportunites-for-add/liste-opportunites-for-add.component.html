@@ -1,0 +1,14 @@
+<div class="mat-liste">
+    Opportunités ({{Opportunites.selectedOptions.selected.length}})
+</div>
+ 
+<div style="max-height:250px;overflow-y: auto;">  
+    <mat-selection-list #Opportunites (selectionChange)="onListeOpportunitesChange(Opportunites.selectedOptions.selected)" dense>
+      
+      <mat-list-option *ngFor="let opportunite of listeOpportunites" [value]="opportunite" checkboxPosition="before">
+          {{opportunite.titreOpportunite}}
+      </mat-list-option>
+      
+    </mat-selection-list>
+</div>
+  

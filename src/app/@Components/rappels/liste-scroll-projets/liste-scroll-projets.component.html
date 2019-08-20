@@ -1,0 +1,20 @@
+<div class="title-blanc">
+  Mes projets
+</div>
+
+<mat-option><button mat-flat-button (click)="openDialogAddProjet()" class="Button">Nouveau projet</button></mat-option>
+
+<div style="height:50%;overflow-y: auto;background-color: #222;">
+    <div *ngFor="let projet of projets" style="display: flex;justify-content: space-between center;">
+        <mat-option  [value]="projet.id" (click)="filtrerDatagridByProjet(projet.id+'#'+projet.nomProjet)" fxFlex="80%" style="background-color: #222; color: white;">
+            <mat-icon matSuffix>donut_large</mat-icon> {{projet.nomProjet}}
+        </mat-option>
+
+        <a mat-button [matMenuTriggerFor]="menuMoreProjets" matTooltip="Plus d'options" style="color: white"><mat-icon>more_vert</mat-icon></a>
+        <mat-menu #menuMoreProjets="matMenu">
+              <button mat-menu-item type="button" (click)="openDialogEditProjet(projet.id, projet.nomProjet, projet.detailsProjet)" matTooltip="Modifier le projet" matTooltipPosition="right">Modifier le projet</button>
+              
+              <button mat-menu-item type="button" (click)="openDialogDeleteProjet(projet.id)" matTooltip="Supprimer le projet" matTooltipPosition="right">Supprimer le projet</button>
+        </mat-menu>
+    </div>
+</div>

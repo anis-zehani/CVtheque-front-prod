@@ -1,0 +1,26 @@
+<form (ngSubmit)="addCollaborateurController(collaborateurForm)" #collaborateurForm="ngForm">
+  <mat-form-field appearance="outline">
+      <mat-label>Identité du collaborateur</mat-label>
+      <input matInput [(ngModel)]="collaborateur.identite" name="identite" placeholder="Identité du collaborateur">
+      <mat-icon matSuffix>account_circle</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label>Adresse email</mat-label>
+      <input matInput [(ngModel)]="collaborateur.email" name="email" placeholder="Adresse email">
+      <mat-icon matSuffix>mail</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nom d'utilisateur</mat-label>
+    <input matInput [(ngModel)]="collaborateur.login" name="login" placeholder="Nom d'utilisateur">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput [(ngModel)]="collaborateur.password" name="password" placeholder="Mot de passe">
+  </mat-form-field>
+  
+  <button mat-flat-button type="submit">Ajouter un collaborateur</button><br><br>
+  <button mat-stroked-button type="reset">Tout réinitialiser</button>
+</form>   

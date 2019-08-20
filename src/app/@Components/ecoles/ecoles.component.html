@@ -1,0 +1,22 @@
+<div class="title-xs-higher" fxLayout="row" fxLayoutAlign="space-between stretch" >
+    Gestion des écoles
+</div>
+
+<div class="container" 
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="start stretch"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+
+  <!-- Container : Formulaire : Ajout Ecole-->
+  <div fxFlex="25%">
+    <app-form-add-ecoles (refreshTableEvent)="onRefreshTableEvent($event)"></app-form-add-ecoles>
+  </div>
+
+  <!-- Container : DataGrid -->
+  <div fxFlex="75%">
+    <app-datagrid-ecoles></app-datagrid-ecoles>
+  </div>
+
+</div>

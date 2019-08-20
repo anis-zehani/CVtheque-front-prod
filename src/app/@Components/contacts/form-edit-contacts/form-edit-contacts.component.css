@@ -1,0 +1,13 @@
+.pointer {
+    cursor: pointer;
+    padding-bottom: 24%;
+    border-radius: 50%;
+    font-size:70px;
+  }
+
+td img {
+    vertical-align:middle;
+    height:80px;
+    width:80px;
+    border-radius: 50%;
+}

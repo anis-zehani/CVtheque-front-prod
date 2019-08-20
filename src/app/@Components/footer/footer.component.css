@@ -1,0 +1,27 @@
+  .footer{
+    width:100%; 
+    background-color: #222;
+  }
+
+  img {
+    height: 95%;
+    border-radius: 2%;
+    margin-left: 15px;
+    margin-top:5px;
+  }
+
+  .logo{
+    height: 25px;
+    width: 72px;
+  }
+
+  .footer-text {
+    color: #fff !important;
+    background-color: #212121;
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.775rem;
+    font-weight: 400;
+    font-variant-ligatures: no-contextual;
+    
+  }
+

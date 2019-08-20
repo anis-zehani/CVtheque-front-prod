@@ -1,0 +1,20 @@
+<form [formGroup]="formEntreprise" (ngSubmit)="addEntrepriseController()">
+
+  <mat-form-field appearance="outline">
+      <mat-label>Nom de l'entreprise</mat-label>
+      <input matInput formControlName="nomEntreprise">
+      <mat-icon matSuffix>add_circle</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" >
+      <mat-label>Description de l'entreprise</mat-label>
+      <textarea matInput formControlName="descriptionDetaillee" rows="8"></textarea>
+      <mat-icon matSuffix>description</mat-icon>
+  </mat-form-field>
+  
+  
+  <mat-dialog-actions style="display: flex;justify-content: end;">
+      <button mat-flat-button (click)="save()">Ajouter une entreprise</button><br><br><br>
+      <button mat-stroked-button mat-dialog-close >Tout réinitialiser</button>
+  </mat-dialog-actions>
+</form>

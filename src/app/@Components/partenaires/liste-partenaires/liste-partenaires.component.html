@@ -1,0 +1,13 @@
+<mat-form-field appearance="outline">
+    <mat-label>Responsable de l'opportunité</mat-label>
+    <mat-select [(value)]="partenaireId" (selectionChange)="partenaireIdEventFunction(partenaireId)">
+      <mat-option></mat-option>
+      <mat-option *ngFor="let partenaire of partenaires" [value]="partenaire.id">{{partenaire.identite}}</mat-option>
+      <mat-option><button mat-flat-button type="button" (click)="openDialog()" matTooltip="Ajout en amont d'un partenaire">Ajouter un partenaire</button></mat-option>
+    </mat-select>
+    
+
+    <mat-icon matSuffix>account_circle</mat-icon>
+</mat-form-field>
+  
+  

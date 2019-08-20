@@ -1,0 +1,12 @@
+<mat-form-field appearance="outline">
+      <mat-label>École</mat-label>
+      <mat-select [(value)]="ecoleId" (selectionChange)="ecoleIdEventFunction(ecoleId)">
+
+        <mat-option *ngFor="let ecole of ecoles" [value]="ecole.idEcole">{{ecole.nomEcole}}</mat-option>
+        <mat-option><button mat-flat-button (click)="openDialog()">Ajouter une école</button></mat-option>
+
+      </mat-select>
+      <mat-icon matSuffix>school</mat-icon>
+</mat-form-field>
+
+  

@@ -1,0 +1,65 @@
+<div class="title">
+    Ajouter un rappel
+</div>
+<form [formGroup]="formRappel" (ngSubmit)="addRappelController()">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Détails du rappel</mat-label>
+        <input matInput formControlName="detailsRappel"> 
+        <textarea matInput formControlName="detailsRappel" rows="4"></textarea>
+        <mat-icon matSuffix>add_circle</mat-icon>
+    </mat-form-field>
+
+    <div style="display: flex;justify-content: space-between;">
+
+    <div style="width:40%">
+        <app-liste-deroulante-projets
+            (projetIdEvent)="projetIdEventListner($event)">
+        </app-liste-deroulante-projets>
+    </div>
+
+    <div style="width:30%">
+        <mat-form-field appearance="outline">
+            <mat-label>Priorité</mat-label>
+            <mat-select formControlName="priorite">
+                <mat-option value="Haute">Haute</mat-option>
+                <mat-option value="Normale">Normale</mat-option>
+                <mat-option value="Basse">Basse</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>priority_high</mat-icon>
+        </mat-form-field> 
+    </div>
+
+    <div style="width:25%">
+        <mat-form-field appearance="outline">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateEcheance">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+    </div>      
+
+    </div>
+
+    <div style="display: flex;justify-content: space-between;">
+        <div>
+            <label for="urlFichier">
+                <mat-icon class="pointer">attachment</mat-icon>
+            </label>
+            <input id="urlFichier" type="file" style="display:none;" (change)="selectFile($event)">
+        </div>
+
+        <mat-slide-toggle [checked]="false" formControlName="remindMe">Remind Me</mat-slide-toggle>
+    </div>
+
+    <br>
+
+    <mat-dialog-actions >
+        <div style="display: flex;justify-content: space-between center;">
+            <button mat-flat-button (click)="save()" style="margin-right: 5%">Valider</button>
+            <button mat-stroked-button mat-dialog-close >Annuler</button>
+        </div>
+    </mat-dialog-actions>
+    
+</form>
+  
