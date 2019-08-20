@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthentificationComponent } from './@Components/authentification/authentification.component';
@@ -18,11 +18,11 @@ import { CollaborateursComponent } from './@Components/collaborateurs/collaborat
 
 
 const routes: Routes = [
-  //URL Vide renvoi vers le composant Accueil
-  //{ path: '',   component: AccueilComponent },
+  // URL Vide renvoi vers le composant Accueil
+  // { path: '',   component: AccueilComponent },
   { path: '',   component: AuthentificationComponent },
 
-  //Les URL Valables
+  // Les URL Valables
   { path: 'accueil',   component: AccueilComponent },
   { path: 'rappels', component: RappelsComponent },
   { path: 'candidats', component: CandidatsComponent },
@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'ecoles', component: EcolesComponent },
   { path: 'collaborateurs', component: CollaborateursComponent },
 
-  //URL Introuvable renvoi finalement vers le composant Accueil
+  // URL Introuvable renvoi finalement vers le composant Accueil
   { path: '**', component: AccueilComponent }
 ];
 

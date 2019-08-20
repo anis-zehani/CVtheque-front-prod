@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="space-between stretch" >
     
-    <app-header fxFlex="5%"></app-header>
+    <app-header fxFlex="5%" *ngIf="showHead"></app-header>
         
     <router-outlet fxFlex="90%"></router-outlet>
 

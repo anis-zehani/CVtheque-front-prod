@@ -1,34 +1,56 @@
-<div class="container" fxLayout="column" fxLayoutAlign="start center">
+<div fxLayout="row" fxLayoutAlign="space-between stretch" > 
 
-    <form [formGroup]="formAuthentification" (ngSubmit)="authentification()">
+  <div fxFlex="30%">
 
-      <div class="title-xs-higher" style="text-align: center">
-            Accès à la Plateforme
-      </div>
+  </div>
 
-      <mat-form-field appearance="outline">
-          <mat-label>Adresse e-mail</mat-label>
-          <input matInput formControlName="email">
-          <mat-icon matSuffix>email</mat-icon>
-      </mat-form-field>
+  <div fxFlex="40%" class="container" fxLayout="column" fxLayoutAlign="start center">
 
-      <mat-form-field appearance="outline">
-          <mat-label>Mot de passe</mat-label>
-          <input matInput formControlName="password">
-          <mat-icon matSuffix>fingerprint</mat-icon>
-      </mat-form-field>
-    
-      <!--<button mat-flat-button (click)="save()">Entrer</button>-->
-      <button mat-flat-button>Entrer</button>
-      <br><br>
-      <!--<button mat-stroked-button mat-dialog-close >Mot de passe oublié ?</button>-->
-      <button mat-stroked-button >Mot de passe oublié ?</button>
-      <br><br><br><br>
+      <form [formGroup]="formAuthentification" (ngSubmit)="authentification()">
 
-      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="title-xs-higher" style="text-align: center">
+              Accès à la Plateforme
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Adresse e-mail</mat-label>
+            <input matInput formControlName="email">
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput formControlName="password">
+            <mat-icon matSuffix>fingerprint</mat-icon>
+        </mat-form-field>
+      
+        <!--<button mat-flat-button (click)="save()">Entrer</button>-->
+        <button mat-flat-button style="margin-bottom: 10px">
+            <div fxLayout="column" fxLayoutAlign="space-around stretch" >
+                <a routerLink="accueil" mat-button>Entrer</a>
+            </div>  
+        </button>
+
+        <!--<button mat-stroked-button mat-dialog-close >Mot de passe oublié ?</button>-->
+        <button mat-stroked-button style="margin-bottom: 50px">Mot de passe oublié ?</button>
+
+        <!-- Visible sur grands écrans seulement -->
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true">
             <button mat-flat-button style="width:45%;margin-right: 10px">Créer un compte Candidat</button>
             <button mat-flat-button style="width:45%;margin-left: 10px">Créer un compte Recruteur</button>
-      </div>
+        </div>
+        
+        <!-- Visible sur petit écrans seulement -->
+        <div fxLayout="column" fxLayoutAlign="space-between stretch" fxHide.gt-sm="true">
+            <button mat-flat-button style="margin-bottom: 20px">Créer un compte Candidat</button>
+              <button mat-flat-button>Créer un compte Recruteur</button>
+        </div>
 
-    </form> 
+      </form> 
+  </div>
+
+  <div fxFlex="30%">
+
+  </div>
+
 </div>

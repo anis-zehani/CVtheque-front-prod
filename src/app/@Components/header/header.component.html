@@ -1,16 +1,16 @@
-<div class="header" style="height: 45px;border-bottom: 1px solid white">
+<div class="header" style="height: 45px;border-bottom: 1px solid white;">
   
-<div  fxLayout
-      fxLayout.xs="row"
-      fxLayoutAlign="space-between center"
+  <div  fxLayout 
+      fxLayout.xs="row" 
+      fxLayoutAlign="space-evenly center"
       fxLayoutGap="20px"
       fxLayoutGap.xs="20px">
 
-      <div fxFlex="10%">
+      <div fxFlex="25%">
           <a routerLink="accueil"><img src="assets/img/logo.png" class="logo"></a>
       </div>
       
-      <div fxFlex="80%" fxShow="true" fxHide.lt-md="true">
+      <div fxFlex="50%" fxShow="true" fxHide.lt-md="true">
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <mat-toolbar style="height: 45px"> 
               <a routerLink="accueil" mat-button>Accueil</a>
@@ -28,6 +28,16 @@
                 <button mat-menu-item routerLink="collaborateurs">Collaborateurs</button>
               </mat-menu>
         </mat-toolbar>
+      </div>
+
+      <div fxFlex="15%">
+        
+      </div>
+      <div fxFlex="5%">
+        <mat-icon matBadge="5" matBadgeColor="warn" style="color: white">notifications_active</mat-icon>
+      </div>
+      <div fxFlex="5%">
+        <mat-icon style="color: white">account_circle</mat-icon>
       </div>
       <!-- End of hidden on both SM and XS screen sizes -->
 

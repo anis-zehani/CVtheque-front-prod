@@ -8,10 +8,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AuthentificationComponent implements OnInit {
 
-  //Mon Reactive Form
+  // Mon Reactive Form
   formAuthentification = new FormGroup({
-    email: new FormControl('', Validators.nullValidator),
-    password: new FormControl('', Validators.nullValidator)
+    email: new FormControl('admin', Validators.nullValidator),
+    password: new FormControl('admin', Validators.nullValidator)
   });
 
   constructor() { }
@@ -19,8 +19,7 @@ export class AuthentificationComponent implements OnInit {
   ngOnInit() {
   }
 
-  authentification(){
-    
+  authentification() {
   }
 
 }

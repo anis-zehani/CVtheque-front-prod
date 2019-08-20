@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule, MatDialogRef} from '@angular/material/dialog';
@@ -264,6 +265,7 @@ import { ListeTechnologiesForSearchComponent } from './@Components/technologies/
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
+    MatBadgeModule,
     MatDialogModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
