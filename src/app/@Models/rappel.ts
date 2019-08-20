@@ -10,6 +10,7 @@ export class Rappel {
     dateEcheance:Date;
     priorite: Priorite;
     urlFichier: string;
+    nomFichier: string;
 
     projet:Projet; //@ManyToOne
     utilisateur:Utilisateur; //@ManyToOne
