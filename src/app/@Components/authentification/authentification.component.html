@@ -1,8 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="space-between stretch" > 
 
-  <div fxFlex="30%">
-
-  </div>
+  <div fxFlex="30%"></div>
 
   <div fxFlex="40%" class="container" fxLayout="column" fxLayoutAlign="start center">
 
@@ -32,25 +30,23 @@
         </button>
 
         <!--<button mat-stroked-button mat-dialog-close >Mot de passe oublié ?</button>-->
-        <button mat-stroked-button style="margin-bottom: 50px">Mot de passe oublié ?</button>
+        <button mat-stroked-button (click)="openDialogRecupererPassword()" style="margin-bottom: 50px">Mot de passe oublié ?</button>
 
         <!-- Visible sur grands écrans seulement -->
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true">
-            <button mat-flat-button style="width:45%;margin-right: 10px">Créer un compte Candidat</button>
-            <button mat-flat-button style="width:45%;margin-left: 10px">Créer un compte Recruteur</button>
+            <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="width:45%;margin-right: 10px">Créer un compte Candidat</button>
+            <button mat-flat-button (click)="openDialogCreerCompteRecruteur()" style="width:45%;margin-left: 10px">Créer un compte Recruteur</button>
         </div>
         
         <!-- Visible sur petit écrans seulement -->
         <div fxLayout="column" fxLayoutAlign="space-between stretch" fxHide.gt-sm="true">
-            <button mat-flat-button style="margin-bottom: 20px">Créer un compte Candidat</button>
-              <button mat-flat-button>Créer un compte Recruteur</button>
+            <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Créer un compte Candidat</button>
+            <button mat-flat-button (click)="openDialogCreerCompteRecruteur()">Créer un compte Recruteur</button>
         </div>
 
       </form> 
   </div>
 
-  <div fxFlex="30%">
-
-  </div>
+  <div fxFlex="30%"></div>
 
 </div>

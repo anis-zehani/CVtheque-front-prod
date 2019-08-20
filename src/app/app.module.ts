@@ -250,7 +250,10 @@ import { FormRecupererPasswordComponent } from './@Components/authentification/f
     ShowTechnologieComponent,
     ShowCertificationComponent,
     ShowEntrepriseComponent,
-    DialogAddCertificationsComponent
+    DialogAddCertificationsComponent,
+    FormAddCompteCandidatComponent,
+    FormAddComptePartenaireComponent,
+    FormRecupererPasswordComponent
   ],
   imports: [
     BrowserModule,
