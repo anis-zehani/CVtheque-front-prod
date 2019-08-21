@@ -28,7 +28,7 @@ export class AuthentificationComponent implements OnInit {
   }
 
   // Ouvre le pop-up pour récupérer le mot de passe oublié
-  openDialogRecupererPassword(id): void {
+  openDialogRecupererPassword(): void {
     // Objet pour configurer la modale
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -38,7 +38,6 @@ export class AuthentificationComponent implements OnInit {
       width: '450px',
       height: '180px',
       data: {
-          // id: id,
           // texte : "Attention : Afficher Message."
         }
       });
@@ -52,17 +51,16 @@ export class AuthentificationComponent implements OnInit {
   }
 
   // Ouvre le pop-up pour créer compte candidat
-  openDialogCreerCompteCandidat(id): void {
+  openDialogCreerCompteCandidat(): void {
       // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.hasBackdrop = true;
       dialogConfig.closeOnNavigation = true;
       const dialogRef = this.dialog.open(FormAddCompteCandidatComponent, {
-        width: '450px',
-        height: '180px',
+        width: '950px',
+        height: '550px',
         data: {
-            // id: id,
             // texte : "Attention : Afficher Message."
           }
         });
@@ -76,17 +74,16 @@ export class AuthentificationComponent implements OnInit {
   }
 
   // Ouvre le pop-up pour créer compte recruteur
-  openDialogCreerCompteRecruteur(id): void {
+  openDialogCreerCompteRecruteur(): void {
       // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.hasBackdrop = true;
       dialogConfig.closeOnNavigation = true;
       const dialogRef = this.dialog.open(FormAddComptePartenaireComponent, {
-        width: '450px',
-        height: '180px',
+        width: '700px',
+        height: '550px',
         data: {
-            // id: id,
             // texte : "Attention : Afficher Message."
           }
         });

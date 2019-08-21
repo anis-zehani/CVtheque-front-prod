@@ -30,7 +30,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from "@angular/material-moment-adapter";
-
+import { MatTabsModule } from '@angular/material/tabs';
 import { MAT_DATE_LOCALE } from '@angular/material';
 
 import { HeaderComponent } from './@Components/header/header.component';
@@ -285,10 +285,11 @@ import { FormRecupererPasswordComponent } from './@Components/authentification/f
     MatAutocompleteModule,
     ChartsModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule
   ],
   providers: [
-    TechnologiesService, 
+    TechnologiesService,
     EntreprisesService,
     EcolesService,
     CertificationsService,
