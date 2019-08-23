@@ -31,7 +31,7 @@ export class PieChartComponent implements OnInit {
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+      backgroundColor: ['#202124', '#f7c341', 'rgba(0,0,255,0.3)'],
     },
   ];
 
