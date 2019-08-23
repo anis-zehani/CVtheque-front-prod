@@ -1,4 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="space-between stretch" > 
+<!-- Visible sur Grands écrans seulement -->
+<div fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true"> 
 
   <div fxFlex="30%"></div>
 
@@ -6,8 +7,12 @@
 
       <form [formGroup]="formAuthentification" (ngSubmit)="authentification()">
 
-        <div class="title-xs-higher" style="text-align: center">
-              Accès à la Plateforme
+        <div style="text-align: center; margin-bottom: 30px">
+            <img src="assets/img/odix.png">
+        </div>
+
+        <div class="title-xs-higher" style="text-align: center; font-weight: 500">
+              Accèder à la plateforme
         </div>
 
         <mat-form-field appearance="outline">
@@ -49,4 +54,45 @@
 
   <div fxFlex="30%"></div>
 
+</div>
+
+<!-- Visible sur Petits écrans seulement -->
+<div fxLayout="column" fxLayoutAlign="start center" fxHide.gt-sm="true" > 
+
+    <form [formGroup]="formAuthentification" (ngSubmit)="authentification()">
+      
+              <div style="text-align: center; margin-bottom: 30px">
+                  <img src="assets/img/odix.png">
+              </div>
+      
+              <div class="title-xs-higher" style="text-align: center; font-weight: 500">
+                    Accèder à la plateforme
+              </div>
+      
+              <mat-form-field appearance="outline">
+                  <mat-label>Adresse e-mail</mat-label>
+                  <input matInput formControlName="email">
+                  <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+      
+              <mat-form-field appearance="outline">
+                  <mat-label>Mot de passe</mat-label>
+                  <input matInput formControlName="password">
+                  <mat-icon matSuffix>fingerprint</mat-icon>
+              </mat-form-field>
+            
+              <!--<button mat-flat-button (click)="save()">Entrer</button>-->
+              <button mat-flat-button style="margin-bottom: 10px">
+                    <a routerLink="accueil" mat-button>Entrer</a>
+              </button>
+      
+              <!--<button mat-stroked-button mat-dialog-close >Mot de passe oublié ?</button>-->
+              <button mat-stroked-button (click)="openDialogRecupererPassword()" style="margin-bottom: 50px">Mot de passe oublié ?</button>   
+             
+              <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Créer un compte Candidat</button>
+              
+              <button mat-flat-button (click)="openDialogCreerCompteRecruteur()"style="margin-bottom: 50px">Créer un compte Recruteur</button>
+
+      
+    </form> 
 </div>
