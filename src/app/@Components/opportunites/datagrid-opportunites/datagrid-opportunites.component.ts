@@ -30,28 +30,28 @@ import { Certification } from 'src/app/@Models/certification';
 })
 export class DatagridOpportunitesComponent implements OnInit {
 
-  //URL du serveur de stockage
+  // URL du serveur de stockage
   storageUrl = environment.storageUrl;
 
   @Input() listeOpportunites = new MatTableDataSource<Opportunite>();
-  
-  displayedColumns: string[] = ['dateAjout', 'responsableOpportunite', 'details', 'dateDemarrageSouhaitee', 'etat', 'more'];
 
-  opportunite : Opportunite; 
+  displayedColumns: string[] = ['responsableOpportunite', 'details', 'dateAjout', 'dateDemarrageSouhaitee', 'etat', 'more'];
+
+  opportunite: Opportunite;
   responsableOpportunite: Partenaire;
-  etatOpportunite : string = "True";
+  etatOpportunite = 'True';
 
   listeTechnologiesFinale: Technologie[] = [];
-  valueOfListeTechnologie : any = null;
-  valueOfListeTechnologieIsModified : boolean = false;
+  valueOfListeTechnologie: any = null;
+  valueOfListeTechnologieIsModified = false;
 
   listeCertificationsFinale: Certification[] = [];
-  valueOfListeCertification : any = null;
-  valueOfListeCertificationIsModified : boolean = false;
+  valueOfListeCertification: any = null;
+  valueOfListeCertificationIsModified = false;
 
   listeCandidatsFinale: Candidat[] = [];
-  valueOfListeCandidat : any = null;
-  valueOfListeCandidatIsModified : boolean = false;
+  valueOfListeCandidat: any = null;
+  valueOfListeCandidatIsModified = false;
 
   listeCandidats: Candidat[] = [];
 
@@ -59,22 +59,21 @@ export class DatagridOpportunitesComponent implements OnInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
-    private opportunitesService: OpportunitesService, 
+    private opportunitesService: OpportunitesService,
     private utilService: UtilService,
     public dialog: MatDialog,
     private datePipe: DatePipe,
     private sharedService: SharedDataService,
     private candidatsService: CandidatsService
-    )
-   { 
+    ) {
     this.opportunite = new Opportunite(null, null);
     this.responsableOpportunite =  new Partenaire();
     this.opportunite.responsableOpportunite = this.responsableOpportunite;
    }
 
   ngOnInit() {
-    this.getAllOpportunitesController("True");
-    
+    this.getAllOpportunitesController('True');
+
     this.listeOpportunites.paginator = this.paginator;
     this.listeOpportunites.sort = this.sort;
 
@@ -88,16 +87,16 @@ export class DatagridOpportunitesComponent implements OnInit {
     this.sharedService.valueOfListeCandidatIsModified.subscribe(valueOfListeCandidatOpportuniteIsModified => this.valueOfListeCandidatIsModified = valueOfListeCandidatOpportuniteIsModified);
   }
 
-  //Afficher tous les opportunites : remplissage de la table
+  // Afficher tous les opportunites : remplissage de la table
   getAllOpportunitesController(etat): void {
     this.opportunitesService.getAllOpportunitesService(etat)
     .subscribe
       (
-      res => {this.listeOpportunites.data = res;} 
+      res => {this.listeOpportunites.data = res; }
       )
   }
 
-  //La liste des opportunites qui ont une Technologie au moins dans la liste fournie
+  // La liste des opportunites qui ont une Technologie au moins dans la liste fournie
   getAllOpportunitesByListTechnologiesController(listeTechnologies): void {
     this.opportunitesService.getAllOpportunitesByListTechnologiesService(listeTechnologies)
     .subscribe
@@ -106,7 +105,7 @@ export class DatagridOpportunitesComponent implements OnInit {
       )
   }
 
-  //Affecter les candidats à l'opportunité
+  // Affecter les candidats à l'opportunité
   addCandidatsToOpportuniteController(idOpportunite, listeCandidats): void {
     this.candidatsService.addCandidatsToOpportuniteService(idOpportunite, listeCandidats, true)
     .subscribe
@@ -115,7 +114,7 @@ export class DatagridOpportunitesComponent implements OnInit {
       )
   }
 
-  //Modifier une opportunité
+  // Modifier une opportunité
   editOpportuniteController() {
       this.opportunitesService.editOpportuniteService(this.opportunite)
       .subscribe
@@ -131,12 +130,12 @@ export class DatagridOpportunitesComponent implements OnInit {
         )
   }
 
-  //Fonction qui gére le Slide Toggle
+  // Fonction qui gére le Slide Toggle
   editEtatOpportunite(id, etat){
 
     this.opportunite.id=id;
     
-    if(etat ==='True') //Opportunite dèja Actif
+    if(etat ==='True') // Opportunite dèja Actif
     {
       this.opportunite.etatOpportunite=Etat.False;
       this.opportunitesService.editEtatOpportuniteService(this.opportunite)
@@ -149,7 +148,7 @@ export class DatagridOpportunitesComponent implements OnInit {
           }
         )
     }
-    else //Opportunite dèja Inactif
+    else // Opportunite dèja Inactif
     {
       this.opportunite.etatOpportunite=Etat.True;
       this.opportunitesService.editEtatOpportuniteService(this.opportunite)
@@ -164,7 +163,7 @@ export class DatagridOpportunitesComponent implements OnInit {
     }
   }
 
-  //Supprimer une opportunité
+  // Supprimer une opportunité
   deleteOpportuniteController(id) {
       this.opportunitesService.deleteOpportuniteService(id)
       .subscribe
@@ -177,35 +176,35 @@ export class DatagridOpportunitesComponent implements OnInit {
         )
   }
 
-  //Filtrer par état de l'opportunite : Actif / Inactif
+  // Filtrer par état de l'opportunite : Actif / Inactif
   filtrerParEtat(valeurEtat) {
 
     this.getAllOpportunitesController(valeurEtat.value);
 
-    if(valeurEtat.value ==='True' && this.etatOpportunite ==="True" || valeurEtat.value ==='False' && this.etatOpportunite ==="True") //Valeur de la liste déroulante : Opportunites activés
+    if(valeurEtat.value ==='True' && this.etatOpportunite ==="True" || valeurEtat.value ==='False' && this.etatOpportunite ==="True") // Valeur de la liste déroulante : Opportunites activés
     {
       this.etatOpportunite = "True";
     }
-    else if (valeurEtat.value ==='True' && this.etatOpportunite ==="False" || valeurEtat.value ==='False' && this.etatOpportunite ==="False")//Valeur de la liste déroulante : Opportunites désactivés
+    else if (valeurEtat.value ==='True' && this.etatOpportunite ==="False" || valeurEtat.value ==='False' && this.etatOpportunite ==="False")// Valeur de la liste déroulante : Opportunites désactivés
     {
       this.etatOpportunite = "False";
     }
   }
 
-  //Recherche filtrée sur la table
+  // Recherche filtrée sur la table
   filtrerTable(filterValue: string) {
       this.listeOpportunites.filter = filterValue.trim().toLowerCase();
   }
 
-  //Ouvre le pop-up pour afficher un partenaire
+  // Ouvre le pop-up pour afficher un partenaire
   openDialogShowPartenaire(id, identite, telephone, email, posteOccupe, descriptionDetaillee, urlPhoto, login, password, etatPartenaire, entreprise): void {
-      //Objet pour configurer la modale
+      // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.hasBackdrop=true;
       dialogConfig.closeOnNavigation = true;
   
-      //Objet pour déclencher l'ouverture de la modale
+      // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(ShowPartenaireComponent, {
         width: '850px',
         height: '650px',
@@ -225,16 +224,16 @@ export class DatagridOpportunitesComponent implements OnInit {
       });
   }
 
-  //Ouvre le pop-up pour modifier une opportunité
+  // Ouvre le pop-up pour modifier une opportunité
   openDialogEditOpportunite(id, titreOpportunite, descriptionOpportunite, dateAjout, dateDemarrageSouhaitee, tjmOpportunite, etatOpportunite, responsableOpportunite, listeTechnologies, listeCertifications): void {
       
-      //Objet pour configurer la modale
+      // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.hasBackdrop=true;
       dialogConfig.closeOnNavigation = true;
 
-      //Objet pour déclencher l'ouverture de la modale
+      // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(FormEditOpportunitesComponent, {
         width: '900px',
         height: '500px',
@@ -252,7 +251,7 @@ export class DatagridOpportunitesComponent implements OnInit {
         }
       });
   
-      //Fonction qui s'éxècute quand je ferme la modale
+      // Fonction qui s'éxècute quand je ferme la modale
       dialogRef.afterClosed().subscribe(result => {
         if(result){
             this.opportunite.id=result.id;
@@ -268,7 +267,7 @@ export class DatagridOpportunitesComponent implements OnInit {
               this.opportunite.responsableOpportunite.id=result.responsableOpportunite.id;
             }
 
-            //listeTechnologies : J'utilise une variable partagée via le shared-data service : detection du changement sur la liste
+            // listeTechnologies : J'utilise une variable partagée via le shared-data service : detection du changement sur la liste
             if(this.valueOfListeTechnologie != null && this.valueOfListeTechnologieIsModified === true)
             {
               for(let i in this.valueOfListeTechnologie.source.selectedOptions.selected)
@@ -279,17 +278,17 @@ export class DatagridOpportunitesComponent implements OnInit {
               this.opportunite.listeTechnologies = this.listeTechnologiesFinale; 
               this.sharedService.changeListeTechnologieIsModified(false);
             }
-            //Cas ou y a pas de changement sur la liste des technologies
+            // Cas ou y a pas de changement sur la liste des technologies
             else
             {
               this.opportunite.listeTechnologies = result.listeTechnologies;
             }
 
-            //Vidage du Array
+            // Vidage du Array
             this.listeTechnologiesFinale = [];
 
 
-            //listeCertifications : J'utilise une variable partagée via le shared-data service : detection du changement sur la liste
+            // listeCertifications : J'utilise une variable partagée via le shared-data service : detection du changement sur la liste
             if(this.valueOfListeCertification != null && this.valueOfListeCertificationIsModified === true)
             {
               for(let i in this.valueOfListeCertification.source.selectedOptions.selected)
@@ -300,17 +299,17 @@ export class DatagridOpportunitesComponent implements OnInit {
               this.opportunite.listeCertifications = this.listeCertificationsFinale; 
               this.sharedService.changeListeCertificationIsModified(false);
             }
-            //Cas ou y a pas de changement sur la liste des certifications
+            // Cas ou y a pas de changement sur la liste des certifications
             else
             {
               this.opportunite.listeCertifications = result.listeCertifications;
             }
 
-            //Vidage du Array
+            // Vidage du Array
             this.listeCertificationsFinale = [];
 
 
-            //listeCandidats : J'utilise une variable partagée via le shared-data service : detection du changement sur la liste
+            // listeCandidats : J'utilise une variable partagée via le shared-data service : detection du changement sur la liste
             if(this.valueOfListeCandidat != null && this.valueOfListeCandidatIsModified === true)
             {
               for(let i in this.valueOfListeCandidat.source.selectedOptions.selected)
@@ -322,27 +321,27 @@ export class DatagridOpportunitesComponent implements OnInit {
               this.sharedService.changeListeCandidatIsModified(false);
             }
 
-            //Vidage du Array
+            // Vidage du Array
             this.listeCandidatsFinale = [];
 
-            //Fonction qui Modifie l'opportunité
+            // Fonction qui Modifie l'opportunité
             this.editOpportuniteController();
             
-            //Fonction qui fait la mise à jour pour lier les candidats à l'opportunité
+            // Fonction qui fait la mise à jour pour lier les candidats à l'opportunité
             this.addCandidatsToOpportuniteController(result.id, this.listeCandidats);
             }
       });
   }
 
-  //Ouvre le pop-up pour afficher une opportunité
+  // Ouvre le pop-up pour afficher une opportunité
   openDialogShowOpportunite(id, titreOpportunite, descriptionOpportunite, dateAjout, dateDemarrageSouhaitee, tjmOpportunite, etatOpportunite, responsableOpportunite, listeTechnologies, listeCertifications): void {
-      //Objet pour configurer la modale
+      // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.hasBackdrop=true;
       dialogConfig.closeOnNavigation = true;
 
-      //Objet pour déclencher l'ouverture de la modale
+      // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(ShowOpportuniteComponent, {
         width: '900px',
         height: '500px',
@@ -361,15 +360,15 @@ export class DatagridOpportunitesComponent implements OnInit {
       });
   }
 
-  //Ouvre le pop-up pour supprimer une opportunité
+  // Ouvre le pop-up pour supprimer une opportunité
   openDialogDeleteOpportunite(id): void {
-    //Objet pour configurer la modale
+    // Objet pour configurer la modale
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.hasBackdrop=true;
     dialogConfig.closeOnNavigation = true;
 
-    //Objet pour déclencher l'ouverture de la modale
+    // Objet pour déclencher l'ouverture de la modale
     const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
       width: '450px',
       height: '180px',
@@ -379,7 +378,7 @@ export class DatagridOpportunitesComponent implements OnInit {
       }
     });
 
-    //Fonction qui s'éxècute quand je ferme la modale
+    // Fonction qui s'éxècute quand je ferme la modale
     dialogRef.afterClosed().subscribe(result => {
       if(result)
       {

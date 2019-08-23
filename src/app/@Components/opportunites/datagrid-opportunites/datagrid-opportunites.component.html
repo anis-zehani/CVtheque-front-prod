@@ -51,13 +51,6 @@
 
 <table mat-table [dataSource]="listeOpportunites" class="mat-elevation-z2" matSort>
 
-  <ng-container matColumnDef="dateAjout">
-        <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Insérée le</th>
-        <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="10%">
-          <b>{{element.dateAjout | date:"dd/MM/yyyy"}}</b>
-        </td>
-  </ng-container>
-
   <ng-container matColumnDef="responsableOpportunite">
     <th mat-header-cell *matHeaderCellDef >Responsable</th>
     <td mat-cell *matCellDef="let element" width="10%" matTooltip="Consulter les détails de l'opportunité">
@@ -108,6 +101,13 @@
         <b class="label-datagrid">Description : </b>{{element.descriptionOpportunite}}
       </div>
     </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateAjout">
+      <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Insérée le</th>
+      <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="10%">
+        <b>{{element.dateAjout | date:"dd/MM/yyyy"}}</b>
+      </td>
   </ng-container>
 
   <ng-container matColumnDef="dateDemarrageSouhaitee">
