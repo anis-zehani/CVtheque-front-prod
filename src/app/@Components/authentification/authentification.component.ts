@@ -15,9 +15,11 @@ export class AuthentificationComponent implements OnInit {
 
   // Mon Reactive Form
   formAuthentification = new FormGroup({
-    email: new FormControl('admin', Validators.nullValidator),
-    password: new FormControl('admin', Validators.nullValidator)
+    username: new FormControl('demo', Validators.nullValidator),
+    password: new FormControl('demo', Validators.nullValidator)
   });
+
+  credentials = {username: '', password: ''};
 
   constructor(public dialog: MatDialog) { }
 
@@ -25,6 +27,9 @@ export class AuthentificationComponent implements OnInit {
   }
 
   authentification() {
+
+    this.credentials.username = this.formAuthentification.get('username').value;
+    this.credentials.password = this.formAuthentification.get('password').value;
   }
 
   // Ouvre le pop-up pour récupérer le mot de passe oublié

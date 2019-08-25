@@ -18,11 +18,10 @@ import { CollaborateursComponent } from './@Components/collaborateurs/collaborat
 
 
 const routes: Routes = [
-  // URL Vide renvoi vers le composant Accueil
-  // { path: '',   component: AccueilComponent },
-  { path: '',   component: AuthentificationComponent },
 
   // Les URL Valables
+  // { path: '', pathMatch: 'full', redirectTo: 'login'},
+  { path: '',   component: AuthentificationComponent },
   { path: 'accueil',   component: AccueilComponent },
   { path: 'rappels', component: RappelsComponent },
   { path: 'candidats', component: CandidatsComponent },
@@ -36,7 +35,7 @@ const routes: Routes = [
   { path: 'collaborateurs', component: CollaborateursComponent },
 
   // URL Introuvable renvoi finalement vers le composant Accueil
-  { path: '**', component: AccueilComponent }
+  { path: '**', component: AuthentificationComponent }
 ];
 
 @NgModule({
