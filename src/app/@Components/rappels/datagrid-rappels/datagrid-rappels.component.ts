@@ -157,7 +157,7 @@ export class DatagridRappelsComponent implements OnInit {
 
   // Recherche filtrée sur la table
   filtrerTable(filterValue: string) {
-      this.listeRappels.filter = filterValue.trim().toLowerCase();
+      this.listeRappels.filter = filterValue.trim().toLowerCase(); 
   }
 
   // Filtrer par Priorité : Haute, Normale, Basse
@@ -224,7 +224,7 @@ export class DatagridRappelsComponent implements OnInit {
       width: '450px',
       height: '180px',
       data: {
-        id: id,
+        id : id,
         texte : 'Attention : ce rappel sera supprimé définitivement.'
       }
     });

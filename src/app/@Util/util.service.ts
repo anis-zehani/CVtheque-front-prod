@@ -8,7 +8,7 @@ export class UtilService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  //Affiche une Notification SnackBar en bas de l'écran
+  // Affiche une Notification SnackBar en bas de l'écran
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 3000,
@@ -16,7 +16,7 @@ export class UtilService {
     });
   }
 
-  //Affiche une Notification d'erreur en bas de l'écran
+  // Affiche une Notification d'erreur en bas de l'écran
   openSnackBarErreur(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 8000,
