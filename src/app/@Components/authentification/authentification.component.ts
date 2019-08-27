@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
-// tslint:disable-next-line: max-line-length
 import { FormAddCompteCandidatComponent } from '../../@Components/authentification/form-add-compte-candidat/form-add-compte-candidat.component';
-// tslint:disable-next-line: max-line-length
 import { FormAddComptePartenaireComponent } from '../../@Components/authentification/form-add-compte-partenaire/form-add-compte-partenaire.component';
-// tslint:disable-next-line: max-line-length
 import { FormRecupererPasswordComponent } from '../../@Components/authentification/form-recuperer-password/form-recuperer-password.component';
 
 @Component({
@@ -20,13 +17,6 @@ export class AuthentificationComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-  /*authentification() {
-
-    this.credentials.username = this.formAuthentification.get('username').value;
-    this.credentials.password = this.formAuthentification.get('password').value;
-  }*/
 
   // Ouvre le pop-up pour récupérer le mot de passe oublié
   openDialogRecupererPassword(): void {

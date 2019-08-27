@@ -98,17 +98,11 @@ import { StatistiquesComponent } from './@Components/statistiques/statistiques.c
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './@Components/statistiques/pie-chart/pie-chart.component';
 import { ShowCandidatComponent } from './@Components/candidats/show-candidat/show-candidat.component';
-// tslint:disable-next-line: max-line-length
 import { ListeTechnologiesForAddComponent } from './@Components/technologies/liste-technologies-for-add/liste-technologies-for-add.component';
-// tslint:disable-next-line: max-line-length
 import { ListeTechnologiesForEditComponent } from './@Components/technologies/liste-technologies-for-edit/liste-technologies-for-edit.component';
-// tslint:disable-next-line: max-line-length
 import { ListeCertificationsForEditComponent } from './@Components/certifications/liste-certifications-for-edit/liste-certifications-for-edit.component';
-// tslint:disable-next-line: max-line-length
 import { ListeCertificationsForAddComponent } from './@Components/certifications/liste-certifications-for-add/liste-certifications-for-add.component';
-// tslint:disable-next-line: max-line-length
 import { ListeOpportunitesForEditComponent } from './@Components/opportunites/liste-opportunites-for-edit/liste-opportunites-for-edit.component';
-// tslint:disable-next-line: max-line-length
 import { ListeOpportunitesForAddComponent } from './@Components/opportunites/liste-opportunites-for-add/liste-opportunites-for-add.component';
 import { DialogAddTechnologiesComponent } from './@Components/technologies/dialog-add-technologies/dialog-add-technologies.component';
 import { DialogAddEntreprisesComponent } from './@Components/entreprises/dialog-add-entreprises/dialog-add-entreprises.component';
@@ -127,23 +121,16 @@ import { FormAddCollaborateursComponent } from './@Components/collaborateurs/for
 import { DatagridCollaborateursComponent } from './@Components/collaborateurs/datagrid-collaborateurs/datagrid-collaborateurs.component';
 import { ListeCandidatsForEditComponent } from './@Components/candidats/liste-candidats-for-edit/liste-candidats-for-edit.component';
 import { ListeCandidatsForAddComponent } from './@Components/candidats/liste-candidats-for-add/liste-candidats-for-add.component';
-// tslint:disable-next-line: max-line-length
 import { ListeTechnologiesForShowComponent } from './@Components/technologies/liste-technologies-for-show/liste-technologies-for-show.component';
-// tslint:disable-next-line: max-line-length
 import { ListeOpportunitesForShowComponent } from './@Components/opportunites/liste-opportunites-for-show/liste-opportunites-for-show.component';
-// tslint:disable-next-line: max-line-length
 import { ListeCertificationsForShowComponent } from './@Components/certifications/liste-certifications-for-show/liste-certifications-for-show.component';
 import { ShowTechnologieComponent } from './@Components/technologies/show-technologie/show-technologie.component';
 import { ShowCertificationComponent } from './@Components/certifications/show-certification/show-certification.component';
 import { ShowEntrepriseComponent } from './@Components/entreprises/show-entreprise/show-entreprise.component';
-// tslint:disable-next-line: max-line-length
 import { DialogAddCertificationsComponent } from './@Components/certifications/dialog-add-certifications/dialog-add-certifications.component';
-// tslint:disable-next-line: max-line-length
 import { ListePartenairesForShowComponent } from './@Components/partenaires/liste-partenaires-for-show/liste-partenaires-for-show.component';
-// tslint:disable-next-line: max-line-length
 import { ListeTechnologiesForSearchComponent } from './@Components/technologies/liste-technologies-for-search/liste-technologies-for-search.component';
 import { FormAddCompteCandidatComponent } from './@Components/authentification/form-add-compte-candidat/form-add-compte-candidat.component';
-// tslint:disable-next-line: max-line-length
 import { FormAddComptePartenaireComponent } from './@Components/authentification/form-add-compte-partenaire/form-add-compte-partenaire.component';
 import { FormRecupererPasswordComponent } from './@Components/authentification/form-recuperer-password/form-recuperer-password.component';
 import { LoginComponent } from './@Components/authentification/login/login.component';
