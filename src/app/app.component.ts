@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { AuthentificationService } from './@Services/authentification.service';
 
 @Component({
   selector: 'app-root',
@@ -8,21 +8,6 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class AppComponent {
   title = 'Odix : le sourcing rendu facile';
-  showHead = false;
-  showFooter = false;
 
-  constructor(private router: Router) {
-      // showHead = false si la Route = '/'
-      router.events.forEach((event) => {
-        if (event instanceof NavigationStart) {
-          if (event.url === '/' || event.url === '/login') {
-            this.showHead = false;
-            this.showFooter = false;
-          } else {
-            this.showHead = true;
-            this.showFooter = true;
-          }
-        }
-      });
-    }
+  constructor(private authentificationService: AuthentificationService) {}
 }

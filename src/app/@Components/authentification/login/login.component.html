@@ -1,0 +1,24 @@
+<form [formGroup]="formAuthentification" (ngSubmit)="checkLogin()">
+
+    <div style="text-align: center; margin-bottom: 30px">
+        <img src="assets/img/odix.png" style="height: 75px; width:300px">
+    </div>
+
+    <div class="title-xs-higher" style="text-align: center; font-weight: 500">
+          Accèder à la plateforme
+    </div>
+
+    <mat-form-field appearance="outline">
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input matInput formControlName="username">
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+    <mat-form-field appearance="outline">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput formControlName="password">
+            <mat-icon matSuffix>fingerprint</mat-icon>
+    </mat-form-field>
+  
+    <button mat-flat-button style="margin-bottom: 10px">Entrer</button>
+</form> 

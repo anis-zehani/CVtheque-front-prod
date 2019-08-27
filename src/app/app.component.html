@@ -1,9 +1,9 @@
 <div fxLayout="column" fxLayoutAlign="space-between stretch" >
     
-    <app-header fxFlex="5%" *ngIf="showHead"></app-header>
+    <app-header fxFlex="5%" *ngIf="authentificationService.isUserLoggedIn()"></app-header>
         
     <router-outlet fxFlex="90%"></router-outlet>
 
-    <app-footer fxFlex="5%" *ngIf="showFooter"></app-footer> 
+    <app-footer fxFlex="5%"></app-footer> 
 
 </div>

@@ -15,6 +15,7 @@ import { EntreprisesComponent } from './@Components/entreprises/entreprises.comp
 import { EcolesComponent } from './@Components/ecoles/ecoles.component';
 import { CertificationsComponent } from './@Components/certifications/certifications.component';
 import { CollaborateursComponent } from './@Components/collaborateurs/collaborateurs.component';
+import { LogoutComponent } from './@Components/authentification/logout/logout.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'certifications', component: CertificationsComponent },
   { path: 'ecoles', component: EcolesComponent },
   { path: 'collaborateurs', component: CollaborateursComponent },
+  { path: 'logout',   component: LogoutComponent },
 
   // URL Introuvable renvoi finalement vers le composant Accueil
   { path: '**', component: AuthentificationComponent }

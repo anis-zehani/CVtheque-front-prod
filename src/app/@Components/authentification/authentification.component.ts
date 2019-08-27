@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+// tslint:disable-next-line: max-line-length
 import { FormAddCompteCandidatComponent } from '../../@Components/authentification/form-add-compte-candidat/form-add-compte-candidat.component';
+// tslint:disable-next-line: max-line-length
 import { FormAddComptePartenaireComponent } from '../../@Components/authentification/form-add-compte-partenaire/form-add-compte-partenaire.component';
+// tslint:disable-next-line: max-line-length
 import { FormRecupererPasswordComponent } from '../../@Components/authentification/form-recuperer-password/form-recuperer-password.component';
 
 @Component({
@@ -13,24 +15,18 @@ import { FormRecupererPasswordComponent } from '../../@Components/authentificati
 })
 export class AuthentificationComponent implements OnInit {
 
-  // Mon Reactive Form
-  formAuthentification = new FormGroup({
-    username: new FormControl('demo', Validators.nullValidator),
-    password: new FormControl('demo', Validators.nullValidator)
-  });
-
-  credentials = {username: '', password: ''};
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-  authentification() {
+
+  /*authentification() {
 
     this.credentials.username = this.formAuthentification.get('username').value;
     this.credentials.password = this.formAuthentification.get('password').value;
-  }
+  }*/
 
   // Ouvre le pop-up pour récupérer le mot de passe oublié
   openDialogRecupererPassword(): void {

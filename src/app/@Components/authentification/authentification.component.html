@@ -3,53 +3,18 @@
 
   <div fxFlex="30%"></div>
 
-  <div fxFlex="40%" class="container" fxLayout="column" fxLayoutAlign="start center">
+  <div fxFlex="40%" class="container">
 
-      <form [formGroup]="formAuthentification" (ngSubmit)="authentification()">
+        <app-login ></app-login>
 
-        <div style="text-align: center; margin-bottom: 30px">
-            <img src="assets/img/odix.png" style="height: 75px; width:300px">
-        </div>
-
-        <div class="title-xs-higher" style="text-align: center; font-weight: 500">
-              Accèder à la plateforme
-        </div>
-
-        <mat-form-field appearance="outline">
-                <mat-label>Nom d'utilisateur</mat-label>
-                <input matInput formControlName="username">
-                <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-    
-        <mat-form-field appearance="outline">
-                <mat-label>Mot de passe</mat-label>
-                <input matInput formControlName="password">
-                <mat-icon matSuffix>fingerprint</mat-icon>
-        </mat-form-field>
-      
-        <!--<button mat-flat-button (click)="save()">Entrer</button>-->
-        <button mat-flat-button style="margin-bottom: 10px">
-            <div fxLayout="column" fxLayoutAlign="space-around stretch" >
-                <a routerLink="accueil" mat-button>Entrer</a>
-            </div>  
-        </button>
-
-        <!--<button mat-stroked-button mat-dialog-close >Mot de passe oublié ?</button>-->
         <button mat-stroked-button (click)="openDialogRecupererPassword()" style="margin-bottom: 50px">Mot de passe oublié ?</button>
 
-        <!-- Visible sur grands écrans seulement -->
-        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true">
-            <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="width:45%;margin-right: 10px">Créer un compte Candidat</button>
-            <button mat-flat-button (click)="openDialogCreerCompteRecruteur()" style="width:45%;margin-left: 10px">Créer un compte Recruteur</button>
-        </div>
-        
-        <!-- Visible sur petit écrans seulement -->
-        <div fxLayout="column" fxLayoutAlign="space-between stretch" fxHide.gt-sm="true">
-            <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Créer un compte Candidat</button>
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" > 
+            <button mat-flat-button (click)="openDialogCreerCompteCandidat()">Créer un compte Candidat</button>
+            <div style="width: 50px;"></div>
             <button mat-flat-button (click)="openDialogCreerCompteRecruteur()">Créer un compte Recruteur</button>
         </div>
 
-      </form> 
   </div>
 
   <div fxFlex="30%"></div>
@@ -59,40 +24,11 @@
 <!-- Visible sur Petits écrans seulement -->
 <div fxLayout="column" fxLayoutAlign="start center" fxHide.gt-sm="true" > 
 
-    <form [formGroup]="formAuthentification" (ngSubmit)="authentification()">
+        <app-login></app-login>
       
-              <div style="text-align: center; margin-bottom: 30px">
-                  <img src="assets/img/odix.png" style="height: 75px; width:300px">
-              </div>
-      
-              <div class="title-xs-higher" style="text-align: center; font-weight: 500">
-                    Accèder à la plateforme
-              </div>
-      
-              <mat-form-field appearance="outline">
-                  <mat-label>Nom d'utilisateur</mat-label>
-                  <input matInput formControlName="username">
-                  <mat-icon matSuffix>email</mat-icon>
-              </mat-form-field>
-      
-              <mat-form-field appearance="outline">
-                  <mat-label>Mot de passe</mat-label>
-                  <input matInput formControlName="password">
-                  <mat-icon matSuffix>fingerprint</mat-icon>
-              </mat-form-field>
-            
-              <!--<button mat-flat-button (click)="save()">Entrer</button>-->
-              <button mat-flat-button style="margin-bottom: 10px">
-                    <a routerLink="accueil" mat-button>Entrer</a>
-              </button>
-      
-              <!--<button mat-stroked-button mat-dialog-close >Mot de passe oublié ?</button>-->
-              <button mat-stroked-button (click)="openDialogRecupererPassword()" style="margin-bottom: 50px">Mot de passe oublié ?</button>   
+        <button mat-stroked-button (click)="openDialogRecupererPassword()" style="margin-bottom: 50px">Mot de passe oublié ?</button>   
              
-              <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Créer un compte Candidat</button>
+        <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Créer un compte Candidat</button>
               
-              <button mat-flat-button (click)="openDialogCreerCompteRecruteur()"style="margin-bottom: 50px">Créer un compte Recruteur</button>
-
-      
-    </form> 
+        <button mat-flat-button (click)="openDialogCreerCompteRecruteur()"style="margin-bottom: 50px">Créer un compte Recruteur</button>
 </div>
