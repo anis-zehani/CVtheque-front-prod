@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -135,7 +135,7 @@ import { FormAddComptePartenaireComponent } from './@Components/authentification
 import { FormRecupererPasswordComponent } from './@Components/authentification/form-recuperer-password/form-recuperer-password.component';
 import { LoginComponent } from './@Components/authentification/login/login.component';
 import { LogoutComponent } from './@Components/authentification/logout/logout.component';
-
+import { HttpInterceptorService } from './@Services/http-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -309,7 +309,10 @@ import { LogoutComponent } from './@Components/authentification/logout/logout.co
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
 
     // For F5 refresh 404 error
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+
+    // Obligatoire pour utiliser Http Interceptor afin d'ajout le header à tous les requests
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

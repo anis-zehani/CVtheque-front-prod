@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
 
   // Mon Reactive Form
   formAuthentification = new FormGroup({
-    username: new FormControl('user', Validators.nullValidator),
-    password: new FormControl('0b648431-51f5-4160-91dc-9ed29db89312', Validators.nullValidator)
+    username: new FormControl('demo', Validators.nullValidator),
+    password: new FormControl('demo', Validators.nullValidator)
   });
 
   invalidLogin = false;
@@ -24,14 +24,15 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    // tslint:disable-next-line: max-line-length
-    if (this.authentificationService.authenticate(this.formAuthentification.get('username').value, this.formAuthentification.get('password').value)
-    ) {
-      this.router.navigate(['accueil']);
-      this.invalidLogin = false;
-    } else {
-      this.invalidLogin = true;
-    }
+    this.authentificationService.authenticate(this.formAuthentification.get('username').value, this.formAuthentification.get('password').value).subscribe(
+      data => {
+        this.router.navigate(['accueil']);
+        this.invalidLogin = false;
+        console.log(data);
+      },
+      error => {
+        this.invalidLogin = true;
+      }
+    );
   }
-
 }
