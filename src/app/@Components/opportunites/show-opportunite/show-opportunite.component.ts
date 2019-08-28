@@ -22,7 +22,7 @@ export class ShowOpportuniteComponent implements OnInit {
   }
 
   //Ouvre le pop-up pour afficher un partenaire
-  openDialogShowPartenaire(id, identite, telephone, email, posteOccupe, descriptionDetaillee, urlPhoto, login, password, etatPartenaire, entreprise): void {
+  openDialogShowPartenaire(id, identite, telephone, email, posteOccupe, descriptionDetaillee, urlPhoto, username, password, etatPartenaire, entreprise): void {
       //Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
@@ -41,7 +41,7 @@ export class ShowOpportuniteComponent implements OnInit {
           posteOccupe : posteOccupe,
           descriptionDetaillee : descriptionDetaillee,
           urlPhoto : urlPhoto,
-          login : login,
+          username : username,
           password : password,
           etatPartenaire : etatPartenaire,
           entreprise : entreprise

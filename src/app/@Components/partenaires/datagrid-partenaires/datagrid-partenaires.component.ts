@@ -145,7 +145,7 @@ export class DatagridPartenairesComponent implements OnInit {
   }
 
   //Ouvre le pop-up pour modifier un partenaire
-  openDialogEditPartenaire(id, identite, telephone, email, posteOccupe, descriptionDetaillee, urlPhoto, login, password, etatPartenaire, entreprise): void {
+  openDialogEditPartenaire(id, identite, telephone, email, posteOccupe, descriptionDetaillee, urlPhoto, username, password, etatPartenaire, entreprise): void {
       //Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
@@ -164,7 +164,7 @@ export class DatagridPartenairesComponent implements OnInit {
           posteOccupe : posteOccupe,
           descriptionDetaillee : descriptionDetaillee,
           urlPhoto : urlPhoto,
-          login : login,
+          username : username,
           password : password,
           etatPartenaire : etatPartenaire,
           entreprise : entreprise
@@ -181,7 +181,7 @@ export class DatagridPartenairesComponent implements OnInit {
             this.partenaire.posteOccupe=result.posteOccupe;
             this.partenaire.descriptionDetaillee=result.descriptionDetaillee;
             this.partenaire.urlPhoto=result.urlPhoto;
-            this.partenaire.login=result.login;
+            this.partenaire.username=result.username;
             this.partenaire.password=result.password;
             this.partenaire.etatPartenaire=result.etatPartenaire;
             if(result.entreprise != null)
@@ -195,7 +195,7 @@ export class DatagridPartenairesComponent implements OnInit {
   }
 
   //Ouvre le pop-up pour afficher un partenaire
-  openDialogShowPartenaire(id, identite, telephone, email, posteOccupe, descriptionDetaillee, urlPhoto, login, password, etatPartenaire, entreprise): void {
+  openDialogShowPartenaire(id, identite, telephone, email, posteOccupe, descriptionDetaillee, urlPhoto, username, password, etatPartenaire, entreprise): void {
     //Objet pour configurer la modale
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -214,7 +214,7 @@ export class DatagridPartenairesComponent implements OnInit {
         posteOccupe : posteOccupe,
         descriptionDetaillee : descriptionDetaillee,
         urlPhoto : urlPhoto,
-        login : login,
+        username : username,
         password : password,
         etatPartenaire : etatPartenaire,
         entreprise : entreprise

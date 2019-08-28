@@ -12,20 +12,32 @@ export class AuthentificationService {
 
   private serviceUrl = environment.baseUrl + '/utilisateur';
 
+  utilisateur: Utilisateur;
+
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+    };
+
   constructor(private http: HttpClient) { }
 
   // Responsable de l'authentification
   authenticate(username, password) {
 
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    this.utilisateur = new Utilisateur();
+    this.utilisateur.username =  username;
+    this.utilisateur.password =  password;
 
-    return this.http.get<Utilisateur>(this.serviceUrl + '/authenticate', {headers}).pipe(
+    // return this.http.get<Utilisateur>(this.serviceUrl + '/authenticate', {headers}).pipe(
+    return this.http.post<any>(this.serviceUrl + '/authenticate', JSON.stringify(this.utilisateur), this.httpOptions).pipe(
      map(
-       userData => {
+       data => {
         sessionStorage.setItem('username', username);
-        const authString = 'Basic ' + btoa(username + ':' + password);
-        sessionStorage.setItem('basicAuth', authString);
-        return userData;
+        const tokenValue = 'Bearer ' + data.token;
+        sessionStorage.setItem('token', tokenValue);
+        return data;
        }
      )
     );

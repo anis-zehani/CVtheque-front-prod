@@ -8,6 +8,8 @@ export class Utilisateur {
     email: string;
     posteOccupe: string;
     descriptionDetaillee: string;
+    username: string;
+    password: string;
     urlPhoto: string;
     entreprise: Entreprise; // @ManyToOne
 }

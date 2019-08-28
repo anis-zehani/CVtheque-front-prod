@@ -57,12 +57,12 @@
 
       <div *ngIf="element.urlPhoto;else SINON_PARTENAIRE">
           <img src="{{storageUrl}}{{element.urlPhoto}}" style="cursor: pointer"
-          (click)="openDialogShowPartenaire(element.id, element.identite, element.telephone, element.email, element.posteOccupe, element.descriptionDetaillee, element.urlPhoto, element.login, element.password, element.etatPartenaire, element.entreprise)"
+          (click)="openDialogShowPartenaire(element.id, element.identite, element.telephone, element.email, element.posteOccupe, element.descriptionDetaillee, element.urlPhoto, element.username, element.password, element.etatPartenaire, element.entreprise)"
           >
       </div>
       <ng-template #SINON_PARTENAIRE>
           <img src="/assets/img/partenaire.png" style="cursor: pointer" 
-          (click)="openDialogShowPartenaire(element.id, element.identite, element.telephone, element.email, element.posteOccupe, element.descriptionDetaillee, element.urlPhoto, element.login, element.password, element.etatPartenaire, element.entreprise)"
+          (click)="openDialogShowPartenaire(element.id, element.identite, element.telephone, element.email, element.posteOccupe, element.descriptionDetaillee, element.urlPhoto, element.username, element.password, element.etatPartenaire, element.entreprise)"
           >
       </ng-template>
 
@@ -114,7 +114,7 @@
       <td mat-cell *matCellDef="let element" class="pointer" width="5%">
         <a mat-button [matMenuTriggerFor]="menuPartenaires" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
           <mat-menu #menuPartenaires="matMenu">
-            <button mat-menu-item (click)="openDialogEditPartenaire(element.id, element.identite, element.telephone, element.email, element.posteOccupe, element.descriptionDetaillee, element.urlPhoto, element.login, element.password, element.etatPartenaire, element.entreprise)"  matTooltip="Modifier le partenaire" matTooltipPosition="right">Modifier le partenaire</button>
+            <button mat-menu-item (click)="openDialogEditPartenaire(element.id, element.identite, element.telephone, element.email, element.posteOccupe, element.descriptionDetaillee, element.urlPhoto, element.username, element.password, element.etatPartenaire, element.entreprise)"  matTooltip="Modifier le partenaire" matTooltipPosition="right">Modifier le partenaire</button>
            
             <button mat-menu-item (click)="openDialogDeletePartenaire(element.id)" matTooltip="Supprimer le partenaire" matTooltipPosition="right">Supprimer le partenaire</button>
           </mat-menu>

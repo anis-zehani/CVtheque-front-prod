@@ -16,18 +16,18 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Nom d'utilisateur</mat-label>
-        <input matInput [(ngModel)]="data.login" placeholder="Nom d'utilisateur">
+        <input matInput [(ngModel)]="data.username" placeholder="Nom d'utilisateur">
         <mat-icon matSuffix>edit</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Mot de passe</mat-label>
-        <input matInput [(ngModel)]="data.password" placeholder="Mot de passe">
+        <input matInput [(ngModel)]="data.password" placeholder="Mot de passe" type="password">
         <mat-icon matSuffix>edit</mat-icon>
     </mat-form-field>
     
     <div style="display: flex;justify-content: space-between;">
-        <button mat-flat-button [mat-dialog-close]="data.id+'#'+data.identite+'#'+data.email+'#'+data.login+'#'+data.password" style="margin-right:10px">Confirmer</button>
+        <button mat-flat-button [mat-dialog-close]="data.id+'#'+data.identite+'#'+data.email+'#'+data.username+'#'+data.password" style="margin-right:10px">Confirmer</button>
         <button mat-stroked-button mat-dialog-close style="margin-left: 10px">Annuler</button>
     </div>
 </div>

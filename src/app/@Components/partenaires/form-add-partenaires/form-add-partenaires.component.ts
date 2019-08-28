@@ -36,7 +36,7 @@ export class FormAddPartenairesComponent implements OnInit {
     email: new FormControl('', Validators.email),
     posteOccupe: new FormControl('', Validators.nullValidator),
     descriptionDetaillee: new FormControl('', Validators.nullValidator),
-    login: new FormControl('', Validators.nullValidator),
+    username: new FormControl('', Validators.nullValidator),
     password: new FormControl('', Validators.nullValidator),
     entreprise: new FormControl('', Validators.nullValidator)
   });

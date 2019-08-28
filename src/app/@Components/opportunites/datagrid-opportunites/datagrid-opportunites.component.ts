@@ -197,11 +197,11 @@ export class DatagridOpportunitesComponent implements OnInit {
   }
 
   // Ouvre le pop-up pour afficher un partenaire
-  openDialogShowPartenaire(id, identite, telephone, email, posteOccupe, descriptionDetaillee, urlPhoto, login, password, etatPartenaire, entreprise): void {
+  openDialogShowPartenaire(id, identite, telephone, email, posteOccupe, descriptionDetaillee, urlPhoto, username, password, etatPartenaire, entreprise): void {
       // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
-      dialogConfig.hasBackdrop=true;
+      dialogConfig.hasBackdrop = true;
       dialogConfig.closeOnNavigation = true;
   
       // Objet pour déclencher l'ouverture de la modale
@@ -216,7 +216,7 @@ export class DatagridOpportunitesComponent implements OnInit {
           posteOccupe : posteOccupe,
           descriptionDetaillee : descriptionDetaillee,
           urlPhoto : urlPhoto,
-          login : login,
+          username : username,
           password : password,
           etatPartenaire : etatPartenaire,
           entreprise : entreprise

@@ -28,7 +28,7 @@
             <td>
                 <!--Test si Partenaire est défini-->
                 <div *ngIf="data.responsableOpportunite;else SINON"> 
-                    <a class="pointer" (click)="openDialogShowPartenaire(data.responsableOpportunite.id, data.responsableOpportunite.identite, data.responsableOpportunite.telephone, data.responsableOpportunite.email, data.responsableOpportunite.posteOccupe, data.responsableOpportunite.descriptionDetaillee, data.responsableOpportunite.urlPhoto, data.responsableOpportunite.login, data.responsableOpportunite.password, data.responsableOpportunite.etatPartenaire, data.responsableOpportunite.entreprise)">
+                    <a class="pointer" (click)="openDialogShowPartenaire(data.responsableOpportunite.id, data.responsableOpportunite.identite, data.responsableOpportunite.telephone, data.responsableOpportunite.email, data.responsableOpportunite.posteOccupe, data.responsableOpportunite.descriptionDetaillee, data.responsableOpportunite.urlPhoto, data.responsableOpportunite.username, data.responsableOpportunite.password, data.responsableOpportunite.etatPartenaire, data.responsableOpportunite.entreprise)">
                         <mat-form-field appearance="fill">
                             <mat-label>Reponsable opportunité</mat-label>
                             <input class="pointer" matInput [(ngModel)]="data.responsableOpportunite.identite" style="text-decoration: underline" readonly="true">

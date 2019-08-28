@@ -22,14 +22,9 @@
           <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="50%">{{element.email}}</td>
         </ng-container>
 
-      <ng-container matColumnDef="login">
+      <ng-container matColumnDef="username">
         <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Nom d'utilisateur</th>
-        <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="10%">{{element.login}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="password">
-        <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Mot de passe</th>
-        <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="10%">{{element.password}}</td>
+        <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="20%">{{element.username}}</td>
       </ng-container>
 
       <ng-container matColumnDef="more">
