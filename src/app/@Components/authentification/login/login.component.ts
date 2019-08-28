@@ -24,7 +24,10 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    this.authentificationService.authenticate(this.formAuthentification.get('username').value, this.formAuthentification.get('password').value).subscribe(
+    this.authentificationService.authenticate(
+      this.formAuthentification.get('username').value,
+      this.formAuthentification.get('password').value)
+     .subscribe(
       data => {
         this.router.navigate(['accueil']);
         this.invalidLogin = false;
@@ -32,6 +35,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.invalidLogin = true;
+        console.log(error);
       }
     );
   }

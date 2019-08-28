@@ -9,5 +9,5 @@ import { AuthentificationService } from './@Services/authentification.service';
 export class AppComponent {
   title = 'Odix : le sourcing rendu facile';
 
-  constructor(private authentificationService: AuthentificationService) {}
+  constructor(public authentificationService: AuthentificationService) {}
 }

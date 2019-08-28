@@ -14,28 +14,30 @@ export class AuthentificationService {
 
   constructor(private http: HttpClient) { }
 
-
+  // Responsable de l'authentification
   authenticate(username, password) {
 
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
 
-    return this.http.get<Utilisateur>(this.serviceUrl + '/validateLogin', {headers}).pipe(
+    return this.http.get<Utilisateur>(this.serviceUrl + '/authenticate', {headers}).pipe(
      map(
        userData => {
         sessionStorage.setItem('username', username);
         const authString = 'Basic ' + btoa(username + ':' + password);
-        sessionStorage.setItem('basicauth', authString);
+        sessionStorage.setItem('basicAuth', authString);
         return userData;
        }
      )
     );
   }
 
+  // Vérifie si le client est logged In
   isUserLoggedIn() {
     const user = sessionStorage.getItem('username');
     return !(user === null);
   }
 
+  // Supprime la variable username de la session
   logOut() {
     sessionStorage.removeItem('username');
   }
