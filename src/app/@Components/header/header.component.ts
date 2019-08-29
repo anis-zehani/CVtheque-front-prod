@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 
 export class HeaderComponent implements OnInit {
 
+  identite: string;
+
   constructor() {}
 
   ngOnInit() {
+    this.identite = sessionStorage.getItem('identite');
   }
 
 }

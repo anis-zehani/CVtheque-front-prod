@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import * as jwt_decode from 'jwt-decode';
+
 import { Utilisateur } from '../@Models/utilisateur';
 
 @Injectable({
@@ -30,13 +32,16 @@ export class AuthentificationService {
     this.utilisateur.username =  username;
     this.utilisateur.password =  password;
 
-    // return this.http.get<Utilisateur>(this.serviceUrl + '/authenticate', {headers}).pipe(
     return this.http.post<any>(this.serviceUrl + '/authenticate', JSON.stringify(this.utilisateur), this.httpOptions).pipe(
      map(
        data => {
-        sessionStorage.setItem('username', username);
         const tokenValue = 'Bearer ' + data.token;
         sessionStorage.setItem('token', tokenValue);
+
+        const decodedToken = jwt_decode(data.token);
+        sessionStorage.setItem('identite', decodedToken.identite);
+        sessionStorage.setItem('role', decodedToken.role);
+
         return data;
        }
      )
@@ -45,12 +50,14 @@ export class AuthentificationService {
 
   // Vérifie si le client est logged In
   isUserLoggedIn() {
-    const user = sessionStorage.getItem('username');
+    const user = sessionStorage.getItem('token');
     return !(user === null);
   }
 
   // Supprime la variable username de la session
   logOut() {
-    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('identite');
+    sessionStorage.removeItem('role');
   }
 }

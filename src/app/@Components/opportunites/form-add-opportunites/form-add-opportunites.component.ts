@@ -132,7 +132,7 @@ export class FormAddOpportunitesComponent implements OnInit {
           let idOpportunite = res.id; //ID de l'opportunité ajoutée
 
           //Ajouter des candidats à l'opportunité récement créée
-          if(this.listeCandidats.length > 0)
+          if(this.listeCandidats)
           {
           this.addCandidatsToOpportuniteController(idOpportunite, this.listeCandidats);
           }

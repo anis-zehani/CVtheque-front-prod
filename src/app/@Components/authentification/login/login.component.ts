@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
 
   // Mon Reactive Form
   formAuthentification = new FormGroup({
-    username: new FormControl('demo', Validators.nullValidator),
-    password: new FormControl('demo', Validators.nullValidator)
+    username: new FormControl('', Validators.nullValidator),
+    password: new FormControl('', Validators.nullValidator)
   });
 
   invalidLogin = false;
