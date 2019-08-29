@@ -48,13 +48,19 @@ export class AuthentificationService {
     );
   }
 
-  // Vérifie si le client est logged In
+  /* Vérifie si le client est logged In
+    en vérifiant si y a une variable 'token'
+    dans la session
+  */
   isUserLoggedIn() {
     const user = sessionStorage.getItem('token');
     return !(user === null);
   }
 
-  // Supprime la variable username de la session
+  /* Supprime la variable token de la session
+  du coup l'utilisateur doit entrer ses paramètres
+  de nouveau à la prochaine connexion
+  */
   logOut() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('identite');
