@@ -39,6 +39,8 @@ export class AuthentificationService {
         sessionStorage.setItem('token', tokenValue);
 
         const decodedToken = jwt_decode(data.token);
+
+        sessionStorage.setItem('id', decodedToken.id);
         sessionStorage.setItem('identite', decodedToken.identite);
         sessionStorage.setItem('role', decodedToken.role);
 
@@ -63,6 +65,8 @@ export class AuthentificationService {
   */
   logOut() {
     sessionStorage.removeItem('token');
+
+    sessionStorage.removeItem('id');
     sessionStorage.removeItem('identite');
     sessionStorage.removeItem('role');
   }

@@ -17,6 +17,7 @@ import { CertificationsComponent } from './@Components/certifications/certificat
 import { CollaborateursComponent } from './@Components/collaborateurs/collaborateurs.component';
 import { LogoutComponent } from './@Components/authentification/logout/logout.component';
 import { AuthGuardService } from './@Services/auth-guard.service';
+import { AdminGuardService } from './@Services/admin-guard.service';
 
 const routes: Routes = [
 
@@ -28,13 +29,13 @@ const routes: Routes = [
   { path: 'rappels', component: RappelsComponent, canActivate: [AuthGuardService] },
   { path: 'candidats', component: CandidatsComponent, canActivate: [AuthGuardService] },
   { path: 'opportunites', component: OpportunitesComponent, canActivate: [AuthGuardService] },
-  { path: 'partenaires', component: PartenairesComponent, canActivate: [AuthGuardService] },
+  { path: 'partenaires', component: PartenairesComponent, canActivate: [AuthGuardService, AdminGuardService] },
   { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuardService] },
   { path: 'technologies', component: TechnologiesComponent, canActivate: [AuthGuardService] },
   { path: 'entreprises', component: EntreprisesComponent, canActivate: [AuthGuardService] },
   { path: 'certifications', component: CertificationsComponent, canActivate: [AuthGuardService] },
   { path: 'ecoles', component: EcolesComponent, canActivate: [AuthGuardService] },
-  { path: 'collaborateurs', component: CollaborateursComponent, canActivate: [AuthGuardService] },
+  { path: 'collaborateurs', component: CollaborateursComponent, canActivate: [AuthGuardService, AdminGuardService] },
 
 
   // URL Introuvable renvoi finalement vers le composant Accueil
