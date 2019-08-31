@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import * as jwt_decode from 'jwt-decode';
+import { ReadTokenService } from 'src/app/@Services/read-token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminGuardService implements CanActivate {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private readTokenService: ReadTokenService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    // je récupère le token à partir de la session : le token contient les claims
-    // les claims contiennent : id, identite, role
-    const decodedToken = jwt_decode(sessionStorage.getItem('token'));
-
-    // seul Administrateur peut accéder aux composants ayant le canActivate AdminGuardService
-    if (decodedToken.role === 'Administrateur') {
+    // Administrateur SEULEMENT peut accéder aux composants ayant le canActivate AdminGuardService
+    if (this.readTokenService.getRole() === 'Administrateur') {
       return true;
     }
 
