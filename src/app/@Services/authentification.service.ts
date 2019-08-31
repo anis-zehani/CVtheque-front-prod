@@ -3,8 +3,6 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-import * as jwt_decode from 'jwt-decode';
-
 import { Utilisateur } from '../@Models/utilisateur';
 
 @Injectable({
@@ -37,13 +35,6 @@ export class AuthentificationService {
        data => {
         const tokenValue = 'Bearer ' + data.token;
         sessionStorage.setItem('token', tokenValue);
-
-        const decodedToken = jwt_decode(data.token);
-
-        sessionStorage.setItem('id', decodedToken.id);
-        sessionStorage.setItem('identite', decodedToken.identite);
-        sessionStorage.setItem('role', decodedToken.role);
-
         return data;
        }
      )
@@ -60,14 +51,10 @@ export class AuthentificationService {
   }
 
   /* Supprime la variable token de la session
-  du coup l'utilisateur doit entrer ses paramètres
+  du coup l'utilisateur doit OBLIGATOIREMENT entrer ses paramètres
   de nouveau à la prochaine connexion
   */
   logOut() {
     sessionStorage.removeItem('token');
-
-    sessionStorage.removeItem('id');
-    sessionStorage.removeItem('identite');
-    sessionStorage.removeItem('role');
   }
 }
