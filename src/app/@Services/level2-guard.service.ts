@@ -5,14 +5,14 @@ import * as jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuardService implements CanActivate {
+export class Level2GuardService {
 
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    // Administrateur SEULEMENT peut accéder aux composants ayant le canActivate AdminGuardService
-    if (jwt_decode(sessionStorage.getItem('token')).role === 'Administrateur') {
+    // Administrateur OU Partenaire SEULEMENT peuvent accéder aux composants ayant le canActivate Level2GuardService
+    if (jwt_decode(sessionStorage.getItem('token')).role === 'Administrateur' || jwt_decode(sessionStorage.getItem('token')).role === 'Partenaire') {
       return true;
     }
 
