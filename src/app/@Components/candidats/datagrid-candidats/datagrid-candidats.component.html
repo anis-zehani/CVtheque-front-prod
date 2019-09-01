@@ -60,6 +60,8 @@
           (click)="openDialogShowCandidat(
           element.id, 
           element.identite, 
+          element.username,
+          element.password,
           element.telephone, 
           element.email, 
           element.posteOccupe, 
@@ -97,6 +99,8 @@
           (click)="openDialogShowCandidat(
           element.id, 
           element.identite, 
+          element.username,
+          element.password,
           element.telephone, 
           element.email, 
           element.posteOccupe, 
@@ -211,7 +215,9 @@
             <button mat-menu-item 
             (click)="openDialogEditCandidat(
             element.id, 
-            element.identite, 
+            element.identite,
+            element.username,
+            element.password,  
             element.telephone, 
             element.email, 
             element.posteOccupe, 

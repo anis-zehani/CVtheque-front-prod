@@ -9,38 +9,40 @@ import { Certification } from './certification';
 
 
 export class Candidat {
-    //Attributs hérités de la classe Utilisateur
+    // Attributs hérités de la classe Utilisateur
     id: number;
     identite: string;
-    telephone:string;
-    email:string;
-    posteOccupe:string;
-    descriptionDetaillee:string;
-    urlPhoto:string;
-    entreprise:Entreprise; //@ManyToOne
+    username: string;
+    password: string;
+    telephone: string;
+    email: string;
+    posteOccupe: string;
+    descriptionDetaillee: string;
+    urlPhoto: string;
+    entreprise: Entreprise; // @ManyToOne
 
-    //Attributs de Classe 
-    dateDeNaissance : Date;
-    adresse : string;
-    situationFamiliale : SituationFamiliale //Enum (voir BackEnd)
-    nombreEnfants : string;
-    salaireActuel : string;
-    pretentionSalariale : string;
-    niveauEnFrancais : Note; //Enum 
-    niveauEnAnglais : Note; //Enum 
-    noteGlobale : Note; //Enum 
-    disponibilite : Disponibilite; //Enum 
-    etatCandidat : Etat; //Enum : True/False pour Actif/Inactif
-    dateDemarrageCarriere : Date;
-    dateEpuisementPasseport : Date;
+    // Attributs de Classe
+    dateDeNaissance: Date;
+    adresse: string;
+    situationFamiliale: SituationFamiliale; // Enum (voir BackEnd)
+    nombreEnfants: string;
+    salaireActuel: string;
+    pretentionSalariale: string;
+    niveauEnFrancais: Note; // Enum
+    niveauEnAnglais: Note; // Enum
+    noteGlobale: Note; // Enum
+    disponibilite: Disponibilite; // Enum
+    etatCandidat: Etat; // Enum : True/False pour Actif/Inactif
+    dateDemarrageCarriere: Date;
+    dateEpuisementPasseport: Date;
 
-    diplome : Diplome;
-    curriculum : Curriculum;
-    visa : Visa;
+    diplome: Diplome;
+    curriculum: Curriculum;
+    visa: Visa;
 
-    listeTechnologies : Technologie[]; //ManyToMany
-    listeOpportunites : Opportunite[];  //ManyToMany
-    listeCertifications : Certification[];  //ManyToMany
+    listeTechnologies: Technologie[]; // ManyToMany
+    listeOpportunites: Opportunite[];  // ManyToMany
+    listeCertifications: Certification[];  // ManyToMany
 
     selected: boolean;
 
@@ -48,4 +50,3 @@ export class Candidat {
       this.id = id;
     }
   }
-  

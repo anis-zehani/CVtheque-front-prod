@@ -22,24 +22,24 @@ import { ListeCertificationsForAddComponent } from '../../../@Components/certifi
   selector: 'app-form-add-candidats',
   templateUrl: './form-add-candidats.component.html',
   styleUrls: ['./form-add-candidats.component.css']
-  
+
 })
 export class FormAddCandidatsComponent implements OnInit {
 
-  //Afin de fermer le sidenav du parent
+  // Afin de fermer le sidenav du parent
   @Input() inputSideNav: MatSidenav;
 
-  //Envoi l'event pour mettre à jour la table
+  // Envoi l'event pour mettre à jour la table
   @Output() refreshTableEvent = new EventEmitter<Event>();
 
-  entreprise : Entreprise;
-  ecole : Ecole;
-  diplome : Diplome;
-  curriculum : Curriculum;
-  visa : Visa;
-  listeTechnologies : Technologie[];
-  listeOpportunites : Opportunite[];
-  listeCertifications : Certification[];
+  entreprise: Entreprise;
+  ecole: Ecole;
+  diplome: Diplome;
+  curriculum: Curriculum;
+  visa: Visa;
+  listeTechnologies: Technologie[];
+  listeOpportunites: Opportunite[];
+  listeCertifications: Certification[];
 
   listeTechnologiesFinale: Technologie[] = [];
   listeOpportunitesFinale: Opportunite[] = [];
@@ -49,35 +49,37 @@ export class FormAddCandidatsComponent implements OnInit {
   @ViewChild(ListeOpportunitesForAddComponent, {static: false}) childListeOpportunites: ListeOpportunitesForAddComponent;
   @ViewChild(ListeCertificationsForAddComponent, {static: false}) childListeCertifications: ListeCertificationsForAddComponent;
 
-  public defaultSituationFamiliale : 'Non_Mentionee';
+  public defaultSituationFamiliale: 'Non_Mentionee';
 
-  //FileUpload : Photo
+  // FileUpload : Photo
   selectedFilesPhoto: FileList;
   currentFileUploadPhoto: File;
   progressFilesPhoto: { percentage: number } = { percentage: 0 };
 
-  //FileUpload : CvOdix
+  // FileUpload : CvOdix
   selectedFilesCvOdix: FileList;
   currentFileUploadCvOdix: File;
   progressFilesCvOdix: { percentage: number } = { percentage: 0 };
 
-  //FileUpload : CvOriginal
+  // FileUpload : CvOriginal
   selectedFilesCvOriginal: FileList;
   currentFileUploadCvOriginal: File;
   progressFilesCvOriginal: { percentage: number } = { percentage: 0 };
 
-  //Mon Reactive Form
+  // Mon Reactive Form
   formCandidat = new FormGroup({
 
-    //Informations basiques
-    identite: new FormControl('', Validators.nullValidator),
+    // Informations basiques
+    identite: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
     telephone: new FormControl('', Validators.nullValidator),
     email: new FormControl('', Validators.email),
     posteOccupe: new FormControl('', Validators.nullValidator),
     descriptionDetaillee: new FormControl('', Validators.nullValidator),
     entreprise: new FormControl('', Validators.nullValidator),
 
-    //Informations spécifiques
+    // Informations spécifiques
     salaireActuel: new FormControl('', Validators.nullValidator),
     pretentionSalariale: new FormControl('', Validators.nullValidator),
     situationFamiliale: new FormControl('Non_Mentionee', Validators.nullValidator),
@@ -91,12 +93,12 @@ export class FormAddCandidatsComponent implements OnInit {
     dateDemarrageCarriere: new FormControl('', Validators.nullValidator),
     dateEpuisementPasseport: new FormControl('', Validators.nullValidator),
 
-    //Diplôme
+    // Diplôme
     typeDiplome: new FormControl('Non_Mentionee', Validators.nullValidator),
     ecole: new FormControl('', Validators.nullValidator),
-    dateObtentionDiplome:new FormControl('', Validators.nullValidator),
+    dateObtentionDiplome: new FormControl('', Validators.nullValidator),
 
-    //Visa
+    // Visa
     typeVisa: new FormControl('Non_Mentionee', Validators.nullValidator),
     dateDebutVisa: new FormControl('', Validators.nullValidator),
     dateFinVisa: new FormControl('', Validators.nullValidator),
@@ -107,14 +109,13 @@ export class FormAddCandidatsComponent implements OnInit {
     listeTechnologies: new FormControl('', Validators.nullValidator),
     listeOpportunites: new FormControl('', Validators.nullValidator),
     listeCertifications: new FormControl('', Validators.nullValidator)
-    
+
   }/*,{updateOn: 'submit'}*/);
 
   constructor(
-    private candidatsService: CandidatsService, 
-    private utilService: UtilService, 
-    private uploadService: FileUploadService) 
-    {
+    private candidatsService: CandidatsService,
+    private utilService: UtilService,
+    private uploadService: FileUploadService) {
       this.entreprise = new Entreprise(null, null, null);
       this.ecole = new Ecole();
       this.diplome = new Diplome();
@@ -123,75 +124,72 @@ export class FormAddCandidatsComponent implements OnInit {
 
   ngOnInit() {}
 
-  //Quand on ajoute un Candidat : un EVENT est envoyé au Parent pour rafraichir la table
-  refreshTableFunction($event){
+  // Quand on ajoute un Candidat : un EVENT est envoyé au Parent pour rafraichir la table
+  refreshTableFunction($event) {
     this.refreshTableEvent.emit($event);
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-entreprises> qui génére un EventEmitter
-  entrepriseIdEventListner($event){
+  // Parent intercepte l'event envoyé par son fils : <app-liste-entreprises> qui génére un EventEmitter
+  entrepriseIdEventListner($event) {
     this.entreprise.idEntreprise = $event;
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-ecoles> qui génére un EventEmitter
-  ecoleIdEventListner($event){
+  // Parent intercepte l'event envoyé par son fils : <app-liste-ecoles> qui génére un EventEmitter
+  ecoleIdEventListner($event) {
     this.ecole.idEcole = $event;
   }
- 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-technologies-for-add> qui génére un EventEmitter
-  listeTechnologiesEventListner($event){
+
+  // Parent intercepte l'event envoyé par son fils : <app-liste-technologies-for-add> qui génére un EventEmitter
+  listeTechnologiesEventListner($event) {
 
     this.listeTechnologiesFinale = [];
-    for(let i=0;i<$event.length;i++)
-    {
-      let technologie = new Technologie($event[i]._value.id, $event[i]._value.nomTechnologie, null);
+    for (let i = 0; i < $event.length; i++) {
+      const technologie = new Technologie($event[i]._value.id, $event[i]._value.nomTechnologie, null);
       this.listeTechnologiesFinale.push(technologie);
     }
     this.listeTechnologies = this.listeTechnologiesFinale;
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-opportunites> qui génére un EventEmitter
-  listeOpportunitesEventListner($event){
+  // Parent intercepte l'event envoyé par son fils : <app-liste-opportunites> qui génére un EventEmitter
+  listeOpportunitesEventListner($event) {
 
     this.listeOpportunitesFinale = [];
 
-    for(let i=0;i<$event.length;i++)
-    {
-      //console.log($event[i]._value);
-      let opportunite = new Opportunite($event[i]._value.id, $event[i]._value.titreOpportunite);
+    for (let i = 0; i < $event.length; i++) {
+      // console.log($event[i]._value);
+      const opportunite = new Opportunite($event[i]._value.id, $event[i]._value.titreOpportunite);
       this.listeOpportunitesFinale.push(opportunite);
     }
     this.listeOpportunites = this.listeOpportunitesFinale;
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-certifications> qui génére un EventEmitter
-  listeCertificationsEventListner($event){
+  // Parent intercepte l'event envoyé par son fils : <app-liste-certifications> qui génére un EventEmitter
+  listeCertificationsEventListner($event) {
 
     this.listeCertificationsFinale = [];
 
-    for(let i=0;i<$event.length;i++)
-    {
-      //console.log($event[i]._value);
-      let certification = new Certification($event[i]._value.id, $event[i]._value.nomCertification, null);
+    for (let i = 0; i < $event.length; i++) {
+      // console.log($event[i]._value);
+      const certification = new Certification($event[i]._value.id, $event[i]._value.nomCertification, null);
       this.listeCertificationsFinale.push(certification);
     }
     this.listeCertifications = this.listeCertificationsFinale;
 
   }
 
-  //Ajouter un candidat 
+  // Ajouter un candidat
   addCandidatController() {
-    //Remplissage Objet Diplome
+    // Remplissage Objet Diplome
     this.diplome.typeDiplome = this.formCandidat.value.typeDiplome;
     this.diplome.ecole = this.ecole;
     this.diplome.dateObtentionDiplome = this.formCandidat.value.dateObtentionDiplome;
 
-    //Remplissage Objet Visa
+    // Remplissage Objet Visa
     this.visa.typeVisa = this.formCandidat.value.typeVisa;
     this.visa.dateDebutVisa = this.formCandidat.value.dateDebutVisa;
     this.visa.dateFinVisa = this.formCandidat.value.dateFinVisa;
 
-    //Insertion des objets supplémentaires
+    // Insertion des objets supplémentaires
     this.formCandidat.patchValue({
       entreprise: this.entreprise,
       diplome: this.diplome,
@@ -202,117 +200,96 @@ export class FormAddCandidatsComponent implements OnInit {
       listeCertifications :  this.listeCertifications
     });
 
-    //Suppression des objets redondants : Diplome
+    // Suppression des objets redondants : Diplome
     this.formCandidat.removeControl('typeDiplome');
     this.formCandidat.removeControl('ecole');
     this.formCandidat.removeControl('dateObtentionDiplome');
 
-    //Suppression des objets redondants : Visa
+    // Suppression des objets redondants : Visa
     this.formCandidat.removeControl('typeVisa');
     this.formCandidat.removeControl('dateDebutVisa');
     this.formCandidat.removeControl('dateFinVisa');
 
     this.candidatsService.addCandidatService(this.formCandidat.value)
     .subscribe
-      (res => 
-        { 
-          if(res != null)
-          { 
+      (res => {
+          if (res != null) {
           this.addFilesController(res.id);
-          //Placer un <mat-progress-spinner> ici
+          // Placer un <mat-progress-spinner> ici
           this.refreshTableFunction(true);
-          this.utilService.openSnackBar("Candidat ajouté", "OK"); 
+          this.utilService.openSnackBar('Candidat ajouté', 'OK');
           }
         }
-      )
-       
-      this.formCandidat.reset(); 
+      );
 
-      //Faire le reset aux 3 listes filles
-      this.childListeTechnologies.ngOnInit();
-      this.childListeOpportunites.ngOnInit();
-      this.childListeCertifications.ngOnInit();
+    this.formCandidat.reset();
+
+      // Faire le reset aux 3 listes filles
+    this.childListeTechnologies.ngOnInit();
+    this.childListeOpportunites.ngOnInit();
+    this.childListeCertifications.ngOnInit();
 
   }
 
-  //File Upload : Photo de profil + Cv Odix + Cv Original
+  // File Upload : Photo de profil + Cv Odix + Cv Original
   selectFile($event, typeFile) {
-    if(typeFile === 'photodeprofil')
-    {
+    if (typeFile === 'photodeprofil') {
       this.selectedFilesPhoto = $event.target.files;
     }
 
-    if(typeFile === 'cvodix')
-    {
+    if (typeFile === 'cvodix') {
       this.selectedFilesCvOdix = $event.target.files;
     }
 
-    if(typeFile === 'cvoriginal')
-    {
+    if (typeFile === 'cvoriginal') {
       this.selectedFilesCvOriginal = $event.target.files;
     }
-    
+
   }
- 
-  //Fonction qui s'éxécute pour faire l'upload des 3 files
-  addFilesController(id) 
-  {
-    //Upload All 3 Files
-    if(this.selectedFilesPhoto !=  null)
-      {
+
+  // Fonction qui s'éxécute pour faire l'upload des 3 files
+  addFilesController(id) {
+    // Upload All 3 Files
+    if (this.selectedFilesPhoto !=  null) {
         this.currentFileUploadPhoto = this.selectedFilesPhoto.item(0);
 
-        this.uploadService.addPhotoCandidat(this.currentFileUploadPhoto,id).subscribe(event => 
-          {
-            if (event.type === HttpEventType.UploadProgress) 
-            {
+        this.uploadService.addPhotoCandidat(this.currentFileUploadPhoto, id).subscribe(event => {
+            if (event.type === HttpEventType.UploadProgress) {
               this.progressFilesPhoto.percentage = Math.round(100 * event.loaded / event.total);
-            } 
-            else if (event instanceof HttpResponse) 
-            {
+            } else if (event instanceof HttpResponse) {
               console.log('Photo is completely uploaded!');
             }
           });
-  
+
         this.selectedFilesPhoto = undefined;
       }
-    
-    if(this.selectedFilesCvOdix !=  null)
-      {
+
+    if (this.selectedFilesCvOdix !=  null) {
         this.currentFileUploadCvOdix = this.selectedFilesCvOdix.item(0);
 
-        this.uploadService.addCvOdixCandidat(this.currentFileUploadCvOdix,id).subscribe(event => 
-          {
-            if (event.type === HttpEventType.UploadProgress) 
-            {
+        this.uploadService.addCvOdixCandidat(this.currentFileUploadCvOdix, id).subscribe(event => {
+            if (event.type === HttpEventType.UploadProgress) {
               this.progressFilesCvOdix.percentage = Math.round(100 * event.loaded / event.total);
-            } 
-            else if (event instanceof HttpResponse) 
-            {
+            } else if (event instanceof HttpResponse) {
               console.log('CvOdix is completely uploaded!');
             }
           });
-  
-          this.selectedFilesCvOdix = undefined;
+
+        this.selectedFilesCvOdix = undefined;
       }
 
-    if(this.selectedFilesCvOriginal !=  null)
-      {
+    if (this.selectedFilesCvOriginal !=  null) {
         this.currentFileUploadCvOriginal = this.selectedFilesCvOriginal.item(0);
 
-        this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal,id).subscribe(event => 
-          {
-            if (event.type === HttpEventType.UploadProgress) 
-            {
+        this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal, id).subscribe(event => {
+            if (event.type === HttpEventType.UploadProgress) {
               this.progressFilesCvOriginal.percentage = Math.round(100 * event.loaded / event.total);
-            } 
-            else if (event instanceof HttpResponse) 
-            {
+            } else if (event instanceof HttpResponse) {
               console.log('CvOriginal is completely uploaded!');
             }
           });
-  
-          this.selectedFilesCvOriginal = undefined;
+
+        this.selectedFilesCvOriginal = undefined;
       }
   }
 

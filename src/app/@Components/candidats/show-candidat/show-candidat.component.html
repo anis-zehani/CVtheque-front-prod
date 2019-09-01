@@ -84,6 +84,23 @@
                     </mat-form-field>  
                 </td>
                 </tr>
+
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nom d'utilisateur</mat-label>
+                            <input matInput [(ngModel)]="data.username" readonly="true">
+                            <mat-icon matSuffix>perm_identity</mat-icon>
+                        </mat-form-field> 
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Mot de passe</mat-label>
+                            <input matInput [(ngModel)]="data.password" type="password" readonly="true">
+                            <mat-icon matSuffix>lock</mat-icon>
+                        </mat-form-field>
+                    </td>
+                </tr>
           
                 <tr>
                   <div class="titleCandidat">
