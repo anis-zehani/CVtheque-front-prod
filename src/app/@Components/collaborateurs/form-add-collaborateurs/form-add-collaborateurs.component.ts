@@ -37,7 +37,7 @@ export class FormAddCollaborateursComponent implements OnInit {
   }
 
   // Ajouter une collaborateur + refresh de la table
-  addCollaborateurController(collaborateurForm: NgForm) {
+  addCollaborateurController() {
     this.collaborateursService.addCollaborateurService(this.formCollaborateur.value)
     .subscribe
       (
