@@ -1,26 +1,28 @@
-<form (ngSubmit)="addCollaborateurController(collaborateurForm)" #collaborateurForm="ngForm">
+<form [formGroup]="formCollaborateur" (ngSubmit)="addCollaborateurController()">
+
   <mat-form-field appearance="outline">
       <mat-label>Identité du collaborateur</mat-label>
-      <input matInput [(ngModel)]="collaborateur.identite" name="identite" placeholder="Identité du collaborateur">
+      <input matInput formControlName="identite" required>
       <mat-icon matSuffix>account_circle</mat-icon>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
       <mat-label>Adresse email</mat-label>
-      <input matInput [(ngModel)]="collaborateur.email" name="email" placeholder="Adresse email">
+      <input matInput formControlName="email" required>
       <mat-icon matSuffix>mail</mat-icon>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Nom d'utilisateur</mat-label>
-    <input matInput [(ngModel)]="collaborateur.username" name="username" placeholder="Nom d'utilisateur">
+    <input matInput formControlName="username" required>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Mot de passe</mat-label>
-    <input matInput [(ngModel)]="collaborateur.password" name="password" placeholder="Mot de passe" type="password">
+    <input matInput formControlName="password" type="password" required>
   </mat-form-field>
   
-  <button mat-flat-button type="submit">Ajouter un collaborateur</button><br><br>
+  <button mat-flat-button [disabled]="!formCollaborateur.valid" type="submit">Ajouter un collaborateur</button><br><br>
   <button mat-stroked-button type="reset">Tout réinitialiser</button>
+
 </form>   

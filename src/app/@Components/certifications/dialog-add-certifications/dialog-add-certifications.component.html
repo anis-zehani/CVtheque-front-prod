@@ -4,7 +4,7 @@
 
   <mat-form-field appearance="outline">
       <mat-label>Nom de la certification</mat-label>
-      <input matInput formControlName="nomCertification">
+      <input matInput formControlName="nomCertification" required>
       <mat-icon matSuffix>add_circle</mat-icon>
   </mat-form-field>
 
@@ -15,7 +15,7 @@
   </mat-form-field>
   
   <mat-dialog-actions style="display: flex;justify-content: end;">
-    <button mat-flat-button (click)="save()">Ajouter une certification</button><br><br><br>
+    <button mat-flat-button [disabled]="!formCertification.valid" (click)="save()">Ajouter une certification</button><br><br><br>
     <button mat-stroked-button mat-dialog-close >Tout réinitialiser</button>
   </mat-dialog-actions>
   

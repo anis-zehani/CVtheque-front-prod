@@ -11,44 +11,42 @@ import { UtilService } from '../../../@Util/util.service';
 })
 export class DialogAddEcolesComponent implements OnInit {
 
-  //Envoi l'event pour mettre à jour la table
+  // Envoi l'event pour mettre à jour la table
   @Output() refreshTableEvent = new EventEmitter<Event>();
 
-  //Mon Reactive Form
+  // Mon Reactive Form
   formEcole = new FormGroup({
-    nomEcole: new FormControl('', Validators.nullValidator)
+    nomEcole: new FormControl('', Validators.required)
   });
 
   constructor(
-    private ecolesService: EcolesService, 
+    private ecolesService: EcolesService,
     private utilService: UtilService,
     private dialogRef: MatDialogRef<DialogAddEcolesComponent>) {}
 
   ngOnInit() {
   }
 
-  //ferme la modale et submit le formulaire
+  // ferme la modale et submit le formulaire
   save() {
     this.dialogRef.close(this.formEcole.value);
   }
 
-  //Quand on ajoute une École : un EVENT est envoyé au Parent pour rafraichir la table
-  refreshTableFunction($event){
+  // Quand on ajoute une École : un EVENT est envoyé au Parent pour rafraichir la table
+  refreshTableFunction($event) {
     this.refreshTableEvent.emit($event);
   }
 
-  //Ajouter une école 
+  // Ajouter une école
   addEcoleController() {
     this.ecolesService.addEcoleService(this.formEcole.value)
     .subscribe
-      (res => 
-        { if(res != null)
-          { 
+      (res => { if (res != null) {
           this.refreshTableFunction(true);
-          this.utilService.openSnackBar("École ajoutée", "OK"); 
+          this.utilService.openSnackBar('École ajoutée', 'OK');
           }
         }
-      )
-      this.formEcole.reset();  
+      );
+    this.formEcole.reset();
   }
 }

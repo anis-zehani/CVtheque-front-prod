@@ -7,16 +7,16 @@ import { UtilService } from '../../../@Util/util.service';
 @Component({
   selector: 'app-form-add-certifications',
   templateUrl: './form-add-certifications.component.html'
-  
+
 })
 export class FormAddCertificationsComponent implements OnInit {
 
-  //Envoi l'event pour mettre à jour la table
+  // Envoi l'event pour mettre à jour la table
   @Output() refreshTableEvent = new EventEmitter<Event>();
 
-  //Mon Reactive Form
+  // Mon Reactive Form
   formCertification = new FormGroup({
-    nomCertification: new FormControl('', Validators.nullValidator),
+    nomCertification: new FormControl('', Validators.required),
     descriptionDetaillee: new FormControl('', Validators.nullValidator)
   });
 
@@ -25,23 +25,21 @@ export class FormAddCertificationsComponent implements OnInit {
   ngOnInit() {
   }
 
-  //Quand on ajoute une Certification : un EVENT est envoyé au Parent pour rafraichir la table
-  refreshTableFunction($event){
+  // Quand on ajoute une Certification : un EVENT est envoyé au Parent pour rafraichir la table
+  refreshTableFunction($event) {
     this.refreshTableEvent.emit($event);
   }
 
-  //Ajouter une certification 
+  // Ajouter une certification
   addCertificationController() {
     this.certificationsService.addCertificationService(this.formCertification.value)
     .subscribe
-      (res => 
-        { if(res != null)
-          { 
+      (res => { if (res != null) {
           this.refreshTableFunction(true);
-          this.utilService.openSnackBar("Certification ajoutée", "OK"); 
+          this.utilService.openSnackBar('Certification ajoutée', 'OK');
           }
         }
-      )
-      this.formCertification.reset();  
+      );
+    this.formCertification.reset();
   }
 }

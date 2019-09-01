@@ -14,10 +14,10 @@ import { Entreprise } from 'src/app/@Models/entreprise';
 })
 export class FormEditPartenairesComponent implements OnInit {
 
-  //URL du serveur de stockage
+  // URL du serveur de stockage
   storageUrl = environment.storageUrl;
 
-  //FileUpload
+  // FileUpload
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
@@ -27,40 +27,32 @@ export class FormEditPartenairesComponent implements OnInit {
   ngOnInit() {
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-entreprises> qui génére un EventEmitter
-  entrepriseIdEventListner($event){
-    //Mise à jour de l'objet data de la view
-  
-    if(this.data.entreprise === null)
-    {
-      let entreprise = new Entreprise(null, null, null);
-      entreprise.idEntreprise=$event;
-      this.data.entreprise=entreprise;
-    }
-    else
-    {
-      this.data.entreprise.idEntreprise=$event;
+  // Parent intercepte l'event envoyé par son fils : <app-liste-entreprises> qui génére un EventEmitter
+  entrepriseIdEventListner($event) {
+    // Mise à jour de l'objet data de la view
+
+    if (this.data.entreprise === null) {
+      const entreprise = new Entreprise(null, null, null);
+      entreprise.idEntreprise = $event;
+      this.data.entreprise = entreprise;
+    } else {
+      this.data.entreprise.idEntreprise = $event;
     }
   }
 
-  //FileUpload
+  // FileUpload
   selectFile($event) {
     this.selectedFiles = $event.target.files;
   }
- 
-  //Click sur le bouton "Confirmer"
+
+  // Click sur le bouton "Confirmer"
   editPhotoController(id) {
-    //On teste si une image a été selectionnée
-    if(this.selectedFiles != null)
-    {
+    // On teste si une image a été selectionnée
+    if (this.selectedFiles != null) {
         this.currentFileUpload = this.selectedFiles.item(0);
-        
-        this.uploadService.addPhotoPartenaire(this.currentFileUpload, id).subscribe(event => 
-          {
-            if (event.type === HttpEventType.UploadProgress) 
-            { this.progress.percentage = Math.round(100 * event.loaded / event.total);} 
-            else if (event instanceof HttpResponse) 
-            {console.log('File is completely uploaded!');}
+
+        this.uploadService.addPhotoPartenaire(this.currentFileUpload, id).subscribe(event => {
+            if (event.type === HttpEventType.UploadProgress) { this.progress.percentage = Math.round(100 * event.loaded / event.total); } else if (event instanceof HttpResponse) {console.log('File is completely uploaded!'); }
           });
         this.selectedFiles = undefined;
   }

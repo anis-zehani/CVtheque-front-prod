@@ -1,12 +1,12 @@
 <form [formGroup]="formEcole" (ngSubmit)="addEcoleController()">
   <mat-form-field appearance="outline">
       <mat-label>Nom de l'école</mat-label>
-      <input matInput formControlName="nomEcole">
+      <input matInput formControlName="nomEcole" required>
       <mat-icon matSuffix>school</mat-icon>
   </mat-form-field>
   
   <mat-dialog-actions style="display: flex;justify-content: end;">
-    <button mat-flat-button (click)="save()">Ajouter une école</button><br><br><br>
+    <button mat-flat-button [disabled]="!formEcole.valid" (click)="save()">Ajouter une école</button><br><br><br>
     <button mat-stroked-button mat-dialog-close >Tout réinitialiser</button>
   </mat-dialog-actions>
 

@@ -2,7 +2,7 @@
 
   <mat-form-field appearance="outline">
       <mat-label>Nom de la technologie</mat-label>
-      <input matInput formControlName="nomTechnologie">
+      <input matInput formControlName="nomTechnologie" required>
       <mat-icon matSuffix>add_circle</mat-icon>
   </mat-form-field>
 
@@ -12,7 +12,7 @@
       <mat-icon matSuffix>description</mat-icon>
   </mat-form-field>
 
-  <button mat-flat-button type="submit">Ajouter une technologie</button><br><br>
+  <button mat-flat-button [disabled]="!formTechnologie.valid" type="submit">Ajouter une technologie</button><br><br>
   <button mat-stroked-button type="reset">Tout réinitialiser</button><br><br>
 
 </form>
