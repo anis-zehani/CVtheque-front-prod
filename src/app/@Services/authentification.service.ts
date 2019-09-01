@@ -25,7 +25,6 @@ export class AuthentificationService {
   // Responsable de l'authentification
   authenticate(username, password) {
 
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
     this.utilisateur = new Utilisateur();
     this.utilisateur.username =  username;
     this.utilisateur.password =  password;
