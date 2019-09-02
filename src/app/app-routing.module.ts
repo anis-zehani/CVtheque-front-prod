@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'candidats', component: CandidatsComponent, canActivate: [AuthGuardService, Level2GuardService] },
   { path: 'opportunites', component: OpportunitesComponent, canActivate: [AuthGuardService, Level2GuardService] },
   { path: 'partenaires', component: PartenairesComponent, canActivate: [AuthGuardService, Level1GuardService] },
-  { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuardService, Level2GuardService] },
+  { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuardService] },
   { path: 'technologies', component: TechnologiesComponent, canActivate: [AuthGuardService, Level2GuardService] },
   { path: 'entreprises', component: EntreprisesComponent, canActivate: [AuthGuardService, Level2GuardService] },
   { path: 'certifications', component: CertificationsComponent, canActivate: [AuthGuardService, Level2GuardService] },
