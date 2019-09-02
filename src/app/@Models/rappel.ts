@@ -7,11 +7,11 @@ export class Rappel {
     id: number;
     remindMe: boolean;
     detailsRappel: string;
-    dateEcheance:Date;
+    dateEcheance: Date;
     priorite: Priorite;
     urlFichier: string;
     nomFichier: string;
 
-    projet:Projet; //@ManyToOne
-    utilisateur:Utilisateur; //@ManyToOne
+    projet: Projet; // @ManyToOne
+    utilisateur: Utilisateur; // @ManyToOne
 }

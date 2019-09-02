@@ -5,3 +5,12 @@
     font-weight: 400;
     font-variant-ligatures: no-contextual;
   }
+
+  button.mat-menu-item:hover {
+    background-color: #212121;
+    color: white !important;
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-variant-ligatures: no-contextual;
+}
