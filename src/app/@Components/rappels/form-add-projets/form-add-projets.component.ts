@@ -9,16 +9,16 @@ import { UtilService } from '../../../@Util/util.service';
 @Component({
   selector: 'app-form-add-projets',
   templateUrl: './form-add-projets.component.html'
-  
+
 })
 export class FormAddProjetsComponent implements OnInit {
 
-  //Envoi l'event pour mettre à jour la table
+  // Envoi l'event pour mettre à jour la table
   @Output() refreshTableEvent = new EventEmitter<Event>();
 
-  //Mon Reactive Form
+  // Mon Reactive Form
   formProjet = new FormGroup({
-    nomProjet: new FormControl('', Validators.nullValidator),
+    nomProjet: new FormControl('', Validators.required),
     detailsProjet: new FormControl('', Validators.nullValidator)
   });
 
@@ -31,23 +31,21 @@ export class FormAddProjetsComponent implements OnInit {
   ngOnInit() {
   }
 
-  //ferme la modale et submit le formulaire
+  // ferme la modale et submit le formulaire
   save() {
     this.dialogRef.close(this.formProjet.value);
   }
 
 
-  //Ajouter une projet 
+  // Ajouter une projet
   addProjetController() {
     this.projetsService.addProjetService(this.formProjet.value)
     .subscribe
-      (res => 
-        { if(res != null)
-          { 
-          this.utilService.openSnackBar("Projet ajouté", "OK"); 
+      (res => { if (res != null) {
+          this.utilService.openSnackBar('Projet ajouté', 'OK');
           }
         }
-      )
-      this.formProjet.reset();  
+      );
+    this.formProjet.reset();
   }
 }

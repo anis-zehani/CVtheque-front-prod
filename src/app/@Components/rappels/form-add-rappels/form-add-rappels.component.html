@@ -5,8 +5,7 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Détails du rappel</mat-label>
-        <input matInput formControlName="detailsRappel"> 
-        <textarea matInput formControlName="detailsRappel" rows="4"></textarea>
+        <textarea matInput formControlName="detailsRappel" rows="4" required></textarea>
         <mat-icon matSuffix>add_circle</mat-icon>
     </mat-form-field>
 
@@ -56,7 +55,7 @@
 
     <mat-dialog-actions >
         <div style="display: flex;justify-content: space-between center;">
-            <button mat-flat-button (click)="save()" style="margin-right: 5%">Valider</button>
+            <button mat-flat-button (click)="save()" [disabled]="!formRappel.valid" style="margin-right: 5%">Valider</button>
             <button mat-stroked-button mat-dialog-close >Annuler</button>
         </div>
     </mat-dialog-actions>

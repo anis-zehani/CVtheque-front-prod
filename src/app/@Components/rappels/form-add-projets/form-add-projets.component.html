@@ -5,7 +5,7 @@
 
   <mat-form-field appearance="outline">
       <mat-label>Intitulé du projet</mat-label>
-      <input matInput formControlName="nomProjet">
+      <input matInput formControlName="nomProjet" required>
       <mat-icon matSuffix>add_circle</mat-icon>
   </mat-form-field>
 
@@ -16,7 +16,7 @@
   </mat-form-field>
 
   <mat-dialog-actions style="display: flex;justify-content: end;">
-      <button mat-flat-button (click)="save()" style="margin-bottom: 20px">Ajouter un projet</button>
+      <button mat-flat-button (click)="save()" [disabled]="!formProjet.valid" style="margin-bottom: 20px">Ajouter un projet</button>
       <button mat-stroked-button mat-dialog-close >Tout réinitialiser</button>
   </mat-dialog-actions>
 
