@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar} from '@angular/material/snack-bar';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,29 @@ export class UtilService {
       duration: 8000,
       panelClass: ['snackbarErreur']
     });
+  }
+
+  // Récupére Id Utilisateur à partir du Token stocké dans la session
+  getIdUtilisateurFromToken() {
+    // Je récupère l'idUtilisateur du Token pour l'envoyer dans les requêtes REST
+    const idUtilisateur = jwt_decode(sessionStorage.getItem('token')).id;
+
+    return idUtilisateur;
+  }
+
+  // Récupére Identité Utilisateur à partir du Token stocké dans la session
+  getIdentiteUtilisateurFromToken() {
+    // Je récupère Identité Utilisateur pour les affichages
+    const identiteUtilisateur = jwt_decode(sessionStorage.getItem('token')).identite;
+
+    return identiteUtilisateur;
+  }
+
+  // Récupére Rôle Utilisateur à partir du Token stocké dans la session
+  getRoleUtilisateurFromToken() {
+    // je récupère le rôle pour la restriction d'accès dans le menu
+    const roleUtilisateur = jwt_decode(sessionStorage.getItem('token')).role;
+
+    return roleUtilisateur;
   }
 }

@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import * as jwt_decode from 'jwt-decode';
+import { UtilService } from '../@Util/util.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class Level2GuardService {
+export class Level2GuardService implements CanActivate {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private utilService: UtilService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     // Administrateur OU Partenaire SEULEMENT peuvent accéder aux composants ayant le canActivate Level2GuardService
-    if (jwt_decode(sessionStorage.getItem('token')).role === 'Administrateur' || jwt_decode(sessionStorage.getItem('token')).role === 'Partenaire') {
+    const role = this.utilService.getRoleUtilisateurFromToken();
+    if (role === 'Administrateur' || role === 'Partenaire') {
       return true;
     }
 

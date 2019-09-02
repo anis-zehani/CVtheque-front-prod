@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
+import { UtilService } from '../@Util/util.service';
 import { Projet } from '../@Models/projet';
 import { Utilisateur } from '../@Models/utilisateur';
 
@@ -21,13 +22,11 @@ export class ProjetsService {
     })
     };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private utilService: UtilService) { }
 
   // Retourne un tableau de tous les Projets : Projet[]
   getAllProjetsService(): Observable<Projet[]> {
-    // Je récupère l'idUtilisateur du Token pour l'envoyer dans les requêtes REST
-    const idUtilisateur = jwt_decode(sessionStorage.getItem('token')).id;
-    return this.http.get<Projet[]>(this.serviceUrl + '/allProjetsByIdUtilisateur/' + idUtilisateur);
+    return this.http.get<Projet[]>(this.serviceUrl + '/allProjetsByIdUtilisateur/' + this.utilService.getIdUtilisateurFromToken());
   }
 
   // Retourne le Projet créé : Projet
