@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as jwt_decode from 'jwt-decode';
 import { Rappel } from '../@Models/rappel';
 
 @Injectable({
@@ -12,6 +13,9 @@ import { Rappel } from '../@Models/rappel';
 export class RappelsService {
 
   private serviceUrl = environment.baseUrl + '/rappel';
+
+  // Je récupère l'id pour l'envoyer dans les requêtes REST
+  private idUtilisateur = jwt_decode(sessionStorage.getItem('token')).id;
 
   private httpOptions = {
     headers: new HttpHeaders({

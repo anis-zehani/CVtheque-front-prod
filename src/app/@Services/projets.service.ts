@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as jwt_decode from 'jwt-decode';
 import { Projet } from '../@Models/projet';
+import { Utilisateur } from '../@Models/utilisateur';
 
 @Injectable({
   providedIn: 'root'
@@ -23,17 +25,33 @@ export class ProjetsService {
 
   // Retourne un tableau de tous les Projets : Projet[]
   getAllProjetsService(): Observable<Projet[]> {
-    return this.http.get<Projet[]>(this.serviceUrl);
+    // Je récupère l'idUtilisateur du Token pour l'envoyer dans les requêtes REST
+    const idUtilisateur = jwt_decode(sessionStorage.getItem('token')).id;
+    return this.http.get<Projet[]>(this.serviceUrl + '/allProjetsByIdUtilisateur/' + idUtilisateur);
   }
 
   // Retourne le Projet créé : Projet
   addProjetService(projet): Observable<Projet> {
-    return this.http.post<any>(this.serviceUrl, JSON.stringify(projet), this.httpOptions);
+    // Je récupère l'idUtilisateur du Token pour l'envoyer dans les requêtes REST
+    const utilisateur = new Utilisateur();
+    utilisateur.id = jwt_decode(sessionStorage.getItem('token')).id;
+    const ProjetToStringify = projet;
+    // J'affecte l'Utilisateur au Projet avant de l'envoyer pour L'ajout du projet par idUtilisateur
+    ProjetToStringify.utilisateur = utilisateur;
+
+    return this.http.post<any>(this.serviceUrl, JSON.stringify(ProjetToStringify), this.httpOptions);
   }
 
   // Retourne le Projet modifié : Projet
   editProjetService(projet): any {
-    return this.http.put<any>(this.serviceUrl, JSON.stringify(projet), this.httpOptions);
+    // Je récupère l'idUtilisateur du Token pour l'envoyer dans les requêtes REST
+    const utilisateur = new Utilisateur();
+    utilisateur.id = jwt_decode(sessionStorage.getItem('token')).id;
+    const ProjetToStringify = projet;
+    // J'affecte l'Utilisateur au Projet avant de l'envoyer pour La modification du projet par idUtilisateur
+    ProjetToStringify.utilisateur = utilisateur;
+
+    return this.http.put<any>(this.serviceUrl, JSON.stringify(ProjetToStringify), this.httpOptions);
   }
 
   // Ne retourne rien
