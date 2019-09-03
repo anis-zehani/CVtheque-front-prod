@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+import { UtilService } from '../@Util/util.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Entreprise } from '../@Models/entreprise';
+import { Utilisateur } from '../@Models/utilisateur';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class EntreprisesService {
     })
     };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private utilService: UtilService) { }
 
   // Retourne un tableau de toutes les Entreprises : Entreprise[]
   getAllEntreprisesService(): Observable<Entreprise[]> {
@@ -28,16 +30,29 @@ export class EntreprisesService {
 
   // Retourne l'Entreprise créée : Entreprise
   addEntrepriseService(entreprise): Observable<Entreprise> {
-    return this.http.post<any>(this.serviceUrl, JSON.stringify(entreprise), this.httpOptions);
+    const EntrepriseToStringify = this.addUtilisateurToEntreprise(entreprise);
+    return this.http.post<any>(this.serviceUrl, JSON.stringify(EntrepriseToStringify), this.httpOptions);
   }
 
   // Retourne l'Entreprise modifiée : Entreprise
   editEntrepriseService(entreprise): any {
-    return this.http.put<any>(this.serviceUrl, JSON.stringify(entreprise), this.httpOptions);
+    const EntrepriseToStringify = this.addUtilisateurToEntreprise(entreprise);
+    return this.http.put<any>(this.serviceUrl, JSON.stringify(EntrepriseToStringify), this.httpOptions);
   }
 
   // Retourne true si la suppression est faite, false si y a erreur
   deleteEntrepriseService(id): any {
     return this.http.delete<any>(this.serviceUrl + '/' + id, this.httpOptions);
+  }
+
+  // Affecte un utilisateur à une entreprise et retourne la nouvelle entreprise enrichie
+  addUtilisateurToEntreprise(entreprise) {
+    const utilisateur = new Utilisateur();
+    utilisateur.id = this.utilService.getIdUtilisateurFromToken();
+    const EntrepriseToStringify = entreprise;
+    // J'affecte l'Utilisateur à l'entreprise avant de l'envoyer pour L'ajout de l'entreprise par idUtilisateur
+    EntrepriseToStringify.utilisateur = utilisateur;
+
+    return EntrepriseToStringify;
   }
 }
