@@ -26,30 +26,31 @@ import { Certification } from 'src/app/@Models/certification';
 })
 export class ListeCandidatsForShowComponent implements OnInit {
 
-  //Remplissage des listes par défaut
-  listeCandidats: Candidat[]=[];
+  // Remplissage des listes par défaut
+  listeCandidats: Candidat[] = [];
 
-  candidat : Candidat;
-  entreprise : Entreprise;
-  diplome :  Diplome;
-  ecole : Ecole;
-  curriculum : Curriculum;
-  visa : Visa;
+  role: string;
+  candidat: Candidat;
+  entreprise: Entreprise;
+  diplome: Diplome;
+  ecole: Ecole;
+  curriculum: Curriculum;
+  visa: Visa;
 
   listeTechnologiesFinale: Technologie[] = [];
-  valueOfListeTechnologie : any = null;
-  valueOfListeTechnologieIsModified : boolean = false; 
+  valueOfListeTechnologie: any = null;
+  valueOfListeTechnologieIsModified = false;
 
   listeOpportunitesFinale: Opportunite[] = [];
-  valueOfListeOpportunite : any = null;
-  valueOfListeOpportuniteIsModified : boolean = false;
+  valueOfListeOpportunite: any = null;
+  valueOfListeOpportuniteIsModified = false;
 
   listeCertificationsFinale: Certification[] = [];
-  valueOfListeCertification : any = null;
-  valueOfListeCertificationIsModified : boolean = false;
+  valueOfListeCertification: any = null;
+  valueOfListeCertificationIsModified = false;
 
   @Input() idOpportunite;
-  @Input() idTechnologie; 
+  @Input() idTechnologie;
   @Input() idCertification;
   @Input() idEntreprise;
 
@@ -59,45 +60,43 @@ export class ListeCandidatsForShowComponent implements OnInit {
     private utilService: UtilService,
     private datePipe: DatePipe,
     private sharedService: SharedDataService
-    )
-    { 
+    ) {
       this.candidat = new Candidat(null);
 
       this.entreprise =  new Entreprise(null, null, null);
       this.candidat.entreprise = this.entreprise;
-  
+
       this.diplome =  new Diplome();
       this.candidat.diplome = this.diplome;
-  
+
       this.ecole = new Ecole();
       this.diplome.ecole = this.ecole;
-  
+
       this.visa = new Visa();
       this.candidat.visa = this.visa;
   }
 
   ngOnInit() {
 
-    if(this.idOpportunite != null)
-    {
+    // je récupère le rôle pour la restriction d'accès dans le menu
+    this.role = this.utilService.getRoleUtilisateurFromToken();
+
+    if (this.idOpportunite != null) {
       this.getAllCandidatsByOpportuniteController(this.idOpportunite);
     }
 
-    if(this.idTechnologie != null)
-    {
+    if (this.idTechnologie != null) {
       this.getAllCandidatsByTechnologieController(this.idTechnologie);
     }
 
-    if(this.idCertification != null)
-    {
+    if (this.idCertification != null) {
       this.getAllCandidatsByCertificationController(this.idCertification);
     }
 
-    if(this.idEntreprise != null)
-    {
+    if (this.idEntreprise != null) {
       this.getAllCandidatsByEntrepriseController(this.idEntreprise);
     }
-    
+
     this.sharedService.valueOfListeTechnologie.subscribe(valueOfListeTechnologie => this.valueOfListeTechnologie = valueOfListeTechnologie);
     this.sharedService.valueOfListeTechnologieIsModified.subscribe(valueOfListeTechnologieIsModified => this.valueOfListeTechnologieIsModified = valueOfListeTechnologieIsModified);
 
@@ -109,136 +108,127 @@ export class ListeCandidatsForShowComponent implements OnInit {
     this.sharedService.valueOfListeCertificationIsModified.subscribe(valueOfListeCertificationIsModified => this.valueOfListeCertificationIsModified = valueOfListeCertificationIsModified);
   }
 
-  //Remplir la liste par tous les candidats : selon ID opportunité fourni
+  // Remplir la liste par tous les candidats : selon ID opportunité fourni
   getAllCandidatsByOpportuniteController(idOpportunite): void {
     this.candidatsService.getAllCandidatsByOpportuniteService(idOpportunite)
     .subscribe
       (
       res => { this.listeCandidats = res; }
-      )
+      );
   }
 
-  //Remplir la liste par tous les candidats : selon ID Technologie fourni
+  // Remplir la liste par tous les candidats : selon ID Technologie fourni
   getAllCandidatsByTechnologieController(idTechnologie): void {
       this.candidatsService.getAllCandidatsByTechnologieService(idTechnologie)
       .subscribe
         (
         res => { this.listeCandidats = res; }
-        )
+        );
   }
 
-  //Remplir la liste par tous les candidats : selon ID Certification fourni
+  // Remplir la liste par tous les candidats : selon ID Certification fourni
   getAllCandidatsByCertificationController(idCertification): void {
     this.candidatsService.getAllCandidatsByCertificationService(idCertification)
     .subscribe
       (
       res => { this.listeCandidats = res; }
-      )
+      );
   }
 
-  //Remplir la liste par tous les candidats : selon ID Entreprise fourni
+  // Remplir la liste par tous les candidats : selon ID Entreprise fourni
   getAllCandidatsByEntrepriseController(idEntreprise): void {
       this.candidatsService.getAllCandidatsByEntrepriseService(idEntreprise)
       .subscribe
         (
         res => { this.listeCandidats = res; }
-        )
-  } 
+        );
+  }
 
-  //Modifier le lien entre un candidat et une opportunité
+  // Modifier le lien entre un candidat et une opportunité
   editCandidatController() {
     this.candidatsService.editCandidatService(this.candidat)
     .subscribe
       (
-      res => 
-      { 
-        if(res != null)
-        {
-          if(this.idOpportunite != null)
-          {
+      res => {
+        if (res != null) {
+          if (this.idOpportunite != null) {
             this.getAllCandidatsByOpportuniteController(this.idOpportunite);
           }
-          if(this.idTechnologie != null)
-          {
+          if (this.idTechnologie != null) {
             this.getAllCandidatsByTechnologieController(this.idTechnologie);
           }
-          if(this.idCertification != null)
-          {
+          if (this.idCertification != null) {
             this.getAllCandidatsByCertificationController(this.idCertification);
           }
-          this.utilService.openSnackBar("Candidat modifié", "OK");
+          this.utilService.openSnackBar('Candidat modifié', 'OK');
         }
       }
-      )
+      );
   }
 
-  //Supprimer le lien entre un candidat et une opportunité
+  // Supprimer le lien entre un candidat et une opportunité
   deleteLinkCandidatOpportuniteController(idCandidat) {
     this.candidatsService.deleteLinkCandidatOpportuniteService(idCandidat, this.idOpportunite)
     .subscribe
       (
-      res => 
-      {
+      res => {
         this.getAllCandidatsByOpportuniteController(this.idOpportunite);
 
-        this.utilService.openSnackBar("La liste des candidats liés a été modifiée", "OK");
+        this.utilService.openSnackBar('La liste des candidats liés a été modifiée', 'OK');
       }
-      )
+      );
   }
 
-  //Supprimer le lien entre un candidat et une technologie
+  // Supprimer le lien entre un candidat et une technologie
   deleteLinkCandidatTechnologieController(idCandidat) {
     this.candidatsService.deleteLinkCandidatTechnologieService(idCandidat, this.idTechnologie)
     .subscribe
       (
-      res => 
-      {
+      res => {
         this.getAllCandidatsByTechnologieController(this.idTechnologie);
 
-        this.utilService.openSnackBar("La liste des candidats liés a été modifiée", "OK");
+        this.utilService.openSnackBar('La liste des candidats liés a été modifiée', 'OK');
       }
-      )
+      );
   }
 
-  //Supprimer le lien entre un candidat et une certification
+  // Supprimer le lien entre un candidat et une certification
   deleteLinkCandidatCertificationController(idCandidat) {
     this.candidatsService.deleteLinkCandidatCertificationService(idCandidat, this.idCertification)
     .subscribe
       (
-      res => 
-      {
+      res => {
         this.getAllCandidatsByTechnologieController(this.idTechnologie);
 
-        this.utilService.openSnackBar("La liste des candidats liés a été modifiée", "OK");
+        this.utilService.openSnackBar('La liste des candidats liés a été modifiée', 'OK');
       }
-      )
+      );
   }
 
-  //UPDATE le lien entre un candiat et une entreprise : met entreprise à NULL
+  // UPDATE le lien entre un candiat et une entreprise : met entreprise à NULL
   updateLinkCandidatEntrepriseController(idCandidat) {
     this.candidatsService.updateLinkCandidatEntrepriseService(idCandidat)
     .subscribe
       (
-      res => 
-      {
+      res => {
         this.getAllCandidatsByEntrepriseController(this.idEntreprise);
 
-        this.utilService.openSnackBar("La liste des candidats liés a été modifiée", "OK");
+        this.utilService.openSnackBar('La liste des candidats liés a été modifiée', 'OK');
       }
-      )
+      );
   }
 
-  //Ouvre le pop-up pour afficher un candidat
+  // Ouvre le pop-up pour afficher un candidat
   openDialogShowCandidat(
-      id, 
-      identite, 
-      telephone, 
-      email, 
-      posteOccupe, 
-      descriptionDetaillee, 
-      urlPhoto, 
-      etatCandidat, 
-      entreprise, 
+      id,
+      identite,
+      telephone,
+      email,
+      posteOccupe,
+      descriptionDetaillee,
+      urlPhoto,
+      etatCandidat,
+      entreprise,
       salaireActuel,
       pretentionSalariale,
       situationFamiliale,
@@ -251,7 +241,7 @@ export class ListeCandidatsForShowComponent implements OnInit {
       disponibilite,
       dateDemarrageCarriere,
       dateEpuisementPasseport,
-  
+
       diplome,
       visa,
       curriculum,
@@ -259,91 +249,91 @@ export class ListeCandidatsForShowComponent implements OnInit {
       listeTechnologies,
       listeOpportunites,
       listeCertifications
-   
+
       ): void {
-        //Objet pour configurer la modale
+        // Objet pour configurer la modale
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = false;
-        dialogConfig.hasBackdrop=true;
+        dialogConfig.hasBackdrop = true;
         dialogConfig.closeOnNavigation = true;
-  
-        let nombreEnfantsGaranti = "";
-        if(nombreEnfants != null){
+
+        let nombreEnfantsGaranti = '';
+        if (nombreEnfants != null) {
           nombreEnfantsGaranti = nombreEnfants;
         }
-  
-  
-        if(diplome.dateObtentionDiplome != null){
+
+
+        if (diplome.dateObtentionDiplome != null) {
           diplome.dateObtentionDiplome = this.datePipe.transform(diplome.dateObtentionDiplome, 'yyyy-MM-dd');
         }
-  
-        if(visa.dateDebutVisa != null){
+
+        if (visa.dateDebutVisa != null) {
           visa.dateDebutVisa = this.datePipe.transform(visa.dateDebutVisa, 'yyyy-MM-dd');
         }
-  
-        if(visa.dateFinVisa != null){
+
+        if (visa.dateFinVisa != null) {
           visa.dateFinVisa = this.datePipe.transform(visa.dateFinVisa, 'yyyy-MM-dd');
         }
-  
-        
-        //Objet pour déclencher l'ouverture de la modale
+
+
+        // Objet pour déclencher l'ouverture de la modale
         const dialogRef = this.dialog.open(ShowCandidatComponent, {
           width: '1050px',
           height: '650px',
           data: {
-            id: id, 
-            identite: identite,
-            telephone : telephone,
-            email : email,
-            posteOccupe : posteOccupe,
-            descriptionDetaillee : descriptionDetaillee,
-            urlPhoto : urlPhoto,
-            etatCandidat : etatCandidat,
-            entreprise : entreprise,
-            
-            //Informations spécifiques
-            salaireActuel: salaireActuel,
-            pretentionSalariale: pretentionSalariale,
-            situationFamiliale: situationFamiliale,
-            //Pour éviter qu'il soit null
+            id,
+            identite,
+            telephone,
+            email,
+            posteOccupe,
+            descriptionDetaillee,
+            urlPhoto,
+            etatCandidat,
+            entreprise,
+
+            // Informations spécifiques
+            salaireActuel,
+            pretentionSalariale,
+            situationFamiliale,
+            // Pour éviter qu'il soit null
             nombreEnfants: nombreEnfantsGaranti,
-            adresse: adresse,
+            adresse,
             dateDeNaissance: this.datePipe.transform(dateDeNaissance, 'yyyy-MM-dd'),
-            niveauEnFrancais: niveauEnFrancais,
-            niveauEnAnglais: niveauEnAnglais,
-            noteGlobale: noteGlobale,
-            disponibilite: disponibilite,
+            niveauEnFrancais,
+            niveauEnAnglais,
+            noteGlobale,
+            disponibilite,
             dateDemarrageCarriere: this.datePipe.transform(dateDemarrageCarriere, 'yyyy-MM-dd'),
             dateEpuisementPasseport: this.datePipe.transform(dateEpuisementPasseport, 'yyyy-MM-dd'),
-  
-            //Diplôme
-            diplome :diplome,
-  
-            //Visa
-            visa : visa,
-  
-            //Curriculum
-            curriculum : curriculum,
 
-            //Les 3 listes 
-            listeTechnologies : listeTechnologies,
-            listeOpportunites : listeOpportunites,
-            listeCertifications : listeCertifications
+            // Diplôme
+            diplome,
+
+            // Visa
+            visa,
+
+            // Curriculum
+            curriculum,
+
+            // Les 3 listes
+            listeTechnologies,
+            listeOpportunites,
+            listeCertifications
           }
         });
-  }  
+  }
 
-  //Ouvre le pop-up pour modifier un candidat
+  // Ouvre le pop-up pour modifier un candidat
   openDialogEditCandidat(
-    id, 
-    identite, 
-    telephone, 
-    email, 
-    posteOccupe, 
-    descriptionDetaillee, 
-    urlPhoto, 
-    etatCandidat, 
-    entreprise, 
+    id,
+    identite,
+    telephone,
+    email,
+    posteOccupe,
+    descriptionDetaillee,
+    urlPhoto,
+    etatCandidat,
+    entreprise,
     salaireActuel,
     pretentionSalariale,
     situationFamiliale,
@@ -364,97 +354,96 @@ export class ListeCandidatsForShowComponent implements OnInit {
     listeTechnologies,
     listeOpportunites,
     listeCertifications
- 
+
     ): void {
-      //Objet pour configurer la modale
+      // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
-      dialogConfig.hasBackdrop=true;
+      dialogConfig.hasBackdrop = true;
       dialogConfig.closeOnNavigation = true;
 
-      let nombreEnfantsGaranti = "";
-      if(nombreEnfants != null){
+      let nombreEnfantsGaranti = '';
+      if (nombreEnfants != null) {
         nombreEnfantsGaranti = nombreEnfants;
       }
 
 
-      if(diplome.dateObtentionDiplome != null){
+      if (diplome.dateObtentionDiplome != null) {
         diplome.dateObtentionDiplome = this.datePipe.transform(diplome.dateObtentionDiplome, 'yyyy-MM-dd');
       }
 
-      if(visa.dateDebutVisa != null){
+      if (visa.dateDebutVisa != null) {
         visa.dateDebutVisa = this.datePipe.transform(visa.dateDebutVisa, 'yyyy-MM-dd');
       }
 
-      if(visa.dateFinVisa != null){
+      if (visa.dateFinVisa != null) {
         visa.dateFinVisa = this.datePipe.transform(visa.dateFinVisa, 'yyyy-MM-dd');
       }
 
-  
-      //Objet pour déclencher l'ouverture de la modale
+
+      // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(FormEditCandidatsComponent, {
         width: '1050px',
         height: '650px',
         data: {
-          id: id, 
-          identite: identite,
-          telephone : telephone,
-          email : email,
-          posteOccupe : posteOccupe,
-          descriptionDetaillee : descriptionDetaillee,
-          urlPhoto : urlPhoto,
-          etatCandidat : etatCandidat,
-          entreprise : entreprise,
-          
-          //Informations spécifiques
-          salaireActuel: salaireActuel,
-          pretentionSalariale: pretentionSalariale,
-          situationFamiliale: situationFamiliale,
-          //Pour éviter qu'il soit null
+          id,
+          identite,
+          telephone,
+          email,
+          posteOccupe,
+          descriptionDetaillee,
+          urlPhoto,
+          etatCandidat,
+          entreprise,
+
+          // Informations spécifiques
+          salaireActuel,
+          pretentionSalariale,
+          situationFamiliale,
+          // Pour éviter qu'il soit null
           nombreEnfants: nombreEnfantsGaranti,
-          adresse: adresse,
+          adresse,
           dateDeNaissance: this.datePipe.transform(dateDeNaissance, 'yyyy-MM-dd'),
-          niveauEnFrancais: niveauEnFrancais,
-          niveauEnAnglais: niveauEnAnglais,
-          noteGlobale: noteGlobale,
-          disponibilite: disponibilite,
+          niveauEnFrancais,
+          niveauEnAnglais,
+          noteGlobale,
+          disponibilite,
           dateDemarrageCarriere: this.datePipe.transform(dateDemarrageCarriere, 'yyyy-MM-dd'),
           dateEpuisementPasseport: this.datePipe.transform(dateEpuisementPasseport, 'yyyy-MM-dd'),
 
-          //Diplôme
-          diplome :diplome,
+          // Diplôme
+          diplome,
 
-          //Visa
-          visa : visa,
+          // Visa
+          visa,
 
-          //Curriculum
-          curriculum : curriculum,
+          // Curriculum
+          curriculum,
 
-          //Les 3 listes 
-          listeTechnologies : listeTechnologies,
-          listeOpportunites : listeOpportunites,
-          listeCertifications : listeCertifications
+          // Les 3 listes
+          listeTechnologies,
+          listeOpportunites,
+          listeCertifications
         }
       });
-      
-      //Fonction qui s'éxècute quand je ferme la modale
-      dialogRef.afterClosed().subscribe(result => {
-        if(result){
-            this.candidat.id=result.id;
-            this.candidat.identite=result.identite;
-            this.candidat.telephone=result.telephone;
-            this.candidat.email=result.email;
-            this.candidat.posteOccupe=result.posteOccupe;
-            this.candidat.descriptionDetaillee=result.descriptionDetaillee;
-            this.candidat.urlPhoto=result.urlPhoto;
-            this.candidat.etatCandidat=result.etatCandidat;
 
-            if(result.entreprise != null)
-            {
-              this.candidat.entreprise.idEntreprise=result.entreprise.idEntreprise;
+      // Fonction qui s'éxècute quand je ferme la modale
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+            this.candidat.id = result.id;
+            this.candidat.identite = result.identite;
+            this.candidat.telephone = result.telephone;
+            this.candidat.email = result.email;
+            this.candidat.posteOccupe = result.posteOccupe;
+            this.candidat.descriptionDetaillee = result.descriptionDetaillee;
+            this.candidat.urlPhoto = result.urlPhoto;
+            this.candidat.etatCandidat = result.etatCandidat;
+
+            if (result.entreprise != null) {
+              this.candidat.entreprise.idEntreprise = result.entreprise.idEntreprise;
             }
 
-            //Informations spécifiques
+            // Informations spécifiques
             this.candidat.salaireActuel = result.salaireActuel,
             this.candidat.pretentionSalariale = result.pretentionSalariale,
             this.candidat.situationFamiliale = result.situationFamiliale,
@@ -468,139 +457,117 @@ export class ListeCandidatsForShowComponent implements OnInit {
             this.candidat.dateDemarrageCarriere = result.dateDemarrageCarriere,
             this.candidat.dateEpuisementPasseport = result.dateEpuisementPasseport;
 
-            //Diplôme
-            if(result.diplome != null)
-            {
+            // Diplôme
+            if (result.diplome != null) {
               this.candidat.diplome.typeDiplome = result.diplome.typeDiplome;
               this.candidat.diplome.ecole = result.diplome.ecole;
               this.candidat.diplome.dateObtentionDiplome  = result.diplome.dateObtentionDiplome;
             }
-            
-            //Visa
-            if(result.visa != null)
-            {
+
+            // Visa
+            if (result.visa != null) {
               this.candidat.visa.typeVisa = result.visa.typeVisa;
               this.candidat.visa.dateDebutVisa = result.visa.dateDebutVisa;
               this.candidat.visa.dateFinVisa = result.visa.dateFinVisa;
             }
- 
-            //listeTechnologies : J'utilise une variable partagée via le shared-data service
-            //detection du changement sur la liste
-            if(this.valueOfListeTechnologie != null && this.valueOfListeTechnologieIsModified === true)
-            {
-              for(let i in this.valueOfListeTechnologie.source.selectedOptions.selected)
-              {
-                let technologie = new Technologie(this.valueOfListeTechnologie.source.selectedOptions.selected[i].value.id,this.valueOfListeTechnologie.source.selectedOptions.selected[i].value.nomTechnologie, null);
+
+            // listeTechnologies : J'utilise une variable partagée via le shared-data service
+            // detection du changement sur la liste
+            if (this.valueOfListeTechnologie != null && this.valueOfListeTechnologieIsModified === true) {
+              for (const i in this.valueOfListeTechnologie.source.selectedOptions.selected) {
+                const technologie = new Technologie(this.valueOfListeTechnologie.source.selectedOptions.selected[i].value.id, this.valueOfListeTechnologie.source.selectedOptions.selected[i].value.nomTechnologie, null);
                 this.listeTechnologiesFinale.push(technologie);
               }
               this.candidat.listeTechnologies = this.listeTechnologiesFinale;
               this.sharedService.changeListeTechnologieIsModified(false);
-            }
-            //Cas ou y a pas de changement sur la liste des technologies
-            else
-            {
+            } else {
               this.candidat.listeTechnologies = result.listeTechnologies;
             }
 
-            //Vidage du Array
+            // Vidage du Array
             this.listeTechnologiesFinale = [];
 
 
-            //listeOpportunites : J'utilise une variable partagée via le shared-data service
-            //detection du changement sur la liste
-            if(this.valueOfListeOpportunite != null && this.valueOfListeOpportuniteIsModified === true)
-            {
-              for(let j in this.valueOfListeOpportunite.source.selectedOptions.selected)
-              {
-                let opportunite = new Opportunite(this.valueOfListeOpportunite.source.selectedOptions.selected[j].value.id, this.valueOfListeOpportunite.source.selectedOptions.selected[j].value.titreOpportunite);
+            // listeOpportunites : J'utilise une variable partagée via le shared-data service
+            // detection du changement sur la liste
+            if (this.valueOfListeOpportunite != null && this.valueOfListeOpportuniteIsModified === true) {
+              for (const j in this.valueOfListeOpportunite.source.selectedOptions.selected) {
+                const opportunite = new Opportunite(this.valueOfListeOpportunite.source.selectedOptions.selected[j].value.id, this.valueOfListeOpportunite.source.selectedOptions.selected[j].value.titreOpportunite);
                 this.listeOpportunitesFinale.push(opportunite);
-                
+
               }
               this.candidat.listeOpportunites = this.listeOpportunitesFinale;
               this.sharedService.changeListeOpportuniteIsModified(false);
-            }
-            //Cas ou y a pas de changement sur la liste des opportunités
-            else
-            {
+            } else {
               this.candidat.listeOpportunites = result.listeOpportunites;
             }
 
-            //Vidage du Array
+            // Vidage du Array
             this.listeOpportunitesFinale = [];
 
-            //listeCertifications : J'utilise une variable partagée via le shared-data service
-            //detection du changement sur la liste
-            if(this.valueOfListeCertification != null && this.valueOfListeCertificationIsModified === true)
-            {
-              for(let k in this.valueOfListeCertification.source.selectedOptions.selected)
-              {
-                let certification = new Certification(this.valueOfListeCertification.source.selectedOptions.selected[k].value.id, this.valueOfListeCertification.source.selectedOptions.selected[k].value.nomCertification, null);
+            // listeCertifications : J'utilise une variable partagée via le shared-data service
+            // detection du changement sur la liste
+            if (this.valueOfListeCertification != null && this.valueOfListeCertificationIsModified === true) {
+              for (const k in this.valueOfListeCertification.source.selectedOptions.selected) {
+                const certification = new Certification(this.valueOfListeCertification.source.selectedOptions.selected[k].value.id, this.valueOfListeCertification.source.selectedOptions.selected[k].value.nomCertification, null);
                 this.listeCertificationsFinale.push(certification);
-                
+
               }
-              this.candidat.listeCertifications=this.listeCertificationsFinale;
+              this.candidat.listeCertifications = this.listeCertificationsFinale;
               this.sharedService.changeListeCertificationIsModified(false);
-            }
-            //Cas ou y a pas de changement sur la liste des certifications
-            else
-            {
-              this.candidat.listeCertifications=result.listeCertifications;
+            } else {
+              this.candidat.listeCertifications = result.listeCertifications;
             }
 
-            //Vidage du Array
+            // Vidage du Array
             this.listeCertificationsFinale = [];
 
-            //Finalement on fait l'appel au webservice
+            // Finalement on fait l'appel au webservice
             this.editCandidatController();
-            //this.ngOnInit();
+            // this.ngOnInit();
 
             }
       });
   }
 
-  //Ouvre le pop-up pour supprimer la liaison entre le candidat une opportunité/technologie/certification/entreprise
+  // Ouvre le pop-up pour supprimer la liaison entre le candidat une opportunité/technologie/certification/entreprise
   openDialogDeleteLinkCandidat(id): void {
-    //Objet pour configurer la modale
+    // Objet pour configurer la modale
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    dialogConfig.hasBackdrop=true;
+    dialogConfig.hasBackdrop = true;
     dialogConfig.closeOnNavigation = true;
 
-    //Objet pour déclencher l'ouverture de la modale
+    // Objet pour déclencher l'ouverture de la modale
     const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
       width: '450px',
       height: '180px',
       data: {
-        id: id,
-        texte : "Attention : la liaison avec ce candidat sera supprimée définitivement."
+        id,
+        texte : 'Attention : la liaison avec ce candidat sera supprimée définitivement.'
       }
     });
 
-    //Fonction qui s'éxècute quand je ferme la modale
+    // Fonction qui s'éxècute quand je ferme la modale
     dialogRef.afterClosed().subscribe(result => {
-      if(result)
-      {
-        if(this.idOpportunite != null)
-        {
+      if (result) {
+        if (this.idOpportunite != null) {
           this.deleteLinkCandidatOpportuniteController(result.id);
         }
 
-        if(this.idTechnologie != null)
-        {
+        if (this.idTechnologie != null) {
           this.deleteLinkCandidatTechnologieController(result.id);
         }
 
-        if(this.idCertification != null)
-        {
+        if (this.idCertification != null) {
           this.deleteLinkCandidatCertificationController(result.id);
-        }  
+        }
 
-        if(this.idEntreprise != null)
-        {
+        if (this.idEntreprise != null) {
           this.updateLinkCandidatEntrepriseController(result.id);
         }
       }
     });
   }
-  
+
 }

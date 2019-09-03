@@ -22,7 +22,7 @@
               <a mat-button [matMenuTriggerFor]="menu4" *ngIf="role === 'Administrateur' || role === 'Partenaire'"><mat-icon>menu</mat-icon></a>
               <mat-menu #menu4="matMenu">
                 <button mat-menu-item routerLink="technologies" *ngIf="role === 'Administrateur' || role === 'Partenaire'">Technologies</button>
-                <button mat-menu-item routerLink="entreprises" *ngIf="role === 'Administrateur' || role === 'Partenaire'">Entreprises</button>
+                <button mat-menu-item routerLink="entreprises" *ngIf="role === 'Administrateur'">Entreprises</button>
                 <button mat-menu-item routerLink="ecoles" *ngIf="role === 'Administrateur'">Écoles</button>
                 <button mat-menu-item routerLink="certifications" *ngIf="role === 'Administrateur' || role === 'Partenaire'">Certifications</button>
                 <button mat-menu-item routerLink="collaborateurs" *ngIf="role === 'Administrateur'">Collaborateurs</button>

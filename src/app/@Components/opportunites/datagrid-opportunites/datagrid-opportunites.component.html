@@ -117,9 +117,9 @@
       </td>
   </ng-container>
 
-  <ng-container matColumnDef="etat">
+  <ng-container matColumnDef="etat" *ngIf="role === 'Administrateur'">
     <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
-    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%">
+    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%" >
         <div *ngIf="element.etatOpportunite === 'True'; else notShow">
             <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true" matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
         </div>
@@ -130,7 +130,7 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="more">
+  <ng-container matColumnDef="more" *ngIf="role === 'Administrateur'">
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let element" class="pointer" width="5%">
         <a mat-button [matMenuTriggerFor]="menuOpportunites" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>

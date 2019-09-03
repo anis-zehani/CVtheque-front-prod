@@ -18,19 +18,19 @@ import { UtilService } from '../../../@Util/util.service';
 export class DatagridEntreprisesComponent implements OnInit {
 
   @Input() listeEntreprises = new MatTableDataSource<Entreprise>();
-  displayedColumns: string[] = ['nomEntreprise', 'more'];
+  displayedColumns: string[];
 
-  entreprise : Entreprise;
+  entreprise: Entreprise;
+  role: string;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
-    private entreprisesService: EntreprisesService, 
+    private entreprisesService: EntreprisesService,
     private utilService: UtilService,
     public dialog: MatDialog
-    )
-   { 
+    ) {
     this.entreprise = new Entreprise(null, null, null);
    }
 
@@ -38,117 +38,121 @@ export class DatagridEntreprisesComponent implements OnInit {
     this.getAllEntreprisesController();
     this.listeEntreprises.paginator = this.paginator;
     this.listeEntreprises.sort = this.sort;
+    // je récupère le rôle pour la restriction d'accès dans le menu
+    this.role = this.utilService.getRoleUtilisateurFromToken();
+
+    // Displayed columns s'affiche selon le profil : Priviléges
+    if (this.role === 'Administrateur') {
+      this.displayedColumns = ['nomEntreprise', 'more'];
+    } else {
+      this.displayedColumns = ['nomEntreprise'];
+    }
   }
 
-  //Afficher toutes les entreprises : remplissage de la table
+  // Afficher toutes les entreprises : remplissage de la table
   getAllEntreprisesController(): void {
     this.entreprisesService.getAllEntreprisesService()
     .subscribe
       (
-      res => { this.listeEntreprises.data = res;}
-      )
+      res => { this.listeEntreprises.data = res; }
+      );
   }
 
-    //Modifier une entreprise
+    // Modifier une entreprise
   editEntrepriseController() {
       this.entreprisesService.editEntrepriseService(this.entreprise)
       .subscribe
         (
-        res => { if(res != null){this.getAllEntreprisesController();this.utilService.openSnackBar("Entreprise modifiée", "OK");}}
-        )
+        res => { if (res != null) {this.getAllEntreprisesController(); this.utilService.openSnackBar('Entreprise modifiée', 'OK'); }}
+        );
   }
 
-//Supprimer une entreprise
+// Supprimer une entreprise
 deleteEntrepriseController(idEntreprise) {
   this.entreprisesService.deleteEntrepriseService(idEntreprise)
   .subscribe
     (
-    result => 
-    {
-      if(result === true)
-      {
-        this.getAllEntreprisesController(); 
-        this.utilService.openSnackBar("Entreprise supprimée", "OK");
-      }
-      else
-      {
-        this.utilService.openSnackBarErreur("Cette entreprise est affectée à des candidats (et/ou) des partenaires. Il faut d'abord supprimer la liaison.", "OK");  
+    result => {
+      if (result === true) {
+        this.getAllEntreprisesController();
+        this.utilService.openSnackBar('Entreprise supprimée', 'OK');
+      } else {
+        this.utilService.openSnackBarErreur('Cette entreprise est affectée à des candidats (et/ou) des partenaires. Il faut d\'abord supprimer la liaison.', 'OK');
       }
     }
-    )
+    );
 }
 
-    //Recherche filtrée sur la table
+    // Recherche filtrée sur la table
   filtrerTable(filterValue: string) {
       this.listeEntreprises.filter = filterValue.trim().toLowerCase();
   }
 
-  //Ouvre le pop-up pour modifier une entreprise
+  // Ouvre le pop-up pour modifier une entreprise
   openDialogEditEntreprise(idEntreprise, nomEntreprise, descriptionDetaillee): void {
 
-      //Objet pour configurer la modale
+      // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
-      dialogConfig.hasBackdrop=true;
+      dialogConfig.hasBackdrop = true;
       dialogConfig.closeOnNavigation = true;
-  
-      //Objet pour déclencher l'ouverture de la modale
+
+      // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(FormEditEntreprisesComponent, {
         width: '400px',
         height: '500px',
-        data: {idEntreprise: idEntreprise, nomEntreprise: nomEntreprise, descriptionDetaillee:descriptionDetaillee}
+        data: {idEntreprise, nomEntreprise, descriptionDetaillee}
       });
-  
-      //Fonction qui s'éxècute quand je ferme la modale
+
+      // Fonction qui s'éxècute quand je ferme la modale
       dialogRef.afterClosed().subscribe(result => {
-        if(result){
-            this.entreprise.idEntreprise=result.idEntreprise;
-            this.entreprise.nomEntreprise=result.nomEntreprise;
-            this.entreprise.descriptionDetaillee=result.descriptionDetaillee;
+        if (result) {
+            this.entreprise.idEntreprise = result.idEntreprise;
+            this.entreprise.nomEntreprise = result.nomEntreprise;
+            this.entreprise.descriptionDetaillee = result.descriptionDetaillee;
             this.editEntrepriseController();
             }
       });
   }
 
-  //Ouvre le pop-up pour afficher une entreprise
+  // Ouvre le pop-up pour afficher une entreprise
   openDialogShowEntreprise(idEntreprise, nomEntreprise, descriptionDetaillee): void {
 
-  //Objet pour configurer la modale
+  // Objet pour configurer la modale
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = false;
-  dialogConfig.hasBackdrop=true;
+  dialogConfig.hasBackdrop = true;
   dialogConfig.closeOnNavigation = true;
-  
-  //Objet pour déclencher l'ouverture de la modale
+
+  // Objet pour déclencher l'ouverture de la modale
   const dialogRef = this.dialog.open(ShowEntrepriseComponent, {
     width: '700px',
     height: '500px',
-    data: {idEntreprise: idEntreprise, nomEntreprise: nomEntreprise, descriptionDetaillee:descriptionDetaillee}
+    data: {idEntreprise, nomEntreprise, descriptionDetaillee}
   });
   }
 
-  //Ouvre le pop-up pour supprimer une entreprise
+  // Ouvre le pop-up pour supprimer une entreprise
   openDialogDeleteEntreprise(id): void {
-    //Objet pour configurer la modale
+    // Objet pour configurer la modale
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    dialogConfig.hasBackdrop=true;
+    dialogConfig.hasBackdrop = true;
     dialogConfig.closeOnNavigation = true;
 
-    //Objet pour déclencher l'ouverture de la modale
+    // Objet pour déclencher l'ouverture de la modale
     const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
       width: '450px',
       height: '180px',
       data: {
-        id: id,
-        texte : "Attention : cette entreprise sera supprimée définitivement."
+        id,
+        texte : 'Attention : cette entreprise sera supprimée définitivement.'
       }
     });
 
-    //Fonction qui s'éxècute quand je ferme la modale
+    // Fonction qui s'éxècute quand je ferme la modale
     dialogRef.afterClosed().subscribe(result => {
-      if(result)
-      {
+      if (result) {
           this.deleteEntrepriseController(result.id);
       }
     });

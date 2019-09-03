@@ -47,7 +47,7 @@
                   )">-  {{candidat.identite}}
                   </a>
 
-                  <a mat-button [matMenuTriggerFor]="menuCandidats" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+                  <a mat-button [matMenuTriggerFor]="menuCandidats" *ngIf="role === 'Administrateur'" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
               
                   <mat-menu #menuCandidats="matMenu" xPosition="after">
                     <button mat-menu-item 

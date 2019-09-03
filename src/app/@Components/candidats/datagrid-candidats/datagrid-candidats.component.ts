@@ -37,7 +37,7 @@ export class DatagridCandidatsComponent implements OnInit {
 
   @Input() listeCandidats = new MatTableDataSource<Candidat>();
 
-  displayedColumns: string[] = ['urlPhoto', 'candidat', 'details', 'etat', 'more'];
+  displayedColumns: string[];
 
   candidat: Candidat;
   entreprise: Entreprise;
@@ -59,6 +59,7 @@ export class DatagridCandidatsComponent implements OnInit {
   valueOfListeCertificationIsModified = false;
 
   etatCandidat = 'True';
+  role: string;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -88,6 +89,16 @@ export class DatagridCandidatsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllCandidatsController('True');
+
+    // je récupère le rôle pour la restriction d'accès dans le menu
+    this.role = this.utilService.getRoleUtilisateurFromToken();
+
+     // Displayed columns s'affiche selon le profil : Priviléges
+    if (this.role === 'Administrateur') {
+      this.displayedColumns = ['urlPhoto', 'candidat', 'details', 'etat', 'more'];
+    } else {
+      this.displayedColumns = ['urlPhoto', 'candidat', 'details'];
+    }
 
     this.listeCandidats.paginator = this.paginator;
     this.listeCandidats.sort = this.sort;
@@ -145,8 +156,7 @@ export class DatagridCandidatsComponent implements OnInit {
       this.candidatsService.editEtatCandidatService(this.candidat)
       .subscribe
         (
-          res =>
-          {
+          res => {
             this.getAllCandidatsController('True');
             this.utilService.openSnackBar('Candidat désactivé', 'OK');
           }
@@ -181,9 +191,9 @@ export class DatagridCandidatsComponent implements OnInit {
 
     this.getAllCandidatsController(valeurEtat.value);
 
-    if (valeurEtat.value === 'True' && this.etatCandidat === "True" || valeurEtat.value === 'False' && this.etatCandidat === "True") {
+    if (valeurEtat.value === 'True' && this.etatCandidat === 'True' || valeurEtat.value === 'False' && this.etatCandidat === 'True') {
       this.etatCandidat = 'True';
-    } else if (valeurEtat.value === 'True' && this.etatCandidat ==='False' || valeurEtat.value === 'False' && this.etatCandidat === "False") {
+    } else if (valeurEtat.value === 'True' && this.etatCandidat === 'False' || valeurEtat.value === 'False' && this.etatCandidat === 'False') {
       this.etatCandidat = 'False';
     }
   }
