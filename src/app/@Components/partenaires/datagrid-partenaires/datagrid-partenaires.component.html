@@ -49,11 +49,11 @@
 </div>
 
 
-<table mat-table [dataSource]="listePartenaires" class="mat-elevation-z2" matSort>
-
+<!--<table mat-table [dataSource]="listePartenaires" class="mat-elevation-z2" matSort>-->
+<table mat-table [dataSource]="listePartenaires" matSort>
   <ng-container matColumnDef="urlPhoto" >
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Partenaire</th>
-    <td mat-cell *matCellDef="let element" width="10%" matTooltip="Consulter les détails du partenaire">
+    <td mat-cell *matCellDef="let element" width="15%" matTooltip="Consulter les détails du partenaire">
 
       <div *ngIf="element.urlPhoto;else SINON_PARTENAIRE">
           <img src="{{storageUrl}}{{element.urlPhoto}}" style="cursor: pointer"
@@ -72,7 +72,7 @@
   <ng-container matColumnDef="partenaire">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Coordonnées</th>
     <td mat-cell *matCellDef="let element" width="30%">
-      <b class="label-datagrid">Identité : </b>{{element.identite}}<br>
+      <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>
       <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
       <b class="label-datagrid">Email : </b>{{element.email}}<br>
     </td>
@@ -80,7 +80,7 @@
 
   <ng-container matColumnDef="details">
     <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
-    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="50%">
+    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="45%">
       <b class="label-datagrid">Poste : </b>{{element.posteOccupe}}<br>
       <div *ngIf="element.entreprise; else SINON">
           <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>

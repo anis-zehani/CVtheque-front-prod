@@ -49,11 +49,11 @@
     </div>
 </div>
 
-<table mat-table [dataSource]="listeOpportunites" class="mat-elevation-z2" matSort>
-
+<!--<table mat-table [dataSource]="listeOpportunites" class="mat-elevation-z2" matSort>-->
+<table mat-table [dataSource]="listeOpportunites" matSort>
   <ng-container matColumnDef="responsableOpportunite">
     <th mat-header-cell *matHeaderCellDef >Responsable</th>
-    <td mat-cell *matCellDef="let element" width="10%" matTooltip="Consulter les détails de l'opportunité">
+    <td mat-cell *matCellDef="let element" width="15%" matTooltip="Consulter les détails de l'opportunité">
 
         <div *ngIf="element.responsableOpportunite; else SINON_OPPORTUNITE">
           
@@ -80,15 +80,15 @@
 
   <ng-container matColumnDef="details">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
-    <td mat-cell *matCellDef="let element" style="padding-right: 2%;" width="60%">
+    <td mat-cell *matCellDef="let element" style="padding-right: 2%;" width="55%">
       <b class="label-datagrid">TJM : </b>{{element.tjmOpportunite}}<br>
-      <b class="label-datagrid">Mission : </b>{{element.titreOpportunite}}<br>
+      <b class="label-datagrid">Mission : </b>{{element.titreOpportunite | titlecase}}<br>
       <!--NgIf Responsable opportunité-->
       <div *ngIf="element.responsableOpportunite; else SINON">
         <b class="label-datagrid">Responsable : </b>
         
         <a class="pointer" (click)="openDialogShowPartenaire(element.responsableOpportunite.id, element.responsableOpportunite.identite, element.responsableOpportunite.telephone, element.responsableOpportunite.email, element.responsableOpportunite.posteOccupe, element.responsableOpportunite.descriptionDetaillee, element.responsableOpportunite.urlPhoto, element.responsableOpportunite.username, element.responsableOpportunite.password, element.responsableOpportunite.etatPartenaire, element.responsableOpportunite.entreprise)">
-            {{element.responsableOpportunite.identite}}
+            {{element.responsableOpportunite.identite | titlecase}}
         </a>
         
         <br>

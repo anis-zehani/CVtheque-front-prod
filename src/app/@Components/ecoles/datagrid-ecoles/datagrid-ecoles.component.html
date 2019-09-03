@@ -3,7 +3,7 @@
   <mat-icon matSuffix >search</mat-icon>
 </mat-form-field>
 
-<table mat-table [dataSource]="listeEcoles" class="mat-elevation-z2" matSort>
+<table mat-table [dataSource]="listeEcoles" matSort>
 
   <ng-container matColumnDef="idEcole">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>ID.École</th>
@@ -12,7 +12,7 @@
 
   <ng-container matColumnDef="nomEcole">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom de l'école</th>
-    <td mat-cell *matCellDef="let element" width="85%">{{element.nomEcole}}</td>
+    <td mat-cell *matCellDef="let element" width="85%">{{element.nomEcole  | titlecase}}</td>
   </ng-container>
 
   <ng-container matColumnDef="more">

@@ -48,11 +48,12 @@
     </div>
 </div>
 
-<table mat-table [dataSource]="listeCandidats" class="mat-elevation-z2" matSort>
+<!--<table mat-table [dataSource]="listeCandidats" class="mat-elevation-z2" matSort>-->
+<table mat-table [dataSource]="listeCandidats" matSort>
 
   <ng-container matColumnDef="urlPhoto">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Candidat</th>
-    <td mat-cell *matCellDef="let element" width="10%" matTooltip="Consulter la fiche du candidat">
+    <td mat-cell *matCellDef="let element" width="15%" matTooltip="Consulter la fiche du candidat">
 
 
       <div *ngIf="element.urlPhoto; else SINON_CANDIDAT">
@@ -140,10 +141,10 @@
   <ng-container matColumnDef="candidat">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Coordonnées</th>
     <td mat-cell *matCellDef="let element" width="30%">
-      <b class="label-datagrid">Identité : </b>{{element.identite}}<br>
+      <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>
       <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
       <b class="label-datagrid">Email : </b>{{element.email}}<br>
-      <b class="label-datagrid">Poste : </b>{{element.posteOccupe}}<br>
+      <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
       <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel}}<br>
       <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
       
@@ -163,7 +164,7 @@
 
   <ng-container matColumnDef="details">
     <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
-    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="50%">
+    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="45%">
       <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
       <div *ngIf="element.entreprise; else SINON">
           <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
