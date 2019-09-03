@@ -1,11 +1,12 @@
 import { Opportunite } from './opportunite';
+import { Utilisateur } from './utilisateur';
 
 export class Technologie {
-  
   id: number;
   nomTechnologie: string;
-  descriptionDetaillee : string;
+  descriptionDetaillee: string;
   selected: boolean;
+  utilisateur: Utilisateur; // @ManyToOne
 
   constructor(id: number, nomTechnologie: string, descriptionDetaillee: string) {
     this.id = id;

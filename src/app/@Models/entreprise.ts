@@ -1,8 +1,10 @@
+import { Utilisateur } from './utilisateur';
+
 export class Entreprise {
-    
     idEntreprise: number;
     nomEntreprise: string;
     descriptionDetaillee;
+    utilisateur: Utilisateur; // @ManyToOne
 
     constructor(idEntreprise: number, nomEntreprise: string, descriptionDetaillee: string) {
         this.idEntreprise = idEntreprise;
