@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input, Inject } from '@angular/core';
 import { MatTableDataSource} from '@angular/material/table';
 import { MatPaginator} from '@angular/material/paginator';
 import { MatSort} from '@angular/material/sort';
-import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { CollaborateursService } from '../../../@Services/collaborateurs.service';
 import { Collaborateur } from '../../../@Models/collaborateur';
@@ -47,7 +47,7 @@ getAllCollaborateursController(): void {
   this.collaborateursService.getAllCollaborateursService()
   .subscribe(res => {
     this.dataSource.data = res;
-  })
+  });
 }
 
 // Modifier une collaborateur
@@ -94,7 +94,7 @@ openDialogEditCollaborateur(id, identite, email, username, password): void {
   const dialogRef = this.dialog.open(FormEditCollaborateursComponent, {
     width: '400px',
     height: '500px',
-    data: {id: id, identite: identite, email: email, username: username, password: password}
+    data: {id, identite, email, username, password}
   });
 
 
@@ -123,7 +123,7 @@ openDialogDeleteCollaborateur(id): void {
     width: '450px',
     height: '180px',
     data: {
-      id: id,
+      id,
       texte : 'Attention : ce collaborateur sera supprimé définitivement.'
     }
   });

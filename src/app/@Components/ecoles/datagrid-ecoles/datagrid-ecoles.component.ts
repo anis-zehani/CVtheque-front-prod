@@ -19,17 +19,16 @@ export class DatagridEcolesComponent implements OnInit {
   @Input() listeEcoles = new MatTableDataSource<Ecole>();
   displayedColumns: string[] = ['nomEcole', 'more'];
 
-  ecole : Ecole;
+  ecole: Ecole;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
-    private ecolesService: EcolesService, 
+    private ecolesService: EcolesService,
     private utilService: UtilService,
     public dialog: MatDialog
-    )
-   { 
+    ) {
     this.ecole = new Ecole();
    }
 
@@ -39,86 +38,86 @@ export class DatagridEcolesComponent implements OnInit {
     this.listeEcoles.sort = this.sort;
   }
 
-  //Afficher toutes les ecoles : remplissage de la table
+  // Afficher toutes les ecoles : remplissage de la table
   getAllEcolesController(): void {
     this.ecolesService.getAllEcolesService()
     .subscribe
       (
-      res => { this.listeEcoles.data = res;}
-      )
+      res => { this.listeEcoles.data = res; }
+      );
   }
 
-    //Modifier une ecole
+    // Modifier une ecole
   editEcoleController() {
       this.ecolesService.editEcoleService(this.ecole)
       .subscribe
         (
-        res => { if(res != null){this.getAllEcolesController();this.utilService.openSnackBar("École modifiée", "OK");}}
-        )
+        res => { if (res != null) {this.getAllEcolesController(); this.utilService.openSnackBar('École modifiée', 'OK'); }}
+        );
   }
 
-    //Supprimer une ecole
+    // Supprimer une ecole
   deleteEcoleController(idEcole) {
       this.ecolesService.deleteEcoleService(idEcole)
       .subscribe
         (
-        res => {this.getAllEcolesController(); this.utilService.openSnackBar("École supprimée", "OK");}
-        )
+        res => {this.getAllEcolesController(); this.utilService.openSnackBar('École supprimée', 'OK'); }
+        );
   }
 
-    //Recherche filtrée sur la table
+    // Recherche filtrée sur la table
   filtrerTable(filterValue: string) {
       this.listeEcoles.filter = filterValue.trim().toLowerCase();
   }
 
-  //Ouvre le pop-up pour modifier une école
-  openDialogEditEcole(idEcole, nomEcole): void {
+  // Ouvre le pop-up pour modifier une école
+  openDialogEditEcole(idEcole, nomEcole, descriptionDetaillee): void {
 
-      //Objet pour configurer la modale
+      // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
-      dialogConfig.hasBackdrop=true;
+      dialogConfig.hasBackdrop = true;
       dialogConfig.closeOnNavigation = true;
-  
-      //Objet pour déclencher l'ouverture de la modale
+
+      // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(FormEditEcolesComponent, {
-        width: '300px',
-        height: '250px',
-        data: {idEcole: idEcole, nomEcole: nomEcole}
+        width: '400px',
+        height: '500px',
+        data: {idEcole, nomEcole, descriptionDetaillee}
       });
-  
-      //Fonction qui s'éxècute quand je ferme la modale
+
+      // Fonction qui s'éxècute quand je ferme la modale
       dialogRef.afterClosed().subscribe(result => {
-        if(result){
-            this.ecole.idEcole=result.idEcole;
-            this.ecole.nomEcole=result.nomEcole;
+        if (result) {
+            this.ecole.idEcole = result.idEcole;
+            this.ecole.nomEcole = result.nomEcole;
+            this.ecole.descriptionDetaillee = result.descriptionDetaillee;
             this.editEcoleController();
             }
       });
     }
 
-  //Ouvre le pop-up pour supprimer une école
+  // Ouvre le pop-up pour supprimer une école
   openDialogDeleteEcole(id): void {
-    //Objet pour configurer la modale
+    // Objet pour configurer la modale
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    dialogConfig.hasBackdrop=true;
+    dialogConfig.hasBackdrop = true;
     dialogConfig.closeOnNavigation = true;
 
-    //Objet pour déclencher l'ouverture de la modale
+    // Objet pour déclencher l'ouverture de la modale
     const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
       width: '450px',
       height: '180px',
       data: {
-        id: id,
-        texte : "Attention : cette école sera supprimée définitivement."
+        id,
+        texte : 'Attention : cette école sera supprimée définitivement.'
       }
     });
 
-    //Fonction qui s'éxècute quand je ferme la modale
+    // Fonction qui s'éxècute quand je ferme la modale
     dialogRef.afterClosed().subscribe(result => {
-      if(result)
-      {
+      if (result) {
           this.deleteEcoleController(result.id);
       }
     });

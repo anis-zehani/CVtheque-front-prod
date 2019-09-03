@@ -9,10 +9,9 @@ import { Ecole } from '../../../@Models/ecole';
 })
 export class FormEditEcolesComponent implements OnInit {
 
-  ecole : Ecole;
+  ecole: Ecole;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Ecole) 
-  {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Ecole) {
     this.ecole = new Ecole();
   }
 

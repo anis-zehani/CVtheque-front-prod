@@ -3,7 +3,7 @@ import { Utilisateur } from './utilisateur';
 export class Entreprise {
     idEntreprise: number;
     nomEntreprise: string;
-    descriptionDetaillee;
+    descriptionDetaillee: string;
     utilisateur: Utilisateur; // @ManyToOne
 
     constructor(idEntreprise: number, nomEntreprise: string, descriptionDetaillee: string) {

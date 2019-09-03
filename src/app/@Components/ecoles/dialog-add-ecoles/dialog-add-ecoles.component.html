@@ -4,6 +4,12 @@
       <input matInput formControlName="nomEcole" required>
       <mat-icon matSuffix>school</mat-icon>
   </mat-form-field>
+
+  <mat-form-field appearance="outline" >
+      <mat-label>Description de l'école</mat-label>
+      <textarea matInput formControlName="descriptionDetaillee" rows="8"></textarea>
+      <mat-icon matSuffix>description</mat-icon>
+  </mat-form-field>
   
   <mat-dialog-actions style="display: flex;justify-content: end;">
     <button mat-flat-button [disabled]="!formEcole.valid" (click)="save()">Ajouter une école</button><br><br><br>

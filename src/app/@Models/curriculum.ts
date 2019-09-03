@@ -1,6 +1,6 @@
 export class Curriculum {
 
     id: number;
-    urlCvOdix : String;
-    urlCvOriginal : String;
+    urlCvOdix: string;
+    urlCvOriginal: string;
 }

@@ -9,10 +9,9 @@ import { Entreprise } from '../../../@Models/entreprise';
 })
 export class FormEditEntreprisesComponent implements OnInit {
 
-  entreprise : Entreprise;
+  entreprise: Entreprise;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Entreprise) 
-  {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Entreprise) {
     this.entreprise = new Entreprise(null, null, null);
   }
 

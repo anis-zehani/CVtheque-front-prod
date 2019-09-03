@@ -20,7 +20,7 @@
       <td mat-cell *matCellDef="let element" class="pointer" width="5%">
         <a mat-button [matMenuTriggerFor]="menuEcoles" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
           <mat-menu #menuEcoles="matMenu">
-            <button mat-menu-item (click)="openDialogEditEcole(element.idEcole, element.nomEcole)" matTooltip="Modifier l'école" matTooltipPosition="right">Modifier l'école</button>
+            <button mat-menu-item (click)="openDialogEditEcole(element.idEcole, element.nomEcole, element.descriptionDetaillee)" matTooltip="Modifier l'école" matTooltipPosition="right">Modifier l'école</button>
             
             <button mat-menu-item (click)="openDialogDeleteEcole(element.idEcole)" matTooltip="Supprimer l'école" matTooltipPosition="right">Supprimer l'école</button>
           </mat-menu>

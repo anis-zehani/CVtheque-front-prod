@@ -4,5 +4,6 @@ export class Ecole {
 
     idEcole: number;
     nomEcole: string;
+    descriptionDetaillee: string;
     utilisateur: Utilisateur; // @ManyToOne
 }

@@ -17,7 +17,8 @@ export class FormAddEcolesComponent implements OnInit {
 
   // Mon Reactive Form
   formEcole = new FormGroup({
-    nomEcole: new FormControl('', Validators.required)
+    nomEcole: new FormControl('', Validators.required),
+    descriptionDetaillee: new FormControl('', Validators.nullValidator)
   });
 
   constructor(
