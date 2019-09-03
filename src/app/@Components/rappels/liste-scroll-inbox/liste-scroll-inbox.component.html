@@ -2,18 +2,18 @@
     Mes rappels
 </div>
 
-<mat-option><button mat-flat-button (click)="openDialogAddRappel()" style="margin-bottom: 10px;">Nouveau rappel</button></mat-option>
+<mat-option><button mat-flat-button (click)="openDialogAddRappel()" style="margin-bottom: 10px;" matTooltip="Ajouter un nouveau rappel">Nouveau rappel</button></mat-option>
 
 <!-- Visible sur grands écrans seulement -->
 <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxHide.lt-md="true">
-    <mat-option [value]="1" (click)="filtrerDatagridByInbox('inbox')" style="background-color: #222; color: white;"><mat-icon matSuffix>inbox</mat-icon> Inbox ({{nbreInbox}})</mat-option>
-    <mat-option [value]="2" (click)="filtrerDatagridByInbox('today')" style="background-color: #222; color: white;"><mat-icon matSuffix>today</mat-icon> Aujourd'hui ({{nbreToday}})</mat-option>
-    <mat-option [value]="3" (click)="filtrerDatagridByInbox('next7days')" style="background-color: #222; color: white;"><mat-icon matSuffix>calendar_today</mat-icon> Prochains 7 jours ({{nbreNext7Days}})</mat-option>
+    <mat-option [value]="1" (click)="filtrerDatagridByInbox('inbox')" style="background-color: #222; color: white;" matTooltip="Inbox"><mat-icon matSuffix>inbox</mat-icon> Inbox ({{nbreInbox}})</mat-option>
+    <mat-option [value]="2" (click)="filtrerDatagridByInbox('today')" style="background-color: #222; color: white;" matTooltip="Aujourd'hui"><mat-icon matSuffix>today</mat-icon> Aujourd'hui ({{nbreToday}})</mat-option>
+    <mat-option [value]="3" (click)="filtrerDatagridByInbox('next7days')" style="background-color: #222; color: white;" matTooltip="Prochains 7 jours"><mat-icon matSuffix>calendar_today</mat-icon> Prochains 7 jours ({{nbreNext7Days}})</mat-option>
 </div>
 
 <!-- Visible sur petit écrans seulement -->
 <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxHide.gt-sm="true">
-    <mat-option [value]="1" (click)="filtrerDatagridByInbox('inbox')" style="background-color: #222; color: white;"><mat-icon matSuffix>inbox</mat-icon> Inbox ({{nbreInbox}})</mat-option>
-    <mat-option [value]="2" (click)="filtrerDatagridByInbox('today')" style="background-color: #222; color: white;"><mat-icon matSuffix>today</mat-icon> Aujourd'hui ({{nbreToday}})</mat-option>
-    <mat-option [value]="3" (click)="filtrerDatagridByInbox('next7days')" style="background-color: #222; color: white;"><mat-icon matSuffix>calendar_today</mat-icon> Prochains 7 jours ({{nbreNext7Days}})</mat-option>
+    <mat-option [value]="1" (click)="filtrerDatagridByInbox('inbox')" style="background-color: #222; color: white;" matTooltip="Inbox"><mat-icon matSuffix>inbox</mat-icon> Inbox ({{nbreInbox}})</mat-option>
+    <mat-option [value]="2" (click)="filtrerDatagridByInbox('today')" style="background-color: #222; color: white;" matTooltip="Aujourd'hui"><mat-icon matSuffix>today</mat-icon> Aujourd'hui ({{nbreToday}})</mat-option>
+    <mat-option [value]="3" (click)="filtrerDatagridByInbox('next7days')" style="background-color: #222; color: white;" matTooltip="Prochains 7 jours"><mat-icon matSuffix>calendar_today</mat-icon> Prochains 7 jours ({{nbreNext7Days}})</mat-option>
 </div>
