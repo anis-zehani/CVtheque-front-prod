@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+import { UtilService } from '../@Util/util.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Candidat } from '../@Models/candidat';
+import { Utilisateur } from '../@Models/utilisateur';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class CandidatsService {
     })
     };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private utilService: UtilService) { }
 
   // Retourne un tableau de tous les candidats : Candidat[]
   getAllCandidatsService(etatCandidat): Observable<Candidat[]> {
@@ -58,7 +60,8 @@ export class CandidatsService {
 
   // Retourne le candidat créée : Candidat
   addCandidatService(candidat): Observable<Candidat> {
-    return this.http.post<any>(this.serviceUrl, JSON.stringify(candidat), this.httpOptions);
+    const CandidatToStringify = this.addUtilisateurToCandidat(candidat);
+    return this.http.post<any>(this.serviceUrl, JSON.stringify(CandidatToStringify), this.httpOptions);
   }
 
   // Ajouter des candidats liés à l'opportunité
@@ -69,12 +72,14 @@ export class CandidatsService {
 
   // Retourne le candidat modifié : Candidat
   editCandidatService(candidat): any {
-    return this.http.put<any>(this.serviceUrl, JSON.stringify(candidat), this.httpOptions);
+    const CandidatToStringify = this.addUtilisateurToCandidat(candidat);
+    return this.http.put<any>(this.serviceUrl, JSON.stringify(CandidatToStringify), this.httpOptions);
   }
 
   // Retourne le candidat modifié : Candidat
   editEtatCandidatService(candidat): any {
-    return this.http.put<any>(this.serviceUrl + '/editEtat', JSON.stringify(candidat), this.httpOptions);
+    const CandidatToStringify = this.addUtilisateurToCandidat(candidat);
+    return this.http.put<any>(this.serviceUrl + '/editEtat', JSON.stringify(CandidatToStringify), this.httpOptions);
   }
 
   // Update le lien entre un candidat et une entreprise : met entreprise à NULL
@@ -103,6 +108,17 @@ export class CandidatsService {
   deleteLinkCandidatCertificationService(idCandidat, idCertification) {
     return this.http.delete<any>(this.serviceUrl + '/deleteLinkCandidatCertification/' + idCandidat +
     '/' + idCertification, this.httpOptions);
+  }
+
+  // Affecte un utilisateur à un candidat et retourne le nouveau candidat enrichi
+  addUtilisateurToCandidat(candidat) {
+    const utilisateur = new Utilisateur();
+    utilisateur.id = this.utilService.getIdUtilisateurFromToken();
+    const CandidatToStringify = candidat;
+    // J'affecte l'Utilisateur au candidat avant de l'envoyer pour L'ajout du candidat par idUtilisateur
+    CandidatToStringify.utilisateur = utilisateur;
+
+    return CandidatToStringify;
   }
 
 }

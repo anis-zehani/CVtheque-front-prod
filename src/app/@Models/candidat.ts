@@ -6,6 +6,7 @@ import { Visa } from './visa';
 import { Technologie } from './technologie';
 import { Opportunite } from './opportunite';
 import { Certification } from './certification';
+import { Utilisateur } from './utilisateur';
 
 
 export class Candidat {
@@ -45,6 +46,7 @@ export class Candidat {
     listeCertifications: Certification[];  // ManyToMany
 
     selected: boolean;
+    utilisateur: Utilisateur; // @ManyToOne
 
     constructor(id: number) {
       this.id = id;

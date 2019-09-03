@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+import { UtilService } from '../@Util/util.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Opportunite } from '../@Models/opportunite';
+import { Utilisateur } from '../@Models/utilisateur';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class OpportunitesService {
     })
     };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private utilService: UtilService) { }
 
   // Retourne un tableau de touts les opportunites : Opportunite[]
   getAllOpportunitesService(etatOpportunite): Observable<Opportunite[]> {
@@ -53,17 +55,20 @@ export class OpportunitesService {
 
   // Retourne le opportunite créée : Opportunite
   addOpportuniteService(opportunite): Observable<Opportunite> {
-    return this.http.post<any>(this.serviceUrl, JSON.stringify(opportunite), this.httpOptions);
+    const OpportuniteToStringify = this.addUtilisateurToOpportunite(opportunite);
+    return this.http.post<any>(this.serviceUrl, JSON.stringify(OpportuniteToStringify), this.httpOptions);
   }
 
   // Retourne le opportunite modifié : Opportunite
   editOpportuniteService(opportunite): any {
-    return this.http.put<any>(this.serviceUrl, JSON.stringify(opportunite), this.httpOptions);
+    const OpportuniteToStringify = this.addUtilisateurToOpportunite(opportunite);
+    return this.http.put<any>(this.serviceUrl, JSON.stringify(OpportuniteToStringify), this.httpOptions);
   }
 
   // Retourne le opportunite modifié : Opportunite
   editEtatOpportuniteService(opportunite): any {
-    return this.http.put<any>(this.serviceUrl + '/editEtat', JSON.stringify(opportunite), this.httpOptions);
+    const OpportuniteToStringify = this.addUtilisateurToOpportunite(opportunite);
+    return this.http.put<any>(this.serviceUrl + '/editEtat', JSON.stringify(OpportuniteToStringify), this.httpOptions);
   }
 
   // Ne retourne rien
@@ -86,5 +91,16 @@ export class OpportunitesService {
   // Update le lien entre une opportunité et un partenaire : met responsableOpportunite à NULL
   updateLinkOpportunitePartenaireService(idOpportunite) {
     return this.http.put<any>(this.serviceUrl + '/updateLinkOpportunitePartenaire/' + idOpportunite, this.httpOptions);
+  }
+
+  // Affecte un utilisateur à une opportunité et retourne la nouvelle opportunité enrichie
+  addUtilisateurToOpportunite(opportunite) {
+    const utilisateur = new Utilisateur();
+    utilisateur.id = this.utilService.getIdUtilisateurFromToken();
+    const OpportuniteToStringify = opportunite;
+    // J'affecte l'Utilisateur à l'opportunité avant de l'envoyer pour L'ajout de l'opportunité par idUtilisateur
+    OpportuniteToStringify.utilisateur = utilisateur;
+
+    return OpportuniteToStringify;
   }
 }
