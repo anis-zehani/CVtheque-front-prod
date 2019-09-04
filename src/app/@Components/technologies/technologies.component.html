@@ -9,24 +9,13 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
-  
-  <div *ngIf="role === 'Administrateur'; else SHOWELSE">
-      <!-- Container : Formulaire : Ajout Technologie-->
-    <div fxFlex="25%">
+    <!-- Container : Formulaire : Ajout Technologie-->
+    <div fxFlex="25%" *ngIf="role === 'Administrateur'">
       <app-form-add-technologies (refreshTableEvent)="onRefreshTableEvent($event)"></app-form-add-technologies>
     </div>
   
     <!-- Container : DataGrid -->
-    <div fxFlex="75%">
+    <div fxFlex>
       <app-datagrid-technologies></app-datagrid-technologies>
     </div>
-  </div>
-  
-  <ng-template #SHOWELSE>
-      <!-- Container : DataGrid uniquement-->
-      <div fxFlex="100%">
-        <app-datagrid-technologies></app-datagrid-technologies>
-      </div>
-  </ng-template>
-
 </div>

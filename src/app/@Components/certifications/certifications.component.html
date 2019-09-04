@@ -9,23 +9,14 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
-  <div *ngIf="role === 'Administrateur'; else SHOWELSE">
     <!-- Container : Formulaire : Ajout Certification-->
-    <div fxFlex="25%">
+    <div fxFlex="25%"  *ngIf="role === 'Administrateur'">
       <app-form-add-certifications (refreshTableEvent)="onRefreshTableEvent($event)"></app-form-add-certifications>
     </div>
   
     <!-- Container : DataGrid -->
-    <div fxFlex="75%">
+    <div fxFlex>
       <app-datagrid-certifications></app-datagrid-certifications>
     </div>
-  </div>
-  
-  <ng-template #SHOWELSE>
-      <!-- Container : DataGrid uniquement-->
-      <div fxFlex="100%">
-          <app-datagrid-certifications></app-datagrid-certifications>
-      </div>
-  </ng-template>
-
+    
 </div>
