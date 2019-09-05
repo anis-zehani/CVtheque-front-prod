@@ -6,12 +6,16 @@
     fxLayoutGap.xs="0">
     
     <div fxFlex="20%" style="background-color: #222;color: white" fxLayout="column" fxLayoutAlign="start stretch">
-            <div class="title-blanc">
+            <div class="title-blanc" *ngIf="role === 'Administrateur'">
                 Gestion des candidats
             </div>
 
-            <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()" style="margin-bottom: 15px;margin-top:5px;margin-right: 15px;margin-left: 15px;">Nouveau candidat</button>
+            <button class="toggleButton"  *ngIf="role === 'Administrateur'" mat-flat-button (click)="sidenav.toggle()" style="margin-bottom: 15px;margin-top:5px;margin-right: 15px;margin-left: 15px;">Nouveau candidat</button>
 
+            <div class="title-blanc" *ngIf="role === 'Partenaire'">
+                Recherche avancée
+            </div>
+            
             <app-liste-technologies-for-search (listeTechnologiesForSearchEvent)="onListeTechnologiesForSearchEvent($event)"></app-liste-technologies-for-search>
             
             <div class="title-blanc">
@@ -45,14 +49,12 @@
             <div fxFlex="100%">
             <!-- Visible sur grands écrans seulement -->
             <div class="title" fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true">
-                <!--Gestion des candidats
-                <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()">Nouveau candidat</button>-->
+                
             </div>
             
             <!-- Visible sur petit écrans seulement -->
             <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxHide.gt-sm="true">
-                <!--<div class="title-xs-higher">Gestion des candidats</div>
-                <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()">Nouveau candidat</button>-->
+                
             </div>
             
             <app-datagrid-candidats></app-datagrid-candidats>
