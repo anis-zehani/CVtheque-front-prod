@@ -22,3 +22,12 @@
   margin-top: 25px;
   margin-bottom: 25px;
 }
+
+.title-visibilite {
+  font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  font-size: 1.175rem;
+  font-variant-ligatures: no-contextual;
+  color: #202124;
+  font-weight: 450;
+  margin-bottom: 15px;
+}
