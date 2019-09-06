@@ -29,8 +29,8 @@ export class OpportunitesService {
   }
 
   // Retourne les Opportunités Publique + les Opportunités Privée du Partenaire connecté : Opportunite[]
-  getAllOpportunitesPublicAndPrivateByPartenaire(idPartenaire): Observable<Opportunite[]> {
-      return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesPublicAndPrivateByPartenaire/' + idPartenaire, this.httpOptions);
+  getAllOpportunitesPublicAndPrivateByPartenaire(etatOpportunite, idPartenaire): Observable<Opportunite[]> {
+      return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesPublicAndPrivateByPartenaire/' + etatOpportunite + '/' + idPartenaire, this.httpOptions);
   }
 
   // Retourne un tableau de toutes les opportunites pour un Partenaire: Opportunite[]

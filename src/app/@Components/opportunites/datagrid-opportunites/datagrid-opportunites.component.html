@@ -130,20 +130,37 @@
       </td>
   </ng-container>
 
-  <ng-container matColumnDef="etat">
-    <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
-    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%" >
+  <div *ngIf="role === 'Administrateur'; else notAdmin1">
+      <ng-container matColumnDef="etat">
+		<th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
+		<td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%" >
+			<div *ngIf="element.etatOpportunite === 'True'; else notShowEtat">
+				<mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true"  matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
+			</div>
+			
+			<ng-template #notShowEtat>
+				<mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="false" matTooltip="Activer l'opportunité"></mat-slide-toggle>
+			</ng-template>
+		</td>
+	  </ng-container>
+  </div>
+        
+  <ng-template #notAdmin1>
+        <ng-container matColumnDef="etat">
+      <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
+      <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%" >
         <div *ngIf="element.etatOpportunite === 'True'; else notShowEtat">
-            <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true" [disabled]="idUtilisateur != element.utilisateur.id" matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
+          <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true" [disabled]="idUtilisateur != element.utilisateur.id" matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
         </div>
         
         <ng-template #notShowEtat>
-            <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="false" [disabled]="idUtilisateur != element.utilisateur.id" matTooltip="Activer l'opportunité"></mat-slide-toggle>
+          <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="false" [disabled]="idUtilisateur != element.utilisateur.id" matTooltip="Activer l'opportunité"></mat-slide-toggle>
         </ng-template>
-    </td>
-  </ng-container>
+      </td>
+      </ng-container>
+  </ng-template>
 
-  <div *ngIf="role === 'Administrateur'; else notAdmin">
+  <div *ngIf="role === 'Administrateur'; else notAdmin2">
       <ng-container matColumnDef="more">
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let element" class="pointer" width="5%">
@@ -157,7 +174,7 @@
       </ng-container>
   </div>
         
-  <ng-template #notAdmin>
+  <ng-template #notAdmin2>
       <ng-container matColumnDef="more" >
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let element" class="pointer" width="5%">

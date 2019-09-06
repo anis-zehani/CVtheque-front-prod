@@ -112,7 +112,7 @@ export class DatagridOpportunitesComponent implements OnInit {
         res => {this.listeOpportunites.data = res; }
         );
     } else if (this.role === 'Partenaire') {
-      this.opportunitesService.getAllOpportunitesPublicAndPrivateByPartenaire(this.idUtilisateur)
+      this.opportunitesService.getAllOpportunitesPublicAndPrivateByPartenaire(etat, this.idUtilisateur)
       .subscribe
         (
         res => {this.listeOpportunites.data = res; }
