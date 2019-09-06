@@ -134,11 +134,11 @@
     <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
     <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%" >
         <div *ngIf="element.etatOpportunite === 'True'; else notShowEtat">
-            <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true" [disabled]="role != 'Administrateur'" matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
+            <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true" [disabled]="idUtilisateur != element.utilisateur.id" matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
         </div>
         
         <ng-template #notShowEtat>
-            <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="false" [disabled]="role != 'Administrateur'" matTooltip="Activer l'opportunité"></mat-slide-toggle>
+            <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="false" [disabled]="idUtilisateur != element.utilisateur.id" matTooltip="Activer l'opportunité"></mat-slide-toggle>
         </ng-template>
     </td>
   </ng-container>
