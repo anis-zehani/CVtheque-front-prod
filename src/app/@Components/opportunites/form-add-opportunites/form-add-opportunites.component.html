@@ -1,6 +1,6 @@
 <div class="title">
     Ajouter une opportunité
- </div>
+</div>
 
  <form [formGroup]="formOpportunite" (ngSubmit)="addOpportuniteController()">
     <div fxLayout
@@ -12,11 +12,13 @@
     <!-- Container : Partie Gauche -->
     <div fxFlex="70%"> 
     <table>
+            
+                  
       <tr>
         <td>
             <mat-form-field appearance="outline">
               <mat-label>Titre de l'opportunite</mat-label>
-              <input matInput formControlName="titreOpportunite">
+              <input matInput formControlName="titreOpportunite" required>
               <mat-icon matSuffix>title</mat-icon>
             </mat-form-field>
         </td>
@@ -29,8 +31,22 @@
             </mat-form-field> 
         </td>
       </tr>
+
+      <tr style="width: 100%">
+            <td>
+                <div class="title-visibilite">
+                    Visibilité de l'opportunité : 
+                </div>
+            </td>
+            <td>
+                <mat-radio-group appearance="outline" required formControlName="visibiliteOpportunite">
+                    <mat-radio-button value="Public" [checked]="true">Publique  </mat-radio-button>
+                    <mat-radio-button value="Private">  Privée</mat-radio-button>
+                </mat-radio-group> 
+            </td>
+      </tr>
     
-        <tr>
+      <tr>
            <td>
               <app-liste-partenaires
                  (partenaireIdEvent)="partenaireIdEventListner($event)">
@@ -44,7 +60,7 @@
                   <mat-datepicker touchUi #picker></mat-datepicker>
               </mat-form-field>
            </td>
-       </tr>
+      </tr>
        
     </table>
      
@@ -55,7 +71,7 @@
           </mat-form-field>
     
           <div style="display: flex;justify-content: space-between;">
-            <button mat-flat-button type="submit" (click)="inputSideNav.toggle();" style="margin-right: 10px">Ajouter une opportunité</button>
+            <button mat-flat-button [disabled]="!formOpportunite.valid" type="submit" (click)="inputSideNav.toggle();" style="margin-right: 10px">Ajouter une opportunité</button>
             <button mat-stroked-button type="reset"  style="margin-left: 10px">Tout réinitialiser</button>
           </div> 
           <br>

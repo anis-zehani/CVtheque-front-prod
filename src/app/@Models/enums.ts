@@ -5,6 +5,11 @@ True,
 False
 }
 
+export enum Visibilite {
+Public,
+Private
+}
+
 export enum Note {
 Non_Mentionee,
 Nul,

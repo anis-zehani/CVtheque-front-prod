@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { MatRadioModule } from '@angular/material/radio'; 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -267,6 +268,7 @@ import { HttpInterceptorService } from './@Services/http-interceptor.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    MatRadioModule,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,

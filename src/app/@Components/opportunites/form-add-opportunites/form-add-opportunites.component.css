@@ -3,4 +3,13 @@
     margin-bottom: 23%;
     border-radius: 50%;
     font-size:70px;
-  }
+}
+
+.title-visibilite {
+  font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  font-size: 1.175rem;
+  font-variant-ligatures: no-contextual;
+  color: #202124;
+  font-weight: 450;
+  margin-bottom: 15px;
+}

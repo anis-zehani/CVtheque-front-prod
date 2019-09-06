@@ -1,5 +1,5 @@
 import { Partenaire } from '../@Models/partenaire';
-import { Etat } from '../@Models/enums';
+import { Etat, Visibilite } from '../@Models/enums';
 import { Technologie } from './technologie';
 import { Certification } from './certification';
 import { Utilisateur } from './utilisateur';
@@ -14,6 +14,7 @@ export class Opportunite {
     tjmOpportunite: string;
     urlPhotoOpportunite: string;
     etatOpportunite: Etat; // Enum : True/False pour Active/Inactive
+    visibiliteOpportunite: Visibilite; // Enum : Public/Private
     responsableOpportunite: Partenaire;
     listeTechnologies: Technologie[];
     listeCertifications: Certification[];

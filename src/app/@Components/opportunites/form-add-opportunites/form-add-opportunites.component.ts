@@ -1,6 +1,7 @@
 import { Component, OnInit , Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { OpportunitesService } from '../../../@Services/opportunites.service';
 import { UtilService } from '../../../@Util/util.service';
@@ -17,35 +18,36 @@ import { Certification } from 'src/app/@Models/certification';
   selector: 'app-form-add-opportunites',
   templateUrl: './form-add-opportunites.component.html',
   styleUrls: ['./form-add-opportunites.component.css']
-  
+
 })
 export class FormAddOpportunitesComponent implements OnInit {
 
-  //Afin de ferme le sidenav du parent
+  // Afin de ferme le sidenav du parent
   @Input() inputSideNav: MatSidenav;
 
-  //Envoi l'event pour mettre à jour la table
+  // Envoi l'event pour mettre à jour la table
   @Output() refreshTableEvent = new EventEmitter<Event>();
 
-  responsableOpportunite : Partenaire;
-  listeTechnologies : Technologie[];
-  listeTechnologiesFinale : Technologie[] = [];
+  responsableOpportunite: Partenaire;
+  listeTechnologies: Technologie[];
+  listeTechnologiesFinale: Technologie[] = [];
 
-  listeCertifications : Certification[];
-  listeCertificationsFinale : Certification[] = [];
+  listeCertifications: Certification[];
+  listeCertificationsFinale: Certification[] = [];
 
-  listeCandidats : number[];
+  listeCandidats: number[];
 
   @ViewChild(ListeTechnologiesForAddComponent, {static: false}) childListeTechnologies: ListeTechnologiesForAddComponent;
   @ViewChild(ListeCandidatsForAddComponent, {static: false}) childListeCandidats: ListeCandidatsForAddComponent;
   @ViewChild(ListeCertificationsForAddComponent, {static: false}) childListeCertifications: ListeCertificationsForAddComponent;
-  
-  //Mon Reactive Form
+
+  // Mon Reactive Form
   formOpportunite = new FormGroup({
-    titreOpportunite: new FormControl('', Validators.nullValidator),
+    titreOpportunite: new FormControl('', Validators.required),
     descriptionOpportunite: new FormControl('', Validators.nullValidator),
     dateDemarrageSouhaitee: new FormControl('', Validators.nullValidator),
     tjmOpportunite: new FormControl('', Validators.nullValidator),
+    visibiliteOpportunite: new FormControl('', Validators.required),
     responsableOpportunite: new FormControl('', Validators.nullValidator),
     listeTechnologies: new FormControl('', Validators.nullValidator),
     listeCertifications: new FormControl('', Validators.nullValidator)
@@ -53,70 +55,71 @@ export class FormAddOpportunitesComponent implements OnInit {
 
   constructor(
     private opportunitesService: OpportunitesService,
-    private candidatsService: CandidatsService, 
-    private utilService: UtilService) 
-    {
+    private candidatsService: CandidatsService,
+    private utilService: UtilService) {
       this.responsableOpportunite = new Partenaire();
     }
 
   ngOnInit() {}
 
-  //Quand on ajoute un Opportunite : un EVENT est envoyé au Parent pour rafraichir la table
-  refreshTableFunction($event){
+  // Quand on ajoute un Opportunite : un EVENT est envoyé au Parent pour rafraichir la table
+  refreshTableFunction($event) {
     this.refreshTableEvent.emit($event);
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-partenaires> qui génére un EventEmitter
-  partenaireIdEventListner($event){
-    this.responsableOpportunite.id=$event;
+  // Parent intercepte l'event envoyé par son fils : <app-liste-partenaires> qui génére un EventEmitter
+  partenaireIdEventListner($event) {
+    this.responsableOpportunite.id = $event;
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-technologies-for-add> qui génére un EventEmitter
-  listeTechnologiesOpportunitesEventListner($event){
+  // Changement de la valeur du Radio : Publique / Privée
+  /*buttonChange(value) {
+    this.formOpportunite. =  value;
+  }*/
+
+  // Parent intercepte l'event envoyé par son fils : <app-liste-technologies-for-add> qui génére un EventEmitter
+  listeTechnologiesOpportunitesEventListner($event) {
 
     this.listeTechnologiesFinale = [];
 
-    for(let i=0;i<$event.length;i++)
-    {
-      let technologie = new Technologie($event[i]._value.id, $event[i]._value.nomTechnologie, null);
+    for (let i = 0; i < $event.length; i++) {
+      const technologie = new Technologie($event[i]._value.id, $event[i]._value.nomTechnologie, null);
       this.listeTechnologiesFinale.push(technologie);
     }
     this.listeTechnologies = this.listeTechnologiesFinale;
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-candidats-for-add> qui génére un EventEmitter
-  listeCandidatsOpportunitesEventListner($event){
+  // Parent intercepte l'event envoyé par son fils : <app-liste-candidats-for-add> qui génére un EventEmitter
+  listeCandidatsOpportunitesEventListner($event) {
 
       this.listeCandidats = [];
-  
-      for(let i=0;i<$event.length;i++)
-      {
+
+      for (let i = 0; i < $event.length; i++) {
         this.listeCandidats.push($event[i]._value);
       }
-      //console.log(this.listeCandidats);
+      // console.log(this.listeCandidats);
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-certifications-for-add> qui génére un EventEmitter
-  listeCertificationsOpportunitesEventListner($event){
+  // Parent intercepte l'event envoyé par son fils : <app-liste-certifications-for-add> qui génére un EventEmitter
+  listeCertificationsOpportunitesEventListner($event) {
 
     this.listeCertificationsFinale = [];
-  
-    for(let i=0;i<$event.length;i++)
-    {
-      let certification = new Certification($event[i]._value.id, $event[i]._value.nomCertification, null);
+
+    for (let i = 0; i < $event.length; i++) {
+      const certification = new Certification($event[i]._value.id, $event[i]._value.nomCertification, null);
       this.listeCertificationsFinale.push(certification);
     }
-      this.listeCertifications = this.listeCertificationsFinale;
+    this.listeCertifications = this.listeCertificationsFinale;
   }
 
-  //Permet de faire appel au service afin d'affecter des candidats à l'opportunité
-  addCandidatsToOpportuniteController(idOpportunite, listeCandidats){
+  // Permet de faire appel au service afin d'affecter des candidats à l'opportunité
+  addCandidatsToOpportuniteController(idOpportunite, listeCandidats) {
     this.candidatsService.addCandidatsToOpportuniteService(idOpportunite, listeCandidats, false)
     .subscribe
-          (res =>{})
+          (res => {});
   }
 
-  //Ajouter une opportunité 
+  // Ajouter une opportunité
   addOpportuniteController() {
 
     this.formOpportunite.patchValue({
@@ -126,28 +129,25 @@ export class FormAddOpportunitesComponent implements OnInit {
     });
     this.opportunitesService.addOpportuniteService(this.formOpportunite.value)
     .subscribe
-      (res => 
-        { if(res != null)
-          { 
-          let idOpportunite = res.id; //ID de l'opportunité ajoutée
+      (res => { if (res != null) {
+          const idOpportunite = res.id; // ID de l'opportunité ajoutée
 
-          //Ajouter des candidats à l'opportunité récement créée
-          if(this.listeCandidats)
-          {
+          // Ajouter des candidats à l'opportunité récement créée
+          if (this.listeCandidats) {
           this.addCandidatsToOpportuniteController(idOpportunite, this.listeCandidats);
           }
 
           this.refreshTableFunction(true);
-          this.utilService.openSnackBar("Opportunité ajoutée", "OK"); 
+          this.utilService.openSnackBar('Opportunité ajoutée', 'OK');
           }
         }
-      )
-      this.formOpportunite.reset();  
+      );
+    this.formOpportunite.reset();
 
-      //Faire le reset aux 3 listes filles
-      this.childListeTechnologies.ngOnInit();
-      this.childListeCandidats.ngOnInit();
-      this.childListeCertifications.ngOnInit();
+      // Faire le reset aux 3 listes filles
+    this.childListeTechnologies.ngOnInit();
+    this.childListeCandidats.ngOnInit();
+    this.childListeCertifications.ngOnInit();
   }
- 
+
 }
