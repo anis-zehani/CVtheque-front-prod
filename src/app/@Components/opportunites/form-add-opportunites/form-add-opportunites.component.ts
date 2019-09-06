@@ -36,6 +36,8 @@ export class FormAddOpportunitesComponent implements OnInit {
   listeCertificationsFinale: Certification[] = [];
 
   listeCandidats: number[];
+  role: string;
+  idUtilisateur: number;
 
   @ViewChild(ListeTechnologiesForAddComponent, {static: false}) childListeTechnologies: ListeTechnologiesForAddComponent;
   @ViewChild(ListeCandidatsForAddComponent, {static: false}) childListeCandidats: ListeCandidatsForAddComponent;
@@ -60,7 +62,11 @@ export class FormAddOpportunitesComponent implements OnInit {
       this.responsableOpportunite = new Partenaire();
     }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // je récupère le rôle pour la restriction d'accès dans le menu
+    this.role = this.utilService.getRoleUtilisateurFromToken();
+    this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
+  }
 
   // Quand on ajoute un Opportunite : un EVENT est envoyé au Parent pour rafraichir la table
   refreshTableFunction($event) {
@@ -116,13 +122,17 @@ export class FormAddOpportunitesComponent implements OnInit {
 
   // Ajouter une opportunité
   addOpportuniteController() {
+    // Si c'est un Partenaire alors il est mis comme Responsable Opportunité par défaut : sans liste déroulante
+    if (this.role === 'Partenaire') {
+      this.responsableOpportunite.id = this.idUtilisateur;
+    }
 
     this.formOpportunite.patchValue({
       responsableOpportunite: this.responsableOpportunite,
       listeTechnologies: this.listeTechnologies,
       listeCertifications : this.listeCertifications
     });
-    console.log(this.formOpportunite.value);
+
     this.opportunitesService.addOpportuniteService(this.formOpportunite.value)
     .subscribe
       (res => { if (res != null) {

@@ -35,19 +35,19 @@
       <tr>
             <td>
                 <div class="title-visibilite">
-                    Visibilité de l'opportunité : 
+                    Visibilité de l'opportunité * : 
                 </div>
             </td>
             <td>
-                <mat-radio-group appearance="outline" formControlName="visibiliteOpportunite">
-                    <mat-radio-button value="Public" [checked]="true">Publique  </mat-radio-button>
+                <mat-radio-group appearance="outline" formControlName="visibiliteOpportunite" required>
+                    <mat-radio-button value="Public">Publique  </mat-radio-button>
                     <mat-radio-button value="Private">  Privée</mat-radio-button>
                 </mat-radio-group> 
             </td>
       </tr>
     
       <tr>
-           <td>
+           <td *ngIf="role === 'Administrateur'">
               <app-liste-partenaires
                  (partenaireIdEvent)="partenaireIdEventListner($event)">
               </app-liste-partenaires>

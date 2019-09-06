@@ -35,14 +35,14 @@
             </td>
             <td>
                 <div *ngIf="data.visibiliteOpportunite === 'Public'; else notShow">
-                    <mat-radio-group appearance="outline">
+                    <mat-radio-group appearance="outline" [(ngModel)]="data.visibiliteOpportunite">
                         <mat-radio-button value="Public" [checked]="true">Publique  </mat-radio-button>
                         <mat-radio-button value="Private">  Privée</mat-radio-button>
                     </mat-radio-group> 
                 </div>
                         
                 <ng-template #notShow>
-                    <mat-radio-group appearance="outline">
+                    <mat-radio-group appearance="outline" [(ngModel)]="data.visibiliteOpportunite">
                         <mat-radio-button value="Public">Publique  </mat-radio-button>
                         <mat-radio-button value="Private" [checked]="true">  Privée</mat-radio-button>
                     </mat-radio-group> 
@@ -54,13 +54,13 @@
             <td>
                 <!--Test si Partenaire est défini-->
                 <div *ngIf="data.responsableOpportunite;else SINON">
-                    <app-liste-partenaires
+                    <app-liste-partenaires  *ngIf="role === 'Administrateur'"
                         [partenaireId]="data.responsableOpportunite.id"
                         (partenaireIdEvent)="partenaireIdEventListner($event)">
                     </app-liste-partenaires>    
                 </div>
                 <ng-template #SINON>
-                    <app-liste-partenaires
+                    <app-liste-partenaires  *ngIf="role === 'Administrateur'"
                         (partenaireIdEvent)="partenaireIdEventListner($event)">
                     </app-liste-partenaires>   
                 </ng-template>

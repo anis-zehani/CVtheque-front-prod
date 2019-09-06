@@ -39,6 +39,7 @@ export class DatagridOpportunitesComponent implements OnInit {
 
   opportunite: Opportunite;
   role: string;
+  idUtilisateur: number;
   responsableOpportunite: Partenaire;
   etatOpportunite = 'True';
 
@@ -73,17 +74,21 @@ export class DatagridOpportunitesComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getAllOpportunitesController('True');
-
     // je récupère le rôle pour la restriction d'accès dans le menu
     this.role = this.utilService.getRoleUtilisateurFromToken();
+    this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
+
+    this.getAllOpportunitesController('True');
+
 
     // Displayed columns s'affiche selon le profil : Priviléges
-    if (this.role === 'Administrateur') {
-      this.displayedColumns = ['responsableOpportunite', 'details', 'dateAjout', 'dateDemarrageSouhaitee', 'etat', 'more'];
+    /*if (this.role === 'Administrateur') {
+      this.displayedColumns = ['responsableOpportunite', 'details', 'dateAjout', 'dateDemarrageSouhaitee', 'visibiliteOpportunite', 'etat', 'more'];
     } else {
-      this.displayedColumns = ['responsableOpportunite', 'details', 'dateAjout', 'dateDemarrageSouhaitee'];
-    }
+      this.displayedColumns = ['responsableOpportunite', 'details', 'dateAjout', 'dateDemarrageSouhaitee', 'visibiliteOpportunite'];
+    }*/
+
+    this.displayedColumns = ['responsableOpportunite', 'details', 'dateAjout', 'dateDemarrageSouhaitee', 'visibiliteOpportunite', 'etat', 'more'];
 
     this.listeOpportunites.paginator = this.paginator;
     this.listeOpportunites.sort = this.sort;
@@ -100,11 +105,19 @@ export class DatagridOpportunitesComponent implements OnInit {
 
   // Afficher tous les opportunites : remplissage de la table
   getAllOpportunitesController(etat): void {
-    this.opportunitesService.getAllOpportunitesService(etat)
-    .subscribe
-      (
-      res => {this.listeOpportunites.data = res; }
-      );
+    if (this.role === 'Administrateur') {
+      this.opportunitesService.getAllOpportunitesService(etat)
+      .subscribe
+        (
+        res => {this.listeOpportunites.data = res; }
+        );
+    } else if (this.role === 'Partenaire') {
+      this.opportunitesService.getAllOpportunitesPublicAndPrivateByPartenaire(this.idUtilisateur)
+      .subscribe
+        (
+        res => {this.listeOpportunites.data = res; }
+        );
+    }
   }
 
   // La liste des opportunites qui ont une Technologie au moins dans la liste fournie

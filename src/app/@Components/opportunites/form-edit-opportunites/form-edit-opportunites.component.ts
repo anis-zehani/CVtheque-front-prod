@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
-import { Opportunite } from '../../../@Models/opportunite';
+import { UtilService } from '../../../@Util/util.service';
 import { Partenaire } from 'src/app/@Models/partenaire';
 
 @Component({
@@ -11,24 +11,27 @@ import { Partenaire } from 'src/app/@Models/partenaire';
 })
 export class FormEditOpportunitesComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private utilService: UtilService) {}
+
+  role: string;
+  idUtilisateur: number;
 
   ngOnInit() {
+    // je récupère le rôle pour la restriction d'accès dans le menu
+    this.role = this.utilService.getRoleUtilisateurFromToken();
+    this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-partenaires> qui génére un EventEmitter
-  partenaireIdEventListner($event){
-    //Mise à jour de l'objet data de la view
+  // Parent intercepte l'event envoyé par son fils : <app-liste-partenaires> qui génére un EventEmitter
+  partenaireIdEventListner($event) {
+    // Mise à jour de l'objet data de la view
 
-    if(this.data.responsableOpportunite === null)
-    {
-      let partenaire = new Partenaire();
-      partenaire.id=$event;
-      this.data.responsableOpportunite=partenaire;
-    }
-    else
-    {
-      this.data.responsableOpportunite.id=$event;
+    if (this.data.responsableOpportunite === null) {
+      const partenaire = new Partenaire();
+      partenaire.id = $event;
+      this.data.responsableOpportunite = partenaire;
+    } else {
+      this.data.responsableOpportunite.id = $event;
     }
   }
 }
