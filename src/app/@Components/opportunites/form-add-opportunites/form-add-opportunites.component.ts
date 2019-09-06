@@ -72,11 +72,6 @@ export class FormAddOpportunitesComponent implements OnInit {
     this.responsableOpportunite.id = $event;
   }
 
-  // Changement de la valeur du Radio : Publique / Privée
-  /*buttonChange(value) {
-    this.formOpportunite. =  value;
-  }*/
-
   // Parent intercepte l'event envoyé par son fils : <app-liste-technologies-for-add> qui génére un EventEmitter
   listeTechnologiesOpportunitesEventListner($event) {
 
@@ -127,6 +122,7 @@ export class FormAddOpportunitesComponent implements OnInit {
       listeTechnologies: this.listeTechnologies,
       listeCertifications : this.listeCertifications
     });
+    console.log(this.formOpportunite.value);
     this.opportunitesService.addOpportuniteService(this.formOpportunite.value)
     .subscribe
       (res => { if (res != null) {

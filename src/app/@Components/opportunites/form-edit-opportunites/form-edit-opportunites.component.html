@@ -26,6 +26,30 @@
                 </mat-form-field> 
             </td>
         </tr>
+
+        <tr>
+            <td>
+                <div class="title-visibilite">
+                    Visibilité de l'opportunité : 
+                </div>
+            </td>
+            <td>
+                <div *ngIf="data.visibiliteOpportunite === 'Public'; else notShow">
+                    <mat-radio-group appearance="outline">
+                        <mat-radio-button value="Public" [checked]="true">Publique  </mat-radio-button>
+                        <mat-radio-button value="Private">  Privée</mat-radio-button>
+                    </mat-radio-group> 
+                </div>
+                        
+                <ng-template #notShow>
+                    <mat-radio-group appearance="outline">
+                        <mat-radio-button value="Public">Publique  </mat-radio-button>
+                        <mat-radio-button value="Private" [checked]="true">  Privée</mat-radio-button>
+                    </mat-radio-group> 
+                </ng-template>
+            </td>
+        </tr>
+
         <tr>
             <td>
                 <!--Test si Partenaire est défini-->

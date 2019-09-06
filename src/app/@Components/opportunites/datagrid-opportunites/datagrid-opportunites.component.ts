@@ -225,7 +225,7 @@ export class DatagridOpportunitesComponent implements OnInit {
   }
 
   // Ouvre le pop-up pour modifier une opportunité
-  openDialogEditOpportunite(id, titreOpportunite, descriptionOpportunite, dateAjout, dateDemarrageSouhaitee, tjmOpportunite, etatOpportunite, responsableOpportunite, listeTechnologies, listeCertifications): void {
+  openDialogEditOpportunite(id, titreOpportunite, descriptionOpportunite, dateAjout, dateDemarrageSouhaitee, tjmOpportunite, etatOpportunite, visibiliteOpportunite, responsableOpportunite, listeTechnologies, listeCertifications): void {
 
       // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
@@ -245,12 +245,13 @@ export class DatagridOpportunitesComponent implements OnInit {
           dateDemarrageSouhaitee : this.datePipe.transform(dateDemarrageSouhaitee, 'yyyy-MM-dd'),
           tjmOpportunite,
           etatOpportunite,
+          visibiliteOpportunite,
           responsableOpportunite,
           listeTechnologies,
           listeCertifications
         }
       });
-
+      // console.log(visibiliteOpportunite);
       // Fonction qui s'éxècute quand je ferme la modale
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
@@ -261,6 +262,7 @@ export class DatagridOpportunitesComponent implements OnInit {
             this.opportunite.dateAjout = result.dateAjout;
             this.opportunite.tjmOpportunite = result.tjmOpportunite;
             this.opportunite.etatOpportunite = result.etatOpportunite;
+            this.opportunite.visibiliteOpportunite = result.visibiliteOpportunite;
 
             if (result.responsableOpportunite != null) {
               this.opportunite.responsableOpportunite.id = result.responsableOpportunite.id;
@@ -321,7 +323,7 @@ export class DatagridOpportunitesComponent implements OnInit {
   }
 
   // Ouvre le pop-up pour afficher une opportunité
-  openDialogShowOpportunite(id, titreOpportunite, descriptionOpportunite, dateAjout, dateDemarrageSouhaitee, tjmOpportunite, etatOpportunite, responsableOpportunite, listeTechnologies, listeCertifications): void {
+  openDialogShowOpportunite(id, titreOpportunite, descriptionOpportunite, dateAjout, dateDemarrageSouhaitee, tjmOpportunite, etatOpportunite, visibiliteOpportunite, responsableOpportunite, listeTechnologies, listeCertifications): void {
       // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
@@ -340,6 +342,7 @@ export class DatagridOpportunitesComponent implements OnInit {
           dateDemarrageSouhaitee : this.datePipe.transform(dateDemarrageSouhaitee, 'yyyy-MM-dd'),
           tjmOpportunite,
           etatOpportunite,
+          visibiliteOpportunite,
           responsableOpportunite,
           listeTechnologies,
           listeCertifications
