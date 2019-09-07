@@ -36,15 +36,15 @@
             <td>
                 <div *ngIf="data.visibiliteOpportunite === 'Public'; else notShow">
                     <mat-radio-group appearance="outline" [(ngModel)]="data.visibiliteOpportunite">
-                        <mat-radio-button value="Public" [checked]="true">Publique  </mat-radio-button>
-                        <mat-radio-button value="Private">  Privée</mat-radio-button>
+                        <mat-radio-button value="Public" matTooltip="Visible par tout le monde" [checked]="true">Publique  </mat-radio-button>
+                        <mat-radio-button value="Private" matTooltip="Visible par moi uniquement">  Privée</mat-radio-button>
                     </mat-radio-group> 
                 </div>
                         
                 <ng-template #notShow>
                     <mat-radio-group appearance="outline" [(ngModel)]="data.visibiliteOpportunite">
-                        <mat-radio-button value="Public">Publique  </mat-radio-button>
-                        <mat-radio-button value="Private" [checked]="true">  Privée</mat-radio-button>
+                        <mat-radio-button value="Public" matTooltip="Visible par tout le monde">Publique  </mat-radio-button>
+                        <mat-radio-button value="Private" matTooltip="Visible par moi uniquement" [checked]="true">  Privée</mat-radio-button>
                     </mat-radio-group> 
                 </ng-template>
             </td>

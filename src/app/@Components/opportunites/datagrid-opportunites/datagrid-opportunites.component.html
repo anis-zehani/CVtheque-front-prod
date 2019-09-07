@@ -121,11 +121,11 @@
       <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef><mat-icon matSuffix>remove_red_eye</mat-icon></th>
       <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="5%" >
           <div *ngIf="element.visibiliteOpportunite === 'Public'; else notShowVisibilite">
-              <mat-icon matSuffix>public</mat-icon>
+              <mat-icon matSuffix matTooltip="Opportunité publique">public</mat-icon>
           </div>
           
           <ng-template #notShowVisibilite>
-              <mat-icon matSuffix>https</mat-icon>
+              <mat-icon matSuffix matTooltip="Opportunité privée">https</mat-icon>
           </ng-template>
       </td>
   </ng-container>
@@ -146,15 +146,15 @@
   </div>
         
   <ng-template #notAdmin1>
-        <ng-container matColumnDef="etat">
+      <ng-container matColumnDef="etat">
       <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
       <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%" >
         <div *ngIf="element.etatOpportunite === 'True'; else notShowEtat">
-          <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true" [disabled]="idUtilisateur != element.utilisateur.id" matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
+          <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true" *ngIf="idUtilisateur === element.utilisateur.id" matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
         </div>
         
         <ng-template #notShowEtat>
-          <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="false" [disabled]="idUtilisateur != element.utilisateur.id" matTooltip="Activer l'opportunité"></mat-slide-toggle>
+          <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="false" *ngIf="idUtilisateur === element.utilisateur.id" matTooltip="Activer l'opportunité"></mat-slide-toggle>
         </ng-template>
       </td>
       </ng-container>
