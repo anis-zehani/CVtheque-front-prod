@@ -53,6 +53,12 @@ export class OpportunitesService {
     return this.http.get<Opportunite[]>(this.serviceUrl + '/allOpportunitesByCertification/' + idCertification, this.httpOptions);
   }
 
+  // Retourne toutes les opportunités favories d'un utilisateur : Opportunite[]
+  getAllOpportunitesFavorisForUtilisateurService(idUtilisateur): Observable<Opportunite[]> {
+    return this.http.get<Opportunite[]>(this.serviceUrl + '/getAllOpportunitesFavorisForUtilisateur/' +
+    idUtilisateur, this.httpOptions);
+  }
+
   // Retourne un seul opportunite par son ID : Opportunite
   getOneOpportuniteService(id): Observable<Opportunite> {
     return this.http.get<Opportunite>(this.serviceUrl + '/' + id, this.httpOptions);

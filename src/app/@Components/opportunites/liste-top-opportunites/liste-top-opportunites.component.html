@@ -2,15 +2,13 @@
     - Liste encore vide							
 </div>
 <ng-template #SINON_OPPORTUNITES>
-    <div style="background-color: white;padding-top: 10px;">
+    <div style="background-color: white;color: #000;padding-top: 10px;font-size: 12px">
         <div style="max-height:200px;overflow-y: auto;">   
-            <mat-selection-list dense>
-            
-            <mat-list-option *ngFor="let opportunite of listeOpportunites">
+
+            <a *ngFor="let opportunite of listeOpportunites">
                 {{opportunite.titreOpportunite}}
-            </mat-list-option>
-            
-            </mat-selection-list>
+            </a>
+
         </div>
     </div>
 </ng-template>

@@ -41,12 +41,6 @@ export class UtilisateurService {
       '/' + idCandidat, this.httpOptions);
   }
 
-  // Retourne toutes les opportunités favories d'un utilisateur : Opportunite[]
-  getAllOpportunitesFavorisForUtilisateurService(idUtilisateur): Observable<Opportunite[]> {
-    return this.http.get<Opportunite[]>(this.serviceUrl + '/getAllOpportunitesFavorisForUtilisateur/' +
-    idUtilisateur, this.httpOptions);
-  }
-
   // Ajoute une opportunité favorie pour un utilisateur
   addOpportuniteToFavorisUtilisateurService(idUtilisateur, idOpportunite): Observable<any> {
     return this.http.post<any>(this.serviceUrl + '/addOpportuniteToFavorisUtilisateur/' + idUtilisateur +
