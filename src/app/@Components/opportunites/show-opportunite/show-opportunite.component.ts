@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 import { UtilService } from '../../../@Util/util.service';
 import { Opportunite } from 'src/app/@Models/opportunite';
 import { ShowPartenaireComponent } from '../../../@Components/partenaires/show-partenaire/show-partenaire.component';
+import { UtilisateurService } from 'src/app/@Services/utilisateur.service';
 
 @Component({
   selector: 'app-show-opportunite',
@@ -22,12 +23,23 @@ export class ShowOpportuniteComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Opportunite,
               public dialog: MatDialog,
-              private utilService: UtilService) { }
+              private utilService: UtilService,
+              private utilisateurService: UtilisateurService) { }
 
   ngOnInit() {
     // je récupère le rôle pour la restriction d'accès dans le menu
     this.role = this.utilService.getRoleUtilisateurFromToken();
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
+  }
+
+  addOpportuniteToFavorite(idUtilisateur, idOpportunite) {
+    console.log(idUtilisateur);
+    console.log(idOpportunite);
+    this.utilisateurService.addOpportuniteToFavorisUtilisateurService(idUtilisateur, idOpportunite)
+    .subscribe
+      (
+      res => { }
+      );
   }
 
   // Ouvre le pop-up pour afficher un partenaire

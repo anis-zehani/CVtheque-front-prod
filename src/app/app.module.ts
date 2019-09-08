@@ -137,6 +137,8 @@ import { FormRecupererPasswordComponent } from './@Components/authentification/f
 import { LoginComponent } from './@Components/authentification/login/login.component';
 import { LogoutComponent } from './@Components/authentification/logout/logout.component';
 import { HttpInterceptorService } from './@Services/http-interceptor.service';
+import { ListeTopCandidatsComponent } from './@Components/candidats/liste-top-candidats/liste-top-candidats.component';
+import { ListeTopOpportunitesComponent } from './@Components/opportunites/liste-top-opportunites/liste-top-opportunites.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -225,7 +227,9 @@ import { HttpInterceptorService } from './@Services/http-interceptor.service';
     FormAddComptePartenaireComponent,
     FormRecupererPasswordComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    ListeTopCandidatsComponent,
+    ListeTopOpportunitesComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,
