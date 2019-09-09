@@ -139,6 +139,7 @@ import { LogoutComponent } from './@Components/authentification/logout/logout.co
 import { HttpInterceptorService } from './@Services/http-interceptor.service';
 import { ListeTopCandidatsComponent } from './@Components/candidats/liste-top-candidats/liste-top-candidats.component';
 import { ListeTopOpportunitesComponent } from './@Components/opportunites/liste-top-opportunites/liste-top-opportunites.component';
+
 @NgModule({
   declarations: [
     AppComponent,

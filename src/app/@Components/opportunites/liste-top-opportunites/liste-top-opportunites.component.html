@@ -1,12 +1,12 @@
-<div *ngIf="listeOpportunites.length===0;else SINON_OPPORTUNITES" style="background-color: white;color: #000;">
+<div *ngIf="listeOpportunitesFavoris.length===0;else SINON_TOP_OPPORTUNITES" style="background-color: white;color: #000;">
     - Liste encore vide							
 </div>
-<ng-template #SINON_OPPORTUNITES>
+<ng-template #SINON_TOP_OPPORTUNITES>
     <div style="background-color: white;color: #000;padding-top: 10px;font-size: 12px">
         <div style="max-height:200px;overflow-y: auto;">   
 
-            <a *ngFor="let opportunite of listeOpportunites">
-                {{opportunite.titreOpportunite}}
+            <a *ngFor="let topOpportunite of listeOpportunitesFavoris">
+                {{topOpportunite.titreOpportunite}}<br>
             </a>
 
         </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
-import { UtilisateurService } from '../../../@Services/utilisateur.service';
+import { CandidatsFavorisService } from '../../../@Services/candidats-favoris.service';
 import { UtilService } from 'src/app/@Util/util.service';
 import { environment } from '../../../../environments/environment';
 import { Candidat } from '../../../@Models/candidat';
@@ -19,7 +19,7 @@ export class ShowCandidatComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Candidat,
               private utilService: UtilService,
-              private utilisateurService: UtilisateurService) { }
+              private candidatsFavorisService: CandidatsFavorisService) { }
 
   ngOnInit() {
     // je récupère idUtilisateur pour faire l'appel au WS avec le bon id Utilisateur
@@ -29,7 +29,7 @@ export class ShowCandidatComponent implements OnInit {
   addCandidatToFavorite(idUtilisateur, idCandidat) {
     console.log(idUtilisateur);
     console.log(idCandidat);
-    this.utilisateurService.addCandidatToFavorisUtilisateurService(idUtilisateur, idCandidat)
+    this.candidatsFavorisService.addCandidatToFavorisToUtilisateurService(idUtilisateur, idCandidat)
     .subscribe
       (
       res => { }

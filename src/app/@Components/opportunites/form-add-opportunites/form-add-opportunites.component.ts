@@ -1,7 +1,6 @@
 import { Component, OnInit , Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import { MatRadioModule } from '@angular/material/radio';
 
 import { OpportunitesService } from '../../../@Services/opportunites.service';
 import { UtilService } from '../../../@Util/util.service';
@@ -36,6 +35,7 @@ export class FormAddOpportunitesComponent implements OnInit {
   listeCertificationsFinale: Certification[] = [];
 
   listeCandidats: number[];
+
   role: string;
   idUtilisateur: number;
 
@@ -125,7 +125,12 @@ export class FormAddOpportunitesComponent implements OnInit {
     // Si c'est un Partenaire alors il est mis comme Responsable Opportunité par défaut : sans liste déroulante
     if (this.role === 'Partenaire') {
       this.responsableOpportunite.id = this.idUtilisateur;
+    } else if (this.role === 'Administrateur' && this.responsableOpportunite === null) {
+      this.responsableOpportunite.id = this.idUtilisateur;
     }
+
+    console.log('role : ' + this.role);
+    console.log('idUtilisateur : ' + this.idUtilisateur);
 
     this.formOpportunite.patchValue({
       responsableOpportunite: this.responsableOpportunite,

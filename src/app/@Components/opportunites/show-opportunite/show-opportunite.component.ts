@@ -6,7 +6,8 @@ import { environment } from '../../../../environments/environment';
 import { UtilService } from '../../../@Util/util.service';
 import { Opportunite } from 'src/app/@Models/opportunite';
 import { ShowPartenaireComponent } from '../../../@Components/partenaires/show-partenaire/show-partenaire.component';
-import { UtilisateurService } from 'src/app/@Services/utilisateur.service';
+import { OpportunitesFavorisService } from 'src/app/@Services/opportunites-favoris.service';
+import { OpportunitesFavoris } from 'src/app/@Models/opportunites-favoris';
 
 @Component({
   selector: 'app-show-opportunite',
@@ -24,7 +25,7 @@ export class ShowOpportuniteComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Opportunite,
               public dialog: MatDialog,
               private utilService: UtilService,
-              private utilisateurService: UtilisateurService) { }
+              private opportunitesFavorisService: OpportunitesFavorisService) { }
 
   ngOnInit() {
     // je récupère le rôle pour la restriction d'accès dans le menu
@@ -32,10 +33,18 @@ export class ShowOpportuniteComponent implements OnInit {
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
   }
 
-  addOpportuniteToFavorite(idUtilisateur, idOpportunite) {
+  addOpportuniteToFavorite(idUtilisateur, idOpportunite, titreOpportunite) {
+
     console.log(idUtilisateur);
     console.log(idOpportunite);
-    this.utilisateurService.addOpportuniteToFavorisUtilisateurService(idUtilisateur, idOpportunite)
+    console.log(titreOpportunite);
+
+    const opportunitesFavoris = new OpportunitesFavoris();
+    opportunitesFavoris.idUtilisateur = idUtilisateur;
+    opportunitesFavoris.idOpportunite = idOpportunite;
+    opportunitesFavoris.titreOpportunite = titreOpportunite;
+
+    this.opportunitesFavorisService.addOpportuniteToFavorisToUtilisateurService(opportunitesFavoris)
     .subscribe
       (
       res => { }

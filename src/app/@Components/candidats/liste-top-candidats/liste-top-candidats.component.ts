@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilisateurService } from '../../../@Services/utilisateur.service';
-import { Candidat } from 'src/app/@Models/candidat';
+
+import { CandidatsFavorisService } from '../../../@Services/candidats-favoris.service';
 import { UtilService } from 'src/app/@Util/util.service';
+import { CandidatsFavoris } from 'src/app/@Models/candidats-favoris';
 
 @Component({
   selector: 'app-liste-top-candidats',
@@ -10,10 +11,10 @@ import { UtilService } from 'src/app/@Util/util.service';
 })
 export class ListeTopCandidatsComponent implements OnInit {
 
-  constructor(private utilisateurService: UtilisateurService, private utilService: UtilService) { }
+  constructor(private candidatsFavorisService: CandidatsFavorisService, private utilService: UtilService) { }
 
   // Remplissage de la liste par défaut
-  listeCandidats: Candidat[] = [];
+  listeCandidatsFavoris: CandidatsFavoris[] = [];
   idUtilisateur: number;
 
   ngOnInit() {
@@ -24,10 +25,10 @@ export class ListeTopCandidatsComponent implements OnInit {
 
   // Remplir la liste par tous les candidats
   getAllCandidatsFavorisController(idUtilisateur): void {
-    this.utilisateurService.getAllCandidatsFavorisForUtilisateurService(idUtilisateur)
+    this.candidatsFavorisService.getAllCandidatsFavorisForUtilisateurService(idUtilisateur)
     .subscribe
       (
-      res => { this.listeCandidats = res; }
+      res => { this.listeCandidatsFavoris = res; }
       );
   }
 

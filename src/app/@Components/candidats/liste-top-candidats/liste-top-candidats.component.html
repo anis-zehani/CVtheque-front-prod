@@ -1,13 +1,13 @@
-<div *ngIf="listeCandidats.length===0;else SINON_CANDIDATS" style="background-color: white;color: #000;">
+<div *ngIf="listeCandidatsFavoris.length===0;else SINON_TOP_CANDIDATS" style="background-color: white;color: #000;">
     - Liste encore vide							
 </div>
-<ng-template #SINON_CANDIDATS>
+<ng-template #SINON_TOP_CANDIDATS>
     <div style="background-color: white;padding-top: 10px;">
         <div style="max-height:200px;overflow-y: auto;">   
             <mat-selection-list dense>
             
-            <mat-list-option *ngFor="let candidat of listeCandidats">
-                {{candidat.identite}}
+            <mat-list-option *ngFor="let candidatFavoris of listeCandidatsFavoris">
+                {{candidatFavoris.identiteCandidat}}
             </mat-list-option>
             
             </mat-selection-list>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UtilisateurService } from '../../../@Services/utilisateur.service';
-import { OpportunitesService } from '../../../@Services/opportunites.service';
+
+import { OpportunitesFavorisService } from '../../../@Services/opportunites-favoris.service';
 import { UtilService } from 'src/app/@Util/util.service';
 import { Opportunite } from 'src/app/@Models/opportunite';
+import { OpportunitesFavoris } from 'src/app/@Models/opportunites-favoris';
 
 @Component({
   selector: 'app-liste-top-opportunites',
@@ -12,10 +13,10 @@ import { Opportunite } from 'src/app/@Models/opportunite';
 })
 export class ListeTopOpportunitesComponent implements OnInit {
 
-  constructor(private opportunitesService: OpportunitesService, private utilService: UtilService) { }
+  constructor(private opportunitesFavorisService: OpportunitesFavorisService, private utilService: UtilService) { }
 
   // Remplissage de la liste par défaut
-  listeOpportunites: Opportunite[] = [];
+  listeOpportunitesFavoris: OpportunitesFavoris[] = [];
   idUtilisateur: number;
 
   ngOnInit() {
@@ -26,10 +27,10 @@ export class ListeTopOpportunitesComponent implements OnInit {
 
   // Remplir la liste par toutes les opportunités
   getAllOpportunitesFavorisController(idUtilisateur): void {
-    this.opportunitesService.getAllOpportunitesFavorisForUtilisateurService(idUtilisateur)
+    this.opportunitesFavorisService.getAllOpportunitesFavorisForUtilisateurService(idUtilisateur)
     .subscribe
       (
-      res => { this.listeOpportunites = res; }
+      res => { this.listeOpportunitesFavoris = res; }
       );
   }
 
