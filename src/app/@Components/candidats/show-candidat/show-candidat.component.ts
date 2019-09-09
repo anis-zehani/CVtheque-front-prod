@@ -5,6 +5,7 @@ import { CandidatsFavorisService } from '../../../@Services/candidats-favoris.se
 import { UtilService } from 'src/app/@Util/util.service';
 import { environment } from '../../../../environments/environment';
 import { Candidat } from '../../../@Models/candidat';
+import { CandidatsFavoris } from 'src/app/@Models/candidats-favoris';
 
 @Component({
   selector: 'app-show-candidat',
@@ -26,10 +27,18 @@ export class ShowCandidatComponent implements OnInit {
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
   }
 
-  addCandidatToFavorite(idUtilisateur, idCandidat) {
+  addCandidatToFavorite(idUtilisateur, idCandidat, identiteCandidat) {
+
     console.log(idUtilisateur);
     console.log(idCandidat);
-    this.candidatsFavorisService.addCandidatToFavorisToUtilisateurService(idUtilisateur, idCandidat)
+    console.log(identiteCandidat);
+
+    const candidatFavori = new CandidatsFavoris();
+    candidatFavori.idUtilisateur = idUtilisateur;
+    candidatFavori.idCandidat = idCandidat;
+    candidatFavori.identiteCandidat = identiteCandidat;
+
+    this.candidatsFavorisService.addCandidatToFavorisToUtilisateurService(candidatFavori)
     .subscribe
       (
       res => { }

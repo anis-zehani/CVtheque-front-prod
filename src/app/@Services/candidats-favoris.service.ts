@@ -27,9 +27,8 @@ export class CandidatsFavorisService {
   }
 
   // Ajoute un candidat favoris pour un utilisateur
-  addCandidatToFavorisToUtilisateurService(idUtilisateur, idCandidat): Observable<any> {
-    return this.http.post<any>(this.serviceUrl + '/addCandidatToFavorisToUtilisateur/' + idUtilisateur +
-    '/' + idCandidat, this.httpOptions);
+  addCandidatToFavorisToUtilisateurService(candidatFavori): Observable<any> {
+    return this.http.post<any>(this.serviceUrl + '/addCandidatToFavorisToUtilisateur' , JSON.stringify(candidatFavori), this.httpOptions);
   }
 
   // Supprimer le lien entre un candidat et un utilisateur

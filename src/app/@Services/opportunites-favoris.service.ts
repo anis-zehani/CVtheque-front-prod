@@ -27,8 +27,8 @@ export class OpportunitesFavorisService {
   }
 
   // Ajoute une opportunité favorie pour un utilisateur
-  addOpportuniteToFavorisToUtilisateurService(opportunitesFavoris): Observable<any> {
-    return this.http.post<any>(this.serviceUrl + '/addOpportuniteToFavorisToUtilisateur', JSON.stringify(opportunitesFavoris), this.httpOptions);
+  addOpportuniteToFavorisToUtilisateurService(opportuniteFavorite): Observable<any> {
+    return this.http.post<any>(this.serviceUrl + '/addOpportuniteToFavorisToUtilisateur', JSON.stringify(opportuniteFavorite), this.httpOptions);
   }
 
   // Supprimer le lien entre une opportunité et un utilisateur

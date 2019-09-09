@@ -1,6 +1,6 @@
 <div style="display: flex;justify-content: space-between;">
         <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | titlecase}} : {{data.posteOccupe}}</div>
-        <div><mat-icon matSuffix (click)="addCandidatToFavorite(idUtilisateur, data.id)">favorite</mat-icon></div>
+        <div><mat-icon matSuffix (click)="addCandidatToFavorite(idUtilisateur, data.id, data.identite)">favorite</mat-icon></div>
         <div>
             <label>
 

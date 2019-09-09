@@ -39,12 +39,12 @@ export class ShowOpportuniteComponent implements OnInit {
     console.log(idOpportunite);
     console.log(titreOpportunite);
 
-    const opportunitesFavoris = new OpportunitesFavoris();
-    opportunitesFavoris.idUtilisateur = idUtilisateur;
-    opportunitesFavoris.idOpportunite = idOpportunite;
-    opportunitesFavoris.titreOpportunite = titreOpportunite;
+    const opportuniteFavorite = new OpportunitesFavoris();
+    opportuniteFavorite.idUtilisateur = idUtilisateur;
+    opportuniteFavorite.idOpportunite = idOpportunite;
+    opportuniteFavorite.titreOpportunite = titreOpportunite;
 
-    this.opportunitesFavorisService.addOpportuniteToFavorisToUtilisateurService(opportunitesFavoris)
+    this.opportunitesFavorisService.addOpportuniteToFavorisToUtilisateurService(opportuniteFavorite)
     .subscribe
       (
       res => { }
