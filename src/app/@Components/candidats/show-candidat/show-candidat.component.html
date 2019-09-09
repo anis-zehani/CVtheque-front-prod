@@ -1,18 +1,22 @@
 <div style="display: flex;justify-content: space-between;">
-        <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | titlecase}} : {{data.posteOccupe}}</div>
-        <div><mat-icon matSuffix (click)="addCandidatToFavorite(idUtilisateur, data.id, data.identite)">favorite</mat-icon></div>
-        <div>
-            <label>
 
-                <div *ngIf="data.urlPhoto;else SINON_CANDIDAT">
-                    <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
-                </div>
-                <ng-template #SINON_CANDIDAT>
+    <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | titlecase}} : {{data.posteOccupe}}</div>
+    
+    
+    
+    <div>
+        <mat-icon matSuffix (click)="addCandidatToFavorite(idUtilisateur, data.id, data.identite)" class="pointer" style="margin-right: 50px;font-size: 2.175rem;color: red">favorite</mat-icon>
+        
+        <label>
+            <div *ngIf="data.urlPhoto;else SINON_CANDIDAT">
+                <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
+            </div>
+            <ng-template #SINON_CANDIDAT>
                     <img src="/assets/img/candidat.png" matTooltip={{data.identite}}> 
-                </ng-template>
+            </ng-template>
+        </label>
+    </div>
 
-            </label>
-        </div>
 </div>  
 
 <div fxLayout

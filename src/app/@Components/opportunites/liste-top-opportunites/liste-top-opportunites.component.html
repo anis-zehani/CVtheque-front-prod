@@ -4,7 +4,7 @@
 <ng-template #SINON_TOP_OPPORTUNITES>
     <div style="max-height:200px;overflow-y: auto;background-color: #222;">
         <div *ngFor="let topOpportunite of listeOpportunitesFavoris" style="display: flex;justify-content: space-between center;">
-            <mat-option  [value]="topOpportunite.id" (click)="anis()" fxFlex="90%" class="liste-small" matTooltip="{{topOpportunite.titreOpportunite}}">
+            <mat-option  [value]="topOpportunite.id" fxFlex="90%" class="liste-small" matTooltip="{{topOpportunite.titreOpportunite}}">
                 <mat-icon matSuffix style="color: #f7c341;">star</mat-icon> {{topOpportunite.titreOpportunite}}
             </mat-option>
 
