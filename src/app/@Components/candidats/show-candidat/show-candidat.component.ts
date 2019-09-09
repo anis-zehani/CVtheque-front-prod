@@ -29,10 +29,6 @@ export class ShowCandidatComponent implements OnInit {
 
   addCandidatToFavorite(idUtilisateur, idCandidat, identiteCandidat) {
 
-    console.log(idUtilisateur);
-    console.log(idCandidat);
-    console.log(identiteCandidat);
-
     const candidatFavori = new CandidatsFavoris();
     candidatFavori.idUtilisateur = idUtilisateur;
     candidatFavori.idCandidat = idCandidat;
@@ -41,7 +37,11 @@ export class ShowCandidatComponent implements OnInit {
     this.candidatsFavorisService.addCandidatToFavorisToUtilisateurService(candidatFavori)
     .subscribe
       (
-      res => { }
+      res => {
+        if (res != null) {
+          this.utilService.openSnackBar('Candidat ajouté Aux Favoris', 'OK');
+          }
+      }
       );
   }
 

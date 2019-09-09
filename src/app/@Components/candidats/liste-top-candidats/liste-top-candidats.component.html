@@ -1,17 +1,18 @@
-<div *ngIf="listeCandidatsFavoris.length===0;else SINON_TOP_CANDIDATS" style="background-color: white;color: #000;">
-    - Liste encore vide							
+<div *ngIf="listeCandidatsFavoris.length===0;else SINON_TOP_CANDIDATS" class="title-small">
+        - Liste encore vide							
 </div>
 <ng-template #SINON_TOP_CANDIDATS>
-    <div style="background-color: white;padding-top: 10px;">
-        <div style="max-height:200px;overflow-y: auto;">   
-            <mat-selection-list dense>
-            
-            <mat-list-option *ngFor="let candidatFavoris of listeCandidatsFavoris">
-                {{candidatFavoris.identiteCandidat}}
-            </mat-list-option>
-            
-            </mat-selection-list>
+        <div style="max-height:200px;overflow-y: auto;background-color: #222;">
+            <div *ngFor="let topCandidat of listeCandidatsFavoris" style="display: flex;justify-content: space-between center;">
+                <mat-option  [value]="topCandidat.id" (click)="anis()" fxFlex="90%" class="liste-small" matTooltip="{{topCandidat.identiteCandidat}}">
+                    <mat-icon matSuffix style="color: #f7c341;">star</mat-icon> {{topCandidat.identiteCandidat}}
+                </mat-option>
+    
+                <a mat-button [matMenuTriggerFor]="menuMoreCandidatsFavoris" matTooltip="Plus d'options" style="color: white"><mat-icon>more_vert</mat-icon></a>
+                <mat-menu #menuMoreCandidatsFavoris="matMenu">
+                    <button mat-menu-item type="button" (click)="openDialogDeleteCandidatFavori(topCandidat.id)" matTooltip="Supprimer des favoris" matTooltipPosition="right">Supprimer des favoris</button>
+                </mat-menu>
+            </div>
         </div>
-    </div>
 </ng-template>
-  
+      

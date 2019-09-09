@@ -32,8 +32,7 @@ export class CandidatsFavorisService {
   }
 
   // Supprimer le lien entre un candidat et un utilisateur
-  deleteCandidatFromFavorisToUtilisateurService(idUtilisateur, idCandidat) {
-      return this.http.delete<any>(this.serviceUrl + '/deleteCandidatFromFavorisToUtilisateur/' + idUtilisateur +
-      '/' + idCandidat, this.httpOptions);
+  deleteCandidatFromFavorisToUtilisateurService(idCandidatFavori) {
+      return this.http.delete<any>(this.serviceUrl + '/deleteCandidatFromFavorisToUtilisateur/' + idCandidatFavori, this.httpOptions);
   }
 }

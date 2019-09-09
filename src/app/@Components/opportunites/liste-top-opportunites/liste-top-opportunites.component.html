@@ -1,14 +1,17 @@
-<div *ngIf="listeOpportunitesFavoris.length===0;else SINON_TOP_OPPORTUNITES" style="background-color: white;color: #000;">
+<div *ngIf="listeOpportunitesFavoris.length===0;else SINON_TOP_OPPORTUNITES" class="title-small">
     - Liste encore vide							
 </div>
 <ng-template #SINON_TOP_OPPORTUNITES>
-    <div style="background-color: white;color: #000;padding-top: 10px;font-size: 12px">
-        <div style="max-height:200px;overflow-y: auto;">   
+    <div style="max-height:200px;overflow-y: auto;background-color: #222;">
+        <div *ngFor="let topOpportunite of listeOpportunitesFavoris" style="display: flex;justify-content: space-between center;">
+            <mat-option  [value]="topOpportunite.id" (click)="anis()" fxFlex="90%" class="liste-small" matTooltip="{{topOpportunite.titreOpportunite}}">
+                <mat-icon matSuffix style="color: #f7c341;">star</mat-icon> {{topOpportunite.titreOpportunite}}
+            </mat-option>
 
-            <a *ngFor="let topOpportunite of listeOpportunitesFavoris">
-                {{topOpportunite.titreOpportunite}}<br>
-            </a>
-
+            <a mat-button [matMenuTriggerFor]="menuMoreOpportunitesFavoris" matTooltip="Plus d'options" style="color: white"><mat-icon>more_vert</mat-icon></a>
+            <mat-menu #menuMoreOpportunitesFavoris="matMenu">
+                <button mat-menu-item type="button" (click)="openDialogDeleteOpportuniteFavorie(topOpportunite.id)" matTooltip="Supprimer des favoris" matTooltipPosition="right">Supprimer des favoris</button>
+            </mat-menu>
         </div>
     </div>
 </ng-template>

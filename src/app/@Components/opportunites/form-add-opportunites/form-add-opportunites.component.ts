@@ -129,9 +129,6 @@ export class FormAddOpportunitesComponent implements OnInit {
       this.responsableOpportunite.id = this.idUtilisateur;
     }
 
-    console.log('role : ' + this.role);
-    console.log('idUtilisateur : ' + this.idUtilisateur);
-
     this.formOpportunite.patchValue({
       responsableOpportunite: this.responsableOpportunite,
       listeTechnologies: this.listeTechnologies,

@@ -32,8 +32,7 @@ export class OpportunitesFavorisService {
   }
 
   // Supprimer le lien entre une opportunité et un utilisateur
-  deleteOpportuniteFromFavorisToUtilisateurService(idUtilisateur, idOpportunite) {
-      return this.http.delete<any>(this.serviceUrl + '/deleteOpportuniteFromFavorisToUtilisateur/' + idUtilisateur +
-      '/' + idOpportunite, this.httpOptions);
+  deleteOpportuniteFromFavorisToUtilisateurService(idOpportuniteFavorie) {
+      return this.http.delete<any>(this.serviceUrl + '/deleteOpportuniteFromFavorisToUtilisateur/' + idOpportuniteFavorie, this.httpOptions);
   }
 }

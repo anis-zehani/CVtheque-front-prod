@@ -33,11 +33,7 @@ export class ShowOpportuniteComponent implements OnInit {
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
   }
 
-  addOpportuniteToFavorite(idUtilisateur, idOpportunite, titreOpportunite) {
-
-    console.log(idUtilisateur);
-    console.log(idOpportunite);
-    console.log(titreOpportunite);
+  addOpportuniteToFavoris(idUtilisateur, idOpportunite, titreOpportunite) {
 
     const opportuniteFavorite = new OpportunitesFavoris();
     opportuniteFavorite.idUtilisateur = idUtilisateur;
@@ -47,7 +43,11 @@ export class ShowOpportuniteComponent implements OnInit {
     this.opportunitesFavorisService.addOpportuniteToFavorisToUtilisateurService(opportuniteFavorite)
     .subscribe
       (
-      res => { }
+      res => {
+        if (res != null) {
+          this.utilService.openSnackBar('Opportunité ajoutée Aux Favoris', 'OK');
+          }
+       }
       );
   }
 
