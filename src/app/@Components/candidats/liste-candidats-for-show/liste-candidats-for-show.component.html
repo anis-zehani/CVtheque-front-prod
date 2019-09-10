@@ -44,7 +44,13 @@
                   candidat.listeTechnologies,
                   candidat.listeOpportunites,
                   candidat.listeCertifications
-                  )">-  {{candidat.identite}}
+                  )">
+                  <div *ngIf="role === 'Administrateur'; else SINON">
+                      -  {{candidat.identite}}
+                  </div>
+                  <ng-template #SINON>
+                      -  {{candidat.identite | hideFullPhrase}}
+                  </ng-template>
                   </a>
 
                   <a mat-button [matMenuTriggerFor]="menuCandidats" *ngIf="role === 'Administrateur'" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
