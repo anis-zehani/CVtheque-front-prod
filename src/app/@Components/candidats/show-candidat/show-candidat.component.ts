@@ -17,6 +17,7 @@ export class ShowCandidatComponent implements OnInit {
   // URL du serveur de stockage
   storageUrl = environment.storageUrl;
   idUtilisateur: number;
+  role: string;
 
   candidatExistsDansFavoris: boolean;
 
@@ -27,6 +28,7 @@ export class ShowCandidatComponent implements OnInit {
   ngOnInit() {
     // je récupère idUtilisateur pour faire l'appel au WS avec le bon id Utilisateur
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
+    this.role = this.utilService.getRoleUtilisateurFromToken();
 
     // Vérifie si un Candidat existe dèja dans la liste des favoris d'un Utilisateur
     this.candidatsFavorisService.checkIfCandidatExistsDansFavorisUtilisateur(this.idUtilisateur, this.data.id)

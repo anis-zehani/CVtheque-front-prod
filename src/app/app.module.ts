@@ -140,6 +140,7 @@ import { HttpInterceptorService } from './@Services/http-interceptor.service';
 import { ListeTopCandidatsComponent } from './@Components/candidats/liste-top-candidats/liste-top-candidats.component';
 import { ListeTopOpportunitesComponent } from './@Components/opportunites/liste-top-opportunites/liste-top-opportunites.component';
 import { HideFullPhrasePipe } from './@Util/Pipes/hide-full-phrase.pipe';
+import { HideFullWordPipe } from './@Util/Pipes/hide-full-word.pipe';
 
 @NgModule({
   declarations: [
@@ -232,7 +233,8 @@ import { HideFullPhrasePipe } from './@Util/Pipes/hide-full-phrase.pipe';
     LogoutComponent,
     ListeTopCandidatsComponent,
     ListeTopOpportunitesComponent,
-    HideFullPhrasePipe
+    HideFullPhrasePipe,
+    HideFullWordPipe
   ],
   entryComponents: [
     FormEditTechnologiesComponent,

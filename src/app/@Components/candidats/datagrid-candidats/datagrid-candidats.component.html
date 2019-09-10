@@ -146,15 +146,16 @@
           <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>
           <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
           <b class="label-datagrid">Email : </b>{{element.email}}<br>
+          <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
+          <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel}}<br>
       </div>
       <ng-template #SINON1>
           <b class="label-datagrid">Identité : </b>{{element.identite | hideFullPhrase}}<br>
-          <b class="label-datagrid">Tél : </b>✴ ✴ ✴ ✴ ✴<br>
-          <b class="label-datagrid">Email : </b>✴ ✴ ✴ ✴ ✴<br>
+          <b class="label-datagrid">Tél : </b>{{element.telephone  | hideFullWord}}<br>
+          <b class="label-datagrid">Email : </b>{{element.email  | hideFullWord}}<br>
+          <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
+          <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel | hideFullWord}}<br>
       </ng-template>
-
-      <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
-      <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel}}<br>
       
       <div style="display: flex;justify-content: flex-start;">
           <div *ngIf="element.curriculum.urlCvOdix">
@@ -173,13 +174,16 @@
   <ng-container matColumnDef="details">
     <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
     <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="45%">
-      <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
-      <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
+      
       <div *ngIf="element.entreprise && role === 'Administrateur'; else SINON2">
-          <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
+            <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
+            <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
+            <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
       </div>
       <ng-template #SINON2>
-          <b class="label-datagrid">Entreprise : </b>N.D<br>
+            <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale | hideFullWord}}<br>
+            <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
+            <b class="label-datagrid">Entreprise : </b>N.D<br>
       </ng-template>
 
       <div *ngIf="element.disponibilite != 'Non_Mentionee'; else SINON3">
