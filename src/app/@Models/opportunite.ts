@@ -14,7 +14,7 @@ export class Opportunite {
     tjmOpportunite: string;
     urlPhotoOpportunite: string;
     etatOpportunite: Etat; // Enum : True/False pour Active/Inactive
-    visibiliteOpportunite: Visibilite; // Enum : Public/Private
+    visibiliteOpportunite: string; // Enum : Public/Private
     responsableOpportunite: Partenaire;
     listeTechnologies: Technologie[];
     listeCertifications: Certification[];

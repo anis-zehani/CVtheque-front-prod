@@ -337,6 +337,7 @@ export class DatagridOpportunitesComponent implements OnInit {
 
   // Ouvre le pop-up pour afficher une opportunité
   openDialogShowOpportunite(id, titreOpportunite, descriptionOpportunite, dateAjout, dateDemarrageSouhaitee, tjmOpportunite, etatOpportunite, visibiliteOpportunite, responsableOpportunite, listeTechnologies, listeCertifications): void {
+      console.log(visibiliteOpportunite);
       // Objet pour configurer la modale
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;

@@ -44,7 +44,7 @@
                 </div>
             </td>
             <td>
-                <div *ngIf="data.visibiliteOpportunite === 'Public'; else notShow">
+                <div *ngIf="data.visibiliteOpportunite === 'Public' ; else notShow">
                     <mat-radio-group appearance="outline" [disabled]="true">
                         <mat-radio-button value="Public" [checked]="true">Publique  </mat-radio-button>
                         <mat-radio-button value="Private">  Privée</mat-radio-button>

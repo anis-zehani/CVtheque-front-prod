@@ -20,10 +20,12 @@ export class ListeTopCandidatsComponent implements OnInit {
   // Remplissage de la liste par défaut
   listeCandidatsFavoris: CandidatsFavoris[] = [];
   idUtilisateur: number;
+  role: string;
 
   ngOnInit() {
     // je récupère idUtilisateur pour faire l'appel au WS avec le bon id Utilisateur
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
+    this.role = this.utilService.getRoleUtilisateurFromToken();
     this.getAllCandidatsFavorisController(this.idUtilisateur);
   }
 
