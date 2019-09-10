@@ -4,10 +4,18 @@
 <ng-template #SINON_TOP_CANDIDATS>
         <div style="max-height:200px;overflow-y: auto;background-color: #222;">
             <div *ngFor="let topCandidat of listeCandidatsFavoris" style="display: flex;justify-content: space-between center;">
-                <mat-option  [value]="topCandidat.id" fxFlex="90%" class="liste-small" matTooltip="{{topCandidat.identiteCandidat}}">
-                    <mat-icon matSuffix style="color: #f7c341;">star</mat-icon> {{topCandidat.identiteCandidat}}
-                </mat-option>
-    
+                   
+                <div *ngIf="role === 'Administrateur'; else SINON">
+                    <mat-option  [value]="topCandidat.id" fxFlex="90%" class="liste-small" matTooltip="{{topCandidat.identiteCandidat}}">
+                        <mat-icon matSuffix style="color: #f7c341;">star</mat-icon> {{topCandidat.identiteCandidat}}
+                    </mat-option>
+                </div>
+                <ng-template #SINON>
+                    <mat-option  [value]="topCandidat.id" fxFlex="90%" class="liste-small" matTooltip="{{topCandidat.identiteCandidat | hideFullPhrase}}">
+                        <mat-icon matSuffix style="color: #f7c341;">star</mat-icon> {{topCandidat.identiteCandidat | hideFullPhrase}}
+                    </mat-option>
+                </ng-template>
+                    
                 <a mat-button [matMenuTriggerFor]="menuMoreCandidatsFavoris" matTooltip="Plus d'options" style="color: white"><mat-icon>more_vert</mat-icon></a>
                 <mat-menu #menuMoreCandidatsFavoris="matMenu">
                     <button mat-menu-item type="button" (click)="openDialogDeleteCandidatFavori(topCandidat.id)" matTooltip="Supprimer des favoris" matTooltipPosition="right">Supprimer des favoris</button>

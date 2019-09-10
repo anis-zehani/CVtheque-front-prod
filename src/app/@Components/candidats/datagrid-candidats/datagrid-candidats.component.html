@@ -141,19 +141,27 @@
   <ng-container matColumnDef="candidat">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Coordonnées</th>
     <td mat-cell *matCellDef="let element" width="30%">
-      <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>
-      <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
-      <b class="label-datagrid">Email : </b>{{element.email}}<br>
+      <b class="label-datagrid">ID : </b>{{element.id}}<br>
+      <div *ngIf="role === 'Administrateur'; else SINON1">
+          <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>
+          <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
+          <b class="label-datagrid">Email : </b>{{element.email}}<br>
+      </div>
+      <ng-template #SINON1>
+          <b class="label-datagrid">Identité : </b>{{element.identite | hideFullPhrase}}<br>
+          <b class="label-datagrid">Tél : </b>✴ ✴ ✴ ✴ ✴<br>
+          <b class="label-datagrid">Email : </b>✴ ✴ ✴ ✴ ✴<br>
+      </ng-template>
+
       <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
       <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel}}<br>
-      <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
       
       <div style="display: flex;justify-content: flex-start;">
           <div *ngIf="element.curriculum.urlCvOdix">
             <b class="label-datagrid">CV Odix : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOdix}}" target="_blank" style="text-decoration: none">Afficher  </a>
           </div>
 
-          <div *ngIf="element.curriculum.urlCvOriginal">
+          <div *ngIf="element.curriculum.urlCvOriginal && role === 'Administrateur'">
             <b class="label-datagrid">  - CV Original : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOriginal}}" target="_blank"  style="text-decoration: none">Afficher</a>
           </div>
       </div>
@@ -165,25 +173,26 @@
   <ng-container matColumnDef="details">
     <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
     <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="45%">
+      <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
       <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
-      <div *ngIf="element.entreprise; else SINON">
+      <div *ngIf="element.entreprise && role === 'Administrateur'; else SINON2">
           <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
       </div>
-      <ng-template #SINON>
+      <ng-template #SINON2>
           <b class="label-datagrid">Entreprise : </b>N.D<br>
       </ng-template>
 
-      <div *ngIf="element.disponibilite != 'Non_Mentionee'; else SINON1">
+      <div *ngIf="element.disponibilite != 'Non_Mentionee'; else SINON3">
           <b class="label-datagrid">Disponibilité : </b>{{element.disponibilite}}<br>
       </div>
-      <ng-template #SINON1>
+      <ng-template #SINON3>
           <b class="label-datagrid">Disponibilité : </b>N.D<br>
       </ng-template>
 
-      <div *ngIf="element.situationFamiliale != 'Non_Mentionee'; else SINON2">
+      <div *ngIf="element.situationFamiliale != 'Non_Mentionee'; else SINON4">
           <b class="label-datagrid">Situation familiale : </b>{{element.situationFamiliale}}<br>
       </div>
-      <ng-template #SINON2>
+      <ng-template #SINON4>
           <b class="label-datagrid">Situation familiale : </b>N.D<br>
       </ng-template>
       
