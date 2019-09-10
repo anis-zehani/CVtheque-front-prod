@@ -1,11 +1,11 @@
-<div class="mat-liste">
+<div class="mat-liste" style="font-weight: bold">
   Partenaires liés ({{listePartenaires.length}}) :
 </div>
 <div *ngIf="listePartenaires.length===0;else SINON_PATENAIRE" class="mat-liste-contenu">
           - Liste encore vide							
 </div>
 <ng-template #SINON_PATENAIRE>
-  <div style="max-height:250px;overflow-y: auto;">  
+  <div style="max-height:450px;overflow-y: auto;">  
       <mat-list role="list" fxLayout="column" fxLayoutAlign="space-between stretch" dense>
           <mat-list-item role="listitem" *ngFor="let partenaire of listePartenaires">
               

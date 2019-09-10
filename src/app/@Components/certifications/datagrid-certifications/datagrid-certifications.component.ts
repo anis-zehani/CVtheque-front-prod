@@ -134,8 +134,8 @@ export class DatagridCertificationsComponent implements OnInit {
 
   // Objet pour déclencher l'ouverture de la modale
   const dialogRef = this.dialog.open(ShowCertificationComponent, {
-    width: '700px',
-    height: '500px',
+    width: '1000px',
+    height: '550px',
     data: {id, nomCertification, descriptionDetaillee}
   });
   }

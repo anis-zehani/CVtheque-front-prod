@@ -131,8 +131,8 @@ export class DatagridTechnologiesComponent implements OnInit {
 
   // Objet pour déclencher l'ouverture de la modale
   const dialogRef = this.dialog.open(ShowTechnologieComponent, {
-      width: '700px',
-      height: '500px',
+      width: '1000px',
+      height: '550px',
       data: {id, nomTechnologie, descriptionDetaillee}
   });
   }

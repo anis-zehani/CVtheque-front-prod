@@ -10,7 +10,7 @@
           <a routerLink="accueil"><img src="assets/img/logo.png" class="logo"></a>
       </div>
       
-      <div fxFlex="50%" fxShow="true" fxHide.lt-md="true">
+      <div fxFlex="55%" fxShow="true" fxHide.lt-md="true">
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <mat-toolbar style="height: 45px"> 
               <a routerLink="accueil" routerLinkActive="active" mat-button>Accueil</a>
@@ -36,19 +36,19 @@
           </a>
       </div>
       
-      <div fxFlex="7%">
+      <div fxFlex="5%">
           <a class="pointer" [matMenuTriggerFor]="menu5" matTooltip="Mon profil {{role | titlecase}}">
             <mat-icon style="color:#f7c341">account_circle</mat-icon>
             <mat-icon style="color:white">arrow_drop_down</mat-icon>
           </a>
           <mat-menu #menu5="matMenu">
-              <button mat-menu-item>{{role | titlecase}}</button>
+              <button mat-menu-item>Compte {{role | titlecase}}</button>
               <mat-divider></mat-divider>
               <button mat-menu-item routerLink="compte">Mes Paramétres</button>
               <app-logout></app-logout>
           </mat-menu>
       </div>
-      <div fxFlex="13%" class="liste-small">
+      <div fxFlex="10%" class="liste-small">
           <b>{{identite | titlecase}}</b>
       </div>
       <!-- End of hidden on both SM and XS screen sizes -->

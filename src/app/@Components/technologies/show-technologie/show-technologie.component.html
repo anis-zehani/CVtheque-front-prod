@@ -6,7 +6,7 @@
       fxLayoutGap.xs="0">
      
 <!-- Container : Partie Gauche -->
-<div fxFlex="50%"> 
+<div fxFlex="40%"> 
 
     <mat-form-field appearance="fill">
         <mat-label>Libellé de la technologie</mat-label>
@@ -25,17 +25,14 @@
     </div>
 
     <!-- Container : Partie Droite -->
-    <div fxFlex="50%">
-        <table>
-                <tr>
-                    <!-- Liste Opportunités liées à cette technologie -->
-                    <app-liste-opportunites-for-show [idTechnologie]=data.id></app-liste-opportunites-for-show>
-                  </tr>
-
-                <tr>
-                    <!-- Liste Candidats liés à cette technologie --> 
-                    <app-liste-candidats-for-show [idTechnologie]=data.id></app-liste-candidats-for-show>
-                </tr>
-        </table>
+    <div fxFlex="30%">
+            <!-- Liste Opportunités liées à cette technologie -->
+            <app-liste-opportunites-for-show [idTechnologie]=data.id></app-liste-opportunites-for-show>
     </div>
+
+    <div fxFlex="30%">
+            <!-- Liste Candidats liés à cette technologie --> 
+            <app-liste-candidats-for-show [idTechnologie]=data.id></app-liste-candidats-for-show>
+    </div>
+    
 </div>

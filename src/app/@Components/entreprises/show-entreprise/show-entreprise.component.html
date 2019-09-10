@@ -6,7 +6,7 @@
       fxLayoutGap.xs="0">
      
 <!-- Container : Partie Gauche -->
-<div fxFlex="50%"> 
+<div fxFlex="40%"> 
 
     <mat-form-field appearance="fill">
         <mat-label>Nom de l'entreprise</mat-label>
@@ -25,15 +25,13 @@
     </div>
 
     <!-- Container : Partie Droite -->
-    <div fxFlex="50%">
-        <table>
-                <tr><!-- Liste Partenaires liés à cette entreprise -->
-                    <app-liste-partenaires-for-show [idEntreprise]=data.idEntreprise></app-liste-partenaires-for-show>
-                </tr>
+    <div fxFlex="30%">
+            <!-- Liste Partenaires liés à cette entreprise -->
+            <app-liste-partenaires-for-show [idEntreprise]=data.idEntreprise></app-liste-partenaires-for-show>
+    </div>
 
-                <tr><!-- Liste Candidats liés à cette entreprise-->
-                    <app-liste-candidats-for-show [idEntreprise]=data.idEntreprise></app-liste-candidats-for-show>
-                </tr>
-        </table>
+    <div fxFlex="30%">
+            <!-- Liste Candidats liés à cette entreprise-->
+            <app-liste-candidats-for-show [idEntreprise]=data.idEntreprise></app-liste-candidats-for-show>
     </div>
 </div>

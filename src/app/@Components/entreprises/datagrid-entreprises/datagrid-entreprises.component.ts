@@ -126,8 +126,8 @@ deleteEntrepriseController(idEntreprise) {
 
   // Objet pour déclencher l'ouverture de la modale
   const dialogRef = this.dialog.open(ShowEntrepriseComponent, {
-    width: '700px',
-    height: '500px',
+    width: '1000px',
+    height: '550px',
     data: {idEntreprise, nomEntreprise, descriptionDetaillee}
   });
   }
