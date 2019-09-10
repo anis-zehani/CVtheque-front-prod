@@ -2,7 +2,8 @@
 
     <h2 mat-dialog-title>Détails de l'opportunité</h2> 
         
-    <div><mat-icon matSuffix *ngIf="opportuniteExistsDansFavoris === false" 
+    <div class="liste-small" style="color: #222;font-weight: bold">
+        <mat-icon matSuffix *ngIf="opportuniteExistsDansFavoris === false" 
         (click)="addOpportuniteToFavoris(idUtilisateur, data.id, data.titreOpportunite)" 
         class="pointer" style="margin-right: 20px;font-size: 2.175rem;color: red"
         matTooltip="Ajouter aux Favoris">
@@ -17,8 +18,8 @@
       fxLayoutGap="10px"
       fxLayoutGap.xs="0">
      
-<!-- Container : Partie Gauche -->
-<div fxFlex="70%"> 
+    <!-- Container : Partie Gauche -->
+    <div fxFlex="70%"> 
     <table>
         <tr>
             <td>
