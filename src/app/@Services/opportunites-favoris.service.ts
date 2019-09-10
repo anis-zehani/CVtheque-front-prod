@@ -26,6 +26,12 @@ export class OpportunitesFavorisService {
     idUtilisateur, this.httpOptions);
   }
 
+  // Vérifie si une Opportunité existe dèja dans la liste des favoris d'un Utilisateur
+  checkIfOpportuniteExistsDansFavorisUtilisateurService(idUtilisateur, idOpportunite): Observable<any> {
+    return this.http.get<any>(this.serviceUrl + '/checkIfOpportuniteExistsDansFavorisUtilisateur/' +
+    idUtilisateur + '/' + idOpportunite, this.httpOptions);
+  }
+
   // Ajoute une opportunité favorie pour un utilisateur
   addOpportuniteToFavorisToUtilisateurService(opportuniteFavorite): Observable<any> {
     return this.http.post<any>(this.serviceUrl + '/addOpportuniteToFavorisToUtilisateur', JSON.stringify(opportuniteFavorite), this.httpOptions);

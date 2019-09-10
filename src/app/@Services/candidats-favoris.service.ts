@@ -26,6 +26,12 @@ export class CandidatsFavorisService {
     idUtilisateur, this.httpOptions);
   }
 
+  // Vérifie si un Candidat existe dèja dans la liste des favoris d'un Utilisateur
+  checkIfCandidatExistsDansFavorisUtilisateur(idUtilisateur, idCandidat): Observable<any> {
+    return this.http.get<any>(this.serviceUrl + '/checkIfCandidatExistsDansFavorisUtilisateur/' +
+    idUtilisateur + '/' + idCandidat, this.httpOptions);
+  }
+
   // Ajoute un candidat favoris pour un utilisateur
   addCandidatToFavorisToUtilisateurService(candidatFavori): Observable<any> {
     return this.http.post<any>(this.serviceUrl + '/addCandidatToFavorisToUtilisateur' , JSON.stringify(candidatFavori), this.httpOptions);
