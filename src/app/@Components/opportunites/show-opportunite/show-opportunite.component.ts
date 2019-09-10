@@ -22,6 +22,8 @@ export class ShowOpportuniteComponent implements OnInit {
   role: string;
   idUtilisateur: number;
 
+  opportuniteExistsDansFavoris: boolean;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: Opportunite,
               public dialog: MatDialog,
               private utilService: UtilService,
@@ -31,6 +33,17 @@ export class ShowOpportuniteComponent implements OnInit {
     // je récupère le rôle pour la restriction d'accès dans le menu
     this.role = this.utilService.getRoleUtilisateurFromToken();
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
+
+    // Vérifie si une Opportunité existe dèja dans la liste des favoris d'un Utilisateur
+    this.opportunitesFavorisService.checkIfOpportuniteExistsDansFavorisUtilisateurService(this.idUtilisateur, this.data.id)
+    .subscribe
+      (
+      res => {
+        if (res != null) {
+          this.opportuniteExistsDansFavoris = res;
+          }
+       }
+      );
   }
 
   addOpportuniteToFavoris(idUtilisateur, idOpportunite, titreOpportunite) {

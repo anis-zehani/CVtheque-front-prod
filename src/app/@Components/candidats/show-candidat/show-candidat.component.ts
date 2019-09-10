@@ -18,6 +18,8 @@ export class ShowCandidatComponent implements OnInit {
   storageUrl = environment.storageUrl;
   idUtilisateur: number;
 
+  candidatExistsDansFavoris: boolean;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: Candidat,
               private utilService: UtilService,
               private candidatsFavorisService: CandidatsFavorisService) { }
@@ -25,6 +27,17 @@ export class ShowCandidatComponent implements OnInit {
   ngOnInit() {
     // je récupère idUtilisateur pour faire l'appel au WS avec le bon id Utilisateur
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
+
+    // Vérifie si un Candidat existe dèja dans la liste des favoris d'un Utilisateur
+    this.candidatsFavorisService.checkIfCandidatExistsDansFavorisUtilisateur(this.idUtilisateur, this.data.id)
+    .subscribe
+      (
+      res => {
+        if (res != null) {
+          this.candidatExistsDansFavoris = res;
+          }
+      }
+      );
   }
 
   addCandidatToFavorite(idUtilisateur, idCandidat, identiteCandidat) {
