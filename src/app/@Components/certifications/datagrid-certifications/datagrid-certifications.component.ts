@@ -36,8 +36,6 @@ export class DatagridCertificationsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllCertificationsController();
-    this.listeCertifications.paginator = this.paginator;
-    this.listeCertifications.sort = this.sort;
     // je récupère le rôle pour la restriction d'accès dans le menu
     this.role = this.utilService.getRoleUtilisateurFromToken();
 
@@ -56,6 +54,8 @@ export class DatagridCertificationsComponent implements OnInit {
       (
       res => {
         this.listeCertifications.data = res;
+        this.listeCertifications.paginator = this.paginator;
+        this.listeCertifications.sort = this.sort;
       }
       );
   }

@@ -100,9 +100,6 @@ export class DatagridCandidatsComponent implements OnInit {
       this.displayedColumns = ['urlPhoto', 'candidat', 'details'];
     }
 
-    this.listeCandidats.paginator = this.paginator;
-    this.listeCandidats.sort = this.sort;
-
     this.sharedService.valueOfListeTechnologie.subscribe(valueOfListeTechnologie => this.valueOfListeTechnologie = valueOfListeTechnologie);
     this.sharedService.valueOfListeTechnologieIsModified.subscribe(valueOfListeTechnologieIsModified => this.valueOfListeTechnologieIsModified = valueOfListeTechnologieIsModified);
 
@@ -119,7 +116,11 @@ export class DatagridCandidatsComponent implements OnInit {
     this.candidatsService.getAllCandidatsService(etat)
     .subscribe
       (
-      res => {this.listeCandidats.data = res; }
+      res => {
+        this.listeCandidats.data = res;
+        this.listeCandidats.paginator = this.paginator;
+        this.listeCandidats.sort = this.sort;
+      }
       );
   }
 
@@ -128,7 +129,11 @@ export class DatagridCandidatsComponent implements OnInit {
     this.candidatsService.getAllCandidatsByListTechnologiesService(listeTechnologies)
     .subscribe
       (
-      res => {this.listeCandidats.data = res; }
+      res => {
+        this.listeCandidats.data = res;
+        this.listeCandidats.paginator = this.paginator;
+        this.listeCandidats.sort = this.sort;
+      }
       );
   }
 

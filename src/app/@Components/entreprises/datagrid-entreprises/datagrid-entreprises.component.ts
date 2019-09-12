@@ -36,8 +36,6 @@ export class DatagridEntreprisesComponent implements OnInit {
 
   ngOnInit() {
     this.getAllEntreprisesController();
-    this.listeEntreprises.paginator = this.paginator;
-    this.listeEntreprises.sort = this.sort;
     // je récupère le rôle pour la restriction d'accès dans le menu
     this.role = this.utilService.getRoleUtilisateurFromToken();
 
@@ -54,7 +52,11 @@ export class DatagridEntreprisesComponent implements OnInit {
     this.entreprisesService.getAllEntreprisesService()
     .subscribe
       (
-      res => { this.listeEntreprises.data = res; }
+      res => {
+        this.listeEntreprises.data = res;
+        this.listeEntreprises.paginator = this.paginator;
+        this.listeEntreprises.sort = this.sort;
+      }
       );
   }
 
@@ -63,25 +65,28 @@ export class DatagridEntreprisesComponent implements OnInit {
       this.entreprisesService.editEntrepriseService(this.entreprise)
       .subscribe
         (
-        res => { if (res != null) {this.getAllEntreprisesController(); this.utilService.openSnackBar('Entreprise modifiée', 'OK'); }}
+        res => {
+          if (res != null) {
+          this.getAllEntreprisesController();
+          this.utilService.openSnackBar('Entreprise modifiée', 'OK'); }}
         );
   }
 
-// Supprimer une entreprise
-deleteEntrepriseController(idEntreprise) {
-  this.entreprisesService.deleteEntrepriseService(idEntreprise)
-  .subscribe
-    (
-    result => {
-      if (result === true) {
-        this.getAllEntreprisesController();
-        this.utilService.openSnackBar('Entreprise supprimée', 'OK');
-      } else {
-        this.utilService.openSnackBarErreur('Cette entreprise est affectée à des candidats (et/ou) des partenaires. Il faut d\'abord supprimer la liaison.', 'OK');
+  // Supprimer une entreprise
+  deleteEntrepriseController(idEntreprise) {
+    this.entreprisesService.deleteEntrepriseService(idEntreprise)
+    .subscribe
+      (
+      result => {
+        if (result === true) {
+          this.getAllEntreprisesController();
+          this.utilService.openSnackBar('Entreprise supprimée', 'OK');
+        } else {
+          this.utilService.openSnackBarErreur('Cette entreprise est affectée à des candidats (et/ou) des partenaires. Il faut d\'abord supprimer la liaison.', 'OK');
+        }
       }
-    }
-    );
-}
+      );
+  }
 
     // Recherche filtrée sur la table
   filtrerTable(filterValue: string) {

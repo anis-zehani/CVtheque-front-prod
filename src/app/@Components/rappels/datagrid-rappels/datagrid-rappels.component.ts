@@ -55,8 +55,6 @@ export class DatagridRappelsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllRappelsController();
-    this.listeRappels.paginator = this.paginator;
-    this.listeRappels.sort = this.sort;
     this.sharedService.valueOfRemindMe.subscribe(valueOfRemindMe => this.valueOfRemindMe = valueOfRemindMe);
   }
 
@@ -72,6 +70,8 @@ export class DatagridRappelsComponent implements OnInit {
       (
       res => {
         this.listeRappels.data = res;
+        this.listeRappels.paginator = this.paginator;
+        this.listeRappels.sort = this.sort;
         this.title = 'Rechercher dans : Inbox';
       }
       );
@@ -84,6 +84,8 @@ export class DatagridRappelsComponent implements OnInit {
       (
       res => {
         this.listeRappels.data = res;
+        this.listeRappels.paginator = this.paginator;
+        this.listeRappels.sort = this.sort;
         this.title = 'Rechercher dans : Aujourd\'hui';
       }
       );
@@ -96,6 +98,8 @@ export class DatagridRappelsComponent implements OnInit {
       (
       res => {
         this.listeRappels.data = res;
+        this.listeRappels.paginator = this.paginator;
+        this.listeRappels.sort = this.sort;
         this.title = 'Rechercher dans : Prochains 7 jours';
       }
       );
@@ -108,6 +112,8 @@ export class DatagridRappelsComponent implements OnInit {
       (
       res => {
         this.listeRappels.data = res;
+        this.listeRappels.paginator = this.paginator;
+        this.listeRappels.sort = this.sort;
         this.title = 'Rechercher dans : ' + nomProjet;
       }
       );
@@ -120,6 +126,8 @@ export class DatagridRappelsComponent implements OnInit {
       (
       res => {
         this.listeRappels.data = res;
+        this.listeRappels.paginator = this.paginator;
+        this.listeRappels.sort = this.sort;
         this.title = 'Rechercher dans Priorité : ' + valeurPriorite;
 
       }
@@ -179,7 +187,7 @@ export class DatagridRappelsComponent implements OnInit {
         width: '700px',
         height: '450px',
         data: {
-          id: id, 
+          id: id,
           detailsRappel: detailsRappel,
           dateEcheance : this.datePipe.transform(dateEcheance, 'yyyy-MM-dd'),
           remindMe : remindMe,

@@ -34,8 +34,6 @@ export class DatagridEcolesComponent implements OnInit {
 
   ngOnInit() {
     this.getAllEcolesController();
-    this.listeEcoles.paginator = this.paginator;
-    this.listeEcoles.sort = this.sort;
   }
 
   // Afficher toutes les ecoles : remplissage de la table
@@ -43,7 +41,11 @@ export class DatagridEcolesComponent implements OnInit {
     this.ecolesService.getAllEcolesService()
     .subscribe
       (
-      res => { this.listeEcoles.data = res; }
+      res => {
+        this.listeEcoles.data = res;
+        this.listeEcoles.paginator = this.paginator;
+        this.listeEcoles.sort = this.sort;
+       }
       );
   }
 
@@ -52,7 +54,9 @@ export class DatagridEcolesComponent implements OnInit {
       this.ecolesService.editEcoleService(this.ecole)
       .subscribe
         (
-        res => { if (res != null) {this.getAllEcolesController(); this.utilService.openSnackBar('École modifiée', 'OK'); }}
+        res => { if (res != null) {
+          this.getAllEcolesController();
+          this.utilService.openSnackBar('École modifiée', 'OK'); }}
         );
   }
 
@@ -61,7 +65,9 @@ export class DatagridEcolesComponent implements OnInit {
       this.ecolesService.deleteEcoleService(idEcole)
       .subscribe
         (
-        res => {this.getAllEcolesController(); this.utilService.openSnackBar('École supprimée', 'OK'); }
+        res => {
+          this.getAllEcolesController();
+          this.utilService.openSnackBar('École supprimée', 'OK'); }
         );
   }
 

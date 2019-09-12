@@ -77,7 +77,6 @@ export class DatagridOpportunitesComponent implements OnInit {
     // je récupère le rôle pour la restriction d'accès dans le menu
     this.role = this.utilService.getRoleUtilisateurFromToken();
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
-
     this.getAllOpportunitesController('True');
 
 
@@ -89,9 +88,6 @@ export class DatagridOpportunitesComponent implements OnInit {
     }*/
 
     this.displayedColumns = ['responsableOpportunite', 'details', 'dateAjout', 'dateDemarrageSouhaitee', 'visibiliteOpportunite', 'etat', 'more'];
-
-    this.listeOpportunites.paginator = this.paginator;
-    this.listeOpportunites.sort = this.sort;
 
     this.sharedService.valueOfListeTechnologie.subscribe(valueOfListeTechnologieOpportunite => this.valueOfListeTechnologie = valueOfListeTechnologieOpportunite);
     this.sharedService.valueOfListeTechnologieIsModified.subscribe(valueOfListeTechnologieOpportuniteIsModified => this.valueOfListeTechnologieIsModified = valueOfListeTechnologieOpportuniteIsModified);
@@ -109,13 +105,21 @@ export class DatagridOpportunitesComponent implements OnInit {
       this.opportunitesService.getAllOpportunitesService(etat)
       .subscribe
         (
-        res => {this.listeOpportunites.data = res; }
+        res => {
+          this.listeOpportunites.data = res;
+          this.listeOpportunites.paginator = this.paginator;
+          this.listeOpportunites.sort = this.sort;
+        }
         );
     } else if (this.role === 'Partenaire') {
       this.opportunitesService.getAllOpportunitesPublicAndPrivateByPartenaire(etat, this.idUtilisateur)
       .subscribe
         (
-        res => {this.listeOpportunites.data = res; }
+        res => {
+          this.listeOpportunites.data = res;
+          this.listeOpportunites.paginator = this.paginator;
+          this.listeOpportunites.sort = this.sort;
+        }
         );
     }
   }
@@ -125,7 +129,11 @@ export class DatagridOpportunitesComponent implements OnInit {
     this.opportunitesService.getAllOpportunitesByListTechnologiesService(listeTechnologies)
     .subscribe
       (
-      res => {this.listeOpportunites.data = res; }
+      res => {
+        this.listeOpportunites.data = res;
+        this.listeOpportunites.paginator = this.paginator;
+        this.listeOpportunites.sort = this.sort;
+      }
       );
   }
 

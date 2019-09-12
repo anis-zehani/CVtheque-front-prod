@@ -48,8 +48,6 @@ export class DatagridPartenairesComponent implements OnInit {
 
   ngOnInit() {
     this.getAllPartenairesController('True');
-    this.listePartenaires.paginator = this.paginator;
-    this.listePartenaires.sort = this.sort;
   }
 
   // Afficher tous les partenaires : remplissage de la table
@@ -57,7 +55,11 @@ export class DatagridPartenairesComponent implements OnInit {
     this.partenairesService.getAllPartenairesService(etat)
     .subscribe
       (
-      res => {this.listePartenaires.data = res; }
+      res => {
+        this.listePartenaires.data = res;
+        this.listePartenaires.paginator = this.paginator;
+        this.listePartenaires.sort = this.sort;
+      }
       );
   }
 

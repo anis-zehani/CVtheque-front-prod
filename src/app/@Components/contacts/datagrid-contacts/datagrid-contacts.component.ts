@@ -45,8 +45,6 @@ export class DatagridContactsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllContactsController();
-    this.listeContacts.paginator = this.paginator;
-    this.listeContacts.sort = this.sort;
   }
 
   // Afficher tous les contacts : remplissage de la table
@@ -54,7 +52,11 @@ export class DatagridContactsComponent implements OnInit {
     this.contactsService.getAllContactsService()
     .subscribe
       (
-      res => { this.listeContacts.data = res; }
+      res => {
+        this.listeContacts.data = res;
+        this.listeContacts.paginator = this.paginator;
+        this.listeContacts.sort = this.sort;
+      }
       );
   }
 

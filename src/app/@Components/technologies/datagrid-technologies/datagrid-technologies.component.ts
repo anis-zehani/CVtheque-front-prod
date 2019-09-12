@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource} from '@angular/material/table';
 import { MatPaginator} from '@angular/material/paginator';
+
 import { MatSort} from '@angular/material/sort';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
@@ -37,8 +38,7 @@ export class DatagridTechnologiesComponent implements OnInit {
 
   ngOnInit() {
     this.getAllTechnologiesController();
-    this.listeTechnologies.paginator = this.paginator;
-    this.listeTechnologies.sort = this.sort;
+
     // je récupère le rôle pour la restriction d'accès dans le menu
     this.role = this.utilService.getRoleUtilisateurFromToken();
 
@@ -48,6 +48,8 @@ export class DatagridTechnologiesComponent implements OnInit {
     } else {
       this.displayedColumns = ['nomTechnologie', 'statNombreCandidatsLies', 'statNombreOpportuniteLiees'];
     }
+
+
   }
 
   // Afficher toutes les technologies : remplissage de la table
@@ -55,7 +57,11 @@ export class DatagridTechnologiesComponent implements OnInit {
     this.technologiesService.getAllTechnologiesService()
     .subscribe
       (
-      res => { this.listeTechnologies.data = res; }
+      res => {
+        this.listeTechnologies.data = res;
+        this.listeTechnologies.paginator = this.paginator;
+        this.listeTechnologies.sort = this.sort;
+      }
       );
   }
 

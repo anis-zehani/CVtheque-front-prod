@@ -38,8 +38,6 @@ constructor(
 
 ngOnInit() {
     this.getAllCollaborateursController();
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
 }
 
 // Afficher tous les collaborateurs : remplissage de la table
@@ -47,6 +45,8 @@ getAllCollaborateursController(): void {
   this.collaborateursService.getAllCollaborateursService()
   .subscribe(res => {
     this.dataSource.data = res;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   });
 }
 
