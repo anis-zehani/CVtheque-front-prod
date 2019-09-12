@@ -44,9 +44,9 @@ export class DatagridTechnologiesComponent implements OnInit {
 
     // Displayed columns s'affiche selon le profil : Priviléges
     if (this.role === 'Administrateur') {
-      this.displayedColumns = ['nomTechnologie', 'more'];
+      this.displayedColumns = ['nomTechnologie', 'statNombreCandidatsLies', 'statNombreOpportuniteLiees', 'more'];
     } else {
-      this.displayedColumns = ['nomTechnologie'];
+      this.displayedColumns = ['nomTechnologie', 'statNombreCandidatsLies', 'statNombreOpportuniteLiees'];
     }
   }
 

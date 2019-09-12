@@ -174,15 +174,20 @@
   <ng-container matColumnDef="details">
     <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
     <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="45%">
-      
-      <div *ngIf="element.entreprise && role === 'Administrateur'; else SINON2">
+
+      <div *ngIf="role === 'Administrateur'; else SINON2">
             <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
-            <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
-            <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
       </div>
       <ng-template #SINON2>
             <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale | hideFullWord}}<br>
-            <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
+      </ng-template>
+
+      <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
+      
+      <div *ngIf="element.entreprise; else SINON_ENTREPRISE">
+            <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
+      </div>
+      <ng-template #SINON_ENTREPRISE>
             <b class="label-datagrid">Entreprise : </b>N.D<br>
       </ng-template>
 

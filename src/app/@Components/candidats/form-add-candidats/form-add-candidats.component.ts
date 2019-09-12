@@ -54,21 +54,17 @@ export class FormAddCandidatsComponent implements OnInit {
   // FileUpload : Photo
   selectedFilesPhoto: FileList;
   currentFileUploadPhoto: File;
-  progressFilesPhoto: { percentage: number } = { percentage: 0 };
 
   // FileUpload : CvOdix
   selectedFilesCvOdix: FileList;
   currentFileUploadCvOdix: File;
-  progressFilesCvOdix: { percentage: number } = { percentage: 0 };
 
   // FileUpload : CvOriginal
   selectedFilesCvOriginal: FileList;
   currentFileUploadCvOriginal: File;
-  progressFilesCvOriginal: { percentage: number } = { percentage: 0 };
 
   // Mon Reactive Form
   formCandidat = new FormGroup({
-
     // Informations basiques
     identite: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
@@ -110,7 +106,7 @@ export class FormAddCandidatsComponent implements OnInit {
     listeOpportunites: new FormControl('', Validators.nullValidator),
     listeCertifications: new FormControl('', Validators.nullValidator)
 
-  }/*,{updateOn: 'submit'}*/);
+  }, { updateOn: 'change' });
 
   constructor(
     private candidatsService: CandidatsService,
@@ -144,6 +140,7 @@ export class FormAddCandidatsComponent implements OnInit {
 
     this.listeTechnologiesFinale = [];
     for (let i = 0; i < $event.length; i++) {
+
       const technologie = new Technologie($event[i]._value.id, $event[i]._value.nomTechnologie, null);
       this.listeTechnologiesFinale.push(technologie);
     }
@@ -156,7 +153,7 @@ export class FormAddCandidatsComponent implements OnInit {
     this.listeOpportunitesFinale = [];
 
     for (let i = 0; i < $event.length; i++) {
-      // console.log($event[i]._value);
+
       const opportunite = new Opportunite($event[i]._value.id, $event[i]._value.titreOpportunite);
       this.listeOpportunitesFinale.push(opportunite);
     }
@@ -169,7 +166,7 @@ export class FormAddCandidatsComponent implements OnInit {
     this.listeCertificationsFinale = [];
 
     for (let i = 0; i < $event.length; i++) {
-      // console.log($event[i]._value);
+
       const certification = new Certification($event[i]._value.id, $event[i]._value.nomCertification, null);
       this.listeCertificationsFinale.push(certification);
     }
@@ -210,12 +207,15 @@ export class FormAddCandidatsComponent implements OnInit {
     this.formCandidat.removeControl('dateDebutVisa');
     this.formCandidat.removeControl('dateFinVisa');
 
+    console.log('this.formCandidat.value : ' + this.formCandidat.value);
+
     this.candidatsService.addCandidatService(this.formCandidat.value)
     .subscribe
       (res => {
           if (res != null) {
+          console.log('res : ' + res);
+
           this.addFilesController(res.id);
-          // Placer un <mat-progress-spinner> ici
           this.refreshTableFunction(true);
           this.utilService.openSnackBar('Candidat ajouté', 'OK');
           }
@@ -254,11 +254,7 @@ export class FormAddCandidatsComponent implements OnInit {
         this.currentFileUploadPhoto = this.selectedFilesPhoto.item(0);
 
         this.uploadService.addPhotoCandidat(this.currentFileUploadPhoto, id).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progressFilesPhoto.percentage = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
               console.log('Photo is completely uploaded!');
-            }
           });
 
         this.selectedFilesPhoto = undefined;
@@ -268,11 +264,7 @@ export class FormAddCandidatsComponent implements OnInit {
         this.currentFileUploadCvOdix = this.selectedFilesCvOdix.item(0);
 
         this.uploadService.addCvOdixCandidat(this.currentFileUploadCvOdix, id).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progressFilesCvOdix.percentage = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
               console.log('CvOdix is completely uploaded!');
-            }
           });
 
         this.selectedFilesCvOdix = undefined;
@@ -282,11 +274,7 @@ export class FormAddCandidatsComponent implements OnInit {
         this.currentFileUploadCvOriginal = this.selectedFilesCvOriginal.item(0);
 
         this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal, id).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progressFilesCvOriginal.percentage = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
               console.log('CvOriginal is completely uploaded!');
-            }
           });
 
         this.selectedFilesCvOriginal = undefined;
