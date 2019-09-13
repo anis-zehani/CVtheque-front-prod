@@ -17,14 +17,14 @@ export class PieChartComponent implements OnInit {
   dataTechnologiesByCandidats: number[];
 
   labelsTechnologiesByOpportunites: string[];
-  datalsTechnologiesByOpportunites: number[];
+  dataTechnologiesByOpportunites: number[];
 
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
     aspectRatio: 1.2,
     legend: {
-      position: 'top',
+      position: 'left',
     },
     plugins: {
       datalabels: {
@@ -33,17 +33,21 @@ export class PieChartComponent implements OnInit {
           return label;
         },
       },
-    }
+    },
+    title: {
+      display: true,
+      text: 'Tranches des Candidats & des Opportunités par les TOP 5 Technologies'
+    },
   };
-  public pieChartLabels: Label[] = ['Angular', 'Java', 'Docker', 'Autres'];
-  public pieChartData: number[] = [300, 200, 200, 500];
 
+  public pieChartLabels: Label[] = [];
+  public pieChartData: number[] = [];
   public pieChartType: ChartType = 'doughnut';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['#202124', '#f7c341', '#f05841'],
+      backgroundColor: ['#a4c215', '#f7c341', '#4390b4', '#f48041', '#f88801', '#dfdace'],
     },
   ];
 
@@ -52,14 +56,19 @@ export class PieChartComponent implements OnInit {
   ngOnInit() {
     this.getCandidatsByTechnologiesController();
     this.getOpportunitesByTechnologiesController();
+    this.getSumCandiatsAndOpportunitesByTechnologiesController();
   }
 
   getCandidatsByTechnologiesController() {
     this.technologiesService.getCandidatsByTechnologiesService()
     .subscribe
       (
-      res1 => {
-        console.log(res1);
+      res => {
+        this.labelsTechnologiesByCandidats = this.nomTechnologieFromObjectToArray(res);
+        this.dataTechnologiesByCandidats = this.nombreCandidatsLiesFromObjectToArray(res);
+
+        this.pieChartLabels = this.labelsTechnologiesByCandidats;
+        this.pieChartData = this.dataTechnologiesByCandidats;
       }
       );
   }
@@ -68,19 +77,63 @@ export class PieChartComponent implements OnInit {
     this.technologiesService.getOpportunitesByTechnologiesService()
     .subscribe
       (
-      res2 => {
-        console.log(res2);
+      res => {
+        this.labelsTechnologiesByOpportunites = this.nomTechnologieFromObjectToArray(res);
+        this.dataTechnologiesByOpportunites = this.nombreOpportunitesLieesFromObjectToArray(res);
+      }
+      );
+  }
+
+  getSumCandiatsAndOpportunitesByTechnologiesController() {
+    this.technologiesService.getSumCandiatsAndOpportunitesByTechnologiesService()
+    .subscribe
+      (
+      res => {
+        console.log(res);
       }
       );
   }
 
   technologieVsCandidats() {
-    this.pieChartLabels = ['Angular', 'Java', 'Docker', 'Autres'];
-    this.pieChartData = [300, 200, 200, 500];
+    this.pieChartLabels = this.labelsTechnologiesByCandidats;
+    this.pieChartData = this.dataTechnologiesByCandidats;
   }
 
   technologieVsOpportunites() {
-    this.pieChartLabels = ['Angular', 'Java', 'Docker', 'Autres'];
-    this.pieChartData = [1, 2, 3, 4];
+    this.pieChartLabels = this.labelsTechnologiesByOpportunites;
+    this.pieChartData = this.dataTechnologiesByOpportunites;
+  }
+
+  nomTechnologieFromObjectToArray(objet: Technologie[]): any[] {
+    const listeToFill: any[] = [];
+    if (objet) {
+      objet.forEach((value) => {
+        listeToFill.push(value.nomTechnologie);
+      });
+      listeToFill.push('Autres');
+    }
+    return listeToFill;
+  }
+
+  nombreCandidatsLiesFromObjectToArray(objet: Technologie[]): any[] {
+    const listeToFill: any[] = [];
+    if (objet) {
+      objet.forEach((value) => {
+        listeToFill.push(value.statNombreCandidatsLies);
+      });
+    }
+    listeToFill.push(5);
+    return listeToFill;
+  }
+
+  nombreOpportunitesLieesFromObjectToArray(objet: Technologie[]): any[] {
+    const listeToFill: any[] = [];
+    if (objet) {
+      objet.forEach((value) => {
+        listeToFill.push(value.statNombreOpportunitesLiees);
+      });
+    }
+    listeToFill.push(5);
+    return listeToFill;
   }
 }

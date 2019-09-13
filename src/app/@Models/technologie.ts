@@ -6,6 +6,9 @@ export class Technologie {
   nomTechnologie: string;
   descriptionDetaillee: string;
   selected: boolean;
+  statNombreCandidatsLies: number;
+  statNombreOpportunitesLiees: number;
+
   utilisateur: Utilisateur; // @ManyToOne
 
   constructor(id: number, nomTechnologie: string, descriptionDetaillee: string) {

@@ -38,6 +38,11 @@ export class TechnologiesService {
     return this.http.get<Technologie[]>(this.serviceUrl + '/opportunitesByTechnologie');
   }
 
+  // Retourne la somme des Candidats liés et des opportunités liées pour toutes les technologies
+  getSumCandiatsAndOpportunitesByTechnologiesService(): Observable<Map<string, number>> {
+    return this.http.get<Map<string, number>>(this.serviceUrl + '/sumCandiatsAndOpportunitesByTechnologies');
+  }
+
   // Retourne la technologie créée : Technologie
   addTechnologieService(technologie): Observable<Technologie> {
     const TechnologieToStringify = this.addUtilisateurToTechnologie(technologie);
