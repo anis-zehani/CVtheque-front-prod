@@ -12,6 +12,13 @@ import { Technologie } from '../../../@Models/technologie';
   styleUrls: ['./pie-chart.component.css']
 })
 export class PieChartComponent implements OnInit {
+
+  labelsTechnologiesByCandidats: string[];
+  dataTechnologiesByCandidats: number[];
+
+  labelsTechnologiesByOpportunites: string[];
+  datalsTechnologiesByOpportunites: number[];
+
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -28,8 +35,9 @@ export class PieChartComponent implements OnInit {
       },
     }
   };
-  public pieChartLabels: Label[] = [['Angular'], ['Java'], ['Docker'], ['Autres']];
+  public pieChartLabels: Label[] = ['Angular', 'Java', 'Docker', 'Autres'];
   public pieChartData: number[] = [300, 200, 200, 500];
+
   public pieChartType: ChartType = 'doughnut';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
@@ -67,12 +75,12 @@ export class PieChartComponent implements OnInit {
   }
 
   technologieVsCandidats() {
-    this.pieChartLabels = [['Angular'], ['Java'], ['Docker'], ['Autres']];
+    this.pieChartLabels = ['Angular', 'Java', 'Docker', 'Autres'];
     this.pieChartData = [300, 200, 200, 500];
   }
 
   technologieVsOpportunites() {
-    this.pieChartLabels = [['Angular'], ['Java'], ['Docker'], ['Autres']];
+    this.pieChartLabels = ['Angular', 'Java', 'Docker', 'Autres'];
     this.pieChartData = [1, 2, 3, 4];
   }
 }
