@@ -1,14 +1,19 @@
 <app-statistiques></app-statistiques>
 
-<div fxLayout="row" fxLayoutAlign="space-between start" > 
-    
+<!--Grands écrans-->
+<div fxLayout="row" fxLayoutAlign="space-between start" fxHide.lt-md="true"> 
     <div fxFlex="50%">
         <app-datagrid-technologies></app-datagrid-technologies>
     </div>
     <div fxFlex="50%">
         <app-pie-chart></app-pie-chart>
     </div>
+</div>
 
+<!--Petits écrans-->
+<div fxLayout="column" fxLayoutAlign="space-between center" fxHide.gt-sm="true"> 
+    <app-datagrid-technologies></app-datagrid-technologies>
+    <app-pie-chart></app-pie-chart>
 </div>
     
 

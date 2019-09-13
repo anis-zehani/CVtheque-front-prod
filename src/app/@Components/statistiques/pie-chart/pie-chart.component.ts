@@ -3,6 +3,9 @@ import { ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
+import { TechnologiesService } from '../../../@Services/technologies.service';
+import { Technologie } from '../../../@Models/technologie';
+
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
@@ -25,9 +28,9 @@ export class PieChartComponent implements OnInit {
       },
     }
   };
-  public pieChartLabels: Label[] = [['Angular', 'Candidats'], ['Java', 'Candidats'], ['Docker', 'Candidats'], ['Autres', 'Candidats']];
+  public pieChartLabels: Label[] = [['Angular'], ['Java'], ['Docker'], ['Autres']];
   public pieChartData: number[] = [300, 200, 200, 500];
-  public pieChartType: ChartType = 'pie';
+  public pieChartType: ChartType = 'doughnut';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
@@ -36,17 +39,40 @@ export class PieChartComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private technologiesService: TechnologiesService) { }
 
   ngOnInit() {
+    this.getCandidatsByTechnologiesController();
+    this.getOpportunitesByTechnologiesController();
   }
 
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+  getCandidatsByTechnologiesController() {
+    this.technologiesService.getCandidatsByTechnologiesService()
+    .subscribe
+      (
+      res1 => {
+        console.log(res1);
+      }
+      );
   }
 
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+  getOpportunitesByTechnologiesController() {
+    this.technologiesService.getOpportunitesByTechnologiesService()
+    .subscribe
+      (
+      res2 => {
+        console.log(res2);
+      }
+      );
+  }
+
+  technologieVsCandidats() {
+    this.pieChartLabels = [['Angular'], ['Java'], ['Docker'], ['Autres']];
+    this.pieChartData = [300, 200, 200, 500];
+  }
+
+  technologieVsOpportunites() {
+    this.pieChartLabels = [['Angular'], ['Java'], ['Docker'], ['Autres']];
+    this.pieChartData = [1, 2, 3, 4];
   }
 }

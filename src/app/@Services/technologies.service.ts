@@ -28,6 +28,16 @@ export class TechnologiesService {
     return this.http.get<Technologie[]>(this.serviceUrl);
   }
 
+  // Retourne la liste des 5 premières technologies ORDER BY le nombre des candidats qu'il y a pour elle
+  getCandidatsByTechnologiesService(): Observable<Technologie[]> {
+    return this.http.get<Technologie[]>(this.serviceUrl + '/candidatsByTechnologie');
+  }
+
+  // Retourne la liste des 5 premières technologies ORDER BY le nombre des opportunités qu'il y a pour elle
+  getOpportunitesByTechnologiesService(): Observable<Technologie[]> {
+    return this.http.get<Technologie[]>(this.serviceUrl + '/opportunitesByTechnologie');
+  }
+
   // Retourne la technologie créée : Technologie
   addTechnologieService(technologie): Observable<Technologie> {
     const TechnologieToStringify = this.addUtilisateurToTechnologie(technologie);

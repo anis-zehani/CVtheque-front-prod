@@ -1,6 +1,4 @@
-<div> 
-  <div>
-    <div class="chart">
+<div class="chart">
       <canvas baseChart
         [data]="pieChartData"
         [labels]="pieChartLabels"
@@ -10,6 +8,8 @@
         [colors]="pieChartColors"
         [legend]="pieChartLegend">
       </canvas>
-    </div>
-  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-between end" style="margin-top: 70px"> 
+    <button mat-flat-button (click)="technologieVsCandidats()" style="width:40%; margin-left: 25px">technologieVsCandidats</button>
+    <button mat-flat-button (click)="technologieVsOpportunites()" style="width:40%; margin-right: 25px">technologieVsOpportunites</button>
 </div>
