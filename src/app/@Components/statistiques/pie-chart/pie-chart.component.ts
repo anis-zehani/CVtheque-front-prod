@@ -19,6 +19,9 @@ export class PieChartComponent implements OnInit {
   labelsTechnologiesByOpportunites: string[];
   dataTechnologiesByOpportunites: number[];
 
+  sumCandidatsLies = 0;
+  sumOpportunitesLiees = 0;
+
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -89,7 +92,8 @@ export class PieChartComponent implements OnInit {
     .subscribe
       (
       res => {
-        console.log(res);
+      this.sumCandidatsLies = res.get('sumCandidatsLies');
+      this.sumOpportunitesLiees = res.get('sumOpportunitesLiees');
       }
       );
   }
@@ -122,7 +126,7 @@ export class PieChartComponent implements OnInit {
         listeToFill.push(value.statNombreCandidatsLies);
       });
     }
-    listeToFill.push(5);
+    listeToFill.push(this.sumCandidatsLies);
     return listeToFill;
   }
 
@@ -133,7 +137,7 @@ export class PieChartComponent implements OnInit {
         listeToFill.push(value.statNombreOpportunitesLiees);
       });
     }
-    listeToFill.push(5);
+    listeToFill.push(this.sumOpportunitesLiees);
     return listeToFill;
   }
 }
