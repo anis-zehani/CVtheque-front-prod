@@ -7,7 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MatRadioModule } from '@angular/material/radio'; 
+import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -97,7 +97,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { StatistiquesComponent } from './@Components/statistiques/statistiques.component';
 import { ChartsModule } from 'ng2-charts';
-import { PieChartComponent } from './@Components/statistiques/stats-technologies/stats-technologies.component';
+import { StatsTechnologiesComponent } from './@Components/statistiques/stats-technologies/stats-technologies.component';
 import { ShowCandidatComponent } from './@Components/candidats/show-candidat/show-candidat.component';
 import { ListeTechnologiesForAddComponent } from './@Components/technologies/liste-technologies-for-add/liste-technologies-for-add.component';
 import { ListeTechnologiesForEditComponent } from './@Components/technologies/liste-technologies-for-edit/liste-technologies-for-edit.component';
@@ -194,7 +194,7 @@ import { StatsGeneralesComponent } from './@Components/statistiques/stats-genera
     DatagridRappelsComponent,
     FormEditRappelsComponent,
     StatistiquesComponent,
-    PieChartComponent,
+    StatsTechnologiesComponent,
     ShowCandidatComponent,
     ListeTechnologiesForAddComponent,
     ListeTechnologiesForEditComponent,

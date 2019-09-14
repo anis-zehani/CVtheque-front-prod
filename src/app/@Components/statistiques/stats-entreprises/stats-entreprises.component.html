@@ -1,1 +1,16 @@
-<p>stats-entreprises works!</p>
+<div fxLayout="row" fxLayoutAlign="center stretch" style="margin-bottom: 30px"> 
+    <button mat-stroked-button (click)="entrepriseVsPartenaires()" style="min-width:30%; width:auto; margin-right: 20px">Partenaires liés</button>
+    <button mat-stroked-button (click)="entrepriseVsCandidats()" style="min-width:30%; width:auto;">Candidats liés</button>
+</div>
+
+<div class="chart">
+      <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [colors]="pieChartColors"
+        [legend]="pieChartLegend">
+      </canvas>
+</div>

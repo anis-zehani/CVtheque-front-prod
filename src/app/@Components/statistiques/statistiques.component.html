@@ -1,8 +1,8 @@
-<div class="title" style="margin-bottom: 20px">
+<div class="title" style="margin-bottom: 20px; font-weight: 700; color: #7a5906">
     Statistiques & Chiffres clés par Technologies :
 </div>
 
-<!--Grands écrans-->
+<!--Grands écrans : Technologies Stats-->
 <div fxLayout="row" fxLayoutAlign="space-between start" fxHide.lt-md="true"> 
     <div fxFlex="50%">
         <app-datagrid-technologies></app-datagrid-technologies>
@@ -12,8 +12,32 @@
     </div>
 </div>
 
-<!--Petits écrans-->
+<!--Petits écrans : Technologies Stats-->
 <div fxLayout="column" fxLayoutAlign="space-between center" fxHide.gt-sm="true"> 
     <app-datagrid-technologies></app-datagrid-technologies>
     <app-stats-technologies></app-stats-technologies>
+</div>
+
+<mat-divider style="margin-bottom: 40px; margin-top: 40px;"></mat-divider>
+
+<div class="title" style="margin-bottom: 20px; font-weight: 700; color: #7a5906">
+    Statistiques & Chiffres clés par Entreprises :
+</div>
+
+<!--Grands écrans : Entreprises Stats-->
+<div fxLayout="row" fxLayoutAlign="space-between start" fxHide.lt-md="true"> 
+    
+    <div fxFlex="50%">
+        <app-datagrid-entreprises></app-datagrid-entreprises>
+    </div>
+
+    <div fxFlex="50%">
+        <app-stats-entreprises></app-stats-entreprises>
+    </div>
+</div>
+
+<!--Petits écrans : Entreprises Stats-->
+<div fxLayout="column" fxLayoutAlign="space-between center" fxHide.gt-sm="true"> 
+    <app-datagrid-entreprises></app-datagrid-entreprises>
+    <app-stats-entreprises></app-stats-entreprises>
 </div>

@@ -4,6 +4,8 @@ export class Entreprise {
     idEntreprise: number;
     nomEntreprise: string;
     descriptionDetaillee: string;
+    statNombreCandidatsLies: number;
+    statNombrePartenairesLies: number;
     utilisateur: Utilisateur; // @ManyToOne
 
     constructor(idEntreprise: number, nomEntreprise: string, descriptionDetaillee: string) {

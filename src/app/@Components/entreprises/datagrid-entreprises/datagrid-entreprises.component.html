@@ -12,11 +12,25 @@
 
   <ng-container matColumnDef="nomEntreprise">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom de l'entreprise</th>
-    <td mat-cell *matCellDef="let element" width="85%">
+    <td mat-cell *matCellDef="let element" width="45%">
       <a class="pointer"  (click)="openDialogShowEntreprise(element.idEntreprise, element.nomEntreprise, element.descriptionDetaillee)" matTooltip="Voir les détails">
           {{element.nomEntreprise  | uppercase}}
-      </a>
+      </a> 
       
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="statNombreCandidatsLies">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Candidats liés</th>
+    <td mat-cell *matCellDef="let element" width="20%">
+      {{element.statNombreCandidatsLies}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="statNombrePartenairesLies">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Partenaires liés</th>
+    <td mat-cell *matCellDef="let element" width="20%">
+      {{element.statNombrePartenairesLies}}
     </td>
   </ng-container>
 

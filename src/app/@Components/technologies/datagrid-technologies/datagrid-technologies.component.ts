@@ -48,8 +48,6 @@ export class DatagridTechnologiesComponent implements OnInit {
     } else {
       this.displayedColumns = ['nomTechnologie', 'statNombreCandidatsLies', 'statNombreOpportunitesLiees'];
     }
-
-
   }
 
   // Afficher toutes les technologies : remplissage de la table

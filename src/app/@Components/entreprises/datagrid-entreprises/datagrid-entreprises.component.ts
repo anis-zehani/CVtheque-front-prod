@@ -41,9 +41,9 @@ export class DatagridEntreprisesComponent implements OnInit {
 
     // Displayed columns s'affiche selon le profil : Priviléges
     if (this.role === 'Administrateur') {
-      this.displayedColumns = ['nomEntreprise', 'more'];
+      this.displayedColumns = ['nomEntreprise', 'statNombreCandidatsLies', 'statNombrePartenairesLies', 'more'];
     } else {
-      this.displayedColumns = ['nomEntreprise'];
+      this.displayedColumns = ['nomEntreprise', 'statNombreCandidatsLies', 'statNombrePartenairesLies'];
     }
   }
 

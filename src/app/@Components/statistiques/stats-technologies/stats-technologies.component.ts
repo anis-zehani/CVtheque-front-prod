@@ -11,7 +11,7 @@ import { Technologie } from '../../../@Models/technologie';
   templateUrl: './stats-technologies.component.html',
   styleUrls: ['./stats-technologies.component.css']
 })
-export class PieChartComponent implements OnInit {
+export class StatsTechnologiesComponent implements OnInit {
 
   labelsTechnologiesByCandidats: string[];
   dataTechnologiesByCandidats: number[];
@@ -120,7 +120,7 @@ export class PieChartComponent implements OnInit {
       objet.forEach((value) => {
         listeToFill.push(value.nomTechnologie);
       });
-      listeToFill.push('Autres');
+      listeToFill.push('Autres technologies');
     }
     return listeToFill;
   }

@@ -28,6 +28,21 @@ export class EntreprisesService {
     return this.http.get<Entreprise[]>(this.serviceUrl);
   }
 
+  // Retourne la liste des 5 premières Entreprises ORDER BY le nombre des Candidats qu'il y a pour elle
+  getCandidatsByEntreprisesService(): Observable<Entreprise[]> {
+    return this.http.get<Entreprise[]>(this.serviceUrl + '/candidatsByEntreprise');
+  }
+
+  // Retourne la liste des 5 premières Entreprises ORDER BY le nombre des Partenaires qu'il y a pour elle
+  getPartenairesByEntreprisesService(): Observable<Entreprise[]> {
+    return this.http.get<Entreprise[]>(this.serviceUrl + '/partenairesByEntreprise');
+  }
+
+  // Retourne la somme des Candidats liés et des Partenaires liés pour toutes les Entreprises
+  getSumCandiatsAndPartenairesByEntreprisesService(): Observable<Map<string, number>> {
+    return this.http.get<Map<string, number>>(this.serviceUrl + '/sumCandiatsAndPartenairesByEntreprises');
+  }
+
   // Retourne l'Entreprise créée : Entreprise
   addEntrepriseService(entreprise): Observable<Entreprise> {
     const EntrepriseToStringify = this.addUtilisateurToEntreprise(entreprise);
