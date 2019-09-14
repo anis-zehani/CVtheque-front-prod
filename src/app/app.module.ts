@@ -97,7 +97,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { StatistiquesComponent } from './@Components/statistiques/statistiques.component';
 import { ChartsModule } from 'ng2-charts';
-import { PieChartComponent } from './@Components/statistiques/pie-chart/pie-chart.component';
+import { PieChartComponent } from './@Components/statistiques/stats-technologies/stats-technologies.component';
 import { ShowCandidatComponent } from './@Components/candidats/show-candidat/show-candidat.component';
 import { ListeTechnologiesForAddComponent } from './@Components/technologies/liste-technologies-for-add/liste-technologies-for-add.component';
 import { ListeTechnologiesForEditComponent } from './@Components/technologies/liste-technologies-for-edit/liste-technologies-for-edit.component';
@@ -141,6 +141,8 @@ import { ListeTopCandidatsComponent } from './@Components/candidats/liste-top-ca
 import { ListeTopOpportunitesComponent } from './@Components/opportunites/liste-top-opportunites/liste-top-opportunites.component';
 import { HideFullPhrasePipe } from './@Util/Pipes/hide-full-phrase.pipe';
 import { HideFullWordPipe } from './@Util/Pipes/hide-full-word.pipe';
+import { StatsEntreprisesComponent } from './@Components/statistiques/stats-entreprises/stats-entreprises.component';
+import { StatsGeneralesComponent } from './@Components/statistiques/stats-generales/stats-generales.component';
 
 @NgModule({
   declarations: [
@@ -234,7 +236,9 @@ import { HideFullWordPipe } from './@Util/Pipes/hide-full-word.pipe';
     ListeTopCandidatsComponent,
     ListeTopOpportunitesComponent,
     HideFullPhrasePipe,
-    HideFullWordPipe
+    HideFullWordPipe,
+    StatsEntreprisesComponent,
+    StatsGeneralesComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,

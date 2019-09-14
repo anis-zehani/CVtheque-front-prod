@@ -7,9 +7,9 @@ import { TechnologiesService } from '../../../@Services/technologies.service';
 import { Technologie } from '../../../@Models/technologie';
 
 @Component({
-  selector: 'app-pie-chart',
-  templateUrl: './pie-chart.component.html',
-  styleUrls: ['./pie-chart.component.css']
+  selector: 'app-stats-technologies',
+  templateUrl: './stats-technologies.component.html',
+  styleUrls: ['./stats-technologies.component.css']
 })
 export class PieChartComponent implements OnInit {
 
