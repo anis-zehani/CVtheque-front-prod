@@ -27,7 +27,7 @@ export class StatsEntreprisesComponent implements OnInit {
     responsive: true,
     aspectRatio: 1.2,
     legend: {
-      position: 'top',
+      position: 'left',
     },
     plugins: {
       datalabels: {
