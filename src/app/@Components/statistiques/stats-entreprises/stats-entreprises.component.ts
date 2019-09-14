@@ -27,7 +27,7 @@ export class StatsEntreprisesComponent implements OnInit {
     responsive: true,
     aspectRatio: 1.2,
     legend: {
-      position: 'left',
+      position: 'top',
     },
     plugins: {
       datalabels: {
@@ -50,7 +50,7 @@ export class StatsEntreprisesComponent implements OnInit {
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['#952555', '#6b6e0d', '#22729b', '#d362bf', '#ec8296', '#b780e2'],
+      backgroundColor: ['#d4b3ee', '#edeeb3', '#b3e8ee', '#f3db9e', '#9ff8b2', '#dfdace'],
     },
   ];
 
