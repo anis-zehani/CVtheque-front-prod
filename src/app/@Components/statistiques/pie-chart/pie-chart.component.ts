@@ -50,16 +50,16 @@ export class PieChartComponent implements OnInit {
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['#a4c215', '#f7c341', '#4390b4', '#f48041', '#f88801', '#dfdace'],
+      backgroundColor: ['#a4c215', '#f7c341', '#4390b4', '#f48041', '#f81801', '#dfdace'],
     },
   ];
 
   constructor(private technologiesService: TechnologiesService) { }
 
   ngOnInit() {
+    this.getSumCandiatsAndOpportunitesByTechnologiesController();
     this.getCandidatsByTechnologiesController();
     this.getOpportunitesByTechnologiesController();
-    this.getSumCandiatsAndOpportunitesByTechnologiesController();
   }
 
   getCandidatsByTechnologiesController() {
@@ -92,8 +92,14 @@ export class PieChartComponent implements OnInit {
     .subscribe
       (
       res => {
-      this.sumCandidatsLies = res.get('sumCandidatsLies');
-      this.sumOpportunitesLiees = res.get('sumOpportunitesLiees');
+      for (const [key, value] of Object.entries(res)) {
+          if (key === 'sumCandidatsLies') {
+            this.sumCandidatsLies = value;
+          }
+          if (key === 'sumOpportunitesLiees') {
+            this.sumOpportunitesLiees = value;
+          }
+      }
       }
       );
   }
@@ -121,23 +127,27 @@ export class PieChartComponent implements OnInit {
 
   nombreCandidatsLiesFromObjectToArray(objet: Technologie[]): any[] {
     const listeToFill: any[] = [];
+    let sumTop5 = 0;
     if (objet) {
       objet.forEach((value) => {
         listeToFill.push(value.statNombreCandidatsLies);
+        sumTop5 += value.statNombreCandidatsLies;
       });
     }
-    listeToFill.push(this.sumCandidatsLies);
+    listeToFill.push(this.sumCandidatsLies - sumTop5);
     return listeToFill;
   }
 
   nombreOpportunitesLieesFromObjectToArray(objet: Technologie[]): any[] {
     const listeToFill: any[] = [];
+    let sumTop5 = 0;
     if (objet) {
       objet.forEach((value) => {
         listeToFill.push(value.statNombreOpportunitesLiees);
+        sumTop5 += value.statNombreOpportunitesLiees;
       });
     }
-    listeToFill.push(this.sumOpportunitesLiees);
+    listeToFill.push(this.sumOpportunitesLiees - sumTop5);
     return listeToFill;
   }
 }
