@@ -15,9 +15,9 @@ export class StatsGeneralesComponent implements OnInit {
   // Polar Area Chart
   public pieChartOptions: ChartOptions = {
     responsive: true,
-    aspectRatio: 2,
+    aspectRatio: 1.2,
     legend: {
-      position: 'top',
+      position: 'left',
     },
     plugins: {
       datalabels: {
