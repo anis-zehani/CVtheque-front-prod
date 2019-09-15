@@ -22,7 +22,7 @@ export class StatsTechnologiesComponent implements OnInit {
   sumCandidatsLies = 0;
   sumOpportunitesLiees = 0;
 
-  // Pie
+  // Doughnut
   public pieChartOptions: ChartOptions = {
     responsive: true,
     aspectRatio: 1.2,
