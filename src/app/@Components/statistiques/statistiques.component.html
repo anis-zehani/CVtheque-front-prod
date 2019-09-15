@@ -1,4 +1,4 @@
-<div class="title" style="margin-bottom: 20px; font-weight: 700; color: #7a5906">
+<div class="title" style="margin-bottom: 20px; font-weight: 700;">
     Statistiques des Technologies :
 </div>
 
@@ -18,9 +18,9 @@
     <app-datagrid-technologies></app-datagrid-technologies>
 </div>
 
-<mat-divider style="margin-bottom: 40px; margin-top: 40px;"></mat-divider>
+<mat-divider style="margin-bottom: 20px; margin-top: 20px;"></mat-divider>
 
-<div class="title" style="margin-bottom: 20px; font-weight: 700; color: #7a5906">
+<div class="title" style="margin-bottom: 20px; font-weight: 700;">
     Statistiques des Entreprises :
 </div>
 
@@ -42,15 +42,15 @@
     <app-datagrid-entreprises></app-datagrid-entreprises>
 </div>
 
-<mat-divider style="margin-bottom: 40px; margin-top: 40px;"></mat-divider>
-
-<div class="title" style="font-weight: 700; color: #7a5906">
-    Chiffres clés :
-</div>
-<!--Grands écrans : Stats Générales-->
-<div fxLayout="row" fxLayoutAlign="start start">  
-    <div fxFlex="50%">
-        <app-stats-generales></app-stats-generales>
+<!--Stats Générales-->
+<div *ngIf="role === 'Administrateur'"  style="margin-bottom: 20px">
+    <mat-divider style="margin-bottom: 20px; margin-top: 20px;"></mat-divider>
+    <div class="title" style="font-weight: 700;">
+        Chiffres clés :
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start">  
+        <div fxFlex="50%">
+            <app-stats-generales></app-stats-generales>
+        </div>
     </div>
 </div>
-

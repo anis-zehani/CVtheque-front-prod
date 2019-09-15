@@ -1,8 +1,3 @@
-<div fxLayout="row" fxLayoutAlign="center stretch" style="margin-bottom: 30px"> 
-    <button mat-stroked-button (click)="technologieVsOpportunites()" style="min-width:30%; width:auto; margin-right: 20px">Opportunités liées</button>
-    <button mat-stroked-button (click)="technologieVsCandidats()" style="min-width:30%; width:auto;">Candidats liés</button>
-</div>
-
 <div class="chart">
       <canvas baseChart
         [data]="pieChartData"
@@ -13,4 +8,8 @@
         [colors]="pieChartColors"
         [legend]="pieChartLegend">
       </canvas>
+</div>
+<div fxLayout="row" fxLayoutAlign="end stretch" style="margin-top: 30px"> 
+  <button mat-flat-button (click)="technologieVsOpportunites()" style="min-width:20%; width:auto; margin-right: 10px">Opportunités liées</button>
+  <button mat-flat-button (click)="technologieVsCandidats()" style="min-width:20%; width:auto;margin-right: 20px">Candidats liés</button>
 </div>

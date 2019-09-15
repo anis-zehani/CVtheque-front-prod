@@ -50,7 +50,7 @@ export class StatsTechnologiesComponent implements OnInit {
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['#a4c215', '#f7c341', '#4390b4', '#f48041', '#f81801', '#dfdace'],
+      backgroundColor: ['#39CCCC', '#FFDC00', '#FF4136', '#7FDBFF', '#FF851B', '#dfdace'],
     },
   ];
 
