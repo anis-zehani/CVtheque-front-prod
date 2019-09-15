@@ -13,7 +13,7 @@
 </div>
 
 <!--Petits écrans : Technologies Stats-->
-<div fxLayout="column" fxLayoutAlign="space-between center" fxHide.gt-sm="true"> 
+<div fxLayout="column" fxLayoutAlign="start stretch" fxHide.gt-sm="true"> 
     <app-stats-technologies></app-stats-technologies>
     <app-datagrid-technologies></app-datagrid-technologies>
 </div>
@@ -37,19 +37,26 @@
 </div>
 
 <!--Petits écrans : Entreprises Stats-->
-<div fxLayout="column" fxLayoutAlign="space-between center" fxHide.gt-sm="true"> 
+<div fxLayout="column" fxLayoutAlign="start stretch" fxHide.gt-sm="true"> 
     <app-stats-entreprises></app-stats-entreprises>
     <app-datagrid-entreprises></app-datagrid-entreprises>
 </div>
 
 <!--Stats Générales-->
-<div *ngIf="role === 'Administrateur'"  style="margin-bottom: 20px">
+<div *ngIf="role === 'Administrateur'" style="margin-bottom: 20px">
     <mat-divider style="margin-bottom: 20px; margin-top: 20px;"></mat-divider>
     <div class="title" style="font-weight: 700;">
         Chiffres clés :
     </div>
-    <div fxLayout="row" fxLayoutAlign="start start">  
+    <!--Grands écrans-->
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxHide.lt-md="true">  
         <div fxFlex="50%">
+            <app-stats-generales></app-stats-generales>
+        </div>
+    </div>
+    <!--Petits écrans-->
+    <div fxLayout="column" fxLayoutAlign="start stretch" fxHide.gt-sm="true">  
+        <div>
             <app-stats-generales></app-stats-generales>
         </div>
     </div>

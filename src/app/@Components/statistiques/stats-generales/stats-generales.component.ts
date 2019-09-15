@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -29,13 +29,13 @@ export class StatsGeneralesComponent implements OnInit {
     },
     title: {
       display: true,
-      text: ''
+      text: 'Les totaux par catégorie'
     }
   };
 
   public pieChartLabels: Label[] = [];
   public pieChartData: number[] = [];
-  public pieChartType: ChartType = 'polarArea';
+  public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
