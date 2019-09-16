@@ -18,7 +18,7 @@ export class FormAddCollaborateursComponent implements OnInit {
   // Mon Reactive Form
   formCollaborateur = new FormGroup({
     identite: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.email),
+    email: new FormControl('', Validators.nullValidator),
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
@@ -45,6 +45,8 @@ export class FormAddCollaborateursComponent implements OnInit {
         if (res != null) {
             this.refreshTableFunction(true);
             this.utilService.openSnackBar('Collaborateur ajouté', 'OK');
+        } else {
+          this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
         }
       }
       );

@@ -59,6 +59,8 @@ editCollaborateurController() {
       if (res != null) {
         this.getAllCollaborateursController();
         this.utilService.openSnackBar('Collaborateur modifié', 'OK');
+      } else {
+        this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
       }
     });
 }

@@ -146,6 +146,8 @@ export class DatagridCandidatsComponent implements OnInit {
           if (res != null) {
             this.getAllCandidatsController(this.candidat.etatCandidat);
             this.utilService.openSnackBar('Candidat modifié', 'OK');
+          } else {
+            this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
           }
         }
         );

@@ -69,6 +69,8 @@ export class DatagridContactsComponent implements OnInit {
           if (res != null) {
             this.getAllContactsController();
             this.utilService.openSnackBar('Contact modifié', 'OK');
+          } else {
+            this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
           }
         }
         );

@@ -213,11 +213,11 @@ export class FormAddCandidatsComponent implements OnInit {
     .subscribe
       (res => {
           if (res != null) {
-          console.log('res : ' + res);
-
           this.addFilesController(res.id);
           this.refreshTableFunction(true);
           this.utilService.openSnackBar('Candidat ajouté', 'OK');
+          } else {
+            this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
           }
         }
       );

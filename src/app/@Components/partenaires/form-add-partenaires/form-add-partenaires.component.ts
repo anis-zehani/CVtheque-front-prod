@@ -72,6 +72,8 @@ export class FormAddPartenairesComponent implements OnInit {
           // Placer un <mat-progress-spinner> ici
           this.refreshTableFunction(true);
           this.utilService.openSnackBar('Partenaire ajouté', 'OK');
+          } else {
+            this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
           }
         }
       );

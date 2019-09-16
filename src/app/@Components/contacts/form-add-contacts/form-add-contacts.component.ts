@@ -70,6 +70,8 @@ export class FormAddContactsComponent implements OnInit {
           // Placer un <mat-progress-spinner> ici
           this.refreshTableFunction(true);
           this.utilService.openSnackBar('Contact ajouté', 'OK');
+          } else {
+            this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
           }
         }
       );
