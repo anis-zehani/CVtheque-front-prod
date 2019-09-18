@@ -16,6 +16,7 @@ import { EcolesComponent } from './@Components/ecoles/ecoles.component';
 import { CertificationsComponent } from './@Components/certifications/certifications.component';
 import { CollaborateursComponent } from './@Components/collaborateurs/collaborateurs.component';
 import { LogoutComponent } from './@Components/authentification/logout/logout.component';
+import { AccountComponent } from './@Components/authentification/account/account.component';
 
 // Toute personne authentifiée
 import { AuthGuardService } from './@Services/auth-guard.service';
@@ -30,6 +31,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login',   component: AuthentificationComponent },
   { path: 'logout',   component: LogoutComponent, canActivate: [AuthGuardService] },
+  { path: 'account',   component: AccountComponent, canActivate: [AuthGuardService] },
+
   { path: 'accueil',   component: AccueilComponent, canActivate: [AuthGuardService] },
   { path: 'rappels', component: RappelsComponent, canActivate: [AuthGuardService] },
   { path: 'candidats', component: CandidatsComponent, canActivate: [AuthGuardService, Level2GuardService] },

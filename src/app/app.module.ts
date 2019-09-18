@@ -143,6 +143,7 @@ import { HideFullPhrasePipe } from './@Util/Pipes/hide-full-phrase.pipe';
 import { HideFullWordPipe } from './@Util/Pipes/hide-full-word.pipe';
 import { StatsEntreprisesComponent } from './@Components/statistiques/stats-entreprises/stats-entreprises.component';
 import { StatsGeneralesComponent } from './@Components/statistiques/stats-generales/stats-generales.component';
+import { AccountComponent } from './@Components/authentification/account/account.component';
 
 @NgModule({
   declarations: [
@@ -238,7 +239,8 @@ import { StatsGeneralesComponent } from './@Components/statistiques/stats-genera
     HideFullPhrasePipe,
     HideFullWordPipe,
     StatsEntreprisesComponent,
-    StatsGeneralesComponent
+    StatsGeneralesComponent,
+    AccountComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,

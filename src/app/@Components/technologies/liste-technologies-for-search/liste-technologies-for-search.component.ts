@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { TechnologiesService } from '../../../@Services/technologies.service';
 import { Technologie } from '../../../@Models/technologie';
@@ -11,14 +11,14 @@ import { Technologie } from '../../../@Models/technologie';
 })
 export class ListeTechnologiesForSearchComponent implements OnInit {
 
-  //Envoi l'event pour mettre à jour la table
+  // Envoi l'event pour mettre à jour la table
   @Output() listeTechnologiesForSearchEvent = new EventEmitter<Event>();
 
-  //Remplissage de la liste par défaut
-  listeTechnologies: Technologie[]=[];
+  // Remplissage de la liste par défaut
+  listeTechnologies: Technologie[] = [];
 
   constructor(
-    private technologiesService: TechnologiesService,    
+    private technologiesService: TechnologiesService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -26,18 +26,18 @@ export class ListeTechnologiesForSearchComponent implements OnInit {
   }
 
 
-  //Remplir la liste par toutes les technologies
+  // Remplir la liste par toutes les technologies
   getAllTechnologiesController(): void {
     this.technologiesService.getAllTechnologiesService()
     .subscribe
       (
-      res => { this.listeTechnologies = res;}
-      )
+      res => { this.listeTechnologies = res; }
+      );
   }
 
-  //On emet un Event au parent à chaque changement de la liste (ajout et suppression)
-  onListeTechnologieChange($event){
+  // On emet un Event au parent à chaque changement de la liste (Select / deSelect)
+  onListeTechnologieChange($event) {
     this.listeTechnologiesForSearchEvent.emit($event);
   }
-  
+
 }

@@ -30,21 +30,20 @@
         </mat-toolbar>
       </div>
 
-      <div fxFlex="5%">
+      <!--<div fxFlex="5%">
           <a class="pointer" matTooltip="Mes notifications">
               <mat-icon matBadge="0" matBadgeColor="warn" style="color: white">notifications</mat-icon>
           </a>
-      </div>
+      </div>-->
       
-      <div fxFlex="5%">
+      <div fxFlex="10%">
           <a class="pointer" [matMenuTriggerFor]="menu5" matTooltip="Mon profil {{role | titlecase}}">
             <mat-icon style="color:#f7c341">account_circle</mat-icon>
             <mat-icon style="color:white">arrow_drop_down</mat-icon>
           </a>
           <mat-menu #menu5="matMenu">
-              <button mat-menu-item>Compte {{role | titlecase}}</button>
+              <button mat-menu-item routerLink="account">Paramétres {{role | titlecase}}</button>
               <mat-divider></mat-divider>
-              <button mat-menu-item routerLink="compte">Mes Paramétres</button>
               <app-logout></app-logout>
           </mat-menu>
       </div>
