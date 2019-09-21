@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { Utilisateur } from '../@Models/utilisateur';
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,4 +58,15 @@ export class AuthentificationService {
   logOut() {
     sessionStorage.removeItem('token');
   }
+
+  // Uitile pour rediriger vers Authentification LinkedIn OAuth2
+  authenticateWithLinkedInService(): Observable<any> {
+    return this.http.get<any>(this.serviceUrl + '/linkedIn', this.httpOptions);
+  }
+
+  // LinkedIn OAuth2 : envoi Authorization Code au Serveur
+  sendAuthorizationCodeService(code, state): Observable<any> {
+    return this.http.post<any>(this.serviceUrl + '/redirectLinkedIn/' + code + '/' + state, this.httpOptions);
+  }
+
 }

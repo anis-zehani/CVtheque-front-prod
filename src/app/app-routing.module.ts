@@ -17,6 +17,7 @@ import { CertificationsComponent } from './@Components/certifications/certificat
 import { CollaborateursComponent } from './@Components/collaborateurs/collaborateurs.component';
 import { LogoutComponent } from './@Components/authentification/logout/logout.component';
 import { AccountComponent } from './@Components/authentification/account/account.component';
+import { RedirectLinkedinComponent } from './@Components/authentification/redirect-linkedin/redirect-linkedin.component';
 
 // Toute personne authentifiée
 import { AuthGuardService } from './@Services/auth-guard.service';
@@ -45,9 +46,12 @@ const routes: Routes = [
   { path: 'ecoles', component: EcolesComponent, canActivate: [AuthGuardService, Level1GuardService] },
   { path: 'collaborateurs', component: CollaborateursComponent, canActivate: [AuthGuardService, Level1GuardService] },
 
+  // OAuth2 LinkedIn
+  { path: 'redirectLinkedIn', component: RedirectLinkedinComponent},
 
   // URL Introuvable renvoi finalement vers le composant Accueil
   { path: '**', component: AuthentificationComponent }
+
 ];
 
 @NgModule({

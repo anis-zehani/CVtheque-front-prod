@@ -92,7 +92,7 @@ import { DatagridRappelsComponent } from './@Components/rappels/datagrid-rappels
 import { FormEditRappelsComponent } from './@Components/rappels/form-edit-rappels/form-edit-rappels.component';
 
 // For 404 when page is refreshed
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+// import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 import { StatistiquesComponent } from './@Components/statistiques/statistiques.component';
@@ -144,6 +144,7 @@ import { HideFullWordPipe } from './@Util/Pipes/hide-full-word.pipe';
 import { StatsEntreprisesComponent } from './@Components/statistiques/stats-entreprises/stats-entreprises.component';
 import { StatsGeneralesComponent } from './@Components/statistiques/stats-generales/stats-generales.component';
 import { AccountComponent } from './@Components/authentification/account/account.component';
+import { RedirectLinkedinComponent } from './@Components/authentification/redirect-linkedin/redirect-linkedin.component';
 
 @NgModule({
   declarations: [
@@ -240,7 +241,8 @@ import { AccountComponent } from './@Components/authentification/account/account
     HideFullWordPipe,
     StatsEntreprisesComponent,
     StatsGeneralesComponent,
-    AccountComponent
+    AccountComponent,
+    RedirectLinkedinComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,
@@ -326,7 +328,7 @@ import { AccountComponent } from './@Components/authentification/account/account
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
 
     // For F5 refresh 404 error
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    // { provide: LocationStrategy, useClass: HashLocationStrategy },
 
     // Obligatoire pour utiliser Http Interceptor afin d'ajout le header à tous les requests
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }

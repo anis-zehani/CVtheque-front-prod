@@ -4,6 +4,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormAddCompteCandidatComponent } from '../../@Components/authentification/form-add-compte-candidat/form-add-compte-candidat.component';
 import { FormAddComptePartenaireComponent } from '../../@Components/authentification/form-add-compte-partenaire/form-add-compte-partenaire.component';
 import { FormRecupererPasswordComponent } from '../../@Components/authentification/form-recuperer-password/form-recuperer-password.component';
+import { AuthentificationService } from 'src/app/@Services/authentification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentification',
@@ -12,10 +14,23 @@ import { FormRecupererPasswordComponent } from '../../@Components/authentificati
 })
 export class AuthentificationComponent implements OnInit {
 
-
-  constructor(public dialog: MatDialog) { }
+  redirect = false;
+  constructor(public dialog: MatDialog,
+              private authentificationService: AuthentificationService,
+              private router: Router) { }
 
   ngOnInit() {
+  }
+
+  authenticateWithLinkedIn() {
+    this.authentificationService.authenticateWithLinkedInService()
+    .subscribe
+      (
+        res => {
+            window.location.href = res[0];
+            return true;
+        }
+      );
   }
 
   // Ouvre le pop-up pour récupérer le mot de passe oublié
