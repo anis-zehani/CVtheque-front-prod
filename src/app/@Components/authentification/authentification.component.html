@@ -13,10 +13,14 @@
             <button mat-flat-button (click)="openDialogCreerCompteCandidat()">Créer un compte Candidat</button>
             <div style="width: 50px;"></div>
             <button mat-flat-button (click)="openDialogCreerCompteRecruteur()">Créer un compte Recruteur</button>
-            <div style="width: 50px;"></div>
-            <button mat-flat-button (click)="authenticateWithLinkedIn()">Login With LinkedIn</button>
-            <div *ngIf="redirect === true"></div>
-          </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" style="margin-top: 20px"> 
+          <img src="https://business.rowan.edu/_images/connect-linkedin.png" (click)="authenticateWithLinkedIn()" 
+          style="height: 40px; width: 200px" class="pointer"/>
+
+          <div *ngIf="redirect === true"></div> <!--Utile pour une raison-->
+        </div>
 
   </div>
 

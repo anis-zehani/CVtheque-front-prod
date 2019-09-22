@@ -5,7 +5,6 @@ import { FormAddCompteCandidatComponent } from '../../@Components/authentificati
 import { FormAddComptePartenaireComponent } from '../../@Components/authentification/form-add-compte-partenaire/form-add-compte-partenaire.component';
 import { FormRecupererPasswordComponent } from '../../@Components/authentification/form-recuperer-password/form-recuperer-password.component';
 import { AuthentificationService } from 'src/app/@Services/authentification.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentification',
@@ -16,8 +15,7 @@ export class AuthentificationComponent implements OnInit {
 
   redirect = false;
   constructor(public dialog: MatDialog,
-              private authentificationService: AuthentificationService,
-              private router: Router) { }
+              private authentificationService: AuthentificationService) { }
 
   ngOnInit() {
   }
