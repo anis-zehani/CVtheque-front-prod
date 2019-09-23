@@ -33,7 +33,7 @@ export class FormAddContactsComponent implements OnInit {
   formContact = new FormGroup({
     identite: new FormControl('', Validators.required),
     telephone: new FormControl('', Validators.nullValidator),
-    email: new FormControl('', Validators.email),
+    email: new FormControl('', Validators.required),
     posteOccupe: new FormControl('', Validators.nullValidator),
     descriptionDetaillee: new FormControl('', Validators.nullValidator),
     entreprise: new FormControl('', Validators.nullValidator)
@@ -71,7 +71,7 @@ export class FormAddContactsComponent implements OnInit {
           this.refreshTableFunction(true);
           this.utilService.openSnackBar('Contact ajouté', 'OK');
           } else {
-            this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
+            this.utilService.openSnackBar('Une erreur est survenue durant l\ajout du contact', 'Erreur');
           }
         }
       );

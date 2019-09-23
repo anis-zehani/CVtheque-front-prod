@@ -73,7 +73,7 @@ export class DatagridPartenairesComponent implements OnInit {
             this.getAllPartenairesController(this.partenaire.etatPartenaire);
             this.utilService.openSnackBar('Partenaire modifié', 'OK');
           } else {
-            this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
+            this.utilService.openSnackBar('Une erreur est survenue durant la modification du partenaire', 'Erreur');
           }
         }
         );

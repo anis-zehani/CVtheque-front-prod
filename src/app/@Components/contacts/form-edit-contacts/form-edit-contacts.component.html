@@ -4,10 +4,10 @@
     <table>
         <tr>
             <td>
+                <input matInput [(ngModel)]="data.id" hidden>
                 <mat-form-field appearance="outline">
                     <mat-label>Identité du contact</mat-label>
-                    <input matInput [(ngModel)]="data.id" hidden>
-                    <input matInput [(ngModel)]="data.identite">
+                    <input matInput [(ngModel)]="data.identite" required>
                     <mat-icon matSuffix>account_circle</mat-icon>
                 </mat-form-field>
             </td>
@@ -35,14 +35,14 @@
             <td>
                 <mat-form-field appearance="outline">
                     <mat-label>Téléphone</mat-label>
-                    <input matInput [(ngModel)]="data.telephone" placeholder="Téléphone">
+                    <input matInput [(ngModel)]="data.telephone">
                     <mat-icon matSuffix>local_phone</mat-icon>
                 </mat-form-field>     
             </td>
             <td>
                 <mat-form-field appearance="outline">
                     <mat-label>Adresse email</mat-label>
-                    <input matInput [(ngModel)]="data.email" placeholder="Adresse email">
+                    <input matInput [(ngModel)]="data.email" required>
                     <mat-icon matSuffix>mail</mat-icon>
                 </mat-form-field>
             </td>

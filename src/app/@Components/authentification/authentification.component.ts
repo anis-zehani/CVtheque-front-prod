@@ -25,6 +25,7 @@ export class AuthentificationComponent implements OnInit {
     .subscribe
       (
         res => {
+            // Redirection vers le serveur d'Autorisation Linkedin pour obtenir le code
             window.location.href = res[0];
             return true;
         }

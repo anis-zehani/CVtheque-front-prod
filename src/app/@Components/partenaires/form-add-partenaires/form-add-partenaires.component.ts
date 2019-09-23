@@ -33,7 +33,7 @@ export class FormAddPartenairesComponent implements OnInit {
   formPartenaire = new FormGroup({
     identite: new FormControl('', Validators.required),
     telephone: new FormControl('', Validators.nullValidator),
-    email: new FormControl('', Validators.email),
+    email: new FormControl('', Validators.required),
     posteOccupe: new FormControl('', Validators.nullValidator),
     descriptionDetaillee: new FormControl('', Validators.nullValidator),
     username: new FormControl('', Validators.required),
@@ -73,7 +73,7 @@ export class FormAddPartenairesComponent implements OnInit {
           this.refreshTableFunction(true);
           this.utilService.openSnackBar('Partenaire ajouté', 'OK');
           } else {
-            this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
+            this.utilService.openSnackBar('Une erreur est survenue durant l\ajout du partenaire', 'Erreur');
           }
         }
       );

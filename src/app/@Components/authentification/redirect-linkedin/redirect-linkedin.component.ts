@@ -15,11 +15,11 @@ export class RedirectLinkedinComponent implements OnInit {
   code: string;
   state: string;
 
-  id: string;
-  firstName: string;
-  lastName: string;
-  profilePicture: string;
-  emailAddress: string;
+  idLinkedin: string;
+  identite: string;
+  email: string;
+  urlPhoto: string;
+
 
   constructor(private router: Router, private authentificationService: AuthentificationService) { }
 
@@ -59,11 +59,12 @@ export class RedirectLinkedinComponent implements OnInit {
     .subscribe
       (
         res => {
-            this.id = res.id;
-            this.firstName = res.firstName;
-            this.lastName = res.lastName;
-            this.profilePicture = res.profilePicture;
-            this.emailAddress = res.emailAddress;
+            this.idLinkedin = res.idLinkedin;
+            this.identite = res.identite;
+            this.email = res.email;
+            this.urlPhoto = res.urlPhoto;
+
+            console.log(res);
         }
       );
   }

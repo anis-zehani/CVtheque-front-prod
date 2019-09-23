@@ -70,7 +70,7 @@ export class FormAddCandidatsComponent implements OnInit {
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     telephone: new FormControl('', Validators.nullValidator),
-    email: new FormControl('', Validators.email),
+    email: new FormControl('', Validators.required),
     posteOccupe: new FormControl('', Validators.nullValidator),
     descriptionDetaillee: new FormControl('', Validators.nullValidator),
     entreprise: new FormControl('', Validators.nullValidator),
@@ -207,8 +207,6 @@ export class FormAddCandidatsComponent implements OnInit {
     this.formCandidat.removeControl('dateDebutVisa');
     this.formCandidat.removeControl('dateFinVisa');
 
-    console.log('this.formCandidat.value : ' + this.formCandidat.value);
-
     this.candidatsService.addCandidatService(this.formCandidat.value)
     .subscribe
       (res => {
@@ -217,7 +215,7 @@ export class FormAddCandidatsComponent implements OnInit {
           this.refreshTableFunction(true);
           this.utilService.openSnackBar('Candidat ajouté', 'OK');
           } else {
-            this.utilService.openSnackBar('Veuillez vérifier vos paramètres', 'Erreur');
+            this.utilService.openSnackBar('Une erreur est survenue durant l\'ajout du candidat', 'Erreur');
           }
         }
       );

@@ -4,10 +4,10 @@
     <table>
         <tr>
             <td>
+                <input matInput [(ngModel)]="data.id" hidden>
                 <mat-form-field appearance="outline">
                     <mat-label>Identité du partenaire</mat-label>
-                    <input matInput [(ngModel)]="data.id" hidden>
-                    <input matInput [(ngModel)]="data.identite">
+                    <input matInput [(ngModel)]="data.identite" required>
                     <mat-icon matSuffix>account_circle</mat-icon>
                 </mat-form-field>
             </td>
@@ -44,7 +44,7 @@
             <td>
                 <mat-form-field appearance="outline">
                     <mat-label>Adresse email</mat-label>
-                    <input matInput [(ngModel)]="data.email">
+                    <input matInput [(ngModel)]="data.email" required>
                     <mat-icon matSuffix>mail</mat-icon>
                 </mat-form-field>
             </td>
@@ -76,14 +76,14 @@
             <td>
                 <mat-form-field appearance="outline">
                     <mat-label>Login</mat-label>
-                    <input matInput [(ngModel)]="data.username">
+                    <input matInput [(ngModel)]="data.username" required>
                     <mat-icon matSuffix>perm_identity</mat-icon>
                 </mat-form-field>     
             </td>
             <td>
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput [(ngModel)]="data.password" type="password">
+                    <input matInput [(ngModel)]="data.password" type="password" required>
                     <mat-icon matSuffix>lock</mat-icon>
                 </mat-form-field>
             </td>

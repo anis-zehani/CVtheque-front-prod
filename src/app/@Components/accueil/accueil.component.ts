@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilService } from '../../@Util/util.service';
 
 @Component({
   selector: 'app-accueil',
@@ -6,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilComponent implements OnInit {
 
-  constructor() { }
+  role: string;
+  constructor(private utilService: UtilService) {}
 
-  ngOnInit() { 
+  ngOnInit() {
+    // je récupère le rôle pour la restriction d'accès dans le menu
+    this.role = this.utilService.getRoleUtilisateurFromToken();
   }
 
 }

@@ -1,6 +1,6 @@
-<app-statistiques></app-statistiques>
+<app-statistiques *ngIf="role === 'Administrateur' || role === 'Partenaire'"></app-statistiques>
     
-
+<app-account *ngIf="role === 'Candidat'"></app-account>
       
       
      
