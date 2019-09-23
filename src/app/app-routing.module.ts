@@ -47,7 +47,7 @@ const routes: Routes = [
   { path: 'collaborateurs', component: CollaborateursComponent, canActivate: [AuthGuardService, Level1GuardService] },
 
   // OAuth2 LinkedIn
-  { path: 'redirectLinkedIn', component: RedirectLinkedinComponent},
+  { path: 'redirect-linkedin', component: RedirectLinkedinComponent},
 
   // URL Introuvable renvoi finalement vers le composant Accueil
   { path: '**', component: AuthentificationComponent }

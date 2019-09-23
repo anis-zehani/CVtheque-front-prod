@@ -61,12 +61,12 @@ export class AuthentificationService {
 
   // Uitile pour rediriger vers Authentification LinkedIn OAuth2
   authenticateWithLinkedInService(): Observable<any> {
-    return this.http.get<any>(this.serviceUrl + '/linkedIn', this.httpOptions);
+    return this.http.get<any>(this.serviceUrl + '/code-linkedin', this.httpOptions);
   }
 
   // LinkedIn OAuth2 : envoi Authorization Code au Serveur
   sendAuthorizationCodeService(code, state): Observable<any> {
-    return this.http.post<any>(this.serviceUrl + '/redirectLinkedIn/' + code + '/' + state, this.httpOptions);
+    return this.http.post<any>(this.serviceUrl + '/redirect-linkedin/' + code + '/' + state, this.httpOptions);
   }
 
 }
