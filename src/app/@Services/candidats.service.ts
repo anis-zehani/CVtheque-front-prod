@@ -55,7 +55,7 @@ export class CandidatsService {
 
   // Retourne un seul candidat par son ID : Candidat
   getOneCandidatService(id): Observable<Candidat> {
-    return this.http.get<Candidat>(this.serviceUrl + '/' + id, this.httpOptions);
+    return this.http.get<Candidat>(this.serviceUrl + '/oneCandidat/' + id, this.httpOptions);
   }
 
   // Retourne le candidat créée : Candidat

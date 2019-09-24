@@ -9,16 +9,16 @@
 
         <button mat-stroked-button (click)="openDialogRecupererPassword()" style="margin-bottom: 50px">Mot de passe oublié ?</button>
 
-        <div fxLayout="row" fxLayoutAlign="space-between stretch" > 
-            <button mat-flat-button (click)="openDialogCreerCompteCandidat()">Créer un compte Candidat</button>
-            <div style="width: 50px;"></div>
-            <button mat-flat-button (click)="openDialogCreerCompteRecruteur()">Créer un compte Recruteur</button>
+        <div fxLayout="row" fxLayoutAlign="space-between stretch"> 
+          <img src="assets/img/linkedin.png" style="height: 35px; width:255px" (click)="authenticateWithLinkedIn()" class="pointer"/>
+          <img src="assets/img/linkedin.png" style="height: 35px; width:255px" (click)="authenticateWithLinkedIn()" class="pointer"/>
         </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between stretch" style="margin-top: 20px"> 
-          <img src="assets/img/linkedin.png" style="height: 33px;width:255px" (click)="authenticateWithLinkedIn()" class="pointer"/>
+            <button mat-flat-button (click)="openDialogCreerCompteCandidat()">Nouveau Candidat</button>
+            <div style="width: 50px;"></div>
+            <button mat-flat-button (click)="openDialogCreerCompteRecruteur()">Nouveau Recruteur</button>
         </div>
-
   </div>
 
   <div fxFlex="30%"></div>

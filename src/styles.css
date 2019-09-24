@@ -82,6 +82,14 @@ STYLE : écran "Liste des Technologies
     font-weight: 400;
   }
 
+  .header-small-text {
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.800rem;
+    font-variant-ligatures: no-contextual;
+    color: white;
+    font-weight: 600;
+  }
+
   div.mat-dialog-title {
       font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
       font-size: 1.175rem;
