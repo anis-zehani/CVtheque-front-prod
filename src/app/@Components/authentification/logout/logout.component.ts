@@ -16,6 +16,7 @@ export class LogoutComponent implements OnInit {
 
   logout() {
     this.authentificationService.logOut();
+    // localStorage.setItem('sign-in-odix', '');
     this.router.navigate(['login']);
   }
 

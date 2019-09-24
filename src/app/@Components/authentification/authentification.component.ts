@@ -13,7 +13,6 @@ import { AuthentificationService } from 'src/app/@Services/authentification.serv
 })
 export class AuthentificationComponent implements OnInit {
 
-  redirect = false;
   constructor(public dialog: MatDialog,
               private authentificationService: AuthentificationService) { }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthentificationService } from '../../../@Services/authentification.service';
+import { UtilService } from 'src/app/@Util/util.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   invalidLogin = false;
 
-  constructor(private router: Router, private authentificationService: AuthentificationService) { }
+  constructor(private router: Router,
+              private authentificationService: AuthentificationService) { }
 
   ngOnInit() {
   }
@@ -31,8 +33,11 @@ export class LoginComponent implements OnInit {
       data => {
         this.router.navigate(['accueil']);
         this.invalidLogin = false;
+        // on met cette valeur dans le local storage : valable en dehors du Scope de la session
+        // localStorage.setItem('sign-in-odix', 'Plateforme Odix');
       },
       error => {
+        // Afficher un message d'erreur ici
         this.invalidLogin = true;
       }
     );

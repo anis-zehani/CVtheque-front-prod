@@ -48,4 +48,21 @@ export class UtilService {
 
     return roleUtilisateur;
   }
+
+    // Récupére tout le Token sans décodage à partir de la session Storage
+    getTheWholeTokenFromSessionStorage() {
+      // Je récupère tout le Token sans décodage
+      const token = sessionStorage.getItem('token');
+
+      return token;
+    }
+
+    // Récupére signInOdix à partir du local Storage
+    getTheWholeTokenFromLocalStorage() {
+      // sign-in-odix : indique que l'utilisateur n'a pas cliqué sur : se déconneter
+      // Quand il réouvre son navigateur on le reconnait
+      const signInOdix = localStorage.getItem('sign-in-odix');
+
+      return signInOdix;
+    }
 }

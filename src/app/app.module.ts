@@ -90,6 +90,7 @@ import { ListeScrollInboxComponent } from './@Components/rappels/liste-scroll-in
 import { ListeScrollProjetsComponent } from './@Components/rappels/liste-scroll-projets/liste-scroll-projets.component';
 import { DatagridRappelsComponent } from './@Components/rappels/datagrid-rappels/datagrid-rappels.component';
 import { FormEditRappelsComponent } from './@Components/rappels/form-edit-rappels/form-edit-rappels.component';
+import { AccountCandidatComponent } from './@Components/candidats/account-candidat/account-candidat.component';
 
 // For 404 when page is refreshed
 // import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -143,7 +144,6 @@ import { HideFullPhrasePipe } from './@Util/Pipes/hide-full-phrase.pipe';
 import { HideFullWordPipe } from './@Util/Pipes/hide-full-word.pipe';
 import { StatsEntreprisesComponent } from './@Components/statistiques/stats-entreprises/stats-entreprises.component';
 import { StatsGeneralesComponent } from './@Components/statistiques/stats-generales/stats-generales.component';
-import { AccountComponent } from './@Components/authentification/account/account.component';
 import { RedirectLinkedinComponent } from './@Components/authentification/redirect-linkedin/redirect-linkedin.component';
 
 @NgModule({
@@ -241,8 +241,8 @@ import { RedirectLinkedinComponent } from './@Components/authentification/redire
     HideFullWordPipe,
     StatsEntreprisesComponent,
     StatsGeneralesComponent,
-    AccountComponent,
-    RedirectLinkedinComponent
+    RedirectLinkedinComponent,
+    AccountCandidatComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,

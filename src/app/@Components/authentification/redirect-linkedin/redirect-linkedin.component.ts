@@ -58,13 +58,9 @@ export class RedirectLinkedinComponent implements OnInit {
     this.authentificationService.sendAuthorizationCodeService(this.code, this.state)
     .subscribe
       (
-        res => {
-            this.idLinkedin = res.idLinkedin;
-            this.identite = res.identite;
-            this.email = res.email;
-            this.urlPhoto = res.urlPhoto;
-
-            console.log(res);
+        data => {
+            // Candidat bien authentifié via Linkedin -> on le redirige Donc vers l'accueil
+            this.router.navigate(['/accueil']);
         }
       );
   }

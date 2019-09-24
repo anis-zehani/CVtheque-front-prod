@@ -51,6 +51,14 @@ export class AuthentificationService {
     return !(user === null);
   }
 
+    /* Vérifie si l'utilisateur est reconnu
+    en vérifiant que signInOdix existe dans le local Storage
+  */
+ isUserExistsInLocalStorage() {
+  const signInOdix = localStorage.getItem('sign-in-odix');
+  return !(signInOdix === null);
+}
+
   /* Supprime la variable token de la session
   du coup l'utilisateur doit OBLIGATOIREMENT entrer ses paramètres
   de nouveau à la prochaine connexion
@@ -66,7 +74,15 @@ export class AuthentificationService {
 
   // LinkedIn OAuth2 : envoi Authorization Code au Serveur
   sendAuthorizationCodeService(code, state): Observable<any> {
-    return this.http.post<any>(this.serviceUrl + '/redirect-linkedin/' + code + '/' + state, this.httpOptions);
+    return this.http.post<any>(this.serviceUrl + '/redirect-linkedin/' + code + '/' + state, this.httpOptions).pipe(
+      map(
+        data => {
+         const tokenValue = 'Bearer ' + data.token;
+         sessionStorage.setItem('token', tokenValue);
+         return data;
+        }
+      )
+     );
   }
 
 }
