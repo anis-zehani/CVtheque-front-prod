@@ -7,16 +7,13 @@
 
         <app-login ></app-login>
 
-        <button mat-stroked-button (click)="openDialogRecupererPassword()" style="margin-bottom: 50px">Mot de passe oublié ?</button>
-
-        <div fxLayout="row" fxLayoutAlign="space-between stretch"> 
-          <img src="assets/img/linkedin.png" style="height: 35px; width:255px" (click)="authenticateWithLinkedIn()" class="pointer"/>
-          <img src="assets/img/linkedin.png" style="height: 35px; width:255px" (click)="authenticateWithLinkedIn()" class="pointer"/>
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" style="margin-top: 20px"> 
+            <img src="assets/img/linkedin.png" style="height: 35px; width:230px" (click)="authenticateWithLinkedIn()" class="pointer"/>
         </div>
 
         <div fxLayout="row" fxLayoutAlign="space-between stretch" style="margin-top: 20px"> 
             <button mat-flat-button (click)="openDialogCreerCompteCandidat()">Nouveau Candidat</button>
-            <div style="width: 50px;"></div>
+            <div style="width: 100px;"></div>
             <button mat-flat-button (click)="openDialogCreerCompteRecruteur()">Nouveau Recruteur</button>
         </div>
   </div>
@@ -27,12 +24,8 @@
 
 <!-- Visible sur Petits écrans seulement -->
 <div fxLayout="column" fxLayoutAlign="start center" fxHide.gt-sm="true" > 
-
-        <app-login></app-login>
-      
-        <button mat-stroked-button (click)="openDialogRecupererPassword()" style="margin-bottom: 50px">Mot de passe oublié ?</button>   
-             
-        <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Créer un compte Candidat</button>
-              
-        <button mat-flat-button (click)="openDialogCreerCompteRecruteur()"style="margin-bottom: 50px">Créer un compte Recruteur</button>
+    <app-login></app-login>
+    <img src="assets/img/linkedin.png" style="margin-bottom: 20px" (click)="authenticateWithLinkedIn()" class="pointer"/>  
+    <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Nouveau Candidat</button>  
+    <button mat-flat-button (click)="openDialogCreerCompteRecruteur()" style="margin-bottom: 50px">Nouveau Recruteur</button>
 </div>

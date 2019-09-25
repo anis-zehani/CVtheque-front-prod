@@ -20,5 +20,16 @@
             <mat-icon matSuffix>fingerprint</mat-icon>
     </mat-form-field>
   
-    <button mat-flat-button style="margin-bottom: 10px">Entrer</button>
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true"> 
+        <button mat-flat-button>Entrer</button> 
+        <div style="width: 150px;"></div>
+        <button mat-stroked-button type="button" (click)="openDialogRecupererPassword()">Mot de passe oublié ?</button>
+    </div>
+
+    <!-- Visible sur Petits écrans seulement -->
+    <div fxLayout="column" fxLayoutAlign="start center" fxHide.gt-sm="true" > 
+        <button mat-flat-button style="margin-bottom: 20px">Entrer</button> 
+        <button mat-stroked-button type="button" style="margin-bottom: 20px" (click)="openDialogRecupererPassword()">Mot de passe oublié ?</button>
+    </div>
+    
 </form> 

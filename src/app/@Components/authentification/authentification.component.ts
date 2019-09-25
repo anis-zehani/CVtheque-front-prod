@@ -31,29 +31,6 @@ export class AuthentificationComponent implements OnInit {
       );
   }
 
-  // Ouvre le pop-up pour récupérer le mot de passe oublié
-  openDialogRecupererPassword(): void {
-    // Objet pour configurer la modale
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.hasBackdrop = true;
-    dialogConfig.closeOnNavigation = true;
-    const dialogRef = this.dialog.open(FormRecupererPasswordComponent, {
-      width: '450px',
-      height: '180px',
-      data: {
-          // texte : "Attention : Afficher Message."
-        }
-      });
-
-    // Fonction qui s'éxècute quand je ferme la modale
-    dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-            // do something here
-        }
-      });
-  }
-
   // Ouvre le pop-up pour créer compte candidat
   openDialogCreerCompteCandidat(): void {
       // Objet pour configurer la modale

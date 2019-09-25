@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthentificationService } from '../../../@Services/authentification.service';
 import { UtilService } from 'src/app/@Util/util.service';
+import { FormRecupererPasswordComponent } from '../form-recuperer-password/form-recuperer-password.component';
+
 
 @Component({
   selector: 'app-login',
@@ -21,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private utilService: UtilService,
+              public dialog: MatDialog,
               private authentificationService: AuthentificationService) { }
 
   ngOnInit() {
@@ -44,4 +48,27 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
+    // Ouvre le pop-up pour récupérer le mot de passe oublié
+    openDialogRecupererPassword(): void {
+      // Objet pour configurer la modale
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = false;
+      dialogConfig.hasBackdrop = true;
+      dialogConfig.closeOnNavigation = true;
+      const dialogRef = this.dialog.open(FormRecupererPasswordComponent, {
+        width: '450px',
+        height: '180px',
+        data: {
+            // texte : "Attention : Afficher Message."
+          }
+        });
+
+      // Fonction qui s'éxècute quand je ferme la modale
+      dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+              // do something here
+          }
+        });
+    }
 }
