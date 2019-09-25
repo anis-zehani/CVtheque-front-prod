@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
 
   constructor(private router: Router,
+              private utilService: UtilService,
               private authentificationService: AuthentificationService) { }
 
   ngOnInit() {
@@ -33,11 +34,12 @@ export class LoginComponent implements OnInit {
       data => {
         this.router.navigate(['accueil']);
         this.invalidLogin = false;
-        // on met cette valeur dans le local storage : valable en dehors du Scope de la session
+        // local storage : valable en dehors du Scope de la session
         // localStorage.setItem('sign-in-odix', 'Plateforme Odix');
       },
       error => {
-        // Afficher un message d'erreur ici
+        // Afficher un message d'erreur d'authentification
+        this.utilService.openSnackBar('Oops, les paramètres fournis ne sont pas correctes', 'Erreur d\'authentification');
         this.invalidLogin = true;
       }
     );
