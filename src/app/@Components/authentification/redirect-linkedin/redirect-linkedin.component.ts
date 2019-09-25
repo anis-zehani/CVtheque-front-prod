@@ -59,8 +59,13 @@ export class RedirectLinkedinComponent implements OnInit {
     .subscribe
       (
         data => {
-            // Candidat bien authentifié via Linkedin -> on le redirige Donc vers l'accueil
-            this.router.navigate(['/accueil']);
+            if (data.token !== '') {
+              // Candidat bien authentifié via Linkedin -> on le redirige Donc vers l'accueil
+              this.router.navigate(['/accueil']);
+            } else {
+              // Rediriger vers Login et Afficher Message d'erreur
+              this.router.navigate(['/login']);
+            }
         }
       );
   }

@@ -17,7 +17,7 @@ import { CertificationsComponent } from './@Components/certifications/certificat
 import { CollaborateursComponent } from './@Components/collaborateurs/collaborateurs.component';
 import { LogoutComponent } from './@Components/authentification/logout/logout.component';
 import { RedirectLinkedinComponent } from './@Components/authentification/redirect-linkedin/redirect-linkedin.component';
-import { AccountCandidatComponent } from './@Components/candidats/account-candidat/account-candidat.component';
+import { AccountComponent } from './@Components/account/account.component';
 
 // Toute personne authentifiée
 import { AuthGuardService } from './@Services/auth-guard.service';
@@ -32,9 +32,10 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login',   component: AuthentificationComponent },
   { path: 'logout',   component: LogoutComponent, canActivate: [AuthGuardService] },
-  { path: 'account',   component: AccountCandidatComponent, canActivate: [AuthGuardService] },
+  { path: 'account',   component: AccountComponent, canActivate: [AuthGuardService] },
 
   { path: 'accueil',   component: AccueilComponent, canActivate: [AuthGuardService] },
+
   { path: 'rappels', component: RappelsComponent, canActivate: [AuthGuardService] },
   { path: 'candidats', component: CandidatsComponent, canActivate: [AuthGuardService, Level2GuardService] },
   { path: 'opportunites', component: OpportunitesComponent, canActivate: [AuthGuardService, Level2GuardService] },

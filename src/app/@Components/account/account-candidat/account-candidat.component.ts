@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidatsService } from '../../../@Services/candidats.service';
 import { UtilService } from '../../../@Util/util.service';
+import { Candidat } from 'src/app/@Models/candidat';
 
 @Component({
   selector: 'app-account-candidat',
@@ -10,7 +11,8 @@ import { UtilService } from '../../../@Util/util.service';
 export class AccountCandidatComponent implements OnInit {
 
   id: number;
-  res: any;
+  candidat: Candidat;
+
   constructor(private candidatsService: CandidatsService, private utilService: UtilService) { }
 
   ngOnInit() {
@@ -24,8 +26,8 @@ export class AccountCandidatComponent implements OnInit {
     this.candidatsService.getOneCandidatService(this.id)
     .subscribe
       (
-      res => {
-        this.res = res;
+      data => {
+        this.candidat = data;
       }
       );
   }

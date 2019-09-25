@@ -14,12 +14,11 @@ export class CollaborateursComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(){
+  ngOnInit() {
   }
 
-   //Afin de rafraichir la table quand on ajoute une technologie
-   onRefreshTableEvent($event) 
-   {
+   // Afin de rafraichir la table quand on ajoute une technologie
+   onRefreshTableEvent($event) {
      this.Datagrid.getAllCollaborateursController();
    }
 }

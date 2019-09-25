@@ -1,6 +1,7 @@
 <app-statistiques *ngIf="role === 'Administrateur' || role === 'Partenaire'"></app-statistiques>
-    
-<app-account-candidat *ngIf="role === 'Candidat'"></app-account-candidat>
+
+<!--Si Candidat alors on Affiche son compte dans l'accueil-->
+<app-account *ngIf="role === 'Candidat'"></app-account> 
       
       
      
