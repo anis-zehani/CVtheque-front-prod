@@ -10,7 +10,7 @@
      fxLayoutGap.xs="0">
 
     <!-- Container : Formulaire : Ajout Certification-->
-    <div fxFlex="25%"  *ngIf="role === 'Administrateur'">
+    <div fxFlex="25%"  *ngIf="role === 'ROLE_ADMINISTRATEUR'">
       <app-form-add-certifications (refreshTableEvent)="onRefreshTableEvent($event)"></app-form-add-certifications>
     </div>
   

@@ -123,9 +123,9 @@ export class FormAddOpportunitesComponent implements OnInit {
   // Ajouter une opportunité
   addOpportuniteController() {
     // Si c'est un Partenaire alors il est mis comme Responsable Opportunité par défaut : sans liste déroulante
-    if (this.role === 'Partenaire') {
+    if (this.role === 'ROLE_PARTENAIRE') {
       this.responsableOpportunite.id = this.idUtilisateur;
-    } else if (this.role === 'Administrateur' && this.responsableOpportunite === null) {
+    } else if (this.role === 'ROLE_ADMINISTRATEUR' && this.responsableOpportunite === null) {
       this.responsableOpportunite.id = this.idUtilisateur;
     }
 

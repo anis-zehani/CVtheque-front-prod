@@ -25,7 +25,7 @@
                     >-  {{opportunite.titreOpportunite}} 
                 </a>
 
-                <a mat-button [matMenuTriggerFor]="menuOpportunites" *ngIf="role === 'Administrateur'" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+                <a mat-button [matMenuTriggerFor]="menuOpportunites" *ngIf="role === 'ROLE_ADMINISTRATEUR'" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
 
                 <mat-menu #menuOpportunites="matMenu" xPosition="after">
                         <button mat-menu-item 

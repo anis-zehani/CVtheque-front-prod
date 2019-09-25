@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         // Afficher un message d'erreur d'authentification
-        this.utilService.openSnackBar('Oops, les paramètres fournis ne sont pas correctes', 'Erreur d\'authentification');
+        this.utilService.openSnackBar('Spring Security Authentication : les paramètres fournis ne sont pas correctes.', 'Oops');
         this.invalidLogin = true;
       }
     );

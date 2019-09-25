@@ -6,13 +6,13 @@
     fxLayoutGap.xs="0">
     
     <div fxFlex="20%" style="background-color: #222;color: white" fxLayout="column" fxLayoutAlign="start stretch">
-            <div class="title-blanc" *ngIf="role === 'Administrateur'">
+            <div class="title-blanc" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
                 Gestion des candidats
             </div>
 
-            <button class="toggleButton"  *ngIf="role === 'Administrateur'" mat-flat-button (click)="sidenav.toggle()" style="margin-bottom: 15px;margin-top:5px;margin-right: 15px;margin-left: 15px;">Nouveau candidat</button>
+            <button class="toggleButton"  *ngIf="role === 'ROLE_ADMINISTRATEUR'" mat-flat-button (click)="sidenav.toggle()" style="margin-bottom: 15px;margin-top:5px;margin-right: 15px;margin-left: 15px;">Nouveau candidat</button>
 
-            <div class="title-blanc" *ngIf="role === 'Partenaire'">
+            <div class="title-blanc" *ngIf="role === 'ROLE_PARTENAIRE'">
                 Recherche avancée
             </div>
             

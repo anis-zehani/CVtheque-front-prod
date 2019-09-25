@@ -13,7 +13,7 @@ export class Level2GuardService implements CanActivate {
 
     // Administrateur OU Partenaire SEULEMENT peuvent accéder aux composants ayant le canActivate Level2GuardService
     const role = this.utilService.getRoleUtilisateurFromToken();
-    if (role === 'Administrateur' || role === 'Partenaire') {
+    if (role === 'ROLE_ADMINISTRATEUR' || role === 'ROLE_PARTENAIRE') {
       return true;
     }
 

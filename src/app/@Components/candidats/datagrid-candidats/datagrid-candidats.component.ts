@@ -94,7 +94,7 @@ export class DatagridCandidatsComponent implements OnInit {
     this.role = this.utilService.getRoleUtilisateurFromToken();
 
      // Displayed columns s'affiche selon le profil : Priviléges
-    if (this.role === 'Administrateur') {
+    if (this.role === 'ROLE_ADMINISTRATEUR') {
       this.displayedColumns = ['urlPhoto', 'candidat', 'details', 'etat', 'more'];
     } else {
       this.displayedColumns = ['urlPhoto', 'candidat', 'details'];

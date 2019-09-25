@@ -22,7 +22,7 @@
   <ng-container matColumnDef="more">
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let element" class="pointer" width="5%">
-        <a mat-button *ngIf="role === 'Administrateur'" [matMenuTriggerFor]="menuCertifications" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+        <a mat-button *ngIf="role === 'ROLE_ADMINISTRATEUR'" [matMenuTriggerFor]="menuCertifications" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
           <mat-menu #menuCertifications="matMenu">
             <button mat-menu-item (click)="openDialogEditCertification(element.id, element.nomCertification, element.descriptionDetaillee)" matTooltip="Modifier la certification" matTooltipPosition="right">Modifier la certification</button>
             

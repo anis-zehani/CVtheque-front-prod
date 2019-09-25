@@ -1,6 +1,6 @@
 <div style="display: flex;justify-content: space-between;">
 
-        <div *ngIf="role === 'Administrateur'; else SINON1">
+        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON1">
             <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | titlecase}} : {{data.posteOccupe}}</div>
         </div>
         <ng-template #SINON1>
@@ -15,7 +15,7 @@
         favorite</mat-icon>
         
         <label>
-            <div *ngIf="data.urlPhoto && role === 'Administrateur' ;else SINON_CANDIDAT">
+            <div *ngIf="data.urlPhoto && role === 'ROLE_ADMINISTRATEUR' ;else SINON_CANDIDAT">
                 <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
             </div>
             <ng-template #SINON_CANDIDAT>
@@ -46,7 +46,7 @@
                 <td>
                     <mat-form-field appearance="fill">
                       <mat-label>Téléphone</mat-label>
-                        <div *ngIf="role === 'Administrateur'; else SINON2">
+                        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON2">
                             <input matInput [(ngModel)]="data.telephone" readonly="true">
                         </div>
                         <ng-template #SINON2>
@@ -58,7 +58,7 @@
                 <td>
                     <mat-form-field appearance="fill">
                       <mat-label>Adresse email</mat-label>
-                        <div *ngIf="role === 'Administrateur'; else SINON3">
+                        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON3">
                             <input matInput [(ngModel)]="data.email" readonly="true">
                         </div>
                         <ng-template #SINON3>
@@ -77,7 +77,7 @@
               <tr>
                 <td>
                       <!--Test si Entreprise est définie-->
-                      <div *ngIf="data.entreprise && role === 'Administrateur' ;else SINON_ENTREPRISE">
+                      <div *ngIf="data.entreprise && role === 'ROLE_ADMINISTRATEUR' ;else SINON_ENTREPRISE">
                           <mat-form-field appearance="fill">
                               <mat-label>Entreprise actuelle</mat-label>
                               <input matInput [(ngModel)]="data.entreprise.nomEntreprise" readonly="true">
@@ -94,7 +94,7 @@
                 <td>
                     <mat-form-field appearance="fill">
                       <mat-label>Salaire actuel</mat-label>
-                        <div *ngIf="role === 'Administrateur'; else SINON4">
+                        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON4">
                             <input matInput [(ngModel)]="data.salaireActuel" readonly="true">
                         </div>
                         <ng-template #SINON4>
@@ -106,7 +106,7 @@
                 <td>
                     <mat-form-field appearance="fill">
                       <mat-label>Prétention salariale</mat-label>
-                        <div *ngIf="role === 'Administrateur'; else SINON5">
+                        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON5">
                             <input matInput [(ngModel)]="data.pretentionSalariale" readonly="true">
                         </div>
                         <ng-template #SINON5>
@@ -119,14 +119,14 @@
 
                 <tr>
                     <td>
-                        <mat-form-field appearance="fill" *ngIf="role === 'Administrateur'">
+                        <mat-form-field appearance="fill" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
                             <mat-label>Nom d'utilisateur</mat-label>
                             <input matInput [(ngModel)]="data.username" readonly="true">
                             <mat-icon matSuffix>perm_identity</mat-icon>
                         </mat-form-field> 
                     </td>
                     <td>
-                        <mat-form-field appearance="fill" *ngIf="role === 'Administrateur'">
+                        <mat-form-field appearance="fill" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
                             <mat-label>Mot de passe</mat-label>
                             <input matInput [(ngModel)]="data.password" type="password" readonly="true">
                             <mat-icon matSuffix>lock</mat-icon>
@@ -335,7 +335,7 @@
     
     <button mat-flat-button mat-dialog-close style="width: 30%">Quitter</button>
     
-    <div *ngIf="data.curriculum.urlCvOriginal && role === 'Administrateur'"><!--Affiche CV Original s'il existe-->
+    <div *ngIf="data.curriculum.urlCvOriginal && role === 'ROLE_ADMINISTRATEUR'"><!--Affiche CV Original s'il existe-->
         <div class="titleCandidat">CV Original <a href="{{storageUrl}}{{data.curriculum.urlCvOriginal}}" target="_blank"><mat-icon class="pointer" matSuffix>link</mat-icon></a></div>
     </div>
 

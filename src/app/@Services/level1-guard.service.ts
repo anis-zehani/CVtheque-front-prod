@@ -13,7 +13,7 @@ export class Level1GuardService implements CanActivate {
 
     // Administrateur SEULEMENT peut accéder aux composants ayant le canActivate Level1GuardService
     const role = this.utilService.getRoleUtilisateurFromToken();
-    if (role === 'Administrateur') {
+    if (role === 'ROLE_ADMINISTRATEUR') {
       return true;
     }
 

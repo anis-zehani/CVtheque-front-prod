@@ -5,7 +5,7 @@
         <div style="max-height:200px;overflow-y: auto;background-color: #222;">
             <div *ngFor="let topCandidat of listeCandidatsFavoris" style="display: flex;justify-content: space-between center;">
                    
-                <div *ngIf="role === 'Administrateur'; else SINON">
+                <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON">
                     <mat-option  [value]="topCandidat.id" fxFlex="90%" class="liste-small" matTooltip="{{topCandidat.identiteCandidat}}">
                         <mat-icon matSuffix style="color: #f7c341;">star</mat-icon> {{topCandidat.identiteCandidat}}
                     </mat-option>

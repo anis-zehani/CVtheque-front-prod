@@ -10,7 +10,7 @@
      fxLayoutGap.xs="0">
 
     <!-- Container : Formulaire : Ajout Technologie-->
-    <div fxFlex="25%" *ngIf="role === 'Administrateur'">
+    <div fxFlex="25%" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
       <app-form-add-technologies (refreshTableEvent)="onRefreshTableEvent($event)"></app-form-add-technologies>
     </div>
   

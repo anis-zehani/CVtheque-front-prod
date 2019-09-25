@@ -54,13 +54,13 @@
             <td>
                 <!--Test si Partenaire est défini-->
                 <div *ngIf="data.responsableOpportunite;else SINON">
-                    <app-liste-partenaires  *ngIf="role === 'Administrateur'"
+                    <app-liste-partenaires  *ngIf="role === 'ROLE_ADMINISTRATEUR'"
                         [partenaireId]="data.responsableOpportunite.id"
                         (partenaireIdEvent)="partenaireIdEventListner($event)">
                     </app-liste-partenaires>    
                 </div>
                 <ng-template #SINON>
-                    <app-liste-partenaires  *ngIf="role === 'Administrateur'"
+                    <app-liste-partenaires  *ngIf="role === 'ROLE_ADMINISTRATEUR'"
                         (partenaireIdEvent)="partenaireIdEventListner($event)">
                     </app-liste-partenaires>   
                 </ng-template>

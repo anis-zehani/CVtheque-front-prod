@@ -81,7 +81,7 @@ export class DatagridOpportunitesComponent implements OnInit {
 
 
     // Displayed columns s'affiche selon le profil : Priviléges
-    /*if (this.role === 'Administrateur') {
+    /*if (this.role === 'ROLE_ADMINISTRATEUR') {
       this.displayedColumns = ['responsableOpportunite', 'details', 'dateAjout', 'dateDemarrageSouhaitee', 'visibiliteOpportunite', 'etat', 'more'];
     } else {
       this.displayedColumns = ['responsableOpportunite', 'details', 'dateAjout', 'dateDemarrageSouhaitee', 'visibiliteOpportunite'];
@@ -101,7 +101,7 @@ export class DatagridOpportunitesComponent implements OnInit {
 
   // Afficher tous les opportunites : remplissage de la table
   getAllOpportunitesController(etat): void {
-    if (this.role === 'Administrateur') {
+    if (this.role === 'ROLE_ADMINISTRATEUR') {
       this.opportunitesService.getAllOpportunitesService(etat)
       .subscribe
         (
@@ -111,7 +111,7 @@ export class DatagridOpportunitesComponent implements OnInit {
           this.listeOpportunites.sort = this.sort;
         }
         );
-    } else if (this.role === 'Partenaire') {
+    } else if (this.role === 'ROLE_PARTENAIRE') {
       this.opportunitesService.getAllOpportunitesPublicAndPrivateByPartenaire(etat, this.idUtilisateur)
       .subscribe
         (
