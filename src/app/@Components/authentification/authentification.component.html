@@ -1,24 +1,26 @@
 <!-- Visible sur Grands écrans seulement -->
 <div fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true"> 
 
-  <div fxFlex="30%"></div>
+  <div fxFlex="35%"></div>
 
-  <div fxFlex="40%" class="container">
+  <div fxFlex="30%" class="container">
 
         <app-login ></app-login>
 
-        <div fxLayout="row" fxLayoutAlign="space-between stretch" style="margin-top: 20px"> 
-            <img src="assets/img/linkedin.png" style="height: 35px; width:230px" (click)="authenticateWithLinkedIn()" class="pointer"/>
+        <div fxLayout="row" fxLayoutAlign="center stretch" style="margin-top: 20px"> 
+            <img src="assets/img/linkedin.png" (click)="authenticateWithLinkedIn()" class="pointer"/>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between stretch" style="margin-top: 20px"> 
-            <button mat-flat-button (click)="openDialogCreerCompteCandidat()">Nouveau Candidat</button>
+        <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 20px"> 
+            <!--<button mat-flat-button (click)="openDialogCreerCompteCandidat()">Nouveau Candidat</button>-->
+            <a class="lien-authentification" (click)="openDialogCreerCompteCandidat()">Nouveau candidat</a>
             <div style="width: 100px;"></div>
-            <button mat-flat-button (click)="openDialogCreerCompteRecruteur()">Nouveau Recruteur</button>
+            <a class="lien-authentification" (click)="openDialogCreerCompteRecruteur()">Nouveau recruteur</a>
+            <!--<button mat-flat-button (click)="openDialogCreerCompteRecruteur()">Nouveau Recruteur</button>-->
         </div>
   </div>
 
-  <div fxFlex="30%"></div>
+  <div fxFlex="35%"></div>
 
 </div>
 
@@ -26,6 +28,6 @@
 <div fxLayout="column" fxLayoutAlign="start center" fxHide.gt-sm="true" > 
     <app-login></app-login>
     <img src="assets/img/linkedin.png" style="margin-bottom: 20px" (click)="authenticateWithLinkedIn()" class="pointer"/>  
-    <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Nouveau Candidat</button>  
-    <button mat-flat-button (click)="openDialogCreerCompteRecruteur()" style="margin-bottom: 50px">Nouveau Recruteur</button>
+    <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Nouveau candidat</button>  
+    <button mat-flat-button (click)="openDialogCreerCompteRecruteur()" style="margin-bottom: 50px">Nouveau recruteur</button>
 </div>

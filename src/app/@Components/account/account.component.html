@@ -1,8 +1,6 @@
+<!--Affiche l'écran Paramètres du compte selon le rôle de l'utilisateur-->
 <div class="container">
-
-    <!--Affiche l'écran Paramètres du compte selon le rôle de l'utilisateur-->
     <app-account-candidat *ngIf="role === 'ROLE_CANDIDAT'"></app-account-candidat>
     <app-account-partenaire *ngIf="role === 'ROLE_PARTENAIRE'"></app-account-partenaire>
     <app-account-administrateur *ngIf="role === 'ROLE_ADMINISTRATEUR'"></app-account-administrateur>
-    
 </div>
