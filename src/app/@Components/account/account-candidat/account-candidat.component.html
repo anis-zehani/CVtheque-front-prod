@@ -78,24 +78,191 @@
                                         <mat-datepicker touchUi #picker></mat-datepicker>
                                     </mat-form-field>
                                 </td>
-                                <td>
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>Nom d'utilisateur</mat-label>
-                                        <input matInput [(ngModel)]="candidat.username" required>
-                                        <mat-icon matSuffix>perm_identity</mat-icon>
-                                    </mat-form-field> 
+                                 <td fxLayout="row" fxLayoutAlign="start start">
+                                    <div class="titleCandidat" >Télécharger un CV</div>
+                                    <br><br>
+                                    <div class="image-upload">
+                                        <label for="cvoriginalEdit">
+                                            <mat-icon class="pointer">attach_file</mat-icon>
+                                        </label>
+                                        <input id="cvoriginalEdit" type="file" style="display: none;" (change)="selectFileEditCandidat($event, 'cvoriginal')">
+                                    </div>
                                 </td>
-                                <td>
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>Mot de passe</mat-label>
-                                        <input matInput [(ngModel)]="candidat.password" type="password" required>
-                                        <mat-icon matSuffix>lock</mat-icon>
-                                    </mat-form-field>
+                                
+                                <td fxLayout="row" fxLayoutAlign="start start">
+                                    <div *ngIf="candidat.curriculum.urlCvOriginal"><!--Affiche CV Original s'il existe-->
+                                        <div class="titleCandidat">Consulter le CV</div><a href="{{storageUrl}}{{candidat.curriculum.urlCvOriginal}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
+                                    </div>
                                 </td>
                           </tr>
-                </table>        
+                          <tr>
+                            <div class="titleCandidat">
+                                Diplômes obtenus
+                            </div>
+                          </tr>
+
+                          <tr>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Type du diplôme</mat-label>
+                                    <mat-select [(ngModel)]="candidat.diplome.typeDiplome">
+                                    <mat-option value="Licence">Licence</mat-option>
+                                    <mat-option value="Maitrise">Maîtrise</mat-option>
+                                    <mat-option value="Master">Master</mat-option>
+                                    <mat-option value="Ingenieur">Ingénieur</mat-option>
+                                    <mat-option value="Doctorat">Doctorat</mat-option>
+                                    </mat-select>
+                                    <mat-icon matSuffix>school</mat-icon>
+                                </mat-form-field>    
+                            </td>
+                            <td>
+                                <!--Test si Ecole est définie-->
+                                <div *ngIf="candidat.diplome.ecole;else SINON_ECOLE">
+                                    <app-liste-ecoles
+                                        [ecoleId]="candidat.diplome.ecole.idEcole" 
+                                        (ecoleIdEvent)="ecoleIdEventListner($event)">
+                                    </app-liste-ecoles>   
+                                </div>
+                                <ng-template #SINON_ECOLE>
+                                    <app-liste-ecoles
+                                        (ecoleIdEvent)="ecoleIdEventListner($event)">
+                                    </app-liste-ecoles> 
+                                </ng-template>
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Date obtention du diplôme</mat-label>
+                                    <input matInput [matDatepicker]="picker3" [(ngModel)]="candidat.diplome.dateObtentionDiplome">
+                                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi #picker3></mat-datepicker>
+                                </mat-form-field>
+                            </td>
+                          </tr>
+            
+                        <tr>
+                            <div class="titleCandidat">
+                                Visas obtenus & Disponibilité
+                            </div>
+                        </tr>
+            
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Type du visa</mat-label>
+                                    <mat-select [(ngModel)]="candidat.visa.typeVisa">
+                                        <mat-option value="TypeC">C</mat-option>
+                                        <mat-option value="TypeD">D</mat-option>
+                                        <mat-option value="CarteDeSejour">Carte de séjour</mat-option>
+                                        <mat-option value="Nationalite">Nationalité</mat-option>
+                                    </mat-select>
+                                    <mat-icon matSuffix>class</mat-icon>
+                                </mat-form-field>    
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Date début du visa</mat-label>
+                                    <input matInput [matDatepicker]="picker4" [(ngModel)]="candidat.visa.dateDebutVisa">
+                                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi #picker4></mat-datepicker>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Date fin du visa</mat-label>
+                                    <input matInput [matDatepicker]="picker5" [(ngModel)]="candidat.visa.dateFinVisa">
+                                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi #picker5></mat-datepicker>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Disponibilité</mat-label>
+                                    <mat-select [(ngModel)]="candidat.disponibilite">
+                                        <mat-option value="Immediate">Immédiate</mat-option>
+                                        <mat-option value="Sous_15_jours">Sous 15 jours</mat-option>
+                                        <mat-option value="Sous_30_jours">Sous 30 jours</mat-option>
+                                        <mat-option value="Sous_45_jours">Sous 45 jours</mat-option>
+                                        <mat-option value="Sous_60_jours">Sous 60 jours</mat-option>
+                                        <mat-option value="Sous_75_jours">Sous 75 jours</mat-option>
+                                        <mat-option value="Sous_90_jours">Sous 90 jours</mat-option>
+                                    </mat-select>
+                                    <mat-icon matSuffix>schedule</mat-icon>
+                                </mat-form-field>      
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Date démarrage de carrière</mat-label>
+                                    <input matInput [matDatepicker]="picker1" [(ngModel)]="candidat.dateDemarrageCarriere">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi #picker1></mat-datepicker>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Date épuisement du passeport</mat-label>
+                                    <input matInput [matDatepicker]="picker2" [(ngModel)]="candidat.dateEpuisementPasseport">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi #picker2></mat-datepicker>
+                                </mat-form-field>   
+                            </td>
+                        </tr>
+                
+                        <tr>
+                                <div class="titleCandidat">
+                                    Informations familiales
+                                </div>
+                        </tr>
+            
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Situation familiale</mat-label>
+                                    <mat-select [(ngModel)]="candidat.situationFamiliale">
+                                    <mat-option value="Celibataire">Célibataire</mat-option>
+                                    <mat-option value="Fiance">Fiancé</mat-option>
+                                    <mat-option value="Marie">Marié</mat-option>
+                                    <mat-option value="Divorce">Divorcé</mat-option>
+                                    </mat-select>
+                                    <mat-icon matSuffix>wc</mat-icon>
+                                </mat-form-field>    
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Nombre d'enfants</mat-label>
+                                    <mat-select [(ngModel)]="candidat.nombreEnfants">
+                                    <mat-option value="0">0</mat-option>
+                                    <mat-option value="1">1</mat-option>
+                                    <mat-option value="2">2</mat-option>
+                                    <mat-option value="3">3</mat-option>
+                                    <mat-option value="4">4</mat-option>
+                                    <mat-option value="5">5</mat-option>
+                                    </mat-select>
+                                    <mat-icon matSuffix>child_care</mat-icon>
+                                </mat-form-field>    
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                <mat-label>Adresse</mat-label>
+                                <input matInput [(ngModel)]="candidat.adresse">
+                                <mat-icon matSuffix>add_location</mat-icon>
+                                </mat-form-field>  
+                            </td>
+                        </tr> 
+                </table> 
+                <div class="titleCandidat">
+                    Autres détails
+                </div>  
+                <mat-form-field appearance="outline" >
+                        <textarea matInput [(ngModel)]="candidat.descriptionDetaillee" placeholder="Description détaillée" style="height: 80px;overflow-y: auto"></textarea>
+                        <mat-icon matSuffix>description</mat-icon>
+                </mat-form-field>     
       </div>
       </div>
+
+
       <div fxFlex="15%" fxLayout="row" fxLayoutAlign="center start">
             <div *ngIf="candidat">
                 <img src="{{candidat.urlPhoto}}"/>
