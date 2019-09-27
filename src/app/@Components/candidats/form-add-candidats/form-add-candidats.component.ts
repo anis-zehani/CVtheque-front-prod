@@ -1,7 +1,6 @@
 import { Component, OnInit , Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { CandidatsService } from '../../../@Services/candidats.service';
 import { UtilService } from '../../../@Util/util.service';
 import { FileUploadService } from '../../../@Services/file-upload.service';
@@ -16,6 +15,7 @@ import { Certification } from 'src/app/@Models/certification';
 import { ListeTechnologiesForAddComponent } from '../../../@Components/technologies/liste-technologies-for-add/liste-technologies-for-add.component';
 import { ListeOpportunitesForAddComponent } from '../../../@Components/opportunites/liste-opportunites-for-add/liste-opportunites-for-add.component';
 import { ListeCertificationsForAddComponent } from '../../../@Components/certifications/liste-certifications-for-add/liste-certifications-for-add.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -69,46 +69,47 @@ export class FormAddCandidatsComponent implements OnInit {
     identite: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    telephone: new FormControl('', Validators.nullValidator),
+    telephone: new FormControl('', null),
     email: new FormControl('', Validators.required),
-    posteOccupe: new FormControl('', Validators.nullValidator),
-    descriptionDetaillee: new FormControl('', Validators.nullValidator),
-    entreprise: new FormControl('', Validators.nullValidator),
+    posteOccupe: new FormControl('', null),
+    descriptionDetaillee: new FormControl('', null),
+    entreprise: new FormControl('', null),
 
     // Informations spécifiques
-    salaireActuel: new FormControl('', Validators.nullValidator),
-    pretentionSalariale: new FormControl('', Validators.nullValidator),
-    situationFamiliale: new FormControl('Non_Mentionee', Validators.nullValidator),
-    nombreEnfants: new FormControl('', Validators.nullValidator),
-    adresse: new FormControl('', Validators.nullValidator),
-    dateDeNaissance: new FormControl('', Validators.nullValidator),
-    niveauEnFrancais: new FormControl('Non_Mentionee', Validators.nullValidator),
-    niveauEnAnglais: new FormControl('Non_Mentionee', Validators.nullValidator),
-    noteGlobale: new FormControl('Non_Mentionee', Validators.nullValidator),
-    disponibilite: new FormControl('Non_Mentionee', Validators.nullValidator),
-    dateDemarrageCarriere: new FormControl('', Validators.nullValidator),
-    dateEpuisementPasseport: new FormControl('', Validators.nullValidator),
+    salaireActuel: new FormControl('', null),
+    pretentionSalariale: new FormControl('', null),
+    situationFamiliale: new FormControl('Non_Mentionee', null),
+    nombreEnfants: new FormControl('', null),
+    adresse: new FormControl('', null),
+    dateDeNaissance: new FormControl('', null),
+    niveauEnFrancais: new FormControl('Non_Mentionee', null),
+    niveauEnAnglais: new FormControl('Non_Mentionee', null),
+    noteGlobale: new FormControl('Non_Mentionee', null),
+    disponibilite: new FormControl('Non_Mentionee', null),
+    dateDemarrageCarriere: new FormControl('', null),
+    dateEpuisementPasseport: new FormControl('', null),
 
     // Diplôme
-    typeDiplome: new FormControl('Non_Mentionee', Validators.nullValidator),
-    ecole: new FormControl('', Validators.nullValidator),
-    dateObtentionDiplome: new FormControl('', Validators.nullValidator),
+    typeDiplome: new FormControl('Non_Mentionee', null),
+    ecole: new FormControl('', null),
+    dateObtentionDiplome: new FormControl('', null),
 
     // Visa
-    typeVisa: new FormControl('Non_Mentionee', Validators.nullValidator),
-    dateDebutVisa: new FormControl('', Validators.nullValidator),
-    dateFinVisa: new FormControl('', Validators.nullValidator),
+    typeVisa: new FormControl('Non_Mentionee', null),
+    dateDebutVisa: new FormControl('', null),
+    dateFinVisa: new FormControl('', null),
 
-    diplome: new FormControl('', Validators.nullValidator),
-    visa: new FormControl('', Validators.nullValidator),
+    diplome: new FormControl('', null),
+    visa: new FormControl('', null),
 
-    listeTechnologies: new FormControl('', Validators.nullValidator),
-    listeOpportunites: new FormControl('', Validators.nullValidator),
-    listeCertifications: new FormControl('', Validators.nullValidator)
+    listeTechnologies: new FormControl('', null),
+    listeOpportunites: new FormControl('', null),
+    listeCertifications: new FormControl('', null)
 
   }, { updateOn: 'change' });
 
   constructor(
+    private router: Router,
     private candidatsService: CandidatsService,
     private utilService: UtilService,
     private uploadService: FileUploadService) {
@@ -222,11 +223,13 @@ export class FormAddCandidatsComponent implements OnInit {
 
     this.formCandidat.reset();
 
-      // Faire le reset aux 3 listes filles
+    // Faire le reset aux 3 listes filles
     this.childListeTechnologies.ngOnInit();
     this.childListeOpportunites.ngOnInit();
     this.childListeCertifications.ngOnInit();
 
+    
+    window.location.href = '/candidats';
   }
 
   // File Upload : Photo de profil + Cv Odix + Cv Original
