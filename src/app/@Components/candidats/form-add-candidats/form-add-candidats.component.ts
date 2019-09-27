@@ -228,7 +228,7 @@ export class FormAddCandidatsComponent implements OnInit {
     this.childListeOpportunites.ngOnInit();
     this.childListeCertifications.ngOnInit();
 
-    
+    // Refresh de la page pour contourner le Bug Add Candidat
     window.location.href = '/candidats';
   }
 
