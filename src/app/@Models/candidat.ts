@@ -12,6 +12,7 @@ import { Utilisateur } from './utilisateur';
 export class Candidat {
     // Attributs hérités de la classe Utilisateur
     id: number;
+    idLinkedin: string;
     identite: string;
     username: string;
     password: string;

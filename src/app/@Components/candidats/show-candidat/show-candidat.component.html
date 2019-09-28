@@ -1,27 +1,23 @@
-<div style="display: flex;justify-content: space-between;">
-
+<div fxLayout="row" fxLayoutAlign="space-between center"> 
+    <div fxFlex="60%">
         <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON1">
             <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | titlecase}} : {{data.posteOccupe}}</div>
         </div>
         <ng-template #SINON1>
             <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | hideFullPhrase}} : {{data.posteOccupe}}</div>
         </ng-template>
-    
-    <div>
-        <mat-icon matSuffix *ngIf="candidatExistsDansFavoris === false" 
-        (click)="addCandidatToFavorite(idUtilisateur, data.id, data.identite)" 
-        class="pointer" style="margin-right: 50px;font-size: 2.175rem;color: red"
-        matTooltip="Ajouter aux Favoris">
-        favorite</mat-icon>
-        
-        <label>
-            <div *ngIf="data.urlPhoto && role === 'ROLE_ADMINISTRATEUR' ;else SINON_CANDIDAT">
-                <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
-            </div>
-            <ng-template #SINON_CANDIDAT>
-                    <img src="/assets/img/candidat.png"> 
-            </ng-template>
-        </label>
+    </div>
+    <div fxFlex="20%" dir="ltr">
+        <a *ngIf="candidatExistsDansFavoris === false" (click)="addCandidatToFavorite(idUtilisateur, data.id, data.identite)" 
+        matTooltip="Ajouter aux Favoris" class="favoris">Ajouter aux Favoris</a>
+    </div>   
+    <div fxFlex="20%" dir="rtl">
+        <div *ngIf="data.urlPhoto && role === 'ROLE_ADMINISTRATEUR' ;else SINON_CANDIDAT">
+            <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
+        </div>
+        <ng-template #SINON_CANDIDAT>
+            <img src="/assets/img/candidat.png"> 
+        </ng-template>
     </div>
 
 </div>  

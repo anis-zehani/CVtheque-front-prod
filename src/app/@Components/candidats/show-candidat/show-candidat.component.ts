@@ -26,6 +26,10 @@ export class ShowCandidatComponent implements OnInit {
               private candidatsFavorisService: CandidatsFavorisService) { }
 
   ngOnInit() {
+    // Si le candidat possède une image Linkedin alors on réajuste l'url d'affichage de l'image
+    if (this.data.idLinkedin !== '') {
+      this.storageUrl = '';
+    }
     // je récupère idUtilisateur pour faire l'appel au WS avec le bon id Utilisateur
     this.idUtilisateur = this.utilService.getIdUtilisateurFromToken();
     this.role = this.utilService.getRoleUtilisateurFromToken();

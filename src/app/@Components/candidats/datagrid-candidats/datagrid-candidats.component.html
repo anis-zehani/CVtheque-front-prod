@@ -57,7 +57,7 @@
 
 
       <div *ngIf="element.urlPhoto; else SINON_CANDIDAT">
-          <img src="{{storageUrl}}{{element.urlPhoto}}" style="cursor: pointer"
+          <img src="{{element.urlPhoto}}" style="cursor: pointer"
           (click)="openDialogShowCandidat(
           element.id, 
           element.identite, 

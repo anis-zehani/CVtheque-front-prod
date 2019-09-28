@@ -117,6 +117,12 @@ export class DatagridCandidatsComponent implements OnInit {
     .subscribe
       (
       res => {
+        // Si le candidat possède une image Linkedin alors on réajuste l'url d'affichage de l'image
+        res.forEach(element => {
+          if (element.idLinkedin === '') {
+            element.urlPhoto = this.storageUrl + '/' + element.urlPhoto;
+          }
+        });
         this.listeCandidats.data = res;
         this.listeCandidats.paginator = this.paginator;
         this.listeCandidats.sort = this.sort;
@@ -130,6 +136,12 @@ export class DatagridCandidatsComponent implements OnInit {
     .subscribe
       (
       res => {
+        // Si le candidat possède une image Linkedin alors on réajuste l'url d'affichage de l'image
+        res.forEach(element => {
+          if (element.idLinkedin === '') {
+            element.urlPhoto = this.storageUrl + '/' + element.urlPhoto;
+          }
+        });
         this.listeCandidats.data = res;
         this.listeCandidats.paginator = this.paginator;
         this.listeCandidats.sort = this.sort;

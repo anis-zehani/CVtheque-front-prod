@@ -38,6 +38,10 @@ export class FormEditCandidatsComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Candidat, private uploadService: FileUploadService) {}
 
   ngOnInit() {
+    // Si le candidat possède une image Linkedin alors on réajuste l'url d'affichage de l'image
+    if (this.data.idLinkedin !== '') {
+      this.storageUrl = '';
+    }
   }
 
   // Parent intercepte l'event envoyé par son fils : <app-liste-entreprises> qui génére un EventEmitter
