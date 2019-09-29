@@ -79,14 +79,14 @@
                                     </mat-form-field>
                                 </td>
                                  <td fxLayout="row" fxLayoutAlign="start start">
-                                    <div class="titleCandidat" >Télécharger un CV</div>
+                                    <!--<div class="titleCandidat" >Télécharger un CV</div>
                                     <br><br>
                                     <div class="image-upload">
                                         <label for="cvoriginalEdit">
                                             <mat-icon class="pointer">attach_file</mat-icon>
                                         </label>
                                         <input id="cvoriginalEdit" type="file" style="display: none;" (change)="selectFileEditCandidat($event, 'cvoriginal')">
-                                    </div>
+                                    </div>-->
                                 </td>
                                 
                                 <td fxLayout="row" fxLayoutAlign="start start">
@@ -116,7 +116,7 @@
                                 </mat-form-field>    
                             </td>
                             <td>
-                                <!--Test si Ecole est définie-->
+                                <!--Test si Ecole est définie
                                 <div *ngIf="candidat.diplome.ecole;else SINON_ECOLE">
                                     <app-liste-ecoles
                                         [ecoleId]="candidat.diplome.ecole.idEcole" 
@@ -127,7 +127,7 @@
                                     <app-liste-ecoles
                                         (ecoleIdEvent)="ecoleIdEventListner($event)">
                                     </app-liste-ecoles> 
-                                </ng-template>
+                                </ng-template>-->
                             </td>
                             <td>
                                 <mat-form-field appearance="outline">

@@ -99,7 +99,7 @@ export class FormEditCandidatsComponent implements OnInit {
             if (event.type === HttpEventType.UploadProgress) {
               this.progressFilesPhoto.percentage = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
-              console.log('Photo is completely uploaded!');
+              // console.log('Photo is completely uploaded!');
             }
           });
 
@@ -113,7 +113,7 @@ export class FormEditCandidatsComponent implements OnInit {
             if (event.type === HttpEventType.UploadProgress) {
               this.progressFilesCvOdix.percentage = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
-              console.log('CvOdix is completely uploaded!');
+              // console.log('CvOdix is completely uploaded!');
             }
           });
 
@@ -127,7 +127,7 @@ export class FormEditCandidatsComponent implements OnInit {
             if (event.type === HttpEventType.UploadProgress) {
               this.progressFilesCvOriginal.percentage = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
-              console.log('CvOriginal is completely uploaded!');
+              // console.log('CvOriginal is completely uploaded!');
             }
           });
 

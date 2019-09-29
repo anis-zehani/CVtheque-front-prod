@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { CandidatsService } from '../../../@Services/candidats.service';
 import { Candidat } from '../../../@Models/candidat';
@@ -11,14 +11,14 @@ import { Candidat } from '../../../@Models/candidat';
 })
 export class ListeCandidatsForAddComponent implements OnInit {
 
-  //Envoi l'event pour mettre à jour la table
+  // Envoi l'event pour mettre à jour la table
   @Output() listeCandidatsEvent = new EventEmitter<Event>();
 
-  //Remplissage de la liste par défaut
-  listeCandidats: Candidat[]=[];
+  // Remplissage de la liste par défaut
+  listeCandidats: Candidat[] = [];
 
   constructor(
-    private candidatsService: CandidatsService,    
+    private candidatsService: CandidatsService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -26,17 +26,17 @@ export class ListeCandidatsForAddComponent implements OnInit {
   }
 
 
-  //Remplir la liste par toutes les candidats
+  // Remplir la liste par toutes les candidats
   getAllCandidatsController(): void {
-    this.candidatsService.getAllCandidatsService("True")
+    this.candidatsService.getAllCandidatsService('True')
     .subscribe
       (
-      res => { this.listeCandidats = res;}
-      )
+      res => { this.listeCandidats = res; }
+      );
   }
 
-  //On emet un Event au parent à chaque changement de la liste (ajout et suppression)
-  onListeCandidatChange($event){
+  // On emet un Event au parent à chaque changement de la liste (ajout et suppression)
+  onListeCandidatChange($event) {
     this.listeCandidatsEvent.emit($event);
   }
 }

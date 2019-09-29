@@ -16,63 +16,54 @@ import { SharedDataService } from '../../../@Services/shared-data.service';
 })
 export class FormEditRappelsComponent implements OnInit {
 
-  //URL du serveur de stockage
+  // URL du serveur de stockage
   storageUrl = environment.storageUrl;
 
-  //FileUpload
+  // FileUpload
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: Rappel, 
+    @Inject(MAT_DIALOG_DATA) public data: Rappel,
     private uploadService: FileUploadService,
     private sharedService: SharedDataService) { }
 
   ngOnInit() {
   }
 
-  //Parent intercepte l'event envoyé par son fils : <app-liste-deroulante-projets> qui génére un EventEmitter
-  projetIdEventListner($event){
-      //Mise à jour de l'objet data de la view
-    
-      if(this.data.projet === null)
-      {
-        let projet = new Projet();
-        projet.id=$event;
-        this.data.projet=projet;
-      }
-      else
-      {
-        this.data.projet.id=$event;
+  // Parent intercepte l'event envoyé par son fils : <app-liste-deroulante-projets> qui génére un EventEmitter
+  projetIdEventListner($event) {
+      // Mise à jour de l'objet data de la view
+
+      if (this.data.projet === null) {
+        const projet = new Projet();
+        projet.id = $event;
+        this.data.projet = projet;
+      } else {
+        this.data.projet.id = $event;
       }
   }
 
-  remindMe(event: MatSlideToggleChange)
-  {
-    //Je met à jour la shared variable : shared data service
+  remindMe(event: MatSlideToggleChange) {
+    // Je met à jour la shared variable : shared data service
     this.sharedService.changeRemindMe(event.checked);
   }
 
-  //FileUpload
+  // FileUpload
   selectFile($event) {
     this.selectedFiles = $event.target.files;
   }
 
   addFileController(id) {
-    if(this.selectedFiles != null)
-    {
+    if (this.selectedFiles != null) {
     this.currentFileUpload = this.selectedFiles.item(0);
 
-    this.uploadService.addFichierRappel(this.currentFileUpload, id).subscribe(event => 
-      {
-        if (event.type === HttpEventType.UploadProgress) 
-        {
+    this.uploadService.addFichierRappel(this.currentFileUpload, id).subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
           this.progress.percentage = Math.round(100 * event.loaded / event.total);
-        } 
-        else if (event instanceof HttpResponse) 
-        {
-          console.log('File is completely uploaded!');
+        } else if (event instanceof HttpResponse) {
+          // console.log('File is completely uploaded!');
         }
       });
     this.selectedFiles = undefined;

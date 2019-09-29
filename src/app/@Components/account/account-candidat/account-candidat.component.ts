@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidatsService } from '../../../@Services/candidats.service';
 import { UtilService } from '../../../@Util/util.service';
+import { environment } from '../../../../environments/environment';
 import { Candidat } from 'src/app/@Models/candidat';
 
 @Component({
@@ -9,6 +10,9 @@ import { Candidat } from 'src/app/@Models/candidat';
   styleUrls: ['./account-candidat.component.css']
 })
 export class AccountCandidatComponent implements OnInit {
+
+  // URL du serveur de stockage
+  storageUrl = environment.storageUrl;
 
   id: number;
   candidat: Candidat;

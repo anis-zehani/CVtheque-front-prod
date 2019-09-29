@@ -1,4 +1,5 @@
 import { Component, OnInit , Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { finalize } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
 import { CandidatsService } from '../../../@Services/candidats.service';
@@ -16,7 +17,6 @@ import { ListeTechnologiesForAddComponent } from '../../../@Components/technolog
 import { ListeOpportunitesForAddComponent } from '../../../@Components/opportunites/liste-opportunites-for-add/liste-opportunites-for-add.component';
 import { ListeCertificationsForAddComponent } from '../../../@Components/certifications/liste-certifications-for-add/liste-certifications-for-add.component';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-form-add-candidats',
@@ -140,8 +140,7 @@ export class FormAddCandidatsComponent implements OnInit {
   listeTechnologiesEventListner($event) {
 
     this.listeTechnologiesFinale = [];
-    for (let i = 0; i < $event.length; i++) {
-
+    for (const i of $event.length) {
       const technologie = new Technologie($event[i]._value.id, $event[i]._value.nomTechnologie, null);
       this.listeTechnologiesFinale.push(technologie);
     }
@@ -153,8 +152,7 @@ export class FormAddCandidatsComponent implements OnInit {
 
     this.listeOpportunitesFinale = [];
 
-    for (let i = 0; i < $event.length; i++) {
-
+    for (const i of $event.length) {
       const opportunite = new Opportunite($event[i]._value.id, $event[i]._value.titreOpportunite);
       this.listeOpportunitesFinale.push(opportunite);
     }
@@ -166,8 +164,7 @@ export class FormAddCandidatsComponent implements OnInit {
 
     this.listeCertificationsFinale = [];
 
-    for (let i = 0; i < $event.length; i++) {
-
+    for (const i of $event.length) {
       const certification = new Certification($event[i]._value.id, $event[i]._value.nomCertification, null);
       this.listeCertificationsFinale.push(certification);
     }
@@ -209,27 +206,25 @@ export class FormAddCandidatsComponent implements OnInit {
     this.formCandidat.removeControl('dateFinVisa');
 
     this.candidatsService.addCandidatService(this.formCandidat.value)
-    .subscribe
-      (res => {
-          if (res != null) {
-          this.addFilesController(res.id);
-          this.refreshTableFunction(true);
-          this.utilService.openSnackBar('Candidat ajouté', 'OK');
-          } else {
-            this.utilService.openSnackBar('Une erreur est survenue durant l\'ajout du candidat', 'Erreur');
-          }
-        }
-      );
-
-    this.formCandidat.reset();
-
-    // Faire le reset aux 3 listes filles
-    this.childListeTechnologies.ngOnInit();
-    this.childListeOpportunites.ngOnInit();
-    this.childListeCertifications.ngOnInit();
-
-    // Refresh de la page pour contourner le Bug Add Candidat
-    window.location.href = '/candidats';
+    .pipe(
+      finalize(() => {
+        window.location.href = '/candidats';
+      })
+    )
+    .subscribe(
+      res => {
+        this.addFilesController(res.id);
+        this.utilService.openSnackBar('Candidat ajouté', 'OK');
+      },
+      error => {
+        this.utilService.openSnackBar('Une erreur est survenue durant l\'ajout du candidat', 'Erreur');
+      });
+      /*this.refreshTableFunction(true);
+        this.formCandidat.reset();
+        // Faire le reset aux 3 listes filles
+        this.childListeTechnologies.ngOnInit();
+        this.childListeOpportunites.ngOnInit();
+        this.childListeCertifications.ngOnInit();*/
   }
 
   // File Upload : Photo de profil + Cv Odix + Cv Original
@@ -255,7 +250,7 @@ export class FormAddCandidatsComponent implements OnInit {
         this.currentFileUploadPhoto = this.selectedFilesPhoto.item(0);
 
         this.uploadService.addPhotoCandidat(this.currentFileUploadPhoto, id).subscribe(event => {
-              console.log('Photo is completely uploaded!');
+              // console.log('Photo is completely uploaded!');
           });
 
         this.selectedFilesPhoto = undefined;
@@ -265,7 +260,7 @@ export class FormAddCandidatsComponent implements OnInit {
         this.currentFileUploadCvOdix = this.selectedFilesCvOdix.item(0);
 
         this.uploadService.addCvOdixCandidat(this.currentFileUploadCvOdix, id).subscribe(event => {
-              console.log('CvOdix is completely uploaded!');
+              // console.log('CvOdix is completely uploaded!');
           });
 
         this.selectedFilesCvOdix = undefined;
@@ -275,7 +270,7 @@ export class FormAddCandidatsComponent implements OnInit {
         this.currentFileUploadCvOriginal = this.selectedFilesCvOriginal.item(0);
 
         this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal, id).subscribe(event => {
-              console.log('CvOriginal is completely uploaded!');
+              // console.log('CvOriginal is completely uploaded!');
           });
 
         this.selectedFilesCvOriginal = undefined;

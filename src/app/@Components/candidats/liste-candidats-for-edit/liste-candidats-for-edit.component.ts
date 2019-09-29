@@ -11,10 +11,10 @@ import { SharedDataService } from '../../../@Services/shared-data.service';
 })
 export class ListeCandidatsForEditComponent implements OnInit {
 
-  //Remplissage de la liste par défaut
-  listeCandidats: Candidat[]=[];
-  
-  //Les options selectionnées par l'utilisateur
+  // Remplissage de la liste par défaut
+  listeCandidats: Candidat[] = [];
+
+  // Les options selectionnées par l'utilisateur
   @Input() selectedOptionsCandidat: Candidat[];
   @Input() idOpportunite: number;
 
@@ -27,57 +27,50 @@ export class ListeCandidatsForEditComponent implements OnInit {
     this.getAllCandidatsController();
   }
 
-  //Récupère la liste des candidats liés à une opportunité
+  // Récupère la liste des candidats liés à une opportunité
   getAllCandidatsByOpportuniteController(idOpportunite): void {
     this.candidatsService.getAllCandidatsByOpportuniteService(idOpportunite)
     .subscribe
       (
-      res => 
-      { 
-        this.selectedOptionsCandidat = res; 
+      res => {
+        this.selectedOptionsCandidat = res;
       }
-      )
+      );
   }
 
 
-  //Remplir la liste par tous les candidats
+  // Remplir la liste par tous les candidats
   getAllCandidatsController(): void {
-    this.candidatsService.getAllCandidatsService("True")
+    this.candidatsService.getAllCandidatsService('True')
     .subscribe
       (
-      res => 
-      { 
+      res => {
         this.listeCandidats = res;
-        //Utile pour la comparaison et affichage de la différence entre les deux listes
-        if(this.selectedOptionsCandidat)
-        {
-          //Je dois faire la différence entre 2 Arrays
+        // Utile pour la comparaison et affichage de la différence entre les deux listes
+        if (this.selectedOptionsCandidat) {
+          // Je dois faire la différence entre 2 Arrays
 
-          for(let i in this.selectedOptionsCandidat) 
-          {
-            for(let j in this.listeCandidats) 
-            {
-              
-              if(this.selectedOptionsCandidat[i].id === this.listeCandidats[j].id)
-              {
+          for (const i in this.selectedOptionsCandidat) {
+            for (const j in this.listeCandidats) {
+
+              if (this.selectedOptionsCandidat[i].id === this.listeCandidats[j].id) {
                 this.listeCandidats[j].selected = true;
                 break;
               }
             }
           }
         }
-        //Penser à faire le tri selon ce qui est selectionné en avant
+        // Penser à faire le tri selon ce qui est selectionné en avant
       }
-      )
+      );
   }
-  
 
-  //On récupére la nouvelle liste à chaque changement puis on l'envoi via le service partagé à l'écran
-  //datagrid-candidat qui exécute la fonction de fermeture pop-up, donc il récupère les bonnes
-  //valeurs du formulaire
-  onListeCandidatChange($event){
-    if($event)
-    {
+
+  // On récupére la nouvelle liste à chaque changement puis on l'envoi via le service partagé à l'écran
+  // datagrid-candidat qui exécute la fonction de fermeture pop-up, donc il récupère les bonnes
+  // valeurs du formulaire
+  onListeCandidatChange($event) {
+    if ($event) {
       this.sharedService.changeListeCandidatIsModified(true);
       this.sharedService.changeListeCandidat($event);
     }

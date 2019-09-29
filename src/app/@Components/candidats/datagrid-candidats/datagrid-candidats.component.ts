@@ -379,7 +379,7 @@ export class DatagridCandidatsComponent implements OnInit {
             // listeTechnologies : J'utilise une variable partagée via le shared-data service
             // detection du changement sur la liste
             if (this.valueOfListeTechnologie != null && this.valueOfListeTechnologieIsModified === true) {
-              for (const i in this.valueOfListeTechnologie.source.selectedOptions.selected) {
+              for (const i of this.valueOfListeTechnologie.source.selectedOptions.selected) {
                 const technologie = new Technologie(this.valueOfListeTechnologie.source.selectedOptions.selected[i].value.id, this.valueOfListeTechnologie.source.selectedOptions.selected[i].value.nomTechnologie, null);
                 this.listeTechnologiesFinale.push(technologie);
               }
@@ -396,7 +396,7 @@ export class DatagridCandidatsComponent implements OnInit {
             // listeOpportunites : J'utilise une variable partagée via le shared-data service
             // detection du changement sur la liste
             if (this.valueOfListeOpportunite != null && this.valueOfListeOpportuniteIsModified === true) {
-              for (const j in this.valueOfListeOpportunite.source.selectedOptions.selected) {
+              for (const j of this.valueOfListeOpportunite.source.selectedOptions.selected) {
                 const opportunite = new Opportunite(this.valueOfListeOpportunite.source.selectedOptions.selected[j].value.id, this.valueOfListeOpportunite.source.selectedOptions.selected[j].value.titreOpportunite);
                 this.listeOpportunitesFinale.push(opportunite);
 
@@ -413,7 +413,7 @@ export class DatagridCandidatsComponent implements OnInit {
             // listeCertifications : J'utilise une variable partagée via le shared-data service
             // detection du changement sur la liste
             if (this.valueOfListeCertification != null && this.valueOfListeCertificationIsModified === true) {
-              for (const k in this.valueOfListeCertification.source.selectedOptions.selected) {
+              for (const k of this.valueOfListeCertification.source.selectedOptions.selected) {
                 const certification = new Certification(this.valueOfListeCertification.source.selectedOptions.selected[k].value.id, this.valueOfListeCertification.source.selectedOptions.selected[k].value.nomCertification, null);
                 this.listeCertificationsFinale.push(certification);
 

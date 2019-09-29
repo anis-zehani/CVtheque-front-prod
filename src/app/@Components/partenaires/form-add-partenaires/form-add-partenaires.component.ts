@@ -94,7 +94,7 @@ export class FormAddPartenairesComponent implements OnInit {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress.percentage = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
-          console.log('File is completely uploaded!');
+          // console.log('File is completely uploaded!');
         }
       });
     this.selectedFiles = undefined;

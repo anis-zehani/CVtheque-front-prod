@@ -52,7 +52,9 @@ export class FormEditPartenairesComponent implements OnInit {
         this.currentFileUpload = this.selectedFiles.item(0);
 
         this.uploadService.addPhotoPartenaire(this.currentFileUpload, id).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) { this.progress.percentage = Math.round(100 * event.loaded / event.total); } else if (event instanceof HttpResponse) {console.log('File is completely uploaded!'); }
+            if (event.type === HttpEventType.UploadProgress) { this.progress.percentage = Math.round(100 * event.loaded / event.total); } else if (event instanceof HttpResponse) {
+              // console.log('File is completely uploaded!');
+            }
           });
         this.selectedFiles = undefined;
   }
