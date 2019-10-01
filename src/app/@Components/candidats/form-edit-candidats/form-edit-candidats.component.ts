@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 import { environment } from '../../../../environments/environment';
 import { Candidat } from '../../../@Models/candidat';
@@ -70,68 +69,59 @@ export class FormEditCandidatsComponent implements OnInit {
     }
   }
 
-  // File Upload : Photo de profil + Cv Odix + Cv Original
-  selectFileEditCandidat($event, typeFile) {
-    if (typeFile === 'photodeprofil') {
+  // File Upload : Photo de profil
+  selectEditPhotoProfil($event, typeFile) {
+    if (typeFile === 'photodeprofilToEdit') {
       this.selectedFilesPhoto = $event.target.files;
-      // console.log("photodeprofil");
     }
-
-    if (typeFile === 'cvodix') {
+  }
+  // File Upload : Cv Odix
+  selectEditCvOdix($event, typeFile) {
+    if (typeFile === 'cvodixToEdit') {
       this.selectedFilesCvOdix = $event.target.files;
-      // console.log("cvodix");
     }
-
-    if (typeFile === 'cvoriginal') {
+  }
+  // File Upload : Cv Original
+  selectEditCvOriginal($event, typeFile) {
+    if (typeFile === 'cvoriginalToEdit') {
       this.selectedFilesCvOriginal = $event.target.files;
-      // console.log("cvoriginal");
     }
-
   }
 
-  // Click sur le bouton "Confirmer"
-  editFilesController(id) {
-    // Upload All 3 Files
+  // Upload Photo de Profil
+  async editPhotoProfil(id) {
     if (this.selectedFilesPhoto !=  null) {
         this.currentFileUploadPhoto = this.selectedFilesPhoto.item(0);
-
-        this.uploadService.addPhotoCandidat(this.currentFileUploadPhoto, id).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progressFilesPhoto.percentage = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              // console.log('Photo is completely uploaded!');
-            }
-          });
-
+        const result = await this.uploadService.addPhotoCandidat(this.currentFileUploadPhoto, id);
+        if (result != null) {
+          this.editCvOdix(id);
+        }
         this.selectedFilesPhoto = undefined;
-      }
+    } else {
+      this.editCvOdix(id);
+    }
+  }
 
+  // Upload Cv Odix
+  async editCvOdix(id) {
     if (this.selectedFilesCvOdix !=  null) {
         this.currentFileUploadCvOdix = this.selectedFilesCvOdix.item(0);
-
-        this.uploadService.addCvOdixCandidat(this.currentFileUploadCvOdix, id).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progressFilesCvOdix.percentage = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              // console.log('CvOdix is completely uploaded!');
-            }
-          });
-
+        const result = await this.uploadService.addCvOdixCandidat(this.currentFileUploadCvOdix, id);
+        if (result != null) {
+          this.editCvOriginal(id);
+        }
         this.selectedFilesCvOdix = undefined;
-      }
+    } else {
+        this.editCvOriginal(id);
+    }
+  }
 
+  // Upload Cv Original
+  async editCvOriginal(id) {
     if (this.selectedFilesCvOriginal !=  null) {
         this.currentFileUploadCvOriginal = this.selectedFilesCvOriginal.item(0);
-
-        this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal, id).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progressFilesCvOriginal.percentage = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              // console.log('CvOriginal is completely uploaded!');
-            }
-          });
-
+        const result = await this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal, id);
         this.selectedFilesCvOriginal = undefined;
-      }
+    }
   }
 }

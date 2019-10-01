@@ -65,7 +65,7 @@ export class FileUploadService {
     return this.http.request(req);
   }
 
-  addPhotoCandidat(photo: File, id: any): Observable<HttpEvent<{}>> {
+  async addPhotoCandidat(photo: File, id: any) {
 
     const formdata: FormData = new FormData();
 
@@ -76,10 +76,10 @@ export class FileUploadService {
       responseType: 'text'
     });
 
-    return this.http.request(req);
+    return this.http.request(req).toPromise();
   }
 
-  addCvOdixCandidat(cvOdix: File, id: any): Observable<HttpEvent<{}>> {
+  async addCvOdixCandidat(cvOdix: File, id: any) {
 
     const formdata: FormData = new FormData();
 
@@ -90,10 +90,10 @@ export class FileUploadService {
       responseType: 'text'
     });
 
-    return this.http.request(req);
+    return this.http.request(req).toPromise();
   }
 
-  addCvOriginalCandidat(cvOriginal: File, id: any): Observable<HttpEvent<{}>> {
+  async addCvOriginalCandidat(cvOriginal: File, id: any) {
 
     const formdata: FormData = new FormData();
 
@@ -104,6 +104,6 @@ export class FileUploadService {
       responseType: 'text'
     });
 
-    return this.http.request(req);
+    return this.http.request(req).toPromise();
   }
 }

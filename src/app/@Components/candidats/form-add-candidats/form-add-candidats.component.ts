@@ -1,5 +1,4 @@
 import { Component, OnInit , Output, EventEmitter, Input, ViewChild } from '@angular/core';
-import { finalize } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
 import { CandidatsService } from '../../../@Services/candidats.service';
@@ -17,6 +16,7 @@ import { ListeTechnologiesForAddComponent } from '../../../@Components/technolog
 import { ListeOpportunitesForAddComponent } from '../../../@Components/opportunites/liste-opportunites-for-add/liste-opportunites-for-add.component';
 import { ListeCertificationsForAddComponent } from '../../../@Components/certifications/liste-certifications-for-add/liste-certifications-for-add.component';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-form-add-candidats',
@@ -206,75 +206,89 @@ export class FormAddCandidatsComponent implements OnInit {
     this.formCandidat.removeControl('dateFinVisa');
 
     this.candidatsService.addCandidatService(this.formCandidat.value)
-    .pipe(
-      finalize(() => {
-        window.location.href = '/candidats';
-      })
-    )
-    .subscribe(
-      res => {
-        this.addFilesController(res.id);
-        this.utilService.openSnackBar('Candidat ajouté', 'OK');
+    .subscribe({
+      next: (res) => {
+        this.addPhotoProfil(res.id);
       },
-      error => {
+      error: () => {
         this.utilService.openSnackBar('Une erreur est survenue durant l\'ajout du candidat', 'Erreur');
-      });
-      /*this.refreshTableFunction(true);
+      },
+      /*complete: () => {
+        // Ce n'est plus utile, du moment ou on refresh la page totalement : mais NE PAS SUPPRIMER
+        this.refreshTableFunction(true);
         this.formCandidat.reset();
         // Faire le reset aux 3 listes filles
         this.childListeTechnologies.ngOnInit();
         this.childListeOpportunites.ngOnInit();
-        this.childListeCertifications.ngOnInit();*/
+        this.childListeCertifications.ngOnInit();
+        // this.utilService.openSnackBar('Candidat ajouté', 'OK');
+        // Refresh de la page pour contourner le Bug Add Candidat
+        // window.location.href = '/candidats';
+      },*/
+  });
   }
 
-  // File Upload : Photo de profil + Cv Odix + Cv Original
-  selectFile($event, typeFile) {
+  // File Upload : Photo de profil
+  selectPhotoProfil($event, typeFile) {
     if (typeFile === 'photodeprofil') {
       this.selectedFilesPhoto = $event.target.files;
     }
-
+  }
+  // File Upload : Cv Odix
+  selectCvOdix($event, typeFile) {
     if (typeFile === 'cvodix') {
       this.selectedFilesCvOdix = $event.target.files;
     }
-
+  }
+  // File Upload : Cv Original
+  selectCvOriginal($event, typeFile) {
     if (typeFile === 'cvoriginal') {
       this.selectedFilesCvOriginal = $event.target.files;
     }
-
   }
 
-  // Fonction qui s'éxécute pour faire l'upload des 3 files
-  addFilesController(id) {
-    // Upload All 3 Files
+  // Upload Photo de Profil
+  async addPhotoProfil(id) {
     if (this.selectedFilesPhoto !=  null) {
         this.currentFileUploadPhoto = this.selectedFilesPhoto.item(0);
-
-        this.uploadService.addPhotoCandidat(this.currentFileUploadPhoto, id).subscribe(event => {
-              // console.log('Photo is completely uploaded!');
-          });
-
+        const result = await this.uploadService.addPhotoCandidat(this.currentFileUploadPhoto, id);
+        if (result != null) {
+          this.addCvOdix(id);
+        }
         this.selectedFilesPhoto = undefined;
-      }
 
-    if (this.selectedFilesCvOdix !=  null) {
-        this.currentFileUploadCvOdix = this.selectedFilesCvOdix.item(0);
-
-        this.uploadService.addCvOdixCandidat(this.currentFileUploadCvOdix, id).subscribe(event => {
-              // console.log('CvOdix is completely uploaded!');
-          });
-
-        this.selectedFilesCvOdix = undefined;
-      }
-
-    if (this.selectedFilesCvOriginal !=  null) {
-        this.currentFileUploadCvOriginal = this.selectedFilesCvOriginal.item(0);
-
-        this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal, id).subscribe(event => {
-              // console.log('CvOriginal is completely uploaded!');
-          });
-
-        this.selectedFilesCvOriginal = undefined;
-      }
+    } else {
+      this.addCvOdix(id);
+    }
   }
 
+  // Upload Cv Odix
+  async addCvOdix(id) {
+    if (this.selectedFilesCvOdix !=  null) {
+        this.currentFileUploadCvOdix = this.selectedFilesCvOdix.item(0);
+        const result = await this.uploadService.addCvOdixCandidat(this.currentFileUploadCvOdix, id);
+        if (result != null) {
+          this.addCvOriginal(id);
+        }
+        this.selectedFilesCvOdix = undefined;
+
+    } else {
+        this.addCvOriginal(id);
+    }
+  }
+
+  // Upload Cv Original
+  async addCvOriginal(id) {
+    if (this.selectedFilesCvOriginal !=  null) {
+        this.currentFileUploadCvOriginal = this.selectedFilesCvOriginal.item(0);
+        const result = await this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal, id);
+        this.selectedFilesCvOriginal = undefined;
+        if (result != null) {
+          window.location.href = '/candidats';
+        }
+    } else {
+      window.location.href = '/candidats';
+    }
+    this.utilService.openSnackBar('Candidat ajouté', 'OK');
+  }
 }
