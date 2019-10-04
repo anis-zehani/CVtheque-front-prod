@@ -13,7 +13,7 @@
             </div>
       </div>
 
-      <div fxFlex="65%">
+      <div fxFlex="70%">
             <div *ngIf="candidat">
                 <table>
                         <tr>
@@ -35,7 +35,7 @@
                           <td>
                               <mat-form-field appearance="outline">
                                 <mat-label>Téléphone</mat-label>
-                                <input matInput [(ngModel)]="candidat.telephone">
+                                <input matInput [(ngModel)]="candidat.telephoneAutoFill">
                                 <mat-icon matSuffix>local_phone</mat-icon>
                               </mat-form-field>  
                           </td>
@@ -52,7 +52,7 @@
                           <td>
                               <mat-form-field appearance="outline">
                                   <mat-label>Poste occupé</mat-label>
-                                  <input matInput [(ngModel)]="candidat.posteOccupe">
+                                  <input matInput [(ngModel)]="candidat.posteOccupeAutoFill">
                               </mat-form-field>   
                           </td>
                           <td>
@@ -64,7 +64,7 @@
                           <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Salaire actuel</mat-label>
-                                    <input matInput [(ngModel)]="candidat.salaireActuel">
+                                    <input matInput [(ngModel)]="candidat.salaireActuelAutoFill">
                                 </mat-form-field> 
                           </td>
                           </tr>
@@ -73,32 +73,23 @@
                                 <td>
                                     <mat-form-field appearance="outline">
                                         <mat-label>Prétention salariale</mat-label>
-                                        <input matInput [(ngModel)]="candidat.pretentionSalariale">
+                                        <input matInput [(ngModel)]="candidat.pretentionSalarialeAutoFill">
                                     </mat-form-field>  
                                 </td>
                                 <td>
                                     <mat-form-field appearance="outline">
                                         <mat-label>Date de naissance</mat-label>
-                                        <input matInput [matDatepicker]="picker" [(ngModel)]="candidat.dateDeNaissance">
+                                        <input matInput [matDatepicker]="picker" [(ngModel)]="candidat.dateDeNaissanceAutoFill">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker touchUi #picker></mat-datepicker>
                                     </mat-form-field>
                                 </td>
-                                <td fxLayout="row" fxLayoutAlign="center center">
-                                    <div class="titleCandidat" >Ajouter un CV</div>
-                                    <br><br>
-                                    <div class="image-upload">
-                                        <label for="cvoriginalAutoFill">
-                                            <mat-icon class="pointer">attach_file</mat-icon>
-                                        </label>
-                                        <input id="cvoriginalAutoFill" type="file" style="display: none;" (change)="selectFileEditCandidat($event, 'cvoriginalAutoFill')">
-                                    </div>
-                                </td>
-                                
-                                <td fxLayout="row" fxLayoutAlign="center center">
-                                    <div *ngIf="candidat.curriculum.urlCvOriginalAutoFill"><!--Affiche CV Original s'il existe-->
-                                        <div class="titleCandidat">Consulter le CV</div><a href="{{storageUrl}}{{candidat.curriculum.urlCvOriginalAutoFill}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
-                                    </div>
+                                <td>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Adresse email secondaire</mat-label>
+                                        <input matInput [(ngModel)]="candidat.emailAutoFill">
+                                        <mat-icon matSuffix>mail</mat-icon>
+                                    </mat-form-field>  
                                 </td>
                           </tr>
                           <tr>
@@ -111,7 +102,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Type du diplôme</mat-label>
-                                    <mat-select [(ngModel)]="candidat.diplome.typeDiplome">
+                                    <mat-select [(ngModel)]="candidat.diplome.typeDiplomeAutoFill">
                                     <mat-option value="Licence">Licence</mat-option>
                                     <mat-option value="Maitrise">Maîtrise</mat-option>
                                     <mat-option value="Master">Master</mat-option>
@@ -130,7 +121,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Date obtention du diplôme</mat-label>
-                                    <input matInput [matDatepicker]="picker3" [(ngModel)]="candidat.diplome.dateObtentionDiplome">
+                                    <input matInput [matDatepicker]="picker3" [(ngModel)]="candidat.diplome.dateObtentionDiplomeAutoFill">
                                     <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                     <mat-datepicker touchUi #picker3></mat-datepicker>
                                 </mat-form-field>
@@ -147,7 +138,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Type du visa</mat-label>
-                                    <mat-select [(ngModel)]="candidat.visa.typeVisa">
+                                    <mat-select [(ngModel)]="candidat.visa.typeVisaAutoFill">
                                         <mat-option value="TypeC">C</mat-option>
                                         <mat-option value="TypeD">D</mat-option>
                                         <mat-option value="CarteDeSejour">Carte de séjour</mat-option>
@@ -159,7 +150,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Date début du visa</mat-label>
-                                    <input matInput [matDatepicker]="picker4" [(ngModel)]="candidat.visa.dateDebutVisa">
+                                    <input matInput [matDatepicker]="picker4" [(ngModel)]="candidat.visa.dateDebutVisaAutoFill">
                                     <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                                     <mat-datepicker touchUi #picker4></mat-datepicker>
                                 </mat-form-field>
@@ -167,7 +158,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Date fin du visa</mat-label>
-                                    <input matInput [matDatepicker]="picker5" [(ngModel)]="candidat.visa.dateFinVisa">
+                                    <input matInput [matDatepicker]="picker5" [(ngModel)]="candidat.visa.dateFinVisaAutoFill">
                                     <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
                                     <mat-datepicker touchUi #picker5></mat-datepicker>
                                 </mat-form-field>
@@ -178,7 +169,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Disponibilité</mat-label>
-                                    <mat-select [(ngModel)]="candidat.disponibilite">
+                                    <mat-select [(ngModel)]="candidat.disponibiliteAutoFill">
                                         <mat-option value="Immediate">Immédiate</mat-option>
                                         <mat-option value="Sous_15_jours">Sous 15 jours</mat-option>
                                         <mat-option value="Sous_30_jours">Sous 30 jours</mat-option>
@@ -193,7 +184,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Date démarrage de carrière</mat-label>
-                                    <input matInput [matDatepicker]="picker1" [(ngModel)]="candidat.dateDemarrageCarriere">
+                                    <input matInput [matDatepicker]="picker1" [(ngModel)]="candidat.dateDemarrageCarriereAutoFill">
                                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                     <mat-datepicker touchUi #picker1></mat-datepicker>
                                 </mat-form-field>
@@ -201,7 +192,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Date épuisement du passeport</mat-label>
-                                    <input matInput [matDatepicker]="picker2" [(ngModel)]="candidat.dateEpuisementPasseport">
+                                    <input matInput [matDatepicker]="picker2" [(ngModel)]="candidat.dateEpuisementPasseportAutoFill">
                                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                     <mat-datepicker touchUi #picker2></mat-datepicker>
                                 </mat-form-field>   
@@ -218,7 +209,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Situation familiale</mat-label>
-                                    <mat-select [(ngModel)]="candidat.situationFamiliale">
+                                    <mat-select [(ngModel)]="candidat.situationFamilialeAutoFill">
                                     <mat-option value="Celibataire">Célibataire</mat-option>
                                     <mat-option value="Fiance">Fiancé</mat-option>
                                     <mat-option value="Marie">Marié</mat-option>
@@ -230,7 +221,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Nombre d'enfants</mat-label>
-                                    <mat-select [(ngModel)]="candidat.nombreEnfants">
+                                    <mat-select [(ngModel)]="candidat.nombreEnfantsAutoFill">
                                     <mat-option value="0">0</mat-option>
                                     <mat-option value="1">1</mat-option>
                                     <mat-option value="2">2</mat-option>
@@ -244,7 +235,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                 <mat-label>Adresse</mat-label>
-                                <input matInput [(ngModel)]="candidat.adresse">
+                                <input matInput [(ngModel)]="candidat.adresseAutoFill">
                                 <mat-icon matSuffix>add_location</mat-icon>
                                 </mat-form-field>  
                             </td>
@@ -254,17 +245,39 @@
                     Autres détails
                 </div>  
                 <mat-form-field appearance="outline" >
-                        <textarea matInput [(ngModel)]="candidat.descriptionDetaillee" style="height: 80px;overflow-y: auto"></textarea>
+                        <textarea matInput [(ngModel)]="candidat.descriptionDetailleeAutoFill" style="height: 80px;overflow-y: auto"></textarea>
                         <mat-icon matSuffix>description</mat-icon>
                 </mat-form-field>     
       </div>
       </div>
 
-
-      <div fxFlex="15%" fxLayout="row" fxLayoutAlign="center start">
-            <div *ngIf="candidat">
+      <!--Partie Gauche-->
+      <div fxFlex="10%" fxLayout="column" fxLayoutAlign="start center">
+            <div *ngIf="candidat" style="margin-bottom: 15px;">
                 <img src="{{candidat.urlPhoto}}"/>
             </div>
+
+            <div class="titleCandidat">Ajouter un CV</div>
+            <div class="image-upload" style="margin-bottom: 15px;">
+                <label for="cvoriginalAutoFill">
+                    <mat-icon class="pointer">attach_file</mat-icon>
+                </label>
+                <input id="cvoriginalAutoFill" type="file" style="display: none;" (change)="selectFileAutoFillCvCandidat($event, 'cvoriginalAutoFill')">
+            </div>
+ 
+            <div *ngIf="candidat.curriculum.urlCvOriginalAutoFill"><!--Affiche CV Original s'il existe-->
+                <div class="titleCandidat" style="margin-bottom: 15px;">Consulter le CV</div><a href="{{storageUrl}}{{candidat.curriculum.urlCvOriginalAutoFill}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
+            </div>
+
+
+            <div class="titleCandidat">Photo de profil</div>
+            <div class="image-upload" style="margin-bottom: 15px;">
+                    <label for="photodeprofilAutoFill">
+                      <mat-icon class="pointer">add_a_photo</mat-icon>
+                    </label>
+                    <input id="photodeprofilAutoFill" type="file" style="display: none;" (change)="selectAutoFillPhotoProfil($event, 'photodeprofilAutoFill')">
+            </div>
+
       </div>
 </div> 
 

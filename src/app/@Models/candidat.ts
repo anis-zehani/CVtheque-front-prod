@@ -50,8 +50,6 @@ export class Candidat {
     utilisateur: Utilisateur; // @ManyToOne
 
     /*Paramètres AutoFill : le candidat remplira ça tout seul via son espace candidat*/
-
-
     telephoneAutoFill: string;
     emailAutoFill: string;
     posteOccupeAutoFill: string;
