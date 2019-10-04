@@ -57,19 +57,25 @@
                           </td>
                           <td>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Salaire actuel</mat-label>
-                                    <input matInput [(ngModel)]="candidat.salaireActuel">
+                                    <mat-label>Entreprise actuelle</mat-label>
+                                    <input matInput [(ngModel)]="candidat.entrepriseAutoFill">
                                 </mat-form-field> 
                           </td>
                           <td>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Prétention salariale</mat-label>
-                                    <input matInput [(ngModel)]="candidat.pretentionSalariale">
-                                </mat-form-field>  
+                                    <mat-label>Salaire actuel</mat-label>
+                                    <input matInput [(ngModel)]="candidat.salaireActuel">
+                                </mat-form-field> 
                           </td>
                           </tr>
         
                           <tr>
+                                <td>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Prétention salariale</mat-label>
+                                        <input matInput [(ngModel)]="candidat.pretentionSalariale">
+                                    </mat-form-field>  
+                                </td>
                                 <td>
                                     <mat-form-field appearance="outline">
                                         <mat-label>Date de naissance</mat-label>
@@ -78,20 +84,20 @@
                                         <mat-datepicker touchUi #picker></mat-datepicker>
                                     </mat-form-field>
                                 </td>
-                                 <td fxLayout="row" fxLayoutAlign="start start">
-                                    <!--<div class="titleCandidat" >Télécharger un CV</div>
+                                <td fxLayout="row" fxLayoutAlign="center center">
+                                    <div class="titleCandidat" >Ajouter un CV</div>
                                     <br><br>
                                     <div class="image-upload">
-                                        <label for="cvoriginalEdit">
+                                        <label for="cvoriginalAutoFill">
                                             <mat-icon class="pointer">attach_file</mat-icon>
                                         </label>
-                                        <input id="cvoriginalEdit" type="file" style="display: none;" (change)="selectFileEditCandidat($event, 'cvoriginal')">
-                                    </div>-->
+                                        <input id="cvoriginalAutoFill" type="file" style="display: none;" (change)="selectFileEditCandidat($event, 'cvoriginalAutoFill')">
+                                    </div>
                                 </td>
                                 
-                                <td fxLayout="row" fxLayoutAlign="start start">
-                                    <div *ngIf="candidat.curriculum.urlCvOriginal"><!--Affiche CV Original s'il existe-->
-                                        <div class="titleCandidat">Consulter le CV</div><a href="{{storageUrl}}{{candidat.curriculum.urlCvOriginal}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
+                                <td fxLayout="row" fxLayoutAlign="center center">
+                                    <div *ngIf="candidat.curriculum.urlCvOriginalAutoFill"><!--Affiche CV Original s'il existe-->
+                                        <div class="titleCandidat">Consulter le CV</div><a href="{{storageUrl}}{{candidat.curriculum.urlCvOriginalAutoFill}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
                                     </div>
                                 </td>
                           </tr>
@@ -116,18 +122,10 @@
                                 </mat-form-field>    
                             </td>
                             <td>
-                                <!--Test si Ecole est définie
-                                <div *ngIf="candidat.diplome.ecole;else SINON_ECOLE">
-                                    <app-liste-ecoles
-                                        [ecoleId]="candidat.diplome.ecole.idEcole" 
-                                        (ecoleIdEvent)="ecoleIdEventListner($event)">
-                                    </app-liste-ecoles>   
-                                </div>
-                                <ng-template #SINON_ECOLE>
-                                    <app-liste-ecoles
-                                        (ecoleIdEvent)="ecoleIdEventListner($event)">
-                                    </app-liste-ecoles> 
-                                </ng-template>-->
+                                <mat-form-field appearance="outline">
+                                    <mat-label>École</mat-label>
+                                    <input matInput [(ngModel)]="candidat.ecoleAutoFill">
+                                </mat-form-field> 
                             </td>
                             <td>
                                 <mat-form-field appearance="outline">

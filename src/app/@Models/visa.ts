@@ -6,4 +6,8 @@ export class Visa {
     typeVisa: TypeVisa;
     dateDebutVisa: Date;
     dateFinVisa: Date;
+    /*Paramètres AutoFill : le candidat remplira ça tout seul via son espace candidat*/
+    typeVisaAutoFill: TypeVisa;
+    dateDebutVisaAutoFill: Date;
+    dateFinVisaAutoFill: Date;
 }

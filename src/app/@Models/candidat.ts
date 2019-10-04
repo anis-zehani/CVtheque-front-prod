@@ -49,6 +49,24 @@ export class Candidat {
     selected: boolean;
     utilisateur: Utilisateur; // @ManyToOne
 
+    /*Paramètres AutoFill : le candidat remplira ça tout seul via son espace candidat*/
+
+
+    telephoneAutoFill: string;
+    emailAutoFill: string;
+    posteOccupeAutoFill: string;
+    salaireActuelAutoFill: string;
+    pretentionSalarialeAutoFill: string;
+    entrepriseAutoFill: string;
+    urlPhotoAutoFill: string;
+    disponibiliteAutoFill: Disponibilite;
+    dateDemarrageCarriereAutoFill: Date;
+    dateEpuisementPasseportAutoFill: Date;
+    situationFamilialeAutoFill: SituationFamiliale;
+    nombreEnfantsAutoFill: string;
+    adresseAutoFill: string;
+    descriptionDetailleeAutoFill: string;
+
     constructor(id: number) {
       this.id = id;
     }
