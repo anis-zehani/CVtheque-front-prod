@@ -247,12 +247,40 @@
                 <mat-form-field appearance="outline" >
                         <textarea matInput [(ngModel)]="candidat.descriptionDetailleeAutoFill" style="height: 80px;overflow-y: auto"></textarea>
                         <mat-icon matSuffix>description</mat-icon>
-                </mat-form-field>     
+                </mat-form-field>  
+
+                
+                <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-bottom: 10px">
+                    <button mat-flat-button style="width:30%;"
+                    (click)="editCandidatAutoFill(
+                        candidat.id,
+                        candidat.telephoneAutoFill,
+                        candidat.posteOccupeAutoFill,
+                        candidat.entrepriseAutoFill,
+                        candidat.salaireActuelAutoFill,
+                        candidat.pretentionSalarialeAutoFill,
+                        candidat.dateDeNaissanceAutoFill,
+                        candidat.emailAutoFill,
+                        candidat.diplome.typeDiplomeAutoFill,
+                        candidat.ecoleAutoFill,
+                        candidat.diplome.dateObtentionDiplomeAutoFill,
+                        candidat.visa.typeVisaAutoFill,
+                        candidat.visa.dateDebutVisaAutoFill,
+                        candidat.visa.dateFinVisaAutoFill,
+                        candidat.disponibiliteAutoFill,
+                        candidat.dateDemarrageCarriereAutoFill,
+                        candidat.dateEpuisementPasseportAutoFill,
+                        candidat.situationFamilialeAutoFill,
+                        candidat.nombreEnfantsAutoFill,
+                        candidat.adresseAutoFill,
+                        candidat.descriptionDetailleeAutoFill
+                    )">Modifier mes informations</button>
+                </div>
       </div>
       </div>
 
       <!--Partie Gauche-->
-      <div fxFlex="10%" fxLayout="column" fxLayoutAlign="start center">
+      <div fxFlex="10%" fxLayout="column" fxLayoutAlign="start center"> 
             <div *ngIf="candidat" style="margin-bottom: 15px;">
                 <img src="{{candidat.urlPhoto}}"/>
             </div>

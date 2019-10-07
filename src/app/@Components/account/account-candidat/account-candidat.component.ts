@@ -36,4 +36,31 @@ export class AccountCandidatComponent implements OnInit {
       );
   }
 
+  // Click sur le bouton Modifier mes informations
+  editCandidatAutoFill(
+    id,
+    telephoneAutoFill,
+    posteOccupeAutoFill,
+    entrepriseAutoFill,
+    salaireActuelAutoFill,
+    pretentionSalarialeAutoFill,
+    dateDeNaissanceAutoFill,
+    emailAutoFill,
+    typeDiplomeAutoFill,
+    ecoleAutoFill,
+    dateObtentionDiplomeAutoFill,
+    typeVisaAutoFill,
+    dateDebutVisaAutoFill,
+    dateFinVisaAutoFill,
+    disponibiliteAutoFill,
+    dateDemarrageCarriereAutoFill,
+    dateEpuisementPasseportAutoFill,
+    situationFamilialeAutoFill,
+    nombreEnfantsAutoFill,
+    adresseAutoFill,
+    descriptionDetailleeAutoFill
+  ) {
+    this.utilService.openSnackBar('Votre profil a été mis à jour', 'OK' + id);
+  }
+
 }

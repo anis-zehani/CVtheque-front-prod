@@ -212,19 +212,7 @@ export class FormAddCandidatsComponent implements OnInit {
       },
       error: () => {
         this.utilService.openSnackBar('Une erreur est survenue durant l\'ajout du candidat', 'Erreur');
-      },
-      /*complete: () => {
-        // Ce n'est plus utile, du moment ou on refresh la page totalement : mais NE PAS SUPPRIMER
-        this.refreshTableFunction(true);
-        this.formCandidat.reset();
-        // Faire le reset aux 3 listes filles
-        this.childListeTechnologies.ngOnInit();
-        this.childListeOpportunites.ngOnInit();
-        this.childListeCertifications.ngOnInit();
-        // this.utilService.openSnackBar('Candidat ajouté', 'OK');
-        // Refresh de la page pour contourner le Bug Add Candidat
-        // window.location.href = '/candidats';
-      },*/
+      }
   });
   }
 
