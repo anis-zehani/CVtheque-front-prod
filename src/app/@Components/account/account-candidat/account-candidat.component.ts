@@ -3,6 +3,9 @@ import { CandidatsService } from '../../../@Services/candidats.service';
 import { UtilService } from '../../../@Util/util.service';
 import { environment } from '../../../../environments/environment';
 import { Candidat } from 'src/app/@Models/candidat';
+import { Diplome } from 'src/app/@Models/diplome';
+import { Visa } from 'src/app/@Models/visa';
+import { Curriculum } from 'src/app/@Models/curriculum';
 
 @Component({
   selector: 'app-account-candidat',
@@ -16,8 +19,22 @@ export class AccountCandidatComponent implements OnInit {
 
   id: number;
   candidat: Candidat;
+  candidatToSend: Candidat;
+  diplomeToSend: Diplome;
+  visaToSend: Visa;
+  curriculumToSend: Curriculum;
 
-  constructor(private candidatsService: CandidatsService, private utilService: UtilService) { }
+  constructor(private candidatsService: CandidatsService, private utilService: UtilService) {
+    this.candidatToSend = new Candidat(null);
+
+    this.diplomeToSend =  new Diplome();
+    this.visaToSend = new Visa();
+    this.curriculumToSend =  new Curriculum();
+
+    this.candidatToSend.diplome = this.diplomeToSend;
+    this.candidatToSend.visa = this.visaToSend;
+    this.candidatToSend.curriculum = this.curriculumToSend;
+  }
 
   ngOnInit() {
     // je récupère le id
@@ -60,6 +77,32 @@ export class AccountCandidatComponent implements OnInit {
     adresseAutoFill,
     descriptionDetailleeAutoFill
   ) {
+    this.candidatToSend = new Candidat(id);
+    this.candidatToSend.telephoneAutoFill = telephoneAutoFill;
+    this.candidatToSend.posteOccupeAutoFill = posteOccupeAutoFill;
+    this.candidatToSend.entrepriseAutoFill = entrepriseAutoFill;
+    this.candidatToSend.salaireActuelAutoFill = salaireActuelAutoFill;
+    this.candidatToSend.pretentionSalarialeAutoFill = pretentionSalarialeAutoFill;
+    this.candidatToSend.dateDeNaissanceAutoFill = dateDeNaissanceAutoFill;
+    this.candidatToSend.emailAutoFill = emailAutoFill;
+
+    this.candidatToSend.disponibiliteAutoFill = disponibiliteAutoFill;
+    this.candidatToSend.dateDemarrageCarriereAutoFill = dateDemarrageCarriereAutoFill;
+    this.candidatToSend.dateEpuisementPasseportAutoFill = dateEpuisementPasseportAutoFill;
+    this.candidatToSend.situationFamilialeAutoFill = situationFamilialeAutoFill;
+    this.candidatToSend.nombreEnfantsAutoFill = nombreEnfantsAutoFill;
+    this.candidatToSend.adresseAutoFill = adresseAutoFill;
+    this.candidatToSend.descriptionDetailleeAutoFill = descriptionDetailleeAutoFill;
+
+    // Diplôme
+    this.candidatToSend.diplome.typeDiplomeAutoFill = typeDiplomeAutoFill;
+    this.candidatToSend.diplome.dateObtentionDiplomeAutoFill = dateObtentionDiplomeAutoFill;
+    this.candidatToSend.diplome.ecoleAutoFill = ecoleAutoFill;
+    // Visa
+    this.candidatToSend.visa.dateDebutVisaAutoFill = dateDebutVisaAutoFill;
+    this.candidatToSend.visa.dateFinVisaAutoFill = dateFinVisaAutoFill;
+    this.candidatToSend.visa.typeVisaAutoFill = typeVisaAutoFill;
+
     this.utilService.openSnackBar('Votre profil a été mis à jour', 'OK' + id);
   }
 

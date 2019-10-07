@@ -56,6 +56,7 @@ export class Candidat {
     salaireActuelAutoFill: string;
     pretentionSalarialeAutoFill: string;
     entrepriseAutoFill: string;
+    dateDeNaissanceAutoFill: Date;
     urlPhotoAutoFill: string;
     disponibiliteAutoFill: Disponibilite;
     dateDemarrageCarriereAutoFill: Date;
