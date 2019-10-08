@@ -76,6 +76,12 @@ export class CandidatsService {
     return this.http.put<any>(this.serviceUrl, JSON.stringify(CandidatToStringify), this.httpOptions);
   }
 
+  // Retourne le candidat AutoFill modifié : Candidat
+  editCandidatAutoFillService(candidat): any {
+    const CandidatToStringify = this.addUtilisateurToCandidat(candidat);
+    return this.http.put<any>(this.serviceUrl + '/editCandidatAutoFill', JSON.stringify(CandidatToStringify), this.httpOptions);
+  }
+
   // Retourne le candidat modifié : Candidat
   editEtatCandidatService(candidat): any {
     const CandidatToStringify = this.addUtilisateurToCandidat(candidat);

@@ -13,7 +13,7 @@
             </div>
       </div>
 
-      <div fxFlex="70%">
+      <div fxFlex="65%">
             <div *ngIf="candidat">
                 <table>
                         <tr>
@@ -115,7 +115,7 @@
                             <td>
                                 <mat-form-field appearance="outline">
                                     <mat-label>École</mat-label>
-                                    <input matInput [(ngModel)]="candidat.ecoleAutoFill">
+                                    <input matInput [(ngModel)]="candidat.diplome.ecoleAutoFill">
                                 </mat-form-field> 
                             </td>
                             <td>
@@ -261,26 +261,22 @@
                         candidat.pretentionSalarialeAutoFill,
                         candidat.dateDeNaissanceAutoFill,
                         candidat.emailAutoFill,
-                        candidat.diplome.typeDiplomeAutoFill,
-                        candidat.ecoleAutoFill,
-                        candidat.diplome.dateObtentionDiplomeAutoFill,
-                        candidat.visa.typeVisaAutoFill,
-                        candidat.visa.dateDebutVisaAutoFill,
-                        candidat.visa.dateFinVisaAutoFill,
                         candidat.disponibiliteAutoFill,
                         candidat.dateDemarrageCarriereAutoFill,
                         candidat.dateEpuisementPasseportAutoFill,
                         candidat.situationFamilialeAutoFill,
                         candidat.nombreEnfantsAutoFill,
                         candidat.adresseAutoFill,
-                        candidat.descriptionDetailleeAutoFill
+                        candidat.descriptionDetailleeAutoFill,
+                        candidat.diplome,
+                        candidat.visa
                     )">Modifier mes informations</button>
                 </div>
       </div>
       </div>
 
       <!--Partie Gauche-->
-      <div fxFlex="10%" fxLayout="column" fxLayoutAlign="start center"> 
+      <div fxFlex="15%" fxLayout="column" fxLayoutAlign="start center"> 
             <div *ngIf="candidat" style="margin-bottom: 15px;">
                 <img src="{{candidat.urlPhoto}}"/>
             </div>
@@ -293,10 +289,9 @@
                 <input id="cvoriginalAutoFill" type="file" style="display: none;" (change)="selectFileAutoFillCvCandidat($event, 'cvoriginalAutoFill')">
             </div>
  
-            <div *ngIf="candidat.curriculum.urlCvOriginalAutoFill"><!--Affiche CV Original s'il existe-->
-                <div class="titleCandidat" style="margin-bottom: 15px;">Consulter le CV</div><a href="{{storageUrl}}{{candidat.curriculum.urlCvOriginalAutoFill}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
+            <div *ngIf="urlCvOriginalAutoFill != null"><!--Affiche CV Original s'il existe-->
+                <div class="titleCandidat" style="margin-bottom: 15px;">Consulter le CV</div><a href="{{storageUrl}}{{urlCvOriginalAutoFill}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
             </div>
-
 
             <div class="titleCandidat">Photo de profil</div>
             <div class="image-upload" style="margin-bottom: 15px;">

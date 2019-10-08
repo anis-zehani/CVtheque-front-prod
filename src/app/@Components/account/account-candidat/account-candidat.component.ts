@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidatsService } from '../../../@Services/candidats.service';
 import { UtilService } from '../../../@Util/util.service';
+import { FileUploadService } from '../../../@Services/file-upload.service';
+
 import { environment } from '../../../../environments/environment';
 import { Candidat } from 'src/app/@Models/candidat';
 import { Diplome } from 'src/app/@Models/diplome';
@@ -20,11 +22,21 @@ export class AccountCandidatComponent implements OnInit {
   id: number;
   candidat: Candidat;
   candidatToSend: Candidat;
+  urlCvOriginalAutoFill: string;
+
   diplomeToSend: Diplome;
   visaToSend: Visa;
   curriculumToSend: Curriculum;
 
-  constructor(private candidatsService: CandidatsService, private utilService: UtilService) {
+  // FileUpload : Photo AutoFill
+  selectedFilesPhotoAutoFill: FileList;
+  currentFileUploadPhotoAutoFill: File;
+
+  // FileUpload : CvOriginal AutoFill
+  selectedFilesCvOriginalAutoFill: FileList;
+  currentFileUploadCvOriginalAutoFill: File;
+
+  constructor(private candidatsService: CandidatsService, private utilService: UtilService, private uploadService: FileUploadService) {
     this.candidatToSend = new Candidat(null);
 
     this.diplomeToSend =  new Diplome();
@@ -49,6 +61,8 @@ export class AccountCandidatComponent implements OnInit {
       (
       data => {
         this.candidat = data;
+        // Pour contourner un bug JS
+        this.urlCvOriginalAutoFill = data.curriculum.urlCvOriginalAutoFill;
       }
       );
   }
@@ -63,21 +77,22 @@ export class AccountCandidatComponent implements OnInit {
     pretentionSalarialeAutoFill,
     dateDeNaissanceAutoFill,
     emailAutoFill,
-    typeDiplomeAutoFill,
-    ecoleAutoFill,
-    dateObtentionDiplomeAutoFill,
-    typeVisaAutoFill,
-    dateDebutVisaAutoFill,
-    dateFinVisaAutoFill,
     disponibiliteAutoFill,
     dateDemarrageCarriereAutoFill,
     dateEpuisementPasseportAutoFill,
     situationFamilialeAutoFill,
     nombreEnfantsAutoFill,
     adresseAutoFill,
-    descriptionDetailleeAutoFill
+    descriptionDetailleeAutoFill,
+    diplome,
+    visa
   ) {
     this.candidatToSend = new Candidat(id);
+    this.diplomeToSend = new Diplome();
+    this.visaToSend = new Visa();
+    this.candidatToSend.diplome = this.diplomeToSend;
+    this.candidatToSend.visa = this.visaToSend;
+
     this.candidatToSend.telephoneAutoFill = telephoneAutoFill;
     this.candidatToSend.posteOccupeAutoFill = posteOccupeAutoFill;
     this.candidatToSend.entrepriseAutoFill = entrepriseAutoFill;
@@ -95,15 +110,40 @@ export class AccountCandidatComponent implements OnInit {
     this.candidatToSend.descriptionDetailleeAutoFill = descriptionDetailleeAutoFill;
 
     // Diplôme
-    this.candidatToSend.diplome.typeDiplomeAutoFill = typeDiplomeAutoFill;
-    this.candidatToSend.diplome.dateObtentionDiplomeAutoFill = dateObtentionDiplomeAutoFill;
-    this.candidatToSend.diplome.ecoleAutoFill = ecoleAutoFill;
+    this.candidatToSend.diplome.typeDiplomeAutoFill = diplome.typeDiplomeAutoFill;
+    this.candidatToSend.diplome.dateObtentionDiplomeAutoFill = diplome.dateObtentionDiplomeAutoFill;
+    this.candidatToSend.diplome.ecoleAutoFill = diplome.ecoleAutoFill;
     // Visa
-    this.candidatToSend.visa.dateDebutVisaAutoFill = dateDebutVisaAutoFill;
-    this.candidatToSend.visa.dateFinVisaAutoFill = dateFinVisaAutoFill;
-    this.candidatToSend.visa.typeVisaAutoFill = typeVisaAutoFill;
+    this.candidatToSend.visa.dateDebutVisaAutoFill = visa.dateDebutVisaAutoFill;
+    this.candidatToSend.visa.dateFinVisaAutoFill = visa.dateFinVisaAutoFill;
+    this.candidatToSend.visa.typeVisaAutoFill = visa.typeVisaAutoFill;
 
-    this.utilService.openSnackBar('Votre profil a été mis à jour', 'OK' + id);
+    this.candidatsService.editCandidatAutoFillService(this.candidatToSend)
+    .subscribe({
+      next: (res) => {
+        this.utilService.openSnackBar('Votre profil a été mis à jour', 'OK');
+      },
+      error: () => {
+        this.utilService.openSnackBar('Une erreur est survenue durant la mise à jour', 'Erreur');
+      }
+    });
   }
 
+  // Upload Photo de Profil AutoFill
+  async editPhotoProfilAutoFill(id) {
+    if (this.selectedFilesPhotoAutoFill !=  null) {
+        this.currentFileUploadPhotoAutoFill = this.selectedFilesPhotoAutoFill.item(0);
+        const result = await this.uploadService.addPhotoCandidatAutoFill(this.currentFileUploadPhotoAutoFill, id);
+        this.selectedFilesPhotoAutoFill = undefined;
+    }
+  }
+
+  // Upload Cv Original AutoFill
+  async editCvOriginalAutoFill(id) {
+    if (this.selectedFilesCvOriginalAutoFill !=  null) {
+        this.currentFileUploadCvOriginalAutoFill = this.selectedFilesCvOriginalAutoFill.item(0);
+        const result = await this.uploadService.addCvOriginalCandidatAutoFill(this.currentFileUploadCvOriginalAutoFill, id);
+        this.selectedFilesCvOriginalAutoFill = undefined;
+    }
+  }
 }

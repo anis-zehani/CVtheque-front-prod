@@ -106,4 +106,25 @@ export class FileUploadService {
 
     return this.http.request(req).toPromise();
   }
+
+  // Gestion des Uploads Auto Fill
+  async addPhotoCandidatAutoFill(photo: File, id: any) {
+    const formdata: FormData = new FormData();
+    formdata.append('photoAutoFill', photo);
+    const req = new HttpRequest('POST', this.serviceUrlCandidat + '/addPhotoCandidatAutoFill/' + id, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req).toPromise();
+  }
+
+  async addCvOriginalCandidatAutoFill(cvOriginal: File, id: any) {
+    const formdata: FormData = new FormData();
+    formdata.append('cvOriginalAutoFill', cvOriginal);
+    const req = new HttpRequest('POST', this.serviceUrlCandidat + '/addCvOriginalCandidatAutoFill/' + id, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req).toPromise();
+  }
 }

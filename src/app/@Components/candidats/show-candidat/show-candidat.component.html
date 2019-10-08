@@ -331,7 +331,7 @@
     
     <button mat-flat-button mat-dialog-close style="width: 30%">Quitter</button>
     
-    <div *ngIf="data.curriculum.urlCvOriginal && role === 'ROLE_ADMINISTRATEUR'"><!--Affiche CV Original s'il existe-->
+    <div *ngIf="data.curriculum.urlCvOriginal && role === 'ROLE_ADMINISTRATEUR'"><!--Affiche CV Original s'il existe--> 
         <div class="titleCandidat">CV Original <a href="{{storageUrl}}{{data.curriculum.urlCvOriginal}}" target="_blank"><mat-icon class="pointer" matSuffix>link</mat-icon></a></div>
     </div>
 
