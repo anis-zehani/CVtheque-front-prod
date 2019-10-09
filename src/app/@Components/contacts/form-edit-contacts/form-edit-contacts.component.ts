@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 import { environment } from '../../../../environments/environment';
 import { Contact } from '../../../@Models/contact';
 import { FileUploadService } from '../../../@Services/file-upload.service';
 import { Entreprise } from 'src/app/@Models/entreprise';
+import { MatSpinnerComponent } from '../../dialogs/mat-spinner/mat-spinner.component';
 
 @Component({
   selector: 'app-form-edit-contacts',
@@ -20,9 +21,12 @@ export class FormEditContactsComponent implements OnInit {
   // FileUpload
   selectedFiles: FileList;
   currentFileUpload: File;
-  progress: { percentage: number } = { percentage: 0 };
+  namePhoto: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Contact, private uploadService: FileUploadService) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Contact,
+    private uploadService: FileUploadService,
+    public dialog: MatDialog) {}
 
   ngOnInit() {
   }
@@ -44,21 +48,42 @@ export class FormEditContactsComponent implements OnInit {
   // FileUpload
   selectFile($event) {
     this.selectedFiles = $event.target.files;
+    this.namePhoto = this.selectedFiles.item(0).name;
   }
 
   // Click sur le bouton "Confirmer"
   editPhotoController(id) {
+    // On ouvre la modale Spinner
+    this.openDialogSpinner();
     // On teste si une image a été selectionnée
     if (this.selectedFiles != null) {
         this.currentFileUpload = this.selectedFiles.item(0);
-
         this.uploadService.addPhotoContact(this.currentFileUpload, id).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) { this.progress.percentage = Math.round(100 * event.loaded / event.total); } else if (event instanceof HttpResponse) {
-              // console.log('File is completely uploaded!');
-            }
           });
         this.selectedFiles = undefined;
+    }
+    // On ferme la modale Spinner
+    this.closeDialogSpinner();
   }
+
+  openDialogSpinner(): void {
+    // Objet pour configurer la modale Spinner : le temps de l'upload
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = false;
+    const dialogRef = this.dialog.open(MatSpinnerComponent, {
+      width: '450px',
+      height: '200px',
+      data: {
+          // texte : "Afficher Message."
+        }
+      });
+  }
+
+  closeDialogSpinner(): void {
+    // Ferme toutes les modales Spinner : upload is out
+    this.dialog.closeAll();
   }
 
 }

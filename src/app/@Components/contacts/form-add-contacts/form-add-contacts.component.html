@@ -10,12 +10,15 @@
       </td>
       <!--  PHOTO UPLOAD   -->
       <td>
-          <div class="image-upload">
-            <label for="file-input">
-                <mat-icon class="pointer">add_a_photo</mat-icon>
-            </label>
-            <input id="file-input" type="file" style="display: none;" (change)="selectFile($event)">
-          </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: -20px"> 
+            <div class="image-upload" dir="ltr">
+              <label for="file-input">
+                  <mat-icon class="pointer">add_a_photo</mat-icon>
+              </label>
+              <input id="file-input" type="file" style="display: none;" (change)="selectFile($event)">
+            </div>
+            <div class="file-upload" dir="rtl">{{namePhoto}}</div>
+        </div>
       </td>
     </tr>
     <tr>

@@ -13,13 +13,14 @@
             </td>
             <td>
                 <!--Photo-->  
-                <div style="display: flex;justify-content: space-between;">
+                <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: -20px"> 
                     <div class="image-upload">
                         <label for="photodeprofilEdit">
                             <mat-icon class="pointer">add_a_photo</mat-icon>
                         </label>
                         <input id="photodeprofilEdit" type="file" style="display: none;" (change)="selectFile($event)">
                     </div>
+                    <div class="file-upload" dir="rtl">{{namePhoto}}</div>
                     <label>
                             <div *ngIf="data.urlPhoto;else SINON_CONTACT">
                                 <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>

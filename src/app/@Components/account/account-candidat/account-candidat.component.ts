@@ -137,13 +137,13 @@ export class AccountCandidatComponent implements OnInit {
         // On ferme la modale Spinner
         this.closeDialogSpinner();
         // Refresh de la UI
-        this.getOneCandidatsController(id);
+        this.ngOnInit();
         this.utilService.openSnackBar('Votre profil a été mis à jour', 'OK');
       },
       error: () => {
         // On ferme la modale Spinner
         this.closeDialogSpinner();
-        this.utilService.openSnackBar('Une erreur est survenue durant la mise à jour', 'Erreur');
+        this.utilService.openSnackBar('Une erreur est survenue durant la mise à jour du profil', 'Erreur');
       }
     });
   }

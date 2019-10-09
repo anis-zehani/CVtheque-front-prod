@@ -13,6 +13,7 @@ import { DeleteConfirmationComponent } from '../../../@Components/dialogs/delete
 import { UtilService } from '../../../@Util/util.service';
 import { Entreprise } from 'src/app/@Models/entreprise';
 
+
 @Component({
   selector: 'app-datagrid-contacts',
   templateUrl: './datagrid-contacts.component.html',
@@ -186,5 +187,4 @@ export class DatagridContactsComponent implements OnInit {
       }
     });
   }
-
 }

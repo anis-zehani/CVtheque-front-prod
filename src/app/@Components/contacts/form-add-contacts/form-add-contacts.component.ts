@@ -1,5 +1,6 @@
 import { Component, OnInit , Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { MatSidenav } from '@angular/material/sidenav';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
@@ -7,6 +8,7 @@ import { ContactsService } from '../../../@Services/contacts.service';
 import { UtilService } from '../../../@Util/util.service';
 import { FileUploadService } from '../../../@Services/file-upload.service';
 import { Entreprise } from 'src/app/@Models/entreprise';
+import { MatSpinnerComponent } from '../../dialogs/mat-spinner/mat-spinner.component';
 
 @Component({
   selector: 'app-form-add-contacts',
@@ -27,7 +29,7 @@ export class FormAddContactsComponent implements OnInit {
   // FileUpload
   selectedFiles: FileList;
   currentFileUpload: File;
-  progress: { percentage: number } = { percentage: 0 };
+  namePhoto = 'Aucune photo de profil';
 
   // Mon Reactive Form
   formContact = new FormGroup({
@@ -42,7 +44,8 @@ export class FormAddContactsComponent implements OnInit {
   constructor(
     private contactsService: ContactsService,
     private utilService: UtilService,
-    private uploadService: FileUploadService) {
+    private uploadService: FileUploadService,
+    public dialog: MatDialog) {
       this.entreprise = new Entreprise(null, null, null);
     }
 
@@ -60,17 +63,25 @@ export class FormAddContactsComponent implements OnInit {
 
   // Ajouter un contact
   addContactController() {
+    // On ouvre la modale Spinner
+    this.openDialogSpinner();
+
     this.formContact.patchValue({
       entreprise: this.entreprise,
     });
     this.contactsService.addContactService(this.formContact.value)
     .subscribe
-      (res => { if (res != null) {
+      (
+        res => { if (res != null) {
           this.addPhotoController(res.id);
           // Placer un <mat-progress-spinner> ici
           this.refreshTableFunction(true);
+          // On ferme la modale Spinner
+          this.closeDialogSpinner();
           this.utilService.openSnackBar('Contact ajouté', 'OK');
           } else {
+            // On ferme la modale Spinner
+            this.closeDialogSpinner();
             this.utilService.openSnackBar('Une erreur est survenue durant l\ajout du contact', 'Erreur');
           }
         }
@@ -81,6 +92,7 @@ export class FormAddContactsComponent implements OnInit {
   // FileUpload
   selectFile($event) {
     this.selectedFiles = $event.target.files;
+    this.namePhoto = this.selectedFiles.item(0).name;
   }
 
   addPhotoController(id) {
@@ -89,13 +101,30 @@ export class FormAddContactsComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0);
 
     this.uploadService.addPhotoContact(this.currentFileUpload, id).subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progress.percentage = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          // console.log('File is completely uploaded!');
-        }
       });
     this.selectedFiles = undefined;
   }
   }
+
+  openDialogSpinner(): void {
+    // Objet pour configurer la modale Spinner : le temps de l'upload
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = false;
+    const dialogRef = this.dialog.open(MatSpinnerComponent, {
+      width: '450px',
+      height: '200px',
+      data: {
+          // texte : "Afficher Message."
+        }
+      });
+  }
+
+  closeDialogSpinner(): void {
+    // Ferme toutes les modales Spinner : upload is out
+    this.dialog.closeAll();
+  }
+
+
 }
