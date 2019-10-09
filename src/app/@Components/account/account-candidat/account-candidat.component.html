@@ -278,7 +278,6 @@
       <!--Partie Gauche-->
       <div fxFlex="15%" fxLayout="column" fxLayoutAlign="start center"> 
             <div *ngIf="candidat" style="margin-bottom: 15px;">
-                <!--<img src="{{candidat.urlPhoto}}"/>-->
                 <div *ngIf="candidat.urlPhotoAutoFill; else SINON">
                     <img src="{{candidat.urlPhotoAutoFill}}"/>
                  </div> 
