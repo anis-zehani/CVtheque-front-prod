@@ -31,10 +31,11 @@ export class AccountCandidatComponent implements OnInit {
   // FileUpload : Photo AutoFill
   selectedFilesPhotoAutoFill: FileList;
   currentFileUploadPhotoAutoFill: File;
-
+  namePhoto: string;
   // FileUpload : CvOriginal AutoFill
   selectedFilesCvOriginalAutoFill: FileList;
   currentFileUploadCvOriginalAutoFill: File;
+  nameCv: string;
 
   constructor(private candidatsService: CandidatsService, private utilService: UtilService, private uploadService: FileUploadService) {
     this.candidatToSend = new Candidat(null);
@@ -121,6 +122,8 @@ export class AccountCandidatComponent implements OnInit {
     this.candidatsService.editCandidatAutoFillService(this.candidatToSend)
     .subscribe({
       next: (res) => {
+        // Ici on fait appel à EditPhoto qui contient l'appel Async de EditCvOriginal
+        this.editPhotoProfilAutoFill(id);
         this.utilService.openSnackBar('Votre profil a été mis à jour', 'OK');
       },
       error: () => {
@@ -129,12 +132,33 @@ export class AccountCandidatComponent implements OnInit {
     });
   }
 
+  // File Upload : Photo de profil AutoFill
+  selectPhotoProfilAutoFill($event, typeFile) {
+    if (typeFile === 'photodeprofilAutoFill') {
+      this.selectedFilesPhotoAutoFill = $event.target.files;
+      this.namePhoto = this.selectedFilesPhotoAutoFill.item(0).name;
+    }
+  }
+
+  // File Upload : Cv Original AutoFill
+  selectCvOriginalAutoFill($event, typeFile) {
+    if (typeFile === 'cvoriginalAutoFill') {
+      this.selectedFilesCvOriginalAutoFill = $event.target.files;
+      this.nameCv = this.selectedFilesCvOriginalAutoFill.item(0).name;
+    }
+  }
+
   // Upload Photo de Profil AutoFill
   async editPhotoProfilAutoFill(id) {
     if (this.selectedFilesPhotoAutoFill !=  null) {
         this.currentFileUploadPhotoAutoFill = this.selectedFilesPhotoAutoFill.item(0);
         const result = await this.uploadService.addPhotoCandidatAutoFill(this.currentFileUploadPhotoAutoFill, id);
+        if (result != null) {
+          this.editCvOriginalAutoFill(id);
+        }
         this.selectedFilesPhotoAutoFill = undefined;
+    } else {
+    this.editCvOriginalAutoFill(id);
     }
   }
 

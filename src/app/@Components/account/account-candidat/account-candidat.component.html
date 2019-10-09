@@ -278,7 +278,13 @@
       <!--Partie Gauche-->
       <div fxFlex="15%" fxLayout="column" fxLayoutAlign="start center"> 
             <div *ngIf="candidat" style="margin-bottom: 15px;">
-                <img src="{{candidat.urlPhoto}}"/>
+                <!--<img src="{{candidat.urlPhoto}}"/>-->
+                <div *ngIf="candidat.urlPhotoAutoFill; else SINON">
+                    <img src="{{candidat.urlPhotoAutoFill}}"/>
+                 </div> 
+                 <ng-template #SINON>
+                    <img src="{{candidat.urlPhoto}}"/>
+                 </ng-template>
             </div>
 
             <div class="titleCandidat">Ajouter un CV</div>
@@ -286,9 +292,10 @@
                 <label for="cvoriginalAutoFill">
                     <mat-icon class="pointer">attach_file</mat-icon>
                 </label>
-                <input id="cvoriginalAutoFill" type="file" style="display: none;" (change)="selectFileAutoFillCvCandidat($event, 'cvoriginalAutoFill')">
+                <input id="cvoriginalAutoFill" type="file" style="display: none;" (change)="selectCvOriginalAutoFill($event, 'cvoriginalAutoFill')">
             </div>
- 
+            <div class="file-upload">{{nameCv}}</div>
+
             <div *ngIf="urlCvOriginalAutoFill != null"><!--Affiche CV Original s'il existe-->
                 <div class="titleCandidat" style="margin-bottom: 15px;">Consulter le CV</div><a href="{{storageUrl}}{{urlCvOriginalAutoFill}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
             </div>
@@ -298,8 +305,9 @@
                     <label for="photodeprofilAutoFill">
                       <mat-icon class="pointer">add_a_photo</mat-icon>
                     </label>
-                    <input id="photodeprofilAutoFill" type="file" style="display: none;" (change)="selectAutoFillPhotoProfil($event, 'photodeprofilAutoFill')">
+                    <input id="photodeprofilAutoFill" type="file" style="display: none;" (change)="selectPhotoProfilAutoFill($event, 'photodeprofilAutoFill')"> 
             </div>
+            <div class="file-upload">{{namePhoto}}</div>
 
       </div>
 </div> 

@@ -99,6 +99,17 @@ STYLE : écran "Liste des Technologies
     cursor: pointer;
   }
 
+  .file-upload {
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.775rem;
+    font-variant-ligatures: no-contextual;
+    color: rgb(15, 76, 104);
+    font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-decoration: underline;
+}
+
   div.mat-dialog-title {
       font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
       font-size: 1.175rem;
