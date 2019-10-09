@@ -1,12 +1,13 @@
 import { Component, OnInit , Output, EventEmitter, Input} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { PartenairesService } from '../../../@Services/partenaires.service';
 import { UtilService } from '../../../@Util/util.service';
 import { FileUploadService } from '../../../@Services/file-upload.service';
 import { Entreprise } from 'src/app/@Models/entreprise';
+import { MatSpinnerComponent } from '../../dialogs/mat-spinner/mat-spinner.component';
 
 @Component({
   selector: 'app-form-add-partenaires',
@@ -27,7 +28,7 @@ export class FormAddPartenairesComponent implements OnInit {
   // FileUpload
   selectedFiles: FileList;
   currentFileUpload: File;
-  progress: { percentage: number } = { percentage: 0 };
+  namePhoto = 'Aucune photo de profil';
 
   // Mon Reactive Form
   formPartenaire = new FormGroup({
@@ -44,7 +45,8 @@ export class FormAddPartenairesComponent implements OnInit {
   constructor(
     private partenairesService: PartenairesService,
     private utilService: UtilService,
-    private uploadService: FileUploadService) {
+    private uploadService: FileUploadService,
+    public dialog: MatDialog) {
       this.entreprise = new Entreprise(null, null, null);
     }
 
@@ -62,6 +64,9 @@ export class FormAddPartenairesComponent implements OnInit {
 
   // Ajouter un partenaire
   addPartenaireController() {
+    // On ouvre la modale Spinner
+    this.openDialogSpinner();
+
     this.formPartenaire.patchValue({
       entreprise: this.entreprise,
     });
@@ -69,10 +74,13 @@ export class FormAddPartenairesComponent implements OnInit {
     .subscribe
       (res => { if (res != null) {
           this.addPhotoController(res.id);
-          // Placer un <mat-progress-spinner> ici
           this.refreshTableFunction(true);
+          // On ferme la modale Spinner
+          this.closeDialogSpinner();
           this.utilService.openSnackBar('Partenaire ajouté', 'OK');
           } else {
+            // On ferme la modale Spinner
+            this.closeDialogSpinner();
             this.utilService.openSnackBar('Une erreur est survenue durant l\ajout du partenaire', 'Erreur');
           }
         }
@@ -83,21 +91,35 @@ export class FormAddPartenairesComponent implements OnInit {
   // FileUpload
   selectFile($event) {
     this.selectedFiles = $event.target.files;
+    this.namePhoto = this.selectedFiles.item(0).name;
   }
 
   addPhotoController(id) {
-
     if (this.selectedFiles !=  null) {
     this.currentFileUpload = this.selectedFiles.item(0);
-
     this.uploadService.addPhotoPartenaire(this.currentFileUpload, id).subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progress.percentage = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          // console.log('File is completely uploaded!');
-        }
       });
     this.selectedFiles = undefined;
     }
+  }
+
+  openDialogSpinner(): void {
+    // Objet pour configurer la modale Spinner : le temps de l'upload
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = false;
+    const dialogRef = this.dialog.open(MatSpinnerComponent, {
+      width: '450px',
+      height: '200px',
+      data: {
+          // texte : "Afficher Message."
+        }
+      });
+  }
+
+  closeDialogSpinner(): void {
+    // Ferme toutes les modales Spinner : upload is out
+    this.dialog.closeAll();
   }
 }

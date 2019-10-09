@@ -10,11 +10,14 @@
       </td>
       <!--  PHOTO UPLOAD   -->
       <td>
-          <div class="image-upload">
-            <label for="file-input">
-                <mat-icon class="pointer">add_a_photo</mat-icon>
-            </label>
-            <input id="file-input" type="file" style="display: none;" (change)="selectFile($event)">
+          <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: -20px"> 
+            <div class="image-upload" dir="ltr">
+              <label for="file-input">
+                  <mat-icon class="pointer">add_a_photo</mat-icon>
+              </label>
+              <input id="file-input" type="file" style="display: none;" (change)="selectFile($event)">
+            </div>
+            <div class="file-upload" dir="rtl">{{namePhoto}}</div>
           </div>
       </td>
     </tr>
@@ -72,8 +75,8 @@
         </mat-form-field>
   
         <div style="display: flex;justify-content: space-between;">
-          <button mat-flat-button type="submit" [disabled]="!formPartenaire.valid" (click)="inputSideNav.toggle()" style="margin-right: 10px">Ajouter un partenaire</button>
-          <button mat-stroked-button type="reset"  style="margin-left: 10px">Tout réinitialiser</button>
+          <button mat-flat-button type="submit" [disabled]="!formPartenaire.valid" (click)="inputSideNav.toggle()" style="margin-right: 10px; width: 30%">Ajouter un partenaire</button>
+          <button mat-stroked-button type="reset"  style="margin-left: 10px; width: 30%">Tout réinitialiser</button>
         </div>
         <br>
   </form>

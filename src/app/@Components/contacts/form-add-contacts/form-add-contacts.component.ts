@@ -2,7 +2,6 @@ import { Component, OnInit , Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { MatSidenav } from '@angular/material/sidenav';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 import { ContactsService } from '../../../@Services/contacts.service';
 import { UtilService } from '../../../@Util/util.service';
@@ -96,10 +95,8 @@ export class FormAddContactsComponent implements OnInit {
   }
 
   addPhotoController(id) {
-
     if (this.selectedFiles !=  null) {
     this.currentFileUpload = this.selectedFiles.item(0);
-
     this.uploadService.addPhotoContact(this.currentFileUpload, id).subscribe(event => {
       });
     this.selectedFiles = undefined;
