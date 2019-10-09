@@ -136,6 +136,8 @@ export class AccountCandidatComponent implements OnInit {
         this.editPhotoProfilAutoFill(id);
         // On ferme la modale Spinner
         this.closeDialogSpinner();
+        // Refresh de la UI
+        this.getOneCandidatsController(id);
         this.utilService.openSnackBar('Votre profil a été mis à jour', 'OK');
       },
       error: () => {
