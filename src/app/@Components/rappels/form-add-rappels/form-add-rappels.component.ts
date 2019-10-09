@@ -1,12 +1,13 @@
 import { Component, OnInit , Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { RappelsService } from '../../../@Services/rappels.service';
 import { UtilService } from '../../../@Util/util.service';
 import { Projet } from 'src/app/@Models/projet';
 import { FileUploadService } from '../../../@Services/file-upload.service';
+import { MatSpinnerComponent } from '../../dialogs/mat-spinner/mat-spinner.component';
 
 @Component({
   selector: 'app-form-add-rappels',
@@ -23,7 +24,7 @@ export class FormAddRappelsComponent implements OnInit {
   // FileUpload
   selectedFiles: FileList;
   currentFileUpload: File;
-  progress: { percentage: number } = { percentage: 0 };
+  namePJ = 'Aucun fichier choisi';
 
   // Mon Reactive Form
   formRappel = new FormGroup({
@@ -38,6 +39,7 @@ export class FormAddRappelsComponent implements OnInit {
     private rappelsService: RappelsService,
     private utilService: UtilService,
     private uploadService: FileUploadService,
+    public dialog: MatDialog,
     private dialogRef: MatDialogRef<FormAddRappelsComponent>
     ) {
     this.projet = new Projet();
@@ -58,6 +60,9 @@ export class FormAddRappelsComponent implements OnInit {
 
   // Ajouter une rappel
   addRappelController() {
+    // On ouvre la modale Spinner
+    this.openDialogSpinner();
+
     this.formRappel.patchValue({
       projet: this.projet,
     });
@@ -69,27 +74,44 @@ export class FormAddRappelsComponent implements OnInit {
           }
         }
       );
+    // On ferme la modale Spinner
+    this.closeDialogSpinner();
+
     this.formRappel.reset();
   }
 
   // FileUpload
   selectFile($event) {
       this.selectedFiles = $event.target.files;
+      this.namePJ =  this.selectedFiles.item(0).name;
   }
 
   addFileController(id) {
-
     if (this.selectedFiles !=  null) {
     this.currentFileUpload = this.selectedFiles.item(0);
-
     this.uploadService.addFichierRappel(this.currentFileUpload, id).subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progress.percentage = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          // console.log('File is completely uploaded!');
-        }
       });
     this.selectedFiles = undefined;
     }
+  }
+
+  openDialogSpinner(): void {
+    // Objet pour configurer la modale Spinner : le temps de l'upload
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = false;
+    const dialogRef = this.dialog.open(MatSpinnerComponent, {
+      width: '450px',
+      height: '200px',
+      data: {
+          // texte : "Afficher Message."
+        }
+      });
+  }
+
+  closeDialogSpinner(): void {
+    // Ferme toutes les modales Spinner : upload is out
+    this.dialog.closeAll();
   }
 }

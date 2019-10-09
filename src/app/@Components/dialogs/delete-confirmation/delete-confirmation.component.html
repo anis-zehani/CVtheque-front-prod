@@ -1,15 +1,16 @@
-<div *ngIf="data.texte; else SINON">
-    <div class="simple-text">
-        {{data.texte}}
-    </div>
-</div> 
-<ng-template #SINON>
-    <div class="simple-text">
-        Attention, cette ligne sera supprimée définitivement.
-    </div>
-</ng-template>
-
+<div style="margin-top: 20px">
+    <div *ngIf="data.texte; else SINON">
+        <div class="simple-text">
+            {{data.texte}}
+        </div>
+    </div> 
+    <ng-template #SINON>
+        <div class="simple-text">
+            Attention, cette ligne sera supprimée définitivement.
+        </div>
+    </ng-template>
+</div>
 <div style="display: flex;justify-content: space-between;">
     <button mat-flat-button [mat-dialog-close]="data" style="margin-right: 10px;background-color:red; color: white; font-weight: 400">Valider la suppression</button>
-    <button mat-stroked-button mat-dialog-close style="margin-left: 10px; color:black;font-weight: 400">Annuler</button>
+    <button mat-stroked-button mat-dialog-close style="margin-left: 10px; color:black; font-weight: 400">Annuler</button>
 </div> 

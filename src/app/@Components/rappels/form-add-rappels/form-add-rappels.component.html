@@ -40,25 +40,22 @@
 
     </div>
 
-    <div style="display: flex;justify-content: space-between;">
+    <div fxLayout="row" fxLayoutAlign="space-between center"> 
         <div>
             <label for="urlFichier">
                 <mat-icon class="pointer">attachment</mat-icon>
             </label>
             <input id="urlFichier" type="file" style="display:none;" (change)="selectFile($event)">
         </div>
-
+        <div class="file-upload" dir="ltr">{{namePJ}}</div>
         <mat-slide-toggle [checked]="false" formControlName="remindMe">Remind Me</mat-slide-toggle>
     </div>
 
     <br>
 
-    <mat-dialog-actions >
-        <div style="display: flex;justify-content: space-between center;">
-            <button mat-flat-button (click)="save()" [disabled]="!formRappel.valid" style="margin-right: 5%">Valider</button>
-            <button mat-stroked-button mat-dialog-close >Annuler</button>
-        </div>
-    </mat-dialog-actions>
-    
+    <div style="display: flex;justify-content: end;">
+        <button mat-flat-button (click)="save()" [disabled]="!formRappel.valid" style="width: 25%; margin-right: 5%">Valider</button>
+        <button mat-stroked-button mat-dialog-close style="width: 25%;">Annuler</button>
+    </div>
 </form>
   

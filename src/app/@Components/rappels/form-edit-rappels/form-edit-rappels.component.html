@@ -8,53 +8,52 @@
     </mat-form-field>
 
     <div style="display: flex;justify-content: space-between;">
+            <div style="width:40%">
+                <!--Test si Projet est défini-->
+                <div *ngIf="data.projet;else SINON">
+                    <app-liste-deroulante-projets
+                        [projetId]="data.projet.id"
+                        (projetIdEvent)="projetIdEventListner($event)">
+                    </app-liste-deroulante-projets>
+                </div>
+                <ng-template #SINON>
+                    <app-liste-deroulante-projets
+                        (projetIdEvent)="projetIdEventListner($event)">
+                    </app-liste-deroulante-projets> 
+                </ng-template>
+            </div>
 
-    <div style="width:40%">
-        <!--Test si Projet est défini-->
-        <div *ngIf="data.projet;else SINON">
-            <app-liste-deroulante-projets
-                [projetId]="data.projet.id"
-                (projetIdEvent)="projetIdEventListner($event)">
-            </app-liste-deroulante-projets>
-        </div>
-        <ng-template #SINON>
-            <app-liste-deroulante-projets
-                (projetIdEvent)="projetIdEventListner($event)">
-            </app-liste-deroulante-projets> 
-        </ng-template>
+            <div style="width:30%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Priorité</mat-label>
+                    <mat-select [(ngModel)]="data.priorite">
+                        <mat-option value="Haute">Haute</mat-option>
+                        <mat-option value="Normale">Normale</mat-option>
+                        <mat-option value="Basse">Basse</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>priority_high</mat-icon>
+                </mat-form-field> 
+            </div>
+
+            <div style="width:25%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="data.dateEcheance">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+            </div>      
     </div>
 
-    <div style="width:30%">
-        <mat-form-field appearance="outline">
-            <mat-label>Priorité</mat-label>
-            <mat-select [(ngModel)]="data.priorite">
-                <mat-option value="Haute">Haute</mat-option>
-                <mat-option value="Normale">Normale</mat-option>
-                <mat-option value="Basse">Basse</mat-option>
-            </mat-select>
-            <mat-icon matSuffix>priority_high</mat-icon>
-        </mat-form-field> 
-    </div>
-
-    <div style="width:25%">
-        <mat-form-field appearance="outline">
-            <mat-label>Date</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="data.dateEcheance">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker touchUi #picker></mat-datepicker>
-        </mat-form-field>
-    </div>      
-
-    </div>
-
-    <div style="display: flex;justify-content: space-between;">
+    <div fxLayout="row" fxLayoutAlign="space-between center"> 
         <div>
             <label for="urlFichier">
                 <mat-icon class="pointer">attachment</mat-icon>
             </label>
             <input id="urlFichier" type="file" style="display:none;" (change)="selectFile($event)">
         
-          </div>
+        </div>
+        <div class="file-upload" dir="ltr">{{namePJ}}</div>
         
         <div *ngIf="data.urlFichier"><!--Affiche uniquement le nom du ficier sans arborescence dossier-->
             <a href="{{storageUrl}}{{data.urlFichier}}" target="_blank">{{data.nomFichier | titlecase}}</a>
@@ -73,7 +72,7 @@
     <br>
 
     <div style="display: flex;justify-content: end;">
-        <button mat-flat-button [mat-dialog-close]="data" (click)="addFileController(data.id)"  style="width: 30%;margin-right: 5%">Valider</button>
-        <button mat-stroked-button mat-dialog-close style="width: 20%">Annuler</button>
+        <button mat-flat-button [mat-dialog-close]="data" (click)="addFileController(data.id)"  style="width: 25%;margin-right: 5%">Valider</button>
+        <button mat-stroked-button mat-dialog-close style="width: 25%">Annuler</button>
     </div>
     
