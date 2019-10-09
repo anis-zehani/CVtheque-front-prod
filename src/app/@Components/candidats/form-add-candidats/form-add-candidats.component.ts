@@ -1,5 +1,6 @@
 import { Component, OnInit , Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { MatSidenav } from '@angular/material/sidenav';
 import { CandidatsService } from '../../../@Services/candidats.service';
 import { UtilService } from '../../../@Util/util.service';
@@ -16,6 +17,7 @@ import { ListeTechnologiesForAddComponent } from '../../../@Components/technolog
 import { ListeOpportunitesForAddComponent } from '../../../@Components/opportunites/liste-opportunites-for-add/liste-opportunites-for-add.component';
 import { ListeCertificationsForAddComponent } from '../../../@Components/certifications/liste-certifications-for-add/liste-certifications-for-add.component';
 import { Router } from '@angular/router';
+import { MatSpinnerComponent } from '../../dialogs/mat-spinner/mat-spinner.component';
 
 
 @Component({
@@ -28,6 +30,10 @@ export class FormAddCandidatsComponent implements OnInit {
 
   // Afin de fermer le sidenav du parent
   @Input() inputSideNav: MatSidenav;
+
+  namePhoto = 'Aucune photo de profil';
+  nameCvOdix = 'Aucun fichier choisi';
+  nameCvOriginal = 'Aucun fichier choisi';
 
   // Envoi l'event pour mettre à jour la table
   @Output() refreshTableEvent = new EventEmitter<Event>();
@@ -112,7 +118,8 @@ export class FormAddCandidatsComponent implements OnInit {
     private router: Router,
     private candidatsService: CandidatsService,
     private utilService: UtilService,
-    private uploadService: FileUploadService) {
+    private uploadService: FileUploadService,
+    public dialog: MatDialog) {
       this.entreprise = new Entreprise(null, null, null);
       this.ecole = new Ecole();
       this.diplome = new Diplome();
@@ -174,6 +181,8 @@ export class FormAddCandidatsComponent implements OnInit {
 
   // Ajouter un candidat
   addCandidatController() {
+    // On ouvre la modale Spinner
+    this.openDialogSpinner();
     // Remplissage Objet Diplome
     this.diplome.typeDiplome = this.formCandidat.value.typeDiplome;
     this.diplome.ecole = this.ecole;
@@ -209,6 +218,9 @@ export class FormAddCandidatsComponent implements OnInit {
     .subscribe({
       next: (res) => {
         this.addPhotoProfil(res.id);
+        // On ferme la modale Spinner
+        this.closeDialogSpinner();
+        this.utilService.openSnackBar('Candidat ajouté', 'OK');
       },
       error: () => {
         this.utilService.openSnackBar('Une erreur est survenue durant l\'ajout du candidat', 'Erreur');
@@ -220,18 +232,21 @@ export class FormAddCandidatsComponent implements OnInit {
   selectPhotoProfil($event, typeFile) {
     if (typeFile === 'photodeprofil') {
       this.selectedFilesPhoto = $event.target.files;
+      this.namePhoto = this.selectedFilesPhoto.item(0).name;
     }
   }
   // File Upload : Cv Odix
   selectCvOdix($event, typeFile) {
     if (typeFile === 'cvodix') {
       this.selectedFilesCvOdix = $event.target.files;
+      this.nameCvOdix = this.selectedFilesCvOdix.item(0).name;
     }
   }
   // File Upload : Cv Original
   selectCvOriginal($event, typeFile) {
     if (typeFile === 'cvoriginal') {
       this.selectedFilesCvOriginal = $event.target.files;
+      this.nameCvOriginal = this.selectedFilesCvOriginal.item(0).name;
     }
   }
 
@@ -277,6 +292,25 @@ export class FormAddCandidatsComponent implements OnInit {
     } else {
       window.location.href = '/candidats';
     }
-    this.utilService.openSnackBar('Candidat ajouté', 'OK');
+  }
+
+  openDialogSpinner(): void {
+    // Objet pour configurer la modale Spinner : le temps de l'upload
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = false;
+    const dialogRef = this.dialog.open(MatSpinnerComponent, {
+      width: '450px',
+      height: '200px',
+      data: {
+          // texte : "Afficher Message."
+        }
+      });
+  }
+
+  closeDialogSpinner(): void {
+    // Ferme toutes les modales Spinner : upload is out
+    this.dialog.closeAll();
   }
 }

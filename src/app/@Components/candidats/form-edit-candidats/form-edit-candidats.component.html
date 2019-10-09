@@ -1,22 +1,12 @@
-<div style="display: flex;justify-content: space-between;">  
-        <div class="image-upload">
-            <label for="photodeprofilToEdit">
-                <mat-icon class="pointer">add_a_photo</mat-icon>
-            </label>
-            <input id="photodeprofilToEdit" type="file" style="display: none;" (change)="selectEditPhotoProfil($event, 'photodeprofilToEdit')">
+<div fxLayout="row" fxLayoutAlign="space-between center" > 
+    <label>
+        <div *ngIf="data.urlPhoto;else SINON_CANDIDAT">
+            <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
         </div>
-        <div>
-            <label>
-
-                <div *ngIf="data.urlPhoto;else SINON_CANDIDAT">
-                    <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
-                </div>
-                <ng-template #SINON_CANDIDAT>
-                    <img src="/assets/img/candidat.png" matTooltip={{data.identite}}> 
-                </ng-template>
-                
-            </label>
-        </div>
+        <ng-template #SINON_CANDIDAT>
+            <img src="/assets/img/candidat.png" matTooltip={{data.identite}}> 
+        </ng-template>
+    </label>
 </div>  
 
 <div  fxLayout
@@ -107,6 +97,54 @@
                                 <mat-datepicker touchUi #picker></mat-datepicker>
                             </mat-form-field>
                         </td>
+                  </tr>
+
+                  <tr>
+                      <td>
+                        <div fxLayout="column" fxLayoutAlign="space-between center">
+                          <div class="titleCandidat">Remplacer CV Original</div>
+                          <div class="image-upload">
+                              <label for="cvoriginalToEdit">
+                                  <mat-icon class="pointer">attach_file</mat-icon>
+                              </label>
+                              <input id="cvoriginalToEdit" type="file" style="display: none;" (change)="selectEditCvOriginal($event, 'cvoriginalToEdit')">
+                          </div>
+                          <div class="file-upload" dir="rtl">{{nameCvOriginal}}</div>
+
+                          <!--Affiche CV Original s'il existe-->
+                          <div *ngIf="data.curriculum.urlCvOriginal">
+                            <div class="titleCandidat">Consulter CV Original</div><a href="{{storageUrl}}{{data.curriculum.urlCvOriginal}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div fxLayout="column" fxLayoutAlign="space-between center">
+                          <div class="titleCandidat">Remplacer CV Odix</div>
+                          <div class="image-upload">
+                              <label for="cvodixToEdit">
+                                  <mat-icon class="pointer">attach_file</mat-icon>
+                              </label>
+                              <input id="cvodixToEdit" type="file" style="display: none;" (change)="selectEditCvOdix($event, 'cvodixToEdit')">
+                          </div>
+                          <div class="file-upload" dir="rtl">{{nameCvOdix}}</div>
+
+                          <!--Affiche CV Odix s'il existe-->
+                          <div *ngIf="data.curriculum.urlCvOdix">
+                            <div class="titleCandidat">Consulter CV Odix</div><a href="{{storageUrl}}{{data.curriculum.urlCvOdix}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div fxLayout="column" fxLayoutAlign="space-between center">
+                            <div class="image-upload">
+                                <label for="photodeprofilToEdit">
+                                    <mat-icon class="pointer">add_a_photo</mat-icon>
+                                </label>
+                            <input id="photodeprofilToEdit" type="file" style="display: none;" (change)="selectEditPhotoProfil($event, 'photodeprofilToEdit')">
+                            </div>
+                            <div class="file-upload" dir="ltr">{{namePhoto}}</div>
+                        </div>
+                      </td>
                   </tr>
 
                   <tr>
@@ -240,38 +278,6 @@
                           </mat-form-field>   
                        </td>
                   </tr>
-            
-                  <tr>
-                      <td>
-                          <div class="titleCandidat">Remplacer CV Original</div>
-                          <div class="image-upload">
-                              <label for="cvoriginalToEdit">
-                                  <mat-icon class="pointer">attach_file</mat-icon>
-                              </label>
-                              <input id="cvoriginalToEdit" type="file" style="display: none;" (change)="selectEditCvOriginal($event, 'cvoriginalToEdit')">
-                            </div>
-                      </td>
-                      <td>
-                          <div class="titleCandidat">Remplacer CV Odix</div>
-
-                          <div class="image-upload">
-                              <label for="cvodixToEdit">
-                                  <mat-icon class="pointer">attach_file</mat-icon>
-                              </label>
-                              <input id="cvodixToEdit" type="file" style="display: none;" (change)="selectEditCvOdix($event, 'cvodixToEdit')">
-                          </div>
-                          
-                      </td>
-                      <td>
-                            <div *ngIf="data.curriculum.urlCvOriginal"><!--Affiche CV Original s'il existe-->
-                                <div class="titleCandidat">Consulter CV Original</div><a href="{{storageUrl}}{{data.curriculum.urlCvOriginal}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
-                            </div>
-                            <br>
-                            <div *ngIf="data.curriculum.urlCvOdix"><!--Affiche CV Odix s'il existe-->
-                                <div class="titleCandidat">Consulter CV Odix</div><a href="{{storageUrl}}{{data.curriculum.urlCvOdix}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
-                            </div>
-                      </td>
-                  </tr>
 
                   <tr>
                         <div class="titleCandidat">
@@ -370,8 +376,8 @@
     <br>
     
     <div style="display: flex;justify-content: space-between;">
-      <button mat-flat-button [mat-dialog-close]="data" (click)="editPhotoProfil(data.id)"  style="margin-right: 10px">Confirmer</button>
-      <button mat-stroked-button mat-dialog-close style="margin-left: 10px">Annuler</button>
+      <button mat-flat-button [mat-dialog-close]="data" (click)="editPhotoProfil(data.id)"  style="margin-right: 10px;width:30%">Confirmer</button>
+      <button mat-stroked-button mat-dialog-close style="margin-left: 10px;width:30%">Annuler</button>
     </div>
 
     <br>

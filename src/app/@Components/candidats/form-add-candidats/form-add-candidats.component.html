@@ -81,6 +81,47 @@
 
         <tr>
             <td>
+                <div fxLayout="column" fxLayoutAlign="space-between center">
+                    <div class="titleCandidat">CV Original</div>
+                    <div class="image-upload">
+                        <label for="cvoriginal">
+                            <mat-icon class="pointer">attach_file</mat-icon>
+                        </label>
+                        <input id="cvoriginal" type="file" style="display: none;" (change)="selectCvOriginal($event, 'cvoriginal')">
+                    </div>
+                    <div class="file-upload" dir="rtl">{{nameCvOriginal}}</div>
+                </div>
+            </td>
+
+            <td>
+                <div fxLayout="column" fxLayoutAlign="space-between center">
+                    <div class="titleCandidat">CV Odix</div>
+                    <div class="image-upload">
+                        <label for="cvodix">
+                            <mat-icon class="pointer">attach_file</mat-icon>
+                        </label>
+                        <input id="cvodix" type="file" style="display: none;" (change)="selectCvOdix($event, 'cvodix')">
+                    </div>
+                    <div class="file-upload" dir="rtl">{{nameCvOdix}}</div>
+                </div>
+            </td>
+            
+            <td>
+                <div fxLayout="column" fxLayoutAlign="space-between center">
+                    <div class="titleCandidat">Photo de profil</div>
+                    <div class="image-upload">
+                        <label for="photodeprofil">
+                        <mat-icon class="pointer">add_a_photo</mat-icon>
+                        </label>
+                        <input id="photodeprofil" type="file" style="display: none;" (change)="selectPhotoProfil($event, 'photodeprofil')">
+                    </div>
+                    <div class="file-upload" dir="rtl">{{namePhoto}}</div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
                 <mat-form-field appearance="outline">
                     <mat-label>Nom d'utilisateur</mat-label>
                     <input matInput formControlName="username" required>
@@ -203,39 +244,6 @@
         </tr>
   
         <tr>
-            <td>
-                <div class="titleCandidat">CV Original</div>
-                <div class="image-upload">
-                    <label for="cvoriginal">
-                        <mat-icon class="pointer">attach_file</mat-icon>
-                    </label>
-                    <input id="cvoriginal" type="file" style="display: none;" (change)="selectCvOriginal($event, 'cvoriginal')">
-                </div>
-            </td>
-
-            <td>
-
-                <div class="titleCandidat">CV Odix</div>
-                <div class="image-upload">
-                    <label for="cvodix">
-                        <mat-icon class="pointer">attach_file</mat-icon>
-                    </label>
-                    <input id="cvodix" type="file" style="display: none;" (change)="selectCvOdix($event, 'cvodix')">
-                </div>
-            </td>
-            
-            <td>
-                <div class="titleCandidat">Photo de profil</div>
-                <div class="image-upload">
-                    <label for="photodeprofil">
-                      <mat-icon class="pointer">add_a_photo</mat-icon>
-                    </label>
-                    <input id="photodeprofil" type="file" style="display: none;" (change)="selectPhotoProfil($event, 'photodeprofil')">
-                </div>
-            </td>
-        </tr>
-
-        <tr>
             <div class="titleCandidat">
                 Informations familiales
             </div>
@@ -330,8 +338,8 @@
     </mat-form-field>
 
     <div style="display: flex;justify-content: space-between;">
-        <button mat-flat-button [disabled]="!formCandidat.valid" type="submit" (click)="inputSideNav.toggle();" style="width:25%;margin-right: 10px">Ajouter un candidat</button>
-        <button mat-stroked-button type="reset" style="width:25%;margin-left: 10px">Tout réinitialiser</button>
+        <button mat-flat-button [disabled]="!formCandidat.valid" type="submit" (click)="inputSideNav.toggle();" style="margin-right: 10px;width:30%">Ajouter un candidat</button>
+        <button mat-stroked-button type="reset" style="margin-left: 10px;width:30%">Tout réinitialiser</button>
     </div>
     <br>
 
