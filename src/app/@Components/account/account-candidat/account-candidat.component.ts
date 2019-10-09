@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { CandidatsService } from '../../../@Services/candidats.service';
 import { UtilService } from '../../../@Util/util.service';
 import { FileUploadService } from '../../../@Services/file-upload.service';
@@ -8,6 +9,7 @@ import { Candidat } from 'src/app/@Models/candidat';
 import { Diplome } from 'src/app/@Models/diplome';
 import { Visa } from 'src/app/@Models/visa';
 import { Curriculum } from 'src/app/@Models/curriculum';
+import { MatSpinnerComponent } from '../../dialogs/mat-spinner/mat-spinner.component';
 
 @Component({
   selector: 'app-account-candidat',
@@ -37,7 +39,12 @@ export class AccountCandidatComponent implements OnInit {
   currentFileUploadCvOriginalAutoFill: File;
   nameCv: string;
 
-  constructor(private candidatsService: CandidatsService, private utilService: UtilService, private uploadService: FileUploadService) {
+  constructor(
+    private candidatsService: CandidatsService,
+    private utilService: UtilService,
+    private uploadService: FileUploadService,
+    public dialog: MatDialog) {
+
     this.candidatToSend = new Candidat(null);
 
     this.diplomeToSend =  new Diplome();
@@ -88,6 +95,9 @@ export class AccountCandidatComponent implements OnInit {
     diplome,
     visa
   ) {
+    // On ouvre la modale Spinner
+    this.openDialogSpinner();
+
     this.candidatToSend = new Candidat(id);
     this.diplomeToSend = new Diplome();
     this.visaToSend = new Visa();
@@ -124,9 +134,13 @@ export class AccountCandidatComponent implements OnInit {
       next: (res) => {
         // Ici on fait appel à EditPhoto qui contient l'appel Async de EditCvOriginal
         this.editPhotoProfilAutoFill(id);
+        // On ferme la modale Spinner
+        this.closeDialogSpinner();
         this.utilService.openSnackBar('Votre profil a été mis à jour', 'OK');
       },
       error: () => {
+        // On ferme la modale Spinner
+        this.closeDialogSpinner();
         this.utilService.openSnackBar('Une erreur est survenue durant la mise à jour', 'Erreur');
       }
     });
@@ -169,5 +183,25 @@ export class AccountCandidatComponent implements OnInit {
         const result = await this.uploadService.addCvOriginalCandidatAutoFill(this.currentFileUploadCvOriginalAutoFill, id);
         this.selectedFilesCvOriginalAutoFill = undefined;
     }
+  }
+
+  openDialogSpinner(): void {
+    // Objet pour configurer la modale Spinner : le temps de l'upload
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = false;
+    const dialogRef = this.dialog.open(MatSpinnerComponent, {
+      width: '450px',
+      height: '200px',
+      data: {
+          // texte : "Afficher Message."
+        }
+      });
+  }
+
+  closeDialogSpinner(): void {
+    // Ferme toutes les modales Spinner : upload is out
+    this.dialog.closeAll();
   }
 }

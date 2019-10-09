@@ -149,6 +149,7 @@ import { AccountComponent } from './@Components/account/account.component';
 import { AccountCandidatComponent } from './@Components/account/account-candidat/account-candidat.component';
 import { AccountPartenaireComponent } from './@Components/account/account-partenaire/account-partenaire.component';
 import { AccountAdministrateurComponent } from './@Components/account/account-administrateur/account-administrateur.component';
+import { MatSpinnerComponent } from './@Components/dialogs/mat-spinner/mat-spinner.component';
 
 @NgModule({
   declarations: [
@@ -249,7 +250,8 @@ import { AccountAdministrateurComponent } from './@Components/account/account-ad
     AccountComponent,
     AccountCandidatComponent,
     AccountPartenaireComponent,
-    AccountAdministrateurComponent
+    AccountAdministrateurComponent,
+    MatSpinnerComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,
@@ -282,7 +284,8 @@ import { AccountAdministrateurComponent } from './@Components/account/account-ad
     DialogAddCertificationsComponent,
     FormAddCompteCandidatComponent,
     FormAddComptePartenaireComponent,
-    FormRecupererPasswordComponent
+    FormRecupererPasswordComponent,
+    MatSpinnerComponent
   ],
   imports: [
     BrowserModule,
