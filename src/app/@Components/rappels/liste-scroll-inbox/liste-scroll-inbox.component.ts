@@ -32,14 +32,9 @@ export class ListeScrollInboxComponent implements OnInit {
   }
 
   // Pour récupérer le nombre des rappels de Inbox
-  getAllRappelsInboxController(): void {
-    this.rappelsService.getAllRappelsService()
-    .subscribe
-      (
-      res1 => {
-        this.nbreInbox = res1.length;
-      }
-      );
+  async getAllRappelsInboxController() {
+    const res1 = await this.rappelsService.getAllRappelsService();
+    this.nbreInbox = res1.length;
   }
 
   // Pour récupérer le nombre des rappels de Today
@@ -79,9 +74,10 @@ export class ListeScrollInboxComponent implements OnInit {
     });
 
     // Fonction qui s'éxècute quand je ferme la modale
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().toPromise().then(result => {
       // On refresh le datagrid aprés ajout de rappel : ça va faire appel à la méthode
       // onRefreshListeScrollEvent du Parent qui fera le job
+      this.getAllRappelsInboxController();
       this.refreshListeScrollFunction('addRappel');
     });
   }

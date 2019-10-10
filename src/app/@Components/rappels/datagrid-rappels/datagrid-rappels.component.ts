@@ -64,17 +64,12 @@ export class DatagridRappelsComponent implements OnInit {
   }
 
   // Afficher tous les rappels : remplissage de la table (par défaut + inbox)
-  getAllRappelsController(): void {
-    this.rappelsService.getAllRappelsService()
-    .subscribe
-      (
-      res => {
-        this.listeRappels.data = res;
-        this.listeRappels.paginator = this.paginator;
-        this.listeRappels.sort = this.sort;
-        this.title = 'Rechercher dans : Inbox';
-      }
-      );
+  async getAllRappelsController() {
+    const res = await this.rappelsService.getAllRappelsService();
+    this.listeRappels.data = res;
+    this.listeRappels.paginator = this.paginator;
+    this.listeRappels.sort = this.sort;
+    this.title = 'Rechercher dans : Inbox';
   }
 
   // Afficher les rappels de Today
@@ -165,7 +160,7 @@ export class DatagridRappelsComponent implements OnInit {
 
   // Recherche filtrée sur la table
   filtrerTable(filterValue: string) {
-      this.listeRappels.filter = filterValue.trim().toLowerCase(); 
+      this.listeRappels.filter = filterValue.trim().toLowerCase();
   }
 
   // Filtrer par Priorité : Haute, Normale, Basse

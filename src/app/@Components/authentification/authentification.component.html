@@ -1,31 +1,64 @@
 <!-- Visible sur Grands écrans seulement -->
 <div fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true"> 
 
-  <div fxFlex="32%"></div>
-
-  <div fxFlex="36%" class="container">
-
-        <app-login ></app-login>
-
-        <div fxLayout="row" fxLayoutAlign="center stretch" style="margin-top: 20px"> 
-            <img src="assets/img/linkedin.png" (click)="authenticateWithLinkedIn()" class="pointer"/>
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 20px"> 
-            <a class="lien-authentification" (click)="openDialogCreerCompteCandidat()">Nouveau candidat</a>
-            <div style="width: 50px;"></div>
-            <a class="lien-authentification" (click)="openDialogCreerCompteRecruteur()">Nouveau recruteur</a>
+  <div fxFlex="75%">
+        <div fxLayout="column" fxLayoutAlign="none">  
+            <div fxLayout="row" fxLayoutAlign="space-between start"> 
+                <div fxFlex="65%" ><img src="assets/img/odix.png" style="height: 80px; width:300px"></div>
+                <button fxFlex="16%"  mat-flat-button (click)="openDialogCreerCompteCandidat()" style="font-weight: 500;margin-top: 20px;">Nouveau candidat</button>  
+                <div fxFlex="2%" ></div>
+                <button fxFlex="16%"  mat-flat-button (click)="openDialogCreerCompteRecruteur()" style="font-weight: 500;margin-top: 20px;">Nouveau recruteur</button>
+                <div fxFlex="1%" ></div>
+            </div>
+            <div class="background" style="min-height: 600px;">
+                
+            </div>
         </div>
   </div>
+  <div fxFlex="1%" class="container"></div>
+  <div fxFlex="23%" class="container">
+        <div class="title-login" style="margin-top: 20px;">
+            Inscrivez-vous par un seul clic
+        </div>
+        <div class="text-small-login">
+            Utilisez votre compte Linkedin et vous n'aurez plus à vous rappeler d'un mot de passe supplémentaire.
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start stretch" style="margin-top: 15px"> 
+            <img src="assets/img/linkedin.png" (click)="authenticateWithLinkedIn()" class="pointer"/>
+        </div>
+        <br>
 
-  <div fxFlex="32%"></div>
+        <mat-divider></mat-divider>
+        <br>
 
+        <div class="title-login">
+            Connectez-vous sur votre compte
+        </div>
+        <app-login ></app-login>
+        <div class="text-small-login" style="margin-top: 50px">
+            Solution fournie par la société Odix <br>
+            Siret : 838 170 306 00016 - www.odix.fr
+        </div>
+  </div>
+  <div fxFlex="1%" class="container"></div>
 </div>
 
 <!-- Visible sur Petits écrans seulement -->
-<div fxLayout="column" fxLayoutAlign="start center" fxHide.gt-sm="true" > 
+<div fxLayout="column" fxLayoutAlign="center stretch" fxHide.gt-sm="true" >
+    <img src="assets/img/odix.png" style="height: 80px; width:300px"> 
+    <div class="title-login" style="margin-top: 15px">
+        Inscrivez-vous par un seul clic
+    </div>
+    <div class="text-small-login">
+        Utilisez votre compte Linkedin et vous n'aurez plus à vous rappeler d'un mot de passe supplémentaire.
+    </div>
+    <img src="assets/img/linkedin.png" style="margin-bottom: 20px; margin-top: 10px" (click)="authenticateWithLinkedIn()" class="pointer"/> 
+    <mat-divider></mat-divider> 
+    <div class="title-login" style="margin-top: 15px">
+        Connectez-vous sur votre compte
+    </div>
     <app-login></app-login>
-    <img src="assets/img/linkedin.png" style="margin-bottom: 20px" (click)="authenticateWithLinkedIn()" class="pointer"/>  
-    <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px">Nouveau candidat</button>  
+    
+    <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px;margin-top: 20px">Nouveau candidat</button>  
     <button mat-flat-button (click)="openDialogCreerCompteRecruteur()" style="margin-bottom: 50px">Nouveau recruteur</button>
 </div>

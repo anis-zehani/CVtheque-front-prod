@@ -1,0 +1,6 @@
+.background {
+    background-image: url('../../../assets/img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-position: center; /* Center the image */
+}

@@ -24,9 +24,9 @@ export class RappelsService {
   constructor(private http: HttpClient, private utilService: UtilService) { }
 
   // Retourne un tableau de tous les Rappels : Rappel[] + Inbox
-  getAllRappelsService(): Observable<Rappel[]> {
+  async getAllRappelsService() {
     const idUtilisateur = this.utilService.getIdUtilisateurFromToken();
-    return this.http.get<Rappel[]>(this.serviceUrl + '/allRappelsByIdUtilisateur/' + idUtilisateur);
+    return this.http.get<Rappel[]>(this.serviceUrl + '/allRappelsByIdUtilisateur/' + idUtilisateur).toPromise();
   }
 
   // Retourne un tableau de tous les Rappels de Today

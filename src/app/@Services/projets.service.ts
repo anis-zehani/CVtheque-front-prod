@@ -24,9 +24,9 @@ export class ProjetsService {
   constructor(private http: HttpClient, private utilService: UtilService) { }
 
   // Retourne un tableau de tous les Projets par idUtilisateur : Projet[]
-  getAllProjetsService(): Observable<Projet[]> {
+  async getAllProjetsService() {
     const idUtilisateur = this.utilService.getIdUtilisateurFromToken();
-    return this.http.get<Projet[]>(this.serviceUrl + '/allProjetsByIdUtilisateur/' + idUtilisateur);
+    return this.http.get<Projet[]>(this.serviceUrl + '/allProjetsByIdUtilisateur/' + idUtilisateur).toPromise();
   }
 
   // Retourne le Projet créé pour un utilisateur : Projet

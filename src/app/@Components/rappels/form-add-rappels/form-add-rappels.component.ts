@@ -68,7 +68,8 @@ export class FormAddRappelsComponent implements OnInit {
     });
     this.rappelsService.addRappelService(this.formRappel.value)
     .subscribe
-      (res => { if (res != null) {
+      (res => {
+          if (res != null) {
           this.addFileController(res.id);
           this.utilService.openSnackBar('Rappel ajouté', 'OK');
           }
