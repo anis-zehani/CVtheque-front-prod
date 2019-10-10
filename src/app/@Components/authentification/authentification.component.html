@@ -1,5 +1,5 @@
 <!-- Visible sur Grands écrans seulement -->
-<div fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true"> 
+<div style="min-height: 700px" fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true"> 
 
   <div fxFlex="75%">
         <div fxLayout="column" fxLayoutAlign="none">  
@@ -10,7 +10,7 @@
                 <button fxFlex="16%"  mat-flat-button (click)="openDialogCreerCompteRecruteur()" style="font-weight: 500;margin-top: 20px;">Nouveau recruteur</button>
                 <div fxFlex="1%" ></div>
             </div>
-            <div class="background" style="min-height: 600px;">
+            <div class="background" style="min-height: 620px;">
                 
             </div>
         </div>
@@ -35,10 +35,10 @@
             Connectez-vous sur votre compte
         </div>
         <app-login ></app-login>
-        <div class="text-small-login" style="margin-top: 50px">
+        <!--<div class="text-small-login" style="margin-top: 100px">
             Solution fournie par la société Odix <br>
             Siret : 838 170 306 00016 - www.odix.fr
-        </div>
+        </div>-->
   </div>
   <div fxFlex="1%" class="container"></div>
 </div>
