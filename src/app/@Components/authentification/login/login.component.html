@@ -19,8 +19,8 @@
 
     <!-- Visible sur Petits écrans seulement -->
     <div fxLayout="column" fxLayoutAlign="start center" fxHide.gt-sm="true" > 
-        <button mat-flat-button style="margin-bottom: 20px;">Se connecter</button> 
-        <button mat-stroked-button type="button" style="margin-bottom: 20px" (click)="openDialogRecupererPassword()">Mot de passe oublié ?</button>
+        <a class="text-small-link" (click)="openDialogRecupererPassword()">Mot de passe oublié ?</a>
+        <button mat-flat-button style="margin-bottom: 20px;font-weight: 550;border-color: #222; border-width: 1px; border-style: solid;">Se connecter</button> 
     </div>
     
 </form> 

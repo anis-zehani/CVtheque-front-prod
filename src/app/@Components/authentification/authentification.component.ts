@@ -39,8 +39,8 @@ export class AuthentificationComponent implements OnInit {
       dialogConfig.hasBackdrop = true;
       dialogConfig.closeOnNavigation = true;
       const dialogRef = this.dialog.open(FormAddCompteCandidatComponent, {
-        width: '950px',
-        height: '550px',
+        width: '500px',
+        height: '500px',
         data: {
             // texte : "Attention : Afficher Message."
           }
@@ -62,8 +62,8 @@ export class AuthentificationComponent implements OnInit {
       dialogConfig.hasBackdrop = true;
       dialogConfig.closeOnNavigation = true;
       const dialogRef = this.dialog.open(FormAddComptePartenaireComponent, {
-        width: '700px',
-        height: '550px',
+        width: '500px',
+        height: '500px',
         data: {
             // texte : "Attention : Afficher Message."
           }
