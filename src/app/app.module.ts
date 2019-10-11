@@ -150,6 +150,7 @@ import { AccountCandidatComponent } from './@Components/account/account-candidat
 import { AccountPartenaireComponent } from './@Components/account/account-partenaire/account-partenaire.component';
 import { AccountAdministrateurComponent } from './@Components/account/account-administrateur/account-administrateur.component';
 import { MatSpinnerComponent } from './@Components/dialogs/mat-spinner/mat-spinner.component';
+import { DatagridFichiersComponent } from './@Components/fichiers/datagrid-fichiers/datagrid-fichiers.component';
 
 @NgModule({
   declarations: [
@@ -251,7 +252,8 @@ import { MatSpinnerComponent } from './@Components/dialogs/mat-spinner/mat-spinn
     AccountCandidatComponent,
     AccountPartenaireComponent,
     AccountAdministrateurComponent,
-    MatSpinnerComponent
+    MatSpinnerComponent,
+    DatagridFichiersComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,

@@ -15,6 +15,7 @@ import { EntreprisesComponent } from './@Components/entreprises/entreprises.comp
 import { EcolesComponent } from './@Components/ecoles/ecoles.component';
 import { CertificationsComponent } from './@Components/certifications/certifications.component';
 import { CollaborateursComponent } from './@Components/collaborateurs/collaborateurs.component';
+import { DatagridFichiersComponent } from './@Components/fichiers/datagrid-fichiers/datagrid-fichiers.component';
 import { LogoutComponent } from './@Components/authentification/logout/logout.component';
 import { RedirectLinkedinComponent } from './@Components/authentification/redirect-linkedin/redirect-linkedin.component';
 import { AccountComponent } from './@Components/account/account.component';
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'certifications', component: CertificationsComponent, canActivate: [AuthGuardService, Level2GuardService] },
   { path: 'ecoles', component: EcolesComponent, canActivate: [AuthGuardService, Level1GuardService] },
   { path: 'collaborateurs', component: CollaborateursComponent, canActivate: [AuthGuardService, Level1GuardService] },
+  { path: 'fichiers', component: DatagridFichiersComponent, canActivate: [AuthGuardService, Level1GuardService] },
 
   // OAuth2 LinkedIn
   { path: 'redirect-linkedin', component: RedirectLinkedinComponent},
