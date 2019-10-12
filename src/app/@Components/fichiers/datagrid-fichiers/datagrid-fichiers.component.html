@@ -12,7 +12,7 @@
                 <ng-container matColumnDef="nomFichier">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom Fichier</th>
                   <td mat-cell *matCellDef="let element" width="95%">
-                    <a href="{{storageUrl}}/uploads/{{element.urlFichier}}" target="_blank">
+                    <a href="{{storageUrl}}/{{element.urlFichier}}" target="_blank">
                         {{element.nomFichier}}
                     </a>
                   </td>
