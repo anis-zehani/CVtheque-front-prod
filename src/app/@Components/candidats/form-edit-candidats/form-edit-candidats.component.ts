@@ -7,6 +7,7 @@ import { FileUploadService } from '../../../@Services/file-upload.service';
 import { Entreprise } from 'src/app/@Models/entreprise';
 import { Ecole } from 'src/app/@Models/ecole';
 import { MatSpinnerComponent } from '../../dialogs/mat-spinner/mat-spinner.component';
+import { UtilService } from 'src/app/@Util/util.service';
 
 @Component({
   selector: 'app-form-edit-candidats',
@@ -33,14 +34,21 @@ export class FormEditCandidatsComponent implements OnInit {
   selectedFilesCvOriginal: FileList;
   currentFileUploadCvOriginal: File;
 
+  idCandidat: number;
+
   nombreEnfants: string = this.data.nombreEnfants.toString();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Candidat,
     private uploadService: FileUploadService,
-    public dialog: MatDialog) {}
+    public dialog: MatDialog,
+    private utilService: UtilService) {}
 
   ngOnInit() {
+
+    // je récupère le idCandidat pour l'upload de photo/CVOriginal/CvOdix
+    this.idCandidat = this.utilService.getIdUtilisateurFromToken();
+
     // Si le candidat possède une image Linkedin alors on réajuste l'url d'affichage de l'image
     if (this.data.idLinkedin !== '') {
       this.storageUrl = '';
@@ -50,7 +58,6 @@ export class FormEditCandidatsComponent implements OnInit {
   // Parent intercepte l'event envoyé par son fils : <app-liste-entreprises> qui génére un EventEmitter
   entrepriseIdEventListner($event) {
     // Mise à jour de l'objet data de la view
-
     if (this.data.entreprise === null) {
       const entreprise = new Entreprise(null, null, null);
       entreprise.idEntreprise = $event;
@@ -63,7 +70,6 @@ export class FormEditCandidatsComponent implements OnInit {
   // Parent intercepte l'event envoyé par son fils : <app-liste-ecoles> qui génére un EventEmitter
   ecoleIdEventListner($event) {
     // Mise à jour de l'objet data de la view
-
     if (this.data.diplome.ecole === null) {
       const ecole = new Ecole();
       ecole.idEcole = $event;
@@ -74,68 +80,73 @@ export class FormEditCandidatsComponent implements OnInit {
   }
 
   // File Upload : Photo de profil
-  selectEditPhotoProfil($event, typeFile) {
+  selectEditPhotoProfil($event, typeFile, idCandidat) {
     if (typeFile === 'photodeprofilToEdit') {
       this.selectedFilesPhoto = $event.target.files;
       this.namePhoto = this.selectedFilesPhoto.item(0).name;
+      this.editPhotoProfil(idCandidat);
     }
   }
   // File Upload : Cv Odix
-  selectEditCvOdix($event, typeFile) {
+  selectEditCvOdix($event, typeFile, idCandidat) {
     if (typeFile === 'cvodixToEdit') {
       this.selectedFilesCvOdix = $event.target.files;
       this.nameCvOdix = this.selectedFilesCvOdix.item(0).name;
+      this.editCvOdix(idCandidat);
     }
   }
   // File Upload : Cv Original
-  selectEditCvOriginal($event, typeFile) {
+  selectEditCvOriginal($event, typeFile, idCandidat) {
     if (typeFile === 'cvoriginalToEdit') {
       this.selectedFilesCvOriginal = $event.target.files;
       this.nameCvOriginal = this.selectedFilesCvOriginal.item(0).name;
+      this.editCvOriginal(idCandidat);
     }
   }
 
   // Upload Photo de Profil
   async editPhotoProfil(id) {
-    // On ouvre la modale Spinner
-    this.openDialogSpinner();
-
     if (this.selectedFilesPhoto !=  null) {
+        // On ouvre la modale Spinner
+        this.openDialogSpinner();
+
         this.currentFileUploadPhoto = this.selectedFilesPhoto.item(0);
         const result = await this.uploadService.addPhotoCandidat(this.currentFileUploadPhoto, id);
-        if (result != null) {
-          this.editCvOdix(id);
-        }
         this.selectedFilesPhoto = undefined;
-    } else {
-      this.editCvOdix(id);
+
+        // On ferme la modale Spinner
+        this.closeDialogSpinner();
     }
   }
 
   // Upload Cv Odix
   async editCvOdix(id) {
     if (this.selectedFilesCvOdix !=  null) {
+        // On ouvre la modale Spinner
+        this.openDialogSpinner();
+
         this.currentFileUploadCvOdix = this.selectedFilesCvOdix.item(0);
         const result = await this.uploadService.addCvOdixCandidat(this.currentFileUploadCvOdix, id);
-        if (result != null) {
-          this.editCvOriginal(id);
-        }
         this.selectedFilesCvOdix = undefined;
-    } else {
-        this.editCvOriginal(id);
+
+        // On ferme la modale Spinner
+        this.closeDialogSpinner();
     }
   }
 
   // Upload Cv Original
   async editCvOriginal(id) {
     if (this.selectedFilesCvOriginal !=  null) {
+        // On ouvre la modale Spinner
+        this.openDialogSpinner();
+
         this.currentFileUploadCvOriginal = this.selectedFilesCvOriginal.item(0);
         const result = await this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal, id);
         this.selectedFilesCvOriginal = undefined;
-    }
 
-    // On ferme la modale Spinner
-    this.closeDialogSpinner();
+        // On ferme la modale Spinner
+        this.closeDialogSpinner();
+    }
   }
 
   openDialogSpinner(): void {

@@ -75,44 +75,44 @@ export class FormAddCandidatsComponent implements OnInit {
     identite: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    telephone: new FormControl('', null),
+    telephone: new FormControl('', Validators.nullValidator),
     email: new FormControl('', Validators.required),
-    posteOccupe: new FormControl('', null),
-    descriptionDetaillee: new FormControl('', null),
-    entreprise: new FormControl('', null),
+    posteOccupe: new FormControl('', Validators.nullValidator),
+    descriptionDetaillee: new FormControl('', Validators.nullValidator),
+    entreprise: new FormControl('', Validators.nullValidator),
 
     // Informations spécifiques
-    salaireActuel: new FormControl('', null),
-    pretentionSalariale: new FormControl('', null),
-    situationFamiliale: new FormControl('Non_Mentionee', null),
-    nombreEnfants: new FormControl('', null),
-    adresse: new FormControl('', null),
-    dateDeNaissance: new FormControl('', null),
-    niveauEnFrancais: new FormControl('Non_Mentionee', null),
-    niveauEnAnglais: new FormControl('Non_Mentionee', null),
-    noteGlobale: new FormControl('Non_Mentionee', null),
-    disponibilite: new FormControl('Non_Mentionee', null),
-    dateDemarrageCarriere: new FormControl('', null),
-    dateEpuisementPasseport: new FormControl('', null),
+    salaireActuel: new FormControl('', Validators.nullValidator),
+    pretentionSalariale: new FormControl('', Validators.nullValidator),
+    situationFamiliale: new FormControl('Non_Mentionee', Validators.nullValidator),
+    nombreEnfants: new FormControl('', Validators.nullValidator),
+    adresse: new FormControl('', Validators.nullValidator),
+    dateDeNaissance: new FormControl('', Validators.nullValidator),
+    niveauEnFrancais: new FormControl('Non_Mentionee', Validators.nullValidator),
+    niveauEnAnglais: new FormControl('Non_Mentionee', Validators.nullValidator),
+    noteGlobale: new FormControl('Non_Mentionee', Validators.nullValidator),
+    disponibilite: new FormControl('Non_Mentionee', Validators.nullValidator),
+    dateDemarrageCarriere: new FormControl('', Validators.nullValidator),
+    dateEpuisementPasseport: new FormControl('', Validators.nullValidator),
 
     // Diplôme
-    typeDiplome: new FormControl('Non_Mentionee', null),
-    ecole: new FormControl('', null),
-    dateObtentionDiplome: new FormControl('', null),
+    typeDiplome: new FormControl('Non_Mentionee', Validators.nullValidator),
+    ecole: new FormControl('', Validators.nullValidator),
+    dateObtentionDiplome: new FormControl('', Validators.nullValidator),
 
     // Visa
-    typeVisa: new FormControl('Non_Mentionee', null),
-    dateDebutVisa: new FormControl('', null),
-    dateFinVisa: new FormControl('', null),
+    typeVisa: new FormControl('Non_Mentionee', Validators.nullValidator),
+    dateDebutVisa: new FormControl('', Validators.nullValidator),
+    dateFinVisa: new FormControl('', Validators.nullValidator),
 
-    diplome: new FormControl('', null),
-    visa: new FormControl('', null),
+    diplome: new FormControl('', Validators.nullValidator),
+    visa: new FormControl('', Validators.nullValidator),
 
-    listeTechnologies: new FormControl('', null),
-    listeOpportunites: new FormControl('', null),
-    listeCertifications: new FormControl('', null)
+    listeTechnologies: new FormControl('', Validators.nullValidator),
+    listeOpportunites: new FormControl('', Validators.nullValidator),
+    listeCertifications: new FormControl('', Validators.nullValidator)
 
-  }, { updateOn: 'change' });
+  });
 
   constructor(
     private router: Router,
@@ -147,7 +147,7 @@ export class FormAddCandidatsComponent implements OnInit {
   listeTechnologiesEventListner($event) {
 
     this.listeTechnologiesFinale = [];
-    for (const i of $event.length) {
+    for (let i = 0; i < $event.length; i++) {
       const technologie = new Technologie($event[i]._value.id, $event[i]._value.nomTechnologie, null);
       this.listeTechnologiesFinale.push(technologie);
     }
@@ -159,7 +159,7 @@ export class FormAddCandidatsComponent implements OnInit {
 
     this.listeOpportunitesFinale = [];
 
-    for (const i of $event.length) {
+    for (let i = 0; i < $event.length; i++) {
       const opportunite = new Opportunite($event[i]._value.id, $event[i]._value.titreOpportunite);
       this.listeOpportunitesFinale.push(opportunite);
     }
@@ -171,7 +171,7 @@ export class FormAddCandidatsComponent implements OnInit {
 
     this.listeCertificationsFinale = [];
 
-    for (const i of $event.length) {
+    for (let i = 0; i < $event.length; i++) {
       const certification = new Certification($event[i]._value.id, $event[i]._value.nomCertification, null);
       this.listeCertificationsFinale.push(certification);
     }
@@ -287,10 +287,10 @@ export class FormAddCandidatsComponent implements OnInit {
         const result = await this.uploadService.addCvOriginalCandidat(this.currentFileUploadCvOriginal, id);
         this.selectedFilesCvOriginal = undefined;
         if (result != null) {
-          window.location.href = '/candidats';
+           window.location.href = '/candidats';
         }
     } else {
-      window.location.href = '/candidats';
+       window.location.href = '/candidats';
     }
   }
 
@@ -312,5 +312,6 @@ export class FormAddCandidatsComponent implements OnInit {
   closeDialogSpinner(): void {
     // Ferme toutes les modales Spinner : upload is out
     this.dialog.closeAll();
+    this.refreshTableFunction(null);
   }
 }

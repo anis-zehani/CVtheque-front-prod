@@ -107,7 +107,7 @@
                               <label for="cvoriginalToEdit">
                                   <mat-icon class="pointer">attach_file</mat-icon>
                               </label>
-                              <input id="cvoriginalToEdit" type="file" style="display: none;" (change)="selectEditCvOriginal($event, 'cvoriginalToEdit')">
+                              <input id="cvoriginalToEdit" type="file" style="display: none;" (change)="selectEditCvOriginal($event, 'cvoriginalToEdit', data.id)">
                           </div>
                           <div class="file-upload" dir="rtl">{{nameCvOriginal}}</div>
 
@@ -124,7 +124,7 @@
                               <label for="cvodixToEdit">
                                   <mat-icon class="pointer">attach_file</mat-icon>
                               </label>
-                              <input id="cvodixToEdit" type="file" style="display: none;" (change)="selectEditCvOdix($event, 'cvodixToEdit')">
+                              <input id="cvodixToEdit" type="file" style="display: none;" (change)="selectEditCvOdix($event, 'cvodixToEdit', data.id)">
                           </div>
                           <div class="file-upload" dir="rtl">{{nameCvOdix}}</div>
 
@@ -140,7 +140,7 @@
                                 <label for="photodeprofilToEdit">
                                     <mat-icon class="pointer">add_a_photo</mat-icon>
                                 </label>
-                            <input id="photodeprofilToEdit" type="file" style="display: none;" (change)="selectEditPhotoProfil($event, 'photodeprofilToEdit')">
+                            <input id="photodeprofilToEdit" type="file" style="display: none;" (change)="selectEditPhotoProfil($event, 'photodeprofilToEdit', data.id)">
                             </div>
                             <div class="file-upload" dir="ltr">{{namePhoto}}</div>
                         </div>
@@ -376,7 +376,7 @@
     <br>
     
     <div style="display: flex;justify-content: space-between;">
-      <button mat-flat-button [mat-dialog-close]="data" (click)="editPhotoProfil(data.id)"  style="margin-right: 10px;width:30%">Confirmer</button>
+      <button mat-flat-button [mat-dialog-close]="data" style="margin-right: 10px;width:30%">Confirmer</button>
       <button mat-stroked-button mat-dialog-close style="margin-left: 10px;width:30%">Annuler</button>
     </div>
 

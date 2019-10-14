@@ -93,12 +93,11 @@ export class FormAddOpportunitesComponent implements OnInit {
   // Parent intercepte l'event envoyé par son fils : <app-liste-candidats-for-add> qui génére un EventEmitter
   listeCandidatsOpportunitesEventListner($event) {
 
-      this.listeCandidats = [];
+    this.listeCandidats = [];
 
-      for (let i = 0; i < $event.length; i++) {
-        this.listeCandidats.push($event[i]._value);
-      }
-      // console.log(this.listeCandidats);
+    for (let i = 0; i < $event.length; i++) {
+      this.listeCandidats.push($event[i]._value);
+    }
   }
 
   // Parent intercepte l'event envoyé par son fils : <app-liste-certifications-for-add> qui génére un EventEmitter

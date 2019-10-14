@@ -1,5 +1,6 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { DatagridCandidatsComponent } from '../../@Components/candidats/datagrid-candidats/datagrid-candidats.component';
+import { FormEditCandidatsComponent } from './form-edit-candidats/form-edit-candidats.component';
 
 import { Technologie } from 'src/app/@Models/technologie';
 import { UtilService } from '../../@Util/util.service';
@@ -35,19 +36,16 @@ export class CandidatsComponent implements OnInit {
   onListeTechnologiesForSearchEvent($event) {
 
     const listeTechnologiesFinale: Technologie[] = [];
-
     for (let i = 0; i < $event.length; i++) {
       listeTechnologiesFinale.push($event[i]._value.id);
     }
     this.listeTechnologies = listeTechnologiesFinale;
-
 
     if (this.listeTechnologies.length > 0 ) {
       this.Datagrid.getAllCandidatsByListTechnologiesController(this.listeTechnologies);
     } else {
       this.Datagrid.getAllCandidatsController(this.Datagrid.etatCandidat);
     }
-
   }
 
 }

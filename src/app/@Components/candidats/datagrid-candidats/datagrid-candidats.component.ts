@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource} from '@angular/material/table';
 import { MatPaginator} from '@angular/material/paginator';
 import { MatSort} from '@angular/material/sort';
@@ -36,6 +36,9 @@ export class DatagridCandidatsComponent implements OnInit {
   storageUrl = environment.storageUrl;
 
   @Input() listeCandidats = new MatTableDataSource<Candidat>();
+
+  // Envoi l'event au parent pour appeler la fonction addPhotoProfil dans son fils EditCandidat
+  @Output() addPhotoProfilEvent = new EventEmitter<Event>();
 
   displayedColumns: string[];
 
@@ -379,7 +382,7 @@ export class DatagridCandidatsComponent implements OnInit {
             // listeTechnologies : J'utilise une variable partagée via le shared-data service
             // detection du changement sur la liste
             if (this.valueOfListeTechnologie != null && this.valueOfListeTechnologieIsModified === true) {
-              for (const i of this.valueOfListeTechnologie.source.selectedOptions.selected) {
+              for (let i = 0; i < this.valueOfListeTechnologie.source.selectedOptions.selected.length; i++) {
                 const technologie = new Technologie(this.valueOfListeTechnologie.source.selectedOptions.selected[i].value.id, this.valueOfListeTechnologie.source.selectedOptions.selected[i].value.nomTechnologie, null);
                 this.listeTechnologiesFinale.push(technologie);
               }
@@ -396,7 +399,7 @@ export class DatagridCandidatsComponent implements OnInit {
             // listeOpportunites : J'utilise une variable partagée via le shared-data service
             // detection du changement sur la liste
             if (this.valueOfListeOpportunite != null && this.valueOfListeOpportuniteIsModified === true) {
-              for (const j of this.valueOfListeOpportunite.source.selectedOptions.selected) {
+              for (let j = 0; j < this.valueOfListeOpportunite.source.selectedOptions.selected.length; j++) {
                 const opportunite = new Opportunite(this.valueOfListeOpportunite.source.selectedOptions.selected[j].value.id, this.valueOfListeOpportunite.source.selectedOptions.selected[j].value.titreOpportunite);
                 this.listeOpportunitesFinale.push(opportunite);
 
@@ -413,7 +416,7 @@ export class DatagridCandidatsComponent implements OnInit {
             // listeCertifications : J'utilise une variable partagée via le shared-data service
             // detection du changement sur la liste
             if (this.valueOfListeCertification != null && this.valueOfListeCertificationIsModified === true) {
-              for (const k of this.valueOfListeCertification.source.selectedOptions.selected) {
+              for (let k = 0; k < this.valueOfListeCertification.source.selectedOptions.selected.length; k++) {
                 const certification = new Certification(this.valueOfListeCertification.source.selectedOptions.selected[k].value.id, this.valueOfListeCertification.source.selectedOptions.selected[k].value.nomCertification, null);
                 this.listeCertificationsFinale.push(certification);
 

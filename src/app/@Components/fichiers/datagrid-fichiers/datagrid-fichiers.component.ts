@@ -32,7 +32,7 @@ export class DatagridFichiersComponent implements OnInit {
 
   ngOnInit() {
     this.getAllFichiersController();
-    this.displayedColumns = ['nomFichier', 'more'];
+    this.displayedColumns = ['nomFichier', 'dateCreationFichier', 'tailleFichier', 'more'];
 
     // je récupère le rôle pour la restriction d'accès dans le menu
     this.role = this.utilService.getRoleUtilisateurFromToken();
