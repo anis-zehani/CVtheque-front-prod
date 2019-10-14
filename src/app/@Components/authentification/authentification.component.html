@@ -29,9 +29,11 @@
         <br>
 
         <mat-divider></mat-divider>
-        <br>
 
-        <div class="title-login">
+        <div class="title-login" style="margin-top: 10px; text-align: center;color: rgb(39, 37, 37);">
+            Ou bien
+        </div>
+        <div class="title-login" style="margin-top: 15px">
             Connectez-vous sur votre compte
         </div>
         <app-login ></app-login>
@@ -46,7 +48,7 @@
 <!-- Visible sur Petits écrans seulement -->
 <div fxLayout="column" fxLayoutAlign="center stretch" fxHide.gt-sm="true" >
     <img src="assets/img/odix.png" style="height: 80px; width:300px"> 
-    <div class="title-login" style="margin-top: 15px">
+    <div class="title-login" style="margin-top: 15px;text-align: center;">
         Inscrivez-vous par un seul clic
     </div>
     <div class="text-small-login">
@@ -54,7 +56,10 @@
     </div>
     <img src="assets/img/linkedin.png" style="margin-bottom: 20px; margin-top: 10px;height: 40px" (click)="authenticateWithLinkedIn()" class="pointer"/> 
     <mat-divider></mat-divider> 
-    <div class="title-login" style="margin-top: 15px">
+    <div class="title-login" style="margin-top: 10px; text-align: center;color: rgb(39, 37, 37);">
+        Ou bien
+    </div>
+    <div class="title-login" style="margin-top: 5px;text-align: center;">
         Connectez-vous sur votre compte
     </div>
     <app-login></app-login>

@@ -25,4 +25,9 @@ export class FichiersService {
   getAllFichiersService(): Observable<Fichier[]> {
     return this.http.get<Fichier[]>(this.serviceUrl);
   }
+
+    // Ne retourne rien
+  deleteFichierService(nomFichier) {
+    return this.http.delete<any>(this.serviceUrl + '/' + nomFichier, this.httpOptions);
+  }
 }
