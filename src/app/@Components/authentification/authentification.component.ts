@@ -3,7 +3,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { FormAddCompteCandidatComponent } from '../../@Components/authentification/form-add-compte-candidat/form-add-compte-candidat.component';
 import { FormAddComptePartenaireComponent } from '../../@Components/authentification/form-add-compte-partenaire/form-add-compte-partenaire.component';
-import { FormRecupererPasswordComponent } from '../../@Components/authentification/form-recuperer-password/form-recuperer-password.component';
 import { AuthentificationService } from 'src/app/@Services/authentification.service';
 
 @Component({

@@ -277,14 +277,17 @@
 
       <!--Partie Gauche-->
       <div fxFlex="15%" fxLayout="column" fxLayoutAlign="start center"> 
-            <div *ngIf="candidat" style="margin-bottom: 15px;">
-                <div *ngIf="candidat.urlPhotoAutoFill; else SINON">
+            <div *ngIf="candidat && (candidat.urlPhotoAutoFill || candidat.urlPhoto); else SINON" style="margin-bottom: 15px;">
+                <div *ngIf="candidat.urlPhotoAutoFill; else SINON_CANDIDAT_EXISTS">
                     <img src="{{candidat.urlPhotoAutoFill}}"/>
                  </div> 
-                 <ng-template #SINON>
+                 <ng-template #SINON_CANDIDAT_EXISTS>
                     <img src="{{candidat.urlPhoto}}"/>
                  </ng-template>
             </div>
+            <ng-template #SINON>
+                <img src="/assets/img/candidat.png"/>
+            </ng-template>
 
             <div class="titleCandidat">Ajouter un CV</div>
             <div class="image-upload" style="margin-bottom: 15px;">

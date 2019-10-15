@@ -151,6 +151,7 @@ import { AccountPartenaireComponent } from './@Components/account/account-parten
 import { AccountAdministrateurComponent } from './@Components/account/account-administrateur/account-administrateur.component';
 import { MatSpinnerComponent } from './@Components/dialogs/mat-spinner/mat-spinner.component';
 import { DatagridFichiersComponent } from './@Components/fichiers/datagrid-fichiers/datagrid-fichiers.component';
+import { FormResetPasswordComponent } from './@Components/authentification/form-reset-password/form-reset-password.component';
 
 @NgModule({
   declarations: [
@@ -253,7 +254,8 @@ import { DatagridFichiersComponent } from './@Components/fichiers/datagrid-fichi
     AccountPartenaireComponent,
     AccountAdministrateurComponent,
     MatSpinnerComponent,
-    DatagridFichiersComponent
+    DatagridFichiersComponent,
+    FormResetPasswordComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,
@@ -287,6 +289,7 @@ import { DatagridFichiersComponent } from './@Components/fichiers/datagrid-fichi
     FormAddCompteCandidatComponent,
     FormAddComptePartenaireComponent,
     FormRecupererPasswordComponent,
+    FormResetPasswordComponent,
     MatSpinnerComponent
   ],
   imports: [

@@ -9,11 +9,10 @@ import { Technologie } from '../../../@Models/technologie';
 })
 export class FormEditTechnologiesComponent implements OnInit {
 
-  technologie : Technologie;
+  technologie: Technologie;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Technologie) 
-  {
-    this.technologie = new Technologie(null,null,null);
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Technologie) {
+    this.technologie = new Technologie(null , null, null);
   }
 
   ngOnInit() {

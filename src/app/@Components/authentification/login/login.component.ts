@@ -58,17 +58,8 @@ export class LoginComponent implements OnInit {
       dialogConfig.closeOnNavigation = true;
       const dialogRef = this.dialog.open(FormRecupererPasswordComponent, {
         width: '450px',
-        height: '180px',
-        data: {
-            // texte : "Attention : Afficher Message."
-          }
-        });
-
-      // Fonction qui s'éxècute quand je ferme la modale
-      dialogRef.afterClosed().subscribe(result => {
-          if (result) {
-              // do something here
-          }
+        height: '250px'
         });
     }
+
 }
