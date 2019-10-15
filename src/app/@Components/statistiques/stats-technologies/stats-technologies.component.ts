@@ -50,7 +50,7 @@ export class StatsTechnologiesComponent implements OnInit {
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['#39CCCC', '#FFDC00', '#FF4136', '#7FDBFF', '#FF851B', '#dfdace'],
+       backgroundColor: ['#39CCCC', '#FFDC00', '#FF4136', '#7FDBFF', '#FF851B', '#dfdace'],
     },
   ];
 
@@ -61,6 +61,25 @@ export class StatsTechnologiesComponent implements OnInit {
     this.getCandidatsByTechnologiesController();
     this.getOpportunitesByTechnologiesController();
   }
+
+
+  getSumCandiatsAndOpportunitesByTechnologiesController() {
+    this.technologiesService.getSumCandiatsAndOpportunitesByTechnologiesService()
+    .subscribe
+      (
+      res => {
+      for (const [key, value] of Object.entries(res)) {
+          if (key === 'sumCandidatsLies') {
+            this.sumCandidatsLies = value;
+          }
+          if (key === 'sumOpportunitesLiees') {
+            this.sumOpportunitesLiees = value;
+          }
+      }
+      }
+      );
+  }
+
 
   getCandidatsByTechnologiesController() {
     this.technologiesService.getCandidatsByTechnologiesService()
@@ -87,22 +106,6 @@ export class StatsTechnologiesComponent implements OnInit {
       );
   }
 
-  getSumCandiatsAndOpportunitesByTechnologiesController() {
-    this.technologiesService.getSumCandiatsAndOpportunitesByTechnologiesService()
-    .subscribe
-      (
-      res => {
-      for (const [key, value] of Object.entries(res)) {
-          if (key === 'sumCandidatsLies') {
-            this.sumCandidatsLies = value;
-          }
-          if (key === 'sumOpportunitesLiees') {
-            this.sumOpportunitesLiees = value;
-          }
-      }
-      }
-      );
-  }
 
   technologieVsCandidats() {
     this.pieChartLabels = this.labelsTechnologiesByCandidats;
