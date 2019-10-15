@@ -12,7 +12,7 @@ import { Utilisateur } from '../@Models/utilisateur';
 })
 export class AuthentificationService {
 
-  private serviceUrl = environment.baseUrl + '/utilisateur';
+  private serviceUrl = environment.baseUrl + '/authentication-controller';
 
   utilisateur: Utilisateur;
 
@@ -24,7 +24,7 @@ export class AuthentificationService {
 
   constructor(private http: HttpClient) { }
 
-  // Responsable de l'authentification
+  // Permet de faire l'authentification via le formulaire de login
   authenticate(username, password) {
 
     this.utilisateur = new Utilisateur();
@@ -83,6 +83,24 @@ export class AuthentificationService {
         }
       )
      );
+  }
+
+  // Permet de faire l'authentification via le formulaire de login
+  authenticateByResetPassword(username, password) {
+
+    this.utilisateur = new Utilisateur();
+    this.utilisateur.username =  username;
+    this.utilisateur.password =  password;
+
+    return this.http.post<any>(this.serviceUrl + '/authenticateByResetPassword', JSON.stringify(this.utilisateur), this.httpOptions).pipe(
+     map(
+       data => {
+        const tokenValue = 'Bearer ' + data.token;
+        sessionStorage.setItem('token', tokenValue);
+        return data;
+       }
+     )
+    );
   }
 
 }

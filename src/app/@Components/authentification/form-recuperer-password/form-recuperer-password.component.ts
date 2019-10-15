@@ -31,8 +31,20 @@ export class FormRecupererPasswordComponent implements OnInit {
       (
         res => {
             if (res != null) {
-              // On ouvre le pop-up reset password
-              this.openDialogResetPassword(email);
+              // On envoi le mail via Back avec lien de Reset Password
+              this.utilisateurService.envoiEmailResetPasswordService(email)
+              .subscribe
+                (
+                  result => {
+                      if (result) {
+                        // On affiche un message de confirmation
+                        this.utilService.openSnackBar('Merci de vérifier votre boite email, un lien de réinitialisation vous a été envoyé', 'OK');
+                      } else {
+                        // On affiche un message d'erreur'
+                        this.utilService.openSnackBar('Une erreur dans l\'envoi du mail de réinitialisation du mot de passe', 'Erreur');
+                      }
+                  }
+                );
             } else {
               this.utilService.openSnackBar('Veuillez vérifier votre entrée, aucun utilisateur n\'existe pour :' + email, 'Utilisateur inexistant');
             }
@@ -42,7 +54,7 @@ export class FormRecupererPasswordComponent implements OnInit {
   }
 
   // Ouvre le pop-up pour réinitialiser le mot de passe dèja oublié
-  openDialogResetPassword(email): void {
+  /*openDialogResetPassword(email): void {
     // Objet pour configurer la modale
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -78,6 +90,6 @@ export class FormRecupererPasswordComponent implements OnInit {
 
         }
       );
-  }
+  }*/
 
 }

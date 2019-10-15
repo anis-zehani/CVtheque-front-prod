@@ -19,6 +19,7 @@ import { DatagridFichiersComponent } from './@Components/fichiers/datagrid-fichi
 import { LogoutComponent } from './@Components/authentification/logout/logout.component';
 import { RedirectLinkedinComponent } from './@Components/authentification/redirect-linkedin/redirect-linkedin.component';
 import { AccountComponent } from './@Components/account/account.component';
+import { FormResetPasswordComponent } from './@Components/authentification/form-reset-password/form-reset-password.component';
 
 // Toute personne authentifiée
 import { AuthGuardService } from './@Services/auth-guard.service';
@@ -32,6 +33,7 @@ const routes: Routes = [
   // Les URL Valables : AuthGuardService partout sauf sur le login
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login',   component: AuthentificationComponent },
+  { path: 'reset-password',   component: FormResetPasswordComponent },
   { path: 'logout',   component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'account',   component: AccountComponent, canActivate: [AuthGuardService] },
 

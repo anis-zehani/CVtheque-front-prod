@@ -26,6 +26,10 @@ export class UtilisateurService {
     return this.http.get<Utilisateur>(this.serviceUrl + '/password-forgotten/' + email, this.httpOptions);
   }
 
+  envoiEmailResetPasswordService(email): Observable<Utilisateur> {
+    return this.http.get<Utilisateur>(this.serviceUrl + '/password-send-email-reset/' + email, this.httpOptions);
+  }
+
   resetPasswordUtilisateurService(email, password): Observable<Utilisateur> {
     return this.http.put<Utilisateur>(this.serviceUrl + '/password-reset/' + email + '/' + password, this.httpOptions);
   }
