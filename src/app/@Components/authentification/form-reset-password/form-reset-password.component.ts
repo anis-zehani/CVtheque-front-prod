@@ -17,6 +17,7 @@ export class FormResetPasswordComponent implements OnInit {
     email: new FormControl('', Validators.email),
     password: new FormControl('', Validators.required)
   });
+
   invalidLogin = false;
 
   constructor(private utilisateurService: UtilisateurService,

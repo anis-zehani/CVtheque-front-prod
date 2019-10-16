@@ -75,6 +75,24 @@ STYLE : écran "Liste des Technologies
     margin-top: 10px;
   }
 
+  .text-small-validation-vert {
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.850rem;
+    font-variant-ligatures: no-contextual;
+    color: #207e08;
+    font-weight: 400;
+    margin-bottom: 5px;
+  }
+
+  .text-small-validation-rouge {
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.850rem;
+    font-variant-ligatures: no-contextual;
+    color: #9b2609;
+    font-weight: 400;
+    margin-bottom: 5px;
+  }
+
   .title-bleu {
       font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
       font-size: 1.175rem;

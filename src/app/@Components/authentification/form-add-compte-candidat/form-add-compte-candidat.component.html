@@ -1,10 +1,33 @@
 <div class="title-xs-higher" style="text-align: center">
-        Nouveau compte de candidat
+    Nouveau compte candidat
 </div>
-<mat-tab-group mat-stretch-tabs>
-        <mat-tab label="Création d'un compte">
-            <ng-template matTabContent>
-                Identité , email , password
-            </ng-template>
-        </mat-tab>
-</mat-tab-group>
+<form [formGroup]="formAddCandidatHomePage" (ngSubmit)="addCandidatHomePagePending()">
+    <div>
+        <mat-form-field appearance="outline" >
+            <mat-label>Adresse email</mat-label>
+            <input matInput formControlName="email" required (focusout)="checkIfUserEmailExists()">
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <div *ngIf="invalidate" class="text-small-validation-rouge">
+                Adresse email non valide
+        </div>
+
+        <mat-form-field appearance="outline" >
+            <mat-label>Identité (nom et prénom)</mat-label>
+            <input matInput formControlName="identite" required readonly={{invalidate}}>
+            <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+            <mat-label>Mot de passe</mat-label>
+            <input matInput formControlName="password" type="password" required readonly={{invalidate}}>
+            <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
+        
+        <div fxLayout="column" fxLayoutAlign="start space-between stretch" >
+            <button mat-flat-button type="submit" [disabled]="!formAddCandidatHomePage.valid || invalidate">Confirmer</button>
+            <button mat-stroked-button mat-dialog-close style="margin-top: 10px">Annuler</button>
+        </div>
+    </div>
+</form> 
