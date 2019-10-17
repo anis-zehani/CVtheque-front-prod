@@ -3,7 +3,6 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { UtilisateurService } from 'src/app/@Services/utilisateur.service';
 import { UtilService } from 'src/app/@Util/util.service';
-import { FormResetPasswordComponent } from '../form-reset-password/form-reset-password.component';
 
 @Component({
   selector: 'app-form-recuperer-password',

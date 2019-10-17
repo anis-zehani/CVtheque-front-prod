@@ -12,7 +12,9 @@ import { Utilisateur } from '../@Models/utilisateur';
 })
 export class AuthentificationService {
 
-  private serviceUrl = environment.baseUrl + '/authentication-controller';
+  private serviceUrl = environment.baseUrl + '/utilisateur';
+  // Authentification via login / via Reset du Password
+  private serviceUrlAuthenticationController = environment.baseUrl + '/authentication-controller';
 
   utilisateur: Utilisateur;
 
@@ -31,7 +33,42 @@ export class AuthentificationService {
     this.utilisateur.username =  username;
     this.utilisateur.password =  password;
 
-    return this.http.post<any>(this.serviceUrl + '/authenticate', JSON.stringify(this.utilisateur), this.httpOptions).pipe(
+    return this.http.post<any>(this.serviceUrlAuthenticationController + '/authenticate', JSON.stringify(this.utilisateur), this.httpOptions).pipe(
+     map(
+       data => {
+        const tokenValue = 'Bearer ' + data.token;
+        sessionStorage.setItem('token', tokenValue);
+        return data;
+       }
+     )
+    );
+  }
+
+  // Permet de faire l'authentification via un Reset Password
+  authenticateByResetPassword(username, password) {
+
+    this.utilisateur = new Utilisateur();
+    this.utilisateur.username =  username;
+    this.utilisateur.password =  password;
+
+    return this.http.post<any>(this.serviceUrlAuthenticationController + '/authenticateByResetPassword', JSON.stringify(this.utilisateur), this.httpOptions).pipe(
+     map(
+       data => {
+        const tokenValue = 'Bearer ' + data.token;
+        sessionStorage.setItem('token', tokenValue);
+        return data;
+       }
+     )
+    );
+  }
+
+  // Permet de faire l'authentification d'un nouveau USER venant d'être crée
+  authenticateNewCreatedUser(username) {
+
+    this.utilisateur = new Utilisateur();
+    this.utilisateur.username =  username;
+
+    return this.http.post<any>(this.serviceUrlAuthenticationController + '/authenticateNewCreatedUser', JSON.stringify(this.utilisateur), this.httpOptions).pipe(
      map(
        data => {
         const tokenValue = 'Bearer ' + data.token;
@@ -84,23 +121,4 @@ export class AuthentificationService {
       )
      );
   }
-
-  // Permet de faire l'authentification via le formulaire de login
-  authenticateByResetPassword(username, password) {
-
-    this.utilisateur = new Utilisateur();
-    this.utilisateur.username =  username;
-    this.utilisateur.password =  password;
-
-    return this.http.post<any>(this.serviceUrl + '/authenticateByResetPassword', JSON.stringify(this.utilisateur), this.httpOptions).pipe(
-     map(
-       data => {
-        const tokenValue = 'Bearer ' + data.token;
-        sessionStorage.setItem('token', tokenValue);
-        return data;
-       }
-     )
-    );
-  }
-
 }

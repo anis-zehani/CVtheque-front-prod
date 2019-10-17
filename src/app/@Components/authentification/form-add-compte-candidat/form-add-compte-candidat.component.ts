@@ -4,6 +4,7 @@ import { UtilisateurService } from 'src/app/@Services/utilisateur.service';
 import { UtilService } from 'src/app/@Util/util.service';
 import { CandidatsTemporairesService } from 'src/app/@Services/candidats-temporaires.service';
 import { CandidatTemporaire } from 'src/app/@Models/candidat-temporaire';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-form-add-compte-candidat',
@@ -25,7 +26,8 @@ export class FormAddCompteCandidatComponent implements OnInit {
 
   constructor(private utilisateurService: UtilisateurService,
               private utilService: UtilService,
-              private candidatsTemporairesService: CandidatsTemporairesService) {
+              private candidatsTemporairesService: CandidatsTemporairesService,
+              public matDialogReference: MatDialogRef<FormAddCompteCandidatComponent>) {
                }
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class FormAddCompteCandidatComponent implements OnInit {
             if (res != null) {
               // Cas ou le mail n'est pas libre (dèja utilisé)
               this.invalidate = true;
+              this.utilService.openSnackBar('Cette adresse email existe dèja, veuillez vous connecter.', 'Attention');
             } else {
               this.invalidate = false;
             }
@@ -60,20 +63,23 @@ export class FormAddCompteCandidatComponent implements OnInit {
       (
         res => {
             if (res != null) {
+              // Fermer le Dialog
+              this.matDialogReference.close([]);
+              this.utilService.openSnackBar('Un lien d\'activation du compte vous sera envoyé dans quelques instants', 'OK');
               // On envoi le mail via Back avec lien d'activation du compte
-              /*this.candidatsTemporairesService.envoiEmailActivationCompteCandidatService(email)
+              this.candidatsTemporairesService.envoiEmailActivationCompteCandidatService(email)
               .subscribe
                 (
                   result => {
                       if (result) {
                         // On affiche un message de confirmation
-                        this.utilService.openSnackBar('Merci d'activer votre compte via le lien envoyé par email.', 'OK');
+                        this.utilService.openSnackBar('Le lien d\'activation a été envoyé par email, merci de le consulter.', 'OK');
                       } else {
                         // On affiche un message d'erreur'
-                        this.utilService.openSnackBar('Une erreur dans l\'envoi du mail d'activation du compte.'', 'Erreur');
+                        this.utilService.openSnackBar('Une erreur dans l\'envoi du mail d\'activation du compte.', 'Erreur');
                       }
                   }
-                );*/
+                );
             } else {
                this.utilService.openSnackBar('Une erreur s\'est produite durant l\'activation du compte.', 'Erreur');
             }

@@ -1,7 +1,7 @@
 <div class="title-xs-higher" style="text-align: center">
     Nouveau compte candidat
 </div>
-<form [formGroup]="formAddCandidatHomePage" (ngSubmit)="addCandidatHomePagePending()">
+<form [formGroup]="formAddCandidatHomePage" (ngSubmit)="addCandidatTemporaire()">
     <div>
         <mat-form-field appearance="outline" >
             <mat-label>Adresse email</mat-label>
@@ -10,7 +10,7 @@
         </mat-form-field>
 
         <div *ngIf="invalidate" class="text-small-validation-rouge">
-                Adresse email non valide
+                Cette adresse email existe dèja, veuillez vous connecter.
         </div>
 
         <mat-form-field appearance="outline" >

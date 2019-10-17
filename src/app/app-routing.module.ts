@@ -20,6 +20,7 @@ import { LogoutComponent } from './@Components/authentification/logout/logout.co
 import { RedirectLinkedinComponent } from './@Components/authentification/redirect-linkedin/redirect-linkedin.component';
 import { AccountComponent } from './@Components/account/account.component';
 import { FormResetPasswordComponent } from './@Components/authentification/form-reset-password/form-reset-password.component';
+import { RedirectActivationCompteComponent } from './@Components/authentification/redirect-activation-compte/redirect-activation-compte.component';
 
 // Toute personne authentifiée
 import { AuthGuardService } from './@Services/auth-guard.service';
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login',   component: AuthentificationComponent },
   { path: 'reset-password',   component: FormResetPasswordComponent },
+  { path: 'activation-compte',   component: RedirectActivationCompteComponent },
   { path: 'logout',   component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'account',   component: AccountComponent, canActivate: [AuthGuardService] },
 
