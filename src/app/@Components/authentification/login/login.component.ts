@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         // Afficher un message d'erreur d'authentification
-        this.utilService.openSnackBar('Veuillez vérifier vos paramètres, merci.', 'Erreur de connection');
+        this.utilService.openSnackBar('Veuillez vérifier vos paramètres, merci.', 'Attention');
         this.invalidLogin = true;
       }
     );
