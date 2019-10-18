@@ -21,6 +21,7 @@ import { RedirectLinkedinComponent } from './@Components/authentification/redire
 import { AccountComponent } from './@Components/account/account.component';
 import { FormResetPasswordComponent } from './@Components/authentification/form-reset-password/form-reset-password.component';
 import { RedirectActivationCompteComponent } from './@Components/authentification/redirect-activation-compte/redirect-activation-compte.component';
+import { DemandesAdhesionComponent } from './@Components/account/demandes-adhesion/demandes-adhesion.component';
 
 // Toute personne authentifiée
 import { AuthGuardService } from './@Services/auth-guard.service';
@@ -29,6 +30,7 @@ import { Level1GuardService } from './@Services/level1-guard.service';
 // Administrateur ou Partenaire seulement
 import { Level2GuardService } from './@Services/level2-guard.service';
 
+
 const routes: Routes = [
 
   // Les URL Valables : AuthGuardService partout sauf sur le login
@@ -36,8 +38,9 @@ const routes: Routes = [
   { path: 'login',   component: AuthentificationComponent },
   { path: 'reset-password',   component: FormResetPasswordComponent },
   { path: 'activation-compte',   component: RedirectActivationCompteComponent },
-  { path: 'logout',   component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'account',   component: AccountComponent, canActivate: [AuthGuardService] },
+  { path: 'demandes-adhesion',   component: DemandesAdhesionComponent, canActivate: [Level1GuardService] },
+  { path: 'logout',   component: LogoutComponent, canActivate: [AuthGuardService] },
 
   { path: 'accueil',   component: AccueilComponent, canActivate: [AuthGuardService] },
 

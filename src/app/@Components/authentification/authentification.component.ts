@@ -61,8 +61,8 @@ export class AuthentificationComponent implements OnInit {
       dialogConfig.hasBackdrop = true;
       dialogConfig.closeOnNavigation = true;
       const dialogRef = this.dialog.open(FormAddComptePartenaireComponent, {
-        width: '500px',
-        height: '500px',
+        width: '600px',
+        height: '600px',
         data: {
             // texte : "Attention : Afficher Message."
           }

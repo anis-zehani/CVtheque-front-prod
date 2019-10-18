@@ -34,7 +34,7 @@ export class FormAddCompteCandidatComponent implements OnInit {
   }
 
   // Vérifie si l'adresse email introduite appartient dèja à un autre utilisateur
-  checkIfUserEmailExists() {
+  checkIfUserCandidatEmailExists() {
     const email = this.formAddCandidatHomePage.get('email').value;
     this.utilisateurService.getOneUtilisateurService(email)
     .subscribe

@@ -26,7 +26,7 @@
                 <button mat-menu-item routerLink="ecoles" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Écoles</button>
                 <button mat-menu-item routerLink="certifications" *ngIf="role === 'ROLE_ADMINISTRATEUR' || role === 'ROLE_PARTENAIRE'">Certifications</button>
                 <button mat-menu-item routerLink="collaborateurs" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Collaborateurs</button>
-                <button mat-menu-item routerLink="fichiers" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Fichiers</button>
+                <button mat-menu-item routerLink="fichiers" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Gestion des fichiers</button>
               </mat-menu>
         </mat-toolbar>
       </div>
@@ -45,6 +45,8 @@
           <mat-menu #menu5="matMenu">
               <button mat-menu-item routerLink="account">Gérer mon compte</button>
               <mat-divider></mat-divider>
+              <button mat-menu-item routerLink="demandes-adhesion" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Demandes d'adhésion</button>
+              <mat-divider></mat-divider>
               <app-logout></app-logout>
           </mat-menu>
       </div>
@@ -60,6 +62,8 @@
           </a>
           <mat-menu #menu5="matMenu">
               <button mat-menu-item routerLink="account">Gérer mon compte</button>
+              <mat-divider></mat-divider>
+              <button mat-menu-item routerLink="demandes-adhesion" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Demandes d'adhésion</button>
               <mat-divider></mat-divider>
               <app-logout></app-logout>
           </mat-menu>
@@ -83,7 +87,7 @@
               <button mat-menu-item routerLink="ecoles" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Écoles</button>
               <button mat-menu-item routerLink="certifications" *ngIf="role === 'ROLE_ADMINISTRATEUR' || role === 'ROLE_PARTENAIRE'">Certifications</button>
               <button mat-menu-item routerLink="collaborateurs" *ngIf="role === 'ROLE_ADMINISTRATEUR' ">Collaborateurs</button>
-              <button mat-menu-item routerLink="fichiers" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Fichiers</button>
+              <button mat-menu-item routerLink="fichiers" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Gestion des fichiers</button>
           </mat-menu>
       </div>
 
