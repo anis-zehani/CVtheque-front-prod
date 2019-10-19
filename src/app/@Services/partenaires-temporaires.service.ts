@@ -29,4 +29,9 @@ export class PartenairesTemporairesService {
   addPartenaireTemporaireService(partenaireTemporaire): Observable<PartenaireTemporaire> {
     return this.http.post<any>(this.serviceUrl, JSON.stringify(partenaireTemporaire), this.httpOptions);
   }
+
+  // Activation du Partenaire via son email
+  activatePartenaireService(email): Observable<boolean> {
+    return this.http.put<boolean>(this.serviceUrl, email, this.httpOptions);
+  }
 }

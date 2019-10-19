@@ -10,37 +10,36 @@
         <table mat-table [dataSource]="listePartenairesTemporaires" matSort>
               
                 <ng-container matColumnDef="dateAjout">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-                        <td mat-cell *matCellDef="let element" width="10%">
-                            {{element.dateAjout}}<br>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de la demande</th>
+                        <td mat-cell *matCellDef="let element" width="15%">
+                            {{element.dateAjout | date: 'short'}}<br>
                         </td>
                 </ng-container>
 
                 <ng-container matColumnDef="parametres">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Paramètres</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Informations</th>
                     <td mat-cell *matCellDef="let element" width="25%">
                         <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>
+                        <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
                         <b class="label-datagrid">Email : </b>{{element.email}}<br>
                         <b class="label-datagrid">Password : </b>{{element.password}}<br>
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="contacts">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contacts</th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Entreprise</th>
                         <td mat-cell *matCellDef="let element" width="25%">
-                            <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
                             <b class="label-datagrid">Entreprise : </b>{{element.entreprise}}<br>
                             <b class="label-datagrid">Poste occupé : </b>{{element.posteOccupe}}<br>
                         </td>
                 </ng-container>
 
                 <ng-container matColumnDef="details">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
-                        <td mat-cell *matCellDef="let element" width="35%">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Autres détails</th>
+                        <td mat-cell *matCellDef="let element" width="30%">
                             <b class="label-datagrid">Détails : </b>{{element.descriptionDetaillee}}<br>
                         </td>
                 </ng-container>
-
 
                 <ng-container matColumnDef="more">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header></th>

@@ -154,6 +154,7 @@ import { DatagridFichiersComponent } from './@Components/fichiers/datagrid-fichi
 import { FormResetPasswordComponent } from './@Components/authentification/form-reset-password/form-reset-password.component';
 import { RedirectActivationCompteComponent } from './@Components/authentification/redirect-activation-compte/redirect-activation-compte.component';
 import { DemandesAdhesionComponent } from './@Components/account/demandes-adhesion/demandes-adhesion.component';
+import { ActivationConfirmationComponent } from './@Components/dialogs/activation-confirmation/activation-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -259,7 +260,8 @@ import { DemandesAdhesionComponent } from './@Components/account/demandes-adhesi
     DatagridFichiersComponent,
     FormResetPasswordComponent,
     RedirectActivationCompteComponent,
-    DemandesAdhesionComponent
+    DemandesAdhesionComponent,
+    ActivationConfirmationComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,
@@ -294,6 +296,7 @@ import { DemandesAdhesionComponent } from './@Components/account/demandes-adhesi
     FormAddComptePartenaireComponent,
     FormRecupererPasswordComponent,
     FormResetPasswordComponent,
+    ActivationConfirmationComponent,
     MatSpinnerComponent
   ],
   imports: [
