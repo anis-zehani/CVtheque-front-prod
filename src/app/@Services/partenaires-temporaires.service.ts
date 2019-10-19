@@ -20,6 +20,11 @@ export class PartenairesTemporairesService {
 
   constructor(private http: HttpClient) { }
 
+  // Retourne un tableau de tous les Partenaires Temporaires pas encore activés : PartenaireTemporaire[]
+  getAllPartenairesTemporairesService(): Observable<PartenaireTemporaire[]> {
+    return this.http.get<PartenaireTemporaire[]>(this.serviceUrl);
+  }
+
   // Retourne le partenaire Temporaire créée : Partenaire (cas ou le partenaire créé soa propre demande de création de compte via HomePage)
   addPartenaireTemporaireService(partenaireTemporaire): Observable<PartenaireTemporaire> {
     return this.http.post<any>(this.serviceUrl, JSON.stringify(partenaireTemporaire), this.httpOptions);
