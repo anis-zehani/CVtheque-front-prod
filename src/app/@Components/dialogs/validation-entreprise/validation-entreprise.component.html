@@ -1,0 +1,39 @@
+<div class="title-xs-higher" style="text-align: center; margin-bottom: 30px;">
+    Validation de l'entreprise entrée
+</div>
+
+
+
+<table>
+    <tr>
+        <td class="simple-text" style="color: #886b23;font-weight: 600;">
+            Entreprise mentionnée
+        </td>
+        <td class="simple-text" style="color: #886b23;font-weight: 600;">
+            Chercher une conformité
+        </td>
+        <td class="simple-text" style="color: #886b23;font-weight: 600;">
+            ID Entreprise validée
+        </td>
+    </tr>
+
+    <tr>
+        <td class="title-xs-higher" >
+            {{data.entreprise}}
+        </td>
+        <td>
+            <app-liste-entreprises
+                (entrepriseIdEvent)="entrepriseIdEventListner($event)">
+            </app-liste-entreprises>
+        </td>
+        <td class="title-xs-higher" style="text-align: center;">
+            {{data.idEntreprise}}
+        </td>
+    </tr>
+</table>
+
+<div style="display: flex;justify-content: space-between;">
+    <button mat-flat-button [mat-dialog-close]="data" style="margin-right: 10px;background-color:#f7c341; color: black; font-weight: 400;width: 35%">Valider</button>
+    <button mat-stroked-button mat-dialog-close style="margin-left: 10px; color:black; font-weight: 400; width: 25%;">Annuler</button>
+</div> 
+

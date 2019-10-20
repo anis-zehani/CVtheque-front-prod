@@ -7,6 +7,7 @@ import { PartenaireTemporaire } from 'src/app/@Models/partenaire-temporaire';
 import { PartenairesTemporairesService } from 'src/app/@Services/partenaires-temporaires.service';
 import { ActivationConfirmationComponent } from '../../dialogs/activation-confirmation/activation-confirmation.component';
 import { UtilService } from 'src/app/@Util/util.service';
+import { ValidationEntrepriseComponent } from '../../dialogs/validation-entreprise/validation-entreprise.component';
 
 @Component({
   selector: 'app-demandes-adhesion',
@@ -18,6 +19,8 @@ export class DemandesAdhesionComponent implements OnInit {
   @Input() listePartenairesTemporaires = new MatTableDataSource<PartenaireTemporaire>();
 
   displayedColumns: string[];
+
+  idEntreprise: number;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -45,19 +48,47 @@ export class DemandesAdhesionComponent implements OnInit {
   }
 
   // Activer le nouveau Partenaire : appel au Service
-  activatePartenaireController(email) {
-    this.partenairesTemporairesService.activatePartenaireService(email)
+  activatePartenaireController(email, idEntreprise) {
+    this.partenairesTemporairesService.activatePartenaireService(email, idEntreprise)
     .subscribe
       (
       result => {
         if (result) {
+          this.getAllPartenairesTemporairesController();
           this.utilService.openSnackBar('Partenaire activé avec succès', 'OK');
         } else {
           this.utilService.openSnackBar('Une erreur a eu lieu durant l\activation', 'Erreur');
         }
       }
       );
-    this.getAllPartenairesTemporairesController();
+  }
+
+  // Ouvre le pop-up pour valider l'Entreprise entrée par le Partenaire Temporaire
+  openDialogValidationEntreprise(email, entreprise, idEntreprise): void {
+    // Objet pour configurer la modale
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = true;
+
+    // Objet pour déclencher l'ouverture de la modale
+    const dialogRef = this.dialog.open(ValidationEntrepriseComponent, {
+      width: '750px',
+      height: '300px',
+      data: {
+        email,
+        entreprise,
+        idEntreprise
+      }
+    });
+
+    // Fonction qui s'éxècute quand je ferme la modale
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+          this.idEntreprise = result.idEntreprise;
+          this.openDialogActivationPartenaires(result.email);
+      }
+    });
   }
 
   // Ouvre le pop-up pour activer un nouveau Partenaire
@@ -81,7 +112,7 @@ export class DemandesAdhesionComponent implements OnInit {
     // Fonction qui s'éxècute quand je ferme la modale
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-          this.activatePartenaireController(result.email);
+          this.activatePartenaireController(result.email, this.idEntreprise);
       }
     });
   }

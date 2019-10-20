@@ -155,6 +155,7 @@ import { FormResetPasswordComponent } from './@Components/authentification/form-
 import { RedirectActivationCompteComponent } from './@Components/authentification/redirect-activation-compte/redirect-activation-compte.component';
 import { DemandesAdhesionComponent } from './@Components/account/demandes-adhesion/demandes-adhesion.component';
 import { ActivationConfirmationComponent } from './@Components/dialogs/activation-confirmation/activation-confirmation.component';
+import { ValidationEntrepriseComponent } from './@Components/dialogs/validation-entreprise/validation-entreprise.component';
 
 @NgModule({
   declarations: [
@@ -261,7 +262,8 @@ import { ActivationConfirmationComponent } from './@Components/dialogs/activatio
     FormResetPasswordComponent,
     RedirectActivationCompteComponent,
     DemandesAdhesionComponent,
-    ActivationConfirmationComponent
+    ActivationConfirmationComponent,
+    ValidationEntrepriseComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,
@@ -297,6 +299,7 @@ import { ActivationConfirmationComponent } from './@Components/dialogs/activatio
     FormRecupererPasswordComponent,
     FormResetPasswordComponent,
     ActivationConfirmationComponent,
+    ValidationEntrepriseComponent,
     MatSpinnerComponent
   ],
   imports: [

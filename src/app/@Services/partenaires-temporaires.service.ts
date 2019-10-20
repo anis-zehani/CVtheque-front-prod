@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CandidatTemporaire } from '../@Models/candidat-temporaire';
 import { PartenaireTemporaire } from '../@Models/partenaire-temporaire';
 
 @Injectable({
@@ -31,7 +30,7 @@ export class PartenairesTemporairesService {
   }
 
   // Activation du Partenaire via son email
-  activatePartenaireService(email): Observable<boolean> {
-    return this.http.put<boolean>(this.serviceUrl, email, this.httpOptions);
+  activatePartenaireService(email, idEntreprise): Observable<boolean> {
+    return this.http.put<boolean>(this.serviceUrl + '/' + email + '/' + idEntreprise, this.httpOptions);
   }
 }
