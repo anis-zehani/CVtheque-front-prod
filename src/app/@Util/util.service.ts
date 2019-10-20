@@ -12,7 +12,7 @@ export class UtilService {
   // Affiche une Notification SnackBar en bas de l'écran
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
-      duration: 3000,
+      duration: 5000,
       panelClass: ['snackbar']
     });
   }
