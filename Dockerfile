@@ -18,7 +18,7 @@ RUN $(npm bin)/ng build --aot --prod --output-path=dist
 
 ### STAGE 2: Setup ###
 
-FROM nginx:1.16-alpine
+FROM nginx:1.17-alpine
 
 ## Copy our default nginx config
 COPY nginx/default.conf /etc/nginx/conf.d/ 

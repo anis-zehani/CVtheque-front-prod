@@ -44,7 +44,7 @@
                 <ng-container matColumnDef="more">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                   <td mat-cell *matCellDef="let element" width="5%" class="pointer">
-                    <button mat-menu-item (click)="openDialogValidationEntreprise(element.email, element.entreprise)" matTooltip="Activer le partenaire" matTooltipPosition="right"><mat-icon>check_circle</mat-icon></button>
+                    <button mat-menu-item (click)="openDialogValidationEntreprise(element.email, element.entreprise, null)" matTooltip="Activer le partenaire" matTooltipPosition="right"><mat-icon>check_circle</mat-icon></button>
                   </td>
                 </ng-container>
               
