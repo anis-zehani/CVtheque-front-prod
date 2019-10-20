@@ -2,7 +2,6 @@
     Nouveau compte candidat
 </div>
 <form [formGroup]="formAddCandidatHomePage" (ngSubmit)="addCandidatTemporaire()">
-    <div>
         <mat-form-field appearance="outline" >
             <mat-label>Adresse email</mat-label>
             <input matInput formControlName="email" required (focusout)="checkIfUserCandidatEmailExists()">
@@ -25,9 +24,8 @@
             <mat-icon matSuffix>vpn_key</mat-icon>
         </mat-form-field>
         
-        <div fxLayout="column" fxLayoutAlign="space-between stretch" >
-            <button mat-flat-button type="submit" [disabled]="!formAddCandidatHomePage.valid || invalidate">Confirmer</button>
-            <button mat-stroked-button mat-dialog-close style="margin-top: 10px">Annuler</button>
+        <div fxLayout="row" fxLayoutAlign="space-between center" >
+            <button mat-flat-button type="submit" [disabled]="!formAddCandidatHomePage.valid || invalidate" style="width:40%">Confirmer</button>
+            <button mat-stroked-button mat-dialog-close style="width:40%">Annuler</button>
         </div>
-    </div>
 </form> 
