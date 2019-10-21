@@ -59,11 +59,11 @@ export class AccountCandidatComponent implements OnInit {
   ngOnInit() {
     // je récupère le id
     this.id = this.utilService.getIdUtilisateurFromToken();
-    this.getOneCandidatsController(this.id);
+    this.getOneCandidatController(this.id);
   }
 
   // Afficher le Candidat
-  getOneCandidatsController(id): void {
+  getOneCandidatController(id): void {
     this.candidatsService.getOneCandidatService(this.id)
     .subscribe
       (

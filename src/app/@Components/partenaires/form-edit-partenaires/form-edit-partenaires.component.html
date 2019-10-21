@@ -19,7 +19,7 @@
                             <label for="photodeprofilEdit">
                                 <mat-icon class="pointer">add_a_photo</mat-icon>
                             </label>
-                            <input id="photodeprofilEdit" type="file" style="display: none;" (change)="selectFile($event)">
+                            <input id="photodeprofilEdit" type="file" style="display: none;" (change)="selectEditPhotoProfil($event, data.id)">
                         </div>
                         <div class="file-upload" dir="rtl">{{namePhoto}}</div>
                         <label>
@@ -97,8 +97,8 @@
     </mat-form-field>
     
 
-    <div style="display: flex;justify-content: space-between;">
-      <button mat-flat-button [mat-dialog-close]="data" (click)="editPhotoController(data.id)" style="margin-right: 10px; width: 30%">Confirmer</button>
+    <div style="display: flex;justify-content: space-between;"> 
+      <button mat-flat-button [mat-dialog-close]="data" style="margin-right: 10px; width: 30%">Confirmer</button>
       <button mat-stroked-button mat-dialog-close style="margin-left: 10px; width: 30%">Annuler</button>
     </div>
     

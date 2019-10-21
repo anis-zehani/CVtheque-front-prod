@@ -1,3 +1,193 @@
-<div class="title" style="margin-bottom: 20px; font-weight: 700;">
-    Mon compte partenaire :
+<!--Grands écrans-->
+<div class="container"
+      fxLayout
+      fxLayout.xs="row"
+      fxLayoutAlign="space-between stretch"
+      fxLayoutGap="10px"
+      fxLayoutGap.xs="0"
+      fxShow="true" fxHide.lt-md="true">
+    
+      <div fxFlex="20%" style="background-color: #222;">
+            <div class="title-blanc">
+                Mon compte partenaire
+            </div>
+      </div>
+
+      <div fxFlex="65%">
+            <div *ngIf="partenaire">
+                <table>
+                        <tr>
+                            <div class="titlePartenaire">
+                                Contacts
+                            </div>
+                        </tr>
+        
+                        <tr>
+                          <td>
+                         
+                              <input matInput [(ngModel)]="partenaire.id" hidden>
+                              <mat-form-field appearance="fill">
+                                    <mat-label>Identité</mat-label>
+                                    <input matInput [(ngModel)]="partenaire.identite" required readonly>
+                                    <mat-icon matSuffix>account_circle</mat-icon>
+                              </mat-form-field>
+                          </td>
+                          <td>
+                              <mat-form-field appearance="fill">
+                                <mat-label>Téléphone</mat-label>
+                                <input matInput [(ngModel)]="partenaire.telephone" readonly>
+                                <mat-icon matSuffix>local_phone</mat-icon>
+                              </mat-form-field>  
+                          </td>
+                          <td>
+                              <mat-form-field appearance="fill">
+                                <mat-label>Adresse email</mat-label>
+                                <input matInput [(ngModel)]="partenaire.email" required readonly>
+                                <mat-icon matSuffix>mail</mat-icon>
+                              </mat-form-field>  
+                          </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Adresse email secondaire</mat-label>
+                                    <input matInput [(ngModel)]="partenaire.emailPartenaireAutoFill">
+                                    <mat-icon matSuffix>mail</mat-icon>
+                                </mat-form-field>  
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Téléphone secondaire</mat-label>
+                                    <input matInput [(ngModel)]="partenaire.telephonePartenaireAutoFill">
+                                </mat-form-field>   
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <div class="titlePartenaire">
+                                Entreprise
+                            </div>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Entreprise actuelle</mat-label>
+                                    <input matInput [(ngModel)]="partenaire.entrepriseActuellePartenaireAutoFill">
+                                </mat-form-field> 
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Poste occupé</mat-label>
+                                    <input matInput [(ngModel)]="partenaire.posteOccupePartenaireAutoFill">
+                                </mat-form-field> 
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Téléphone entreprise</mat-label>
+                                    <input matInput [(ngModel)]="partenaire.telephoneEntreprisePartenaireAutoFill">
+                                </mat-form-field> 
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Effectif entreprise</mat-label>
+                                    <input matInput [(ngModel)]="partenaire.effectifEntreprisePartenaireAutoFill">
+                                </mat-form-field> 
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Site internet entreprise</mat-label>
+                                    <input matInput [(ngModel)]="partenaire.siteInternetEntreprisePartenaireAutoFill">
+                                </mat-form-field> 
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Adresse entreprise</mat-label>
+                                    <input matInput [(ngModel)]="partenaire.adresseEntreprisePartenaireAutoFill">
+                                </mat-form-field> 
+                            </td>
+                        </tr>
+                </table> 
+                <div class="titlePartenaire">
+                    Autres détails
+                </div>  
+                <mat-form-field appearance="outline" >
+                        <textarea matInput [(ngModel)]="partenaire.descriptionDetailleePartenaireAutoFill" style="height: 80px;overflow-y: auto"></textarea>
+                        <mat-icon matSuffix>description</mat-icon>
+                </mat-form-field>  
+
+                
+                <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-bottom: 10px">
+                    <button mat-flat-button style="width:30%;"
+                    (click)="editPartenaireAutoFill(
+                        partenaire.id,
+                        partenaire.identite,
+                        partenaire.telephone,
+                        partenaire.email,
+                        partenaire.emailPartenaireAutoFill,
+                        partenaire.telephonePartenaireAutoFill,
+                        partenaire.entrepriseActuellePartenaireAutoFill,
+                        partenaire.posteOccupePartenaireAutoFill,
+                        partenaire.telephoneEntreprisePartenaireAutoFill,
+                        partenaire.effectifEntreprisePartenaireAutoFill,
+                        partenaire.siteInternetEntreprisePartenaireAutoFill,
+                        partenaire.adresseEntreprisePartenaireAutoFill,
+                        partenaire.descriptionDetailleePartenaireAutoFill
+                    )">Modifier mes informations</button>
+                </div>
+      </div>
+      </div>
+
+      <!--Partie Gauche-->
+      <div fxFlex="15%" fxLayout="column" fxLayoutAlign="start center"> 
+            <div *ngIf="partenaire && (partenaire.urlPhotoPartenaireAutoFill || partenaire.urlPhoto); else SINON" style="margin-bottom: 15px;">
+                <div *ngIf="partenaire.urlPhotoPartenaireAutoFill; else SINON_PARTENAIRE_EXISTS">
+                    <img src="{{partenaire.urlPhotoPartenaireAutoFill}}"/>
+                 </div> 
+                 <ng-template #SINON_PARTENAIRE_EXISTS>
+                    <img src="{{partenaire.urlPhoto}}"/>
+                 </ng-template>
+            </div>
+            <ng-template #SINON>
+                <img src="/assets/img/partenaire.png"/>
+            </ng-template>
+
+            <div class="titlePartenaire">Photo de profil</div>
+            <div class="image-upload" style="margin-bottom: 15px;">
+                    <label for="photodeprofilPartenaireAutoFill">
+                      <mat-icon class="pointer">add_a_photo</mat-icon>
+                    </label>
+                    <input id="photodeprofilPartenaireAutoFill" type="file" style="display: none;" (change)="selectPhotoProfilPartenaireAutoFill($event, partenaire.id)"> 
+            </div>
+            <div class="file-upload">{{namePhoto}}</div>
+
+      </div>
+</div> 
+
+
+<!--Petis écrans--> 
+<div  fxLayout
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between stretch"
+      fxShow="true" fxHide.gt-sm="true">
+    
+      <div style="background-color: #222">
+            <div class="title-blanc">
+                Mon compte partenaire
+            </div>
+      </div>
+
+      <div>
+            <div *ngIf="partenaire">
+                identité : {{partenaire.identite}}
+                <br>
+                email : {{partenaire.email}}
+            </div>
+      </div>
 </div>

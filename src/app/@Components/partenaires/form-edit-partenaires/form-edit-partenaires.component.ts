@@ -44,9 +44,10 @@ export class FormEditPartenairesComponent implements OnInit {
   }
 
   // FileUpload
-  selectFile($event) {
+  selectEditPhotoProfil($event, idPartenaire) {
     this.selectedFiles = $event.target.files;
     this.namePhoto = this.selectedFiles.item(0).name;
+    this.editPhotoController(idPartenaire);
   }
 
   // Click sur le bouton "Confirmer"

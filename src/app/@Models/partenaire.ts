@@ -13,5 +13,17 @@ export class Partenaire {
     password: string;
     entreprise: Entreprise;
     etatPartenaire: Etat; // Enum : True/False pour Actif/Inactif
-    // listeCvSauvegardes : <list> Curriculum;
+
+    /*Paramètres AutoFill : le partenaire remplira ça tout seul via son espace partenaire*/
+
+    emailPartenaireAutoFill: string;
+    telephonePartenaireAutoFill: string;
+    entrepriseActuellePartenaireAutoFill: string;
+    posteOccupePartenaireAutoFill: string;
+    telephoneEntreprisePartenaireAutoFill: string;
+    effectifEntreprisePartenaireAutoFill: string;
+    siteInternetEntreprisePartenaireAutoFill: string;
+    adresseEntreprisePartenaireAutoFill: string;
+    descriptionDetailleePartenaireAutoFill: string;
+    urlPhotoPartenaireAutoFill: string;
   }

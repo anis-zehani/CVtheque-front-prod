@@ -127,4 +127,15 @@ export class FileUploadService {
     });
     return this.http.request(req).toPromise();
   }
+
+  // Gestion des Uploads Auto Fill
+  async addPhotoPartenaireAutoFill(photo: File, id: any) {
+    const formdata: FormData = new FormData();
+    formdata.append('photoPartenaireAutoFill', photo);
+    const req = new HttpRequest('POST', this.serviceUrlPartenaire + '/addPhotoPartenaireAutoFill/' + id, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req).toPromise();
+  }
 }

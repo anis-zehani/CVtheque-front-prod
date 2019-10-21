@@ -46,6 +46,11 @@ export class PartenairesService {
     return this.http.put<any>(this.serviceUrl, JSON.stringify(partenaire), this.httpOptions);
   }
 
+  // Modifie le Partenaire AutoFill : Partenaire
+  editPartenaireAutoFillService(partenaire): any {
+    return this.http.put<any>(this.serviceUrl + '/editPartenaireAutoFill' , JSON.stringify(partenaire), this.httpOptions);
+  }
+
   // Retourne le partenaire modifié : Partenaire
   editEtatPartenaireService(partenaire): any {
     return this.http.put<any>(this.serviceUrl + '/editEtat', JSON.stringify(partenaire), this.httpOptions);

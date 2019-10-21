@@ -1,0 +1,22 @@
+.titlePartenaire {
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 1.075rem;
+    font-variant-ligatures: no-contextual;
+    font-weight: 400;
+    color: #cf980d;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+img {
+    height:100px;
+    width:100px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.pointer{
+    cursor: pointer;
+    border-radius: 50%;
+    font-size:60px;
+  }
