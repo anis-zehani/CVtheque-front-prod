@@ -1,5 +1,5 @@
-<div class="title-xs-higher" style="text-align: center">
-    Nouveau compte candidat
+<div class="title-xs-higher-popup" style="text-align: center">
+    Création d'un nouveau compte candidat
 </div>
 <form [formGroup]="formAddCandidatHomePage" (ngSubmit)="addCandidatTemporaire()">
         <mat-form-field appearance="outline" >
@@ -24,8 +24,14 @@
             <mat-icon matSuffix>vpn_key</mat-icon>
         </mat-form-field>
         
-        <div fxLayout="row" fxLayoutAlign="space-between center" >
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxHide.lt-md="true">
             <button mat-flat-button type="submit" [disabled]="!formAddCandidatHomePage.valid || invalidate" style="width:40%">Confirmer</button>
             <button mat-stroked-button mat-dialog-close style="width:40%">Annuler</button>
+        </div>
+
+        <!-- Visible sur Petits écrans seulement -->
+        <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxHide.gt-sm="true" > 
+            <button mat-flat-button type="submit" [disabled]="!formAddCandidatHomePage.valid || invalidate">Confirmer</button>
+            <button mat-stroked-button mat-dialog-close style="margin-top: 10px;">Annuler</button>
         </div>
 </form> 

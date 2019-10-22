@@ -39,7 +39,7 @@ export class AuthentificationComponent implements OnInit {
       dialogConfig.closeOnNavigation = true;
       const dialogRef = this.dialog.open(FormAddCompteCandidatComponent, {
         width: '500px',
-        height: '400px',
+        height: '440px',
         data: {
             // texte : "Attention : Afficher Message."
           }

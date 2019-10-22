@@ -1,7 +1,8 @@
-<div class="title-xs-higher" style="text-align: center">
-        Demande de création d'un compte recruteur
+<div class="title-xs-higher-popup" style="text-align: center">
+    Demande de création d'un nouveau compte recruteur
 </div>
-<form [formGroup]="formAddPartenaireHomePage" (ngSubmit)="addPartenaireTemporaire()">
+<!-- Visible sur Grands écrans seulement -->
+<form [formGroup]="formAddPartenaireHomePage" (ngSubmit)="addPartenaireTemporaire()" fxHide.lt-md="true">
     <table>
         <tr>
             <td>
@@ -66,5 +67,60 @@
     <div fxLayout="row" fxLayoutAlign="space-between stretch" >
         <button mat-flat-button type="submit" [disabled]="!formAddPartenaireHomePage.valid || invalidate" style="width:40%">Envoyer la demande</button>
         <button mat-stroked-button mat-dialog-close style="width:40%">Annuler</button>
+    </div>
+</form> 
+
+<!-- Visible sur Petits écrans seulement -->
+<form [formGroup]="formAddPartenaireHomePage" (ngSubmit)="addPartenaireTemporaire()" fxHide.gt-sm="true">
+
+    <div fxLayout="column" fxLayoutAlign="space-evenly stretch"> 
+                <mat-form-field appearance="outline" >
+                    <mat-label>Identité (nom et prénom)</mat-label>
+                    <input matInput formControlName="identite" required readonly={{invalidate}}>
+                    <mat-icon matSuffix>account_circle</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" >
+                    <mat-label>Téléphone</mat-label>
+                    <input matInput formControlName="telephone" required readonly={{invalidate}}>
+                    <mat-icon matSuffix>local_phone</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" >
+                    <mat-label>Adresse email</mat-label>
+                    <input matInput formControlName="email" required (focusout)="checkIfUserPartenaireEmailExists()">
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" >
+                     <mat-label>Mot de passe</mat-label>
+                     <input matInput formControlName="password" type="password" required readonly={{invalidate}}>
+                     <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+
+                <div *ngIf="invalidate" class="text-small-validation-rouge">
+                    Cette adresse email existe dèja, veuillez vous connecter.
+                </div>
+
+
+                <mat-form-field appearance="outline" >
+                      <mat-label>Entreprise</mat-label>
+                      <input matInput formControlName="entreprise" required readonly={{invalidate}}>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" >
+                       <mat-label>Poste occupé</mat-label>
+                       <input matInput formControlName="posteOccupe" required readonly={{invalidate}}>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" >
+                        <mat-label>Autres détails</mat-label>
+                        <textarea matInput formControlName="descriptionDetaillee" style="height: 80px;overflow-y: auto"></textarea>
+                        <mat-icon matSuffix>description</mat-icon>
+                </mat-form-field>
+
+
+                <button mat-flat-button type="submit" [disabled]="!formAddPartenaireHomePage.valid || invalidate">Envoyer la demande</button>
+                <button mat-stroked-button mat-dialog-close style="margin-top: 10px;margin-bottom: 10px;">Annuler</button>
     </div>
 </form> 

@@ -43,6 +43,16 @@ STYLE : écran "Liste des Technologies
       margin-bottom: 15px;
   }
 
+  .title-xs-higher-popup {
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 1.175rem;
+    font-variant-ligatures: no-contextual;
+    color: #202124;
+    font-weight: 450;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
   .title-login {
     font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     font-size: 1.175rem;
