@@ -275,7 +275,7 @@
       </div>
       </div>
 
-      <!--Partie Gauche-->
+      <!--Partie Droite-->
       <div fxFlex="15%" fxLayout="column" fxLayoutAlign="start center"> 
             <div *ngIf="candidat && (candidat.urlPhotoAutoFill || candidat.urlPhoto); else SINON" style="margin-bottom: 15px;">
                 <div *ngIf="candidat.urlPhotoAutoFill; else SINON_CANDIDAT_EXISTS">
@@ -321,17 +321,109 @@
       fxLayoutAlign="space-between stretch"
       fxShow="true" fxHide.gt-sm="true">
     
-      <div style="background-color: #222">
-            <div class="title-blanc">
-                Mon compte candidat
-            </div>
-      </div>
 
-      <div>
-            <div *ngIf="candidat">
-                identité : {{candidat.identite}}
-                <br>
-                email : {{candidat.email}}
-            </div>
-      </div>
+        <div class="titleCandidat">
+            Mon compte candidat
+        </div>
+
+        <div *ngIf="candidat">
+                <div *ngIf="candidat && (candidat.urlPhotoAutoFill || candidat.urlPhoto); else SINON" style="margin-bottom: 15px;text-align: center;">
+                    <div *ngIf="candidat.urlPhotoAutoFill; else SINON_CANDIDAT_EXISTS">
+                        <img src="{{candidat.urlPhotoAutoFill}}"/>
+                    </div> 
+                    <ng-template #SINON_CANDIDAT_EXISTS>
+                        <img src="{{candidat.urlPhoto}}"/>
+                    </ng-template>
+                </div>
+                <ng-template #SINON>
+                        <img src="/assets/img/candidat.png"/>
+                </ng-template>
+        
+
+        
+                <div class="titleCandidat">
+                        Contacts & Rémunération
+                </div>
+
+                <input matInput [(ngModel)]="candidat.id" hidden>
+                <mat-form-field appearance="fill">
+                        <mat-label>Identité du candidat</mat-label>
+                        <input matInput [(ngModel)]="candidat.identite" required readonly>
+                        <mat-icon matSuffix>account_circle</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Téléphone</mat-label>
+                    <input matInput [(ngModel)]="candidat.telephoneAutoFill">
+                    <mat-icon matSuffix>local_phone</mat-icon>
+                </mat-form-field>  
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Adresse email</mat-label>
+                    <input matInput [(ngModel)]="candidat.email" required readonly>
+                    <mat-icon matSuffix>mail</mat-icon>
+                </mat-form-field>  
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Poste occupé</mat-label>
+                    <input matInput [(ngModel)]="candidat.posteOccupeAutoFill">
+                </mat-form-field>   
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Entreprise actuelle</mat-label>
+                    <input matInput [(ngModel)]="candidat.entrepriseAutoFill">
+                </mat-form-field> 
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Salaire actuel</mat-label>
+                    <input matInput [(ngModel)]="candidat.salaireActuelAutoFill">
+                </mat-form-field> 
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Prétention salariale</mat-label>
+                    <input matInput [(ngModel)]="candidat.pretentionSalarialeAutoFill">
+                </mat-form-field>  
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Date de naissance</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="candidat.dateDeNaissanceAutoFill">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Adresse email secondaire</mat-label>
+                    <input matInput [(ngModel)]="candidat.emailAutoFill">
+                    <mat-icon matSuffix>mail</mat-icon>
+                </mat-form-field>  
+                
+                <div class="titleCandidat">
+                    Diplômes obtenus
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Type du diplôme</mat-label>
+                    <mat-select [(ngModel)]="candidat.diplome.typeDiplomeAutoFill">
+                    <mat-option value="Licence">Licence</mat-option>
+                    <mat-option value="Maitrise">Maîtrise</mat-option>
+                    <mat-option value="Master">Master</mat-option>
+                    <mat-option value="Ingenieur">Ingénieur</mat-option>
+                    <mat-option value="Doctorat">Doctorat</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>school</mat-icon>
+                </mat-form-field>    
+
+                <mat-form-field appearance="outline">
+                    <mat-label>École</mat-label>
+                    <input matInput [(ngModel)]="candidat.diplome.ecoleAutoFill">
+                </mat-form-field> 
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Date obtention du diplôme</mat-label>
+                    <input matInput [matDatepicker]="picker3" [(ngModel)]="candidat.diplome.dateObtentionDiplomeAutoFill">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker3></mat-datepicker>
+                </mat-form-field>
+        </div>
+
 </div>
