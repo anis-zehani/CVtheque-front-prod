@@ -424,6 +424,147 @@
                     <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                     <mat-datepicker touchUi #picker3></mat-datepicker>
                 </mat-form-field>
-        </div>
 
+
+                <div class="titleCandidat">
+                    Visas obtenus & Disponibilité
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Type du visa</mat-label>
+                    <mat-select [(ngModel)]="candidat.visa.typeVisaAutoFill">
+                        <mat-option value="TypeC">C</mat-option>
+                        <mat-option value="TypeD">D</mat-option>
+                        <mat-option value="CarteDeSejour">Carte de séjour</mat-option>
+                        <mat-option value="Nationalite">Nationalité</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>class</mat-icon>
+                </mat-form-field>    
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Date début du visa</mat-label>
+                    <input matInput [matDatepicker]="picker4" [(ngModel)]="candidat.visa.dateDebutVisaAutoFill">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker4></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Date fin du visa</mat-label>
+                    <input matInput [matDatepicker]="picker5" [(ngModel)]="candidat.visa.dateFinVisaAutoFill">
+                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker5></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Disponibilité</mat-label>
+                    <mat-select [(ngModel)]="candidat.disponibiliteAutoFill">
+                        <mat-option value="Immediate">Immédiate</mat-option>
+                        <mat-option value="Sous_15_jours">Sous 15 jours</mat-option>
+                        <mat-option value="Sous_30_jours">Sous 30 jours</mat-option>
+                        <mat-option value="Sous_45_jours">Sous 45 jours</mat-option>
+                        <mat-option value="Sous_60_jours">Sous 60 jours</mat-option>
+                        <mat-option value="Sous_75_jours">Sous 75 jours</mat-option>
+                        <mat-option value="Sous_90_jours">Sous 90 jours</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>schedule</mat-icon>
+                </mat-form-field>      
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Date démarrage de carrière</mat-label>
+                    <input matInput [matDatepicker]="picker1" [(ngModel)]="candidat.dateDemarrageCarriereAutoFill">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Date épuisement du passeport</mat-label>
+                    <input matInput [matDatepicker]="picker2" [(ngModel)]="candidat.dateEpuisementPasseportAutoFill">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker2></mat-datepicker>
+                </mat-form-field>   
+
+                <div class="titleCandidat">
+                    Informations familiales
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Situation familiale</mat-label>
+                    <mat-select [(ngModel)]="candidat.situationFamilialeAutoFill">
+                        <mat-option value="Celibataire">Célibataire</mat-option>
+                        <mat-option value="Fiance">Fiancé</mat-option>
+                        <mat-option value="Marie">Marié</mat-option>
+                        <mat-option value="Divorce">Divorcé</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>wc</mat-icon>
+                </mat-form-field>    
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre d'enfants</mat-label>
+                    <mat-select [(ngModel)]="candidat.nombreEnfantsAutoFill">
+                        <mat-option value="0">0</mat-option>
+                        <mat-option value="1">1</mat-option>
+                        <mat-option value="2">2</mat-option>
+                        <mat-option value="3">3</mat-option>
+                        <mat-option value="4">4</mat-option>
+                        <mat-option value="5">5</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>child_care</mat-icon>
+                </mat-form-field>    
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Adresse</mat-label>
+                    <input matInput [(ngModel)]="candidat.adresseAutoFill">
+                    <mat-icon matSuffix>add_location</mat-icon>
+                </mat-form-field>  
+
+                <div class="titleCandidat">
+                    Autres détails
+                </div>  
+                <mat-form-field appearance="outline" >
+                    <textarea matInput [(ngModel)]="candidat.descriptionDetailleeAutoFill" style="height: 80px;overflow-y: auto"></textarea>
+                    <mat-icon matSuffix>description</mat-icon>
+                </mat-form-field>  
+
+                <div class="titleCandidat" style="text-align: center;">Ajouter un CV</div>
+                <div class="image-upload" style="margin-bottom: 15px;text-align: center;">
+                    <label for="cvoriginalAutoFill">
+                        <mat-icon class="pointer">attach_file</mat-icon>
+                    </label>
+                    <input id="cvoriginalAutoFill" type="file" style="display: none;" (change)="selectCvOriginalAutoFill($event, 'cvoriginalAutoFill')">
+                </div>
+                <div class="file-upload" style="text-align: center;">{{nameCv}}</div>
+    
+                <div *ngIf="urlCvOriginalAutoFill != null" style="text-align: center;"><!--Affiche CV Original s'il existe-->
+                    <div class="titleCandidat" style="margin-bottom: 15px;">Consulter le CV</div><a href="{{storageUrl}}{{urlCvOriginalAutoFill}}" target="_blank"><mat-icon matSuffix>link</mat-icon></a>
+                </div>
+    
+                <div class="titleCandidat" style="text-align: center;">Photo de profil</div>
+                <div class="image-upload" style="margin-bottom: 15px;text-align: center;">
+                        <label for="photodeprofilAutoFill">
+                          <mat-icon class="pointer">add_a_photo</mat-icon>
+                        </label>
+                        <input id="photodeprofilAutoFill" type="file" style="display: none;" (change)="selectPhotoProfilAutoFill($event, 'photodeprofilAutoFill')"> 
+                </div>
+                <div class="file-upload" style="text-align: center;">{{namePhoto}}</div>
+
+                <button mat-flat-button  style="margin-bottom: 20px; margin-top: 20px;" (click)="editCandidatAutoFill(
+                    candidat.id,
+                    candidat.telephoneAutoFill,
+                    candidat.posteOccupeAutoFill,
+                    candidat.entrepriseAutoFill,
+                    candidat.salaireActuelAutoFill,
+                    candidat.pretentionSalarialeAutoFill,
+                    candidat.dateDeNaissanceAutoFill,
+                    candidat.emailAutoFill,
+                    candidat.disponibiliteAutoFill,
+                    candidat.dateDemarrageCarriereAutoFill,
+                    candidat.dateEpuisementPasseportAutoFill,
+                    candidat.situationFamilialeAutoFill,
+                    candidat.nombreEnfantsAutoFill,
+                    candidat.adresseAutoFill,
+                    candidat.descriptionDetailleeAutoFill,
+                    candidat.diplome,
+                    candidat.visa)">Modifier mes informations
+                </button>
+        </div>
 </div>
