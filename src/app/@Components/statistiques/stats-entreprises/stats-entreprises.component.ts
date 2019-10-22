@@ -27,7 +27,7 @@ export class StatsEntreprisesComponent implements OnInit {
     responsive: true,
     aspectRatio: 1.2,
     legend: {
-      position: 'left',
+      position: 'top',
     },
     plugins: {
       datalabels: {
@@ -45,7 +45,7 @@ export class StatsEntreprisesComponent implements OnInit {
 
   public pieChartLabels: Label[] = [];
   public pieChartData: number[] = [];
-  public pieChartType: ChartType = 'pie';
+  public pieChartType: ChartType = 'doughnut';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [

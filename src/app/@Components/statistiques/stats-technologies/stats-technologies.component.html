@@ -9,7 +9,14 @@
         [legend]="pieChartLegend">
       </canvas>
 </div>
-<div fxLayout="row" fxLayoutAlign="center stretch" style="margin-top: 30px"> 
-  <button mat-flat-button (click)="technologieVsOpportunites()" style="min-width:20%; width:auto; margin-right: 10px">Opportunités liées</button>
-  <button mat-flat-button (click)="technologieVsCandidats()" style="min-width:20%; width:auto;margin-right: 20px">Candidats liés</button>
+<!-- Visible sur BIG SCREENS -->
+<div fxLayout="row" fxLayoutAlign="space-between stretch" style="margin-top: 30px" fxHide.lt-md="true"> 
+  <button mat-flat-button (click)="technologieVsCandidats()" style="width:auto; margin-right: 10px; font-weight: 600;min-width: 30%;">Candidats liés</button>
+  <button mat-flat-button (click)="technologieVsOpportunites()" style="width:auto;margin-right: 20px;font-weight: 600;min-width: 30%;">Opportunités liées</button>
+</div>
+
+<!-- Visible sur SMALL SCREENS -->
+<div fxLayout="column" fxLayoutAlign="space-between stretch" style="margin-top: 30px" fxHide.gt-sm="true"> 
+    <button mat-flat-button (click)="technologieVsCandidats()" style="font-weight: 600;">Candidats liés</button>
+    <button mat-flat-button (click)="technologieVsOpportunites()" style="margin-top: 10px; margin-bottom: 10px;font-weight: 600;">Opportunités liées</button>
 </div>

@@ -27,7 +27,7 @@ export class StatsTechnologiesComponent implements OnInit {
     responsive: true,
     aspectRatio: 1.2,
     legend: {
-      position: 'left',
+      position: 'top',
     },
     plugins: {
       datalabels: {
