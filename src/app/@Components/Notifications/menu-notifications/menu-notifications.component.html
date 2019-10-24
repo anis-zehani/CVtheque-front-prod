@@ -4,17 +4,16 @@
       <mat-menu #menuNotifications="matMenu" xPosition="before" >
 
           <div style="max-height:400px; height: auto;">
-            <mat-toolbar style="font-size: 0.900rem;font-weight: 600;background-color: #f7c341;height: 40px;">Notifications</mat-toolbar>
+            <mat-toolbar style="font-size: 0.900rem;font-weight: 600;background-color: #f7c341;height: 40px;">Notifications non lues ({{matBadgeValue}})</mat-toolbar>
         
             <div *ngFor="let notification of listeNotifications">
-              <mat-card>
+              <mat-card style="margin: 10px 10px 10px 10px;">
                   <mat-card-header>
                       <div mat-card-avatar>
                         <img src={{notification.generateurNotification.urlPhoto}} style="width: 45px; height: 45px;"/>
                       </div>
                       <mat-card-title style="font-size: 0.840rem;font-weight: 600;">{{notification.objetNotification}}</mat-card-title>
                       <mat-card-subtitle style="font-size: 0.840rem;font-weight: 400;">{{notification.dateAjout | date:'short'}}</mat-card-subtitle>
-                      
                   </mat-card-header>
                   
 
@@ -25,12 +24,11 @@
                   </mat-card-content>
                 
                   <mat-card-actions fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <mat-icon style="color:#f7c341;cursor: pointer;" matTooltip="Afficher les détails" (click)="openDialogShowNotification(notification.id)">visibility</mat-icon> 
+                    <mat-icon style="color:#f7c341;cursor: pointer;" matTooltip="Afficher les détails" (click)="openDialogShowNotification(notification.id,notification.objetNotification, notification.corpstNotification, notification.dateAjout, notification.generateurNotification.urlPhoto)">visibility</mat-icon> 
                     <mat-icon style="color:#f7c341;cursor: pointer;background-color: black;" matTooltip="Marquer comme lue" (click)="deactivateNotificationController(notification.id)">clear</mat-icon> 
                   </mat-card-actions>
-
+                  
               </mat-card>
-              <mat-divider></mat-divider>
             </div>
 
 

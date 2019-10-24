@@ -20,7 +20,7 @@ export class DemandesAdhesionComponent implements OnInit {
 
   displayedColumns: string[];
 
-  idEntreprise: number;
+  idEntreprise = 0;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;

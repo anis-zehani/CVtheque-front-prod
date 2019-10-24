@@ -1,1 +1,16 @@
-<p>show-notification works!</p>
+<mat-card style="min-height: 170px;">
+    <mat-card-header>
+        <div mat-card-avatar>
+          <img src={{data.urlPhoto}} style="width: 50px; height: 50px;"/>
+        </div>
+        <mat-card-title style="font-size: 0.900rem;font-weight: 600;">{{data.objetNotification}}</mat-card-title>
+        <mat-card-subtitle style="font-size: 0.900rem;font-weight: 400;">{{data.dateAjout | date:'short'}}</mat-card-subtitle>
+    </mat-card-header>
+    
+
+    <mat-card-content>
+      <p style="font-size: 0.880rem">
+        {{data.corpstNotification}}
+      </p>
+    </mat-card-content>
+</mat-card>
