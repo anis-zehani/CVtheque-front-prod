@@ -25,8 +25,8 @@
                   </mat-card-content>
                 
                   <mat-card-actions fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <mat-icon style="color:#f7c341;cursor: pointer;" matTooltip="Afficher les détails">visibility</mat-icon> 
-                    <mat-icon style="color:#f7c341;cursor: pointer;" matTooltip="Marquer comme lue" (click)="deactivateNotificationController(notification.id)">clear</mat-icon> 
+                    <mat-icon style="color:#f7c341;cursor: pointer;" matTooltip="Afficher les détails" (click)="openDialogShowNotification(notification.id)">visibility</mat-icon> 
+                    <mat-icon style="color:#f7c341;cursor: pointer;background-color: black;" matTooltip="Marquer comme lue" (click)="deactivateNotificationController(notification.id)">clear</mat-icon> 
                   </mat-card-actions>
 
               </mat-card>

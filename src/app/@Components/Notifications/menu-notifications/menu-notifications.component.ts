@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilService } from 'src/app/@Util/util.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+
 import { Notification } from 'src/app/@Models/notification';
 import { NotificationsService } from 'src/app/@Services/notifications.service';
+import { ShowNotificationComponent } from '../show-notification/show-notification.component';
 
 @Component({
   selector: 'app-menu-notifications',
@@ -15,7 +18,9 @@ export class MenuNotificationsComponent implements OnInit {
   etatNotification = 'True';
   listeNotifications: Notification[] = [];
 
-  constructor(private utilService: UtilService, private notificationsService: NotificationsService) {}
+  constructor(private utilService: UtilService,
+              private notificationsService: NotificationsService,
+              public dialog: MatDialog) {}
 
   ngOnInit() {
     // je récupère le rôle pour la restriction d'accès dans le menu
@@ -47,5 +52,22 @@ export class MenuNotificationsComponent implements OnInit {
       }
       );
   }
+
+  // Ouvre le pop-up pour afficher une Notification
+  openDialogShowNotification(id): void {
+
+    // Objet pour configurer la modale
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = true;
+
+    // Objet pour déclencher l'ouverture de la modale
+    const dialogRef = this.dialog.open(ShowNotificationComponent, {
+        width: '500px',
+        height: '300px',
+        data: {id}
+    });
+    }
 
 }
