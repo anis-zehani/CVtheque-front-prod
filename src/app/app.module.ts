@@ -156,6 +156,7 @@ import { RedirectActivationCompteComponent } from './@Components/authentificatio
 import { DemandesAdhesionComponent } from './@Components/account/demandes-adhesion/demandes-adhesion.component';
 import { ActivationConfirmationComponent } from './@Components/dialogs/activation-confirmation/activation-confirmation.component';
 import { ValidationEntrepriseComponent } from './@Components/dialogs/validation-entreprise/validation-entreprise.component';
+import { MenuNotificationsComponent } from './@Components/Notifications/menu-notifications/menu-notifications.component';
 
 @NgModule({
   declarations: [
@@ -263,7 +264,8 @@ import { ValidationEntrepriseComponent } from './@Components/dialogs/validation-
     RedirectActivationCompteComponent,
     DemandesAdhesionComponent,
     ActivationConfirmationComponent,
-    ValidationEntrepriseComponent
+    ValidationEntrepriseComponent,
+    MenuNotificationsComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,

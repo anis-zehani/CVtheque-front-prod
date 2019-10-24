@@ -1,0 +1,47 @@
+<div *ngIf="matBadgeValue > 0; else SINON_NOTIFICATION">
+  <a class="pointer" [matMenuTriggerFor]="menuNotifications" matTooltip="Mes notifications">
+      <mat-icon matBadge="{{matBadgeValue}}" matBadgeColor="primary" style="color: #fff;">notifications</mat-icon>
+      <mat-menu #menuNotifications="matMenu" xPosition="before" >
+
+          <div style="max-height:400px; height: auto;">
+            <mat-toolbar style="font-size: 0.900rem;font-weight: 600;background-color: #f7c341;height: 40px;">Notifications</mat-toolbar>
+        
+            <div *ngFor="let notification of listeNotifications">
+              <mat-card>
+                  <mat-card-header>
+                      <div mat-card-avatar>
+                        <img src={{notification.generateurNotification.urlPhoto}} style="width: 45px; height: 45px;"/>
+                      </div>
+                      <mat-card-title style="font-size: 0.840rem;font-weight: 600;">{{notification.objetNotification}}</mat-card-title>
+                      <mat-card-subtitle style="font-size: 0.840rem;font-weight: 400;">{{notification.dateAjout | date:'short'}}</mat-card-subtitle>
+                      
+                  </mat-card-header>
+                  
+
+                  <mat-card-content>
+                    <p style="font-size: 0.800rem">
+                      {{notification.corpstNotification}}
+                    </p>
+                  </mat-card-content>
+                
+                  <mat-card-actions fxLayout="row" fxLayoutAlign="space-between stretch">
+                    <mat-icon style="color:#f7c341;cursor: pointer;" matTooltip="Afficher les détails">visibility</mat-icon> 
+                    <mat-icon style="color:#f7c341;cursor: pointer;" matTooltip="Marquer comme lue" (click)="deactivateNotificationController(notification.id)">clear</mat-icon> 
+                  </mat-card-actions>
+
+              </mat-card>
+              <mat-divider></mat-divider>
+            </div>
+
+
+
+          </div>
+          
+      </mat-menu>
+  </a>
+</div> 
+<ng-template #SINON_NOTIFICATION>
+  <a class="pointer" matTooltip="Mes notifications">
+    <mat-icon style="color: white">notifications</mat-icon>
+  </a>
+</ng-template>

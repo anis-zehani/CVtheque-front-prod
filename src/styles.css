@@ -134,6 +134,15 @@ STYLE : écran "Liste des Technologies
     margin-bottom: 10px;
     margin-left: 15px;
   }
+
+  .title-small-black {
+    font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-size: 0.980rem;
+    font-variant-ligatures: no-contextual;
+    color: black;
+    font-weight: 600;
+  }
+
   .liste-small {
     font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     font-size: 0.875rem;

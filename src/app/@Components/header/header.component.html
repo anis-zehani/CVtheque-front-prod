@@ -32,9 +32,7 @@
       </div>
       <!--NOTIFICATIONS-->
       <div fxFlex="5%">
-          <a class="pointer" matTooltip="Mes notifications">
-              <mat-icon matBadge="0" matBadgeColor="warn" style="color: white">notifications</mat-icon>
-          </a>
+          <app-menu-notifications></app-menu-notifications>
       </div>
       
       <div fxFlex="5%" fxHide.lt-md="true">
@@ -43,12 +41,17 @@
             <mat-icon style="color:white">arrow_drop_down</mat-icon>
           </a>
           <mat-menu #menu5="matMenu">
+            <div style="width: 300px;">
               <button mat-menu-item routerLink="account">Gérer mon compte</button>
               <mat-divider></mat-divider>
-              <button mat-menu-item routerLink="demandes-adhesion" *ngIf="role === 'ROLE_ADMINISTRATEUR'">Demandes d'adhésion</button>
+              <button mat-menu-item routerLink="demandes-adhesion" 
+                  *ngIf="role === 'ROLE_ADMINISTRATEUR'">Demandes d'adhésion
+              </button>
               <mat-divider></mat-divider>
               <app-logout></app-logout>
+            </div>
           </mat-menu>
+          
       </div>
 
       <div fxFlex="10%" class="liste-small" fxHide.lt-md="true">
