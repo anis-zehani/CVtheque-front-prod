@@ -62,8 +62,8 @@ export class PartenairesService {
   }
 
   // Ne retourne rien
-  deletePartenaireService(id) {
-    return this.http.delete<any>(this.serviceUrl + '/' + id, this.httpOptions);
+  deletePartenaireService(id): Observable<boolean> {
+    return this.http.delete<boolean>(this.serviceUrl + '/' + id, this.httpOptions);
   }
 
 }

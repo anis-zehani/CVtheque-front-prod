@@ -113,8 +113,12 @@ export class DatagridPartenairesComponent implements OnInit {
       .subscribe
         (
         res => {
-          this.getAllPartenairesController(this.etatPartenaire);
-          this.utilService.openSnackBar('Partenaire supprimé', 'OK');
+          if (res) {
+            this.getAllPartenairesController(this.etatPartenaire);
+            this.utilService.openSnackBar('Partenaire supprimé', 'OK');
+          } else {
+            this.utilService.openSnackBar('Erreur de suppression, vérifiez que ce partenaire n\'est pas lié à des opportunités.', 'Erreur');
+          }
         }
         );
   }

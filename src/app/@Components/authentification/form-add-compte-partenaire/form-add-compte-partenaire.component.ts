@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { UtilisateurService } from 'src/app/@Services/utilisateur.service';
 import { UtilService } from 'src/app/@Util/util.service';
 import { PartenairesTemporairesService } from 'src/app/@Services/partenaires-temporaires.service';
 import { PartenaireTemporaire } from 'src/app/@Models/partenaire-temporaire';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSpinnerComponent } from '../../dialogs/mat-spinner/mat-spinner.component';
 
 @Component({
   selector: 'app-form-add-compte-partenaire',
@@ -30,6 +32,7 @@ export class FormAddComptePartenaireComponent implements OnInit {
 
   constructor(private utilisateurService: UtilisateurService,
               private utilService: UtilService,
+              public dialog: MatDialog,
               private partenairesTemporairesService: PartenairesTemporairesService,
               public matDialogReference: MatDialogRef<FormAddComptePartenaireComponent>) {
                }
@@ -56,6 +59,7 @@ export class FormAddComptePartenaireComponent implements OnInit {
   }
 
   addPartenaireTemporaire() {
+    this.openDialogSpinner();
     const identite = this.formAddPartenaireHomePage.get('identite').value;
     const telephone = this.formAddPartenaireHomePage.get('telephone').value;
     const email = this.formAddPartenaireHomePage.get('email').value;
@@ -74,11 +78,32 @@ export class FormAddComptePartenaireComponent implements OnInit {
             if (res != null) {
               // Fermer le Dialog
               this.matDialogReference.close([]);
+              this.closeDialogSpinner();
               this.utilService.openSnackBar('Votre demande est envoyée au service commercial, votre compte sera activé rapidement', 'OK');
             } else {
               this.utilService.openSnackBar('Une erreur s\'est produite durant l\'activation du compte.', 'Erreur');
             }
         }
       );
+  }
+
+  openDialogSpinner(): void {
+    // Objet pour configurer la modale Spinner : le temps de l'upload
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = false;
+    const dialogRef = this.dialog.open(MatSpinnerComponent, {
+      width: '450px',
+      height: '200px',
+      data: {
+          // texte : "Afficher Message."
+        }
+      });
+  }
+
+  closeDialogSpinner(): void {
+    // Ferme toutes les modales Spinner : upload is out
+    this.dialog.closeAll();
   }
 }

@@ -1,16 +1,62 @@
-<mat-card style="min-height: 170px;">
+<div dir="rtl" style="margin-top: -22px;">
+    <mat-icon  style="color:#f7c341;cursor: pointer;background-color: black;" matTooltip="Marquer comme lue" (click)="deactivateNotificationController(data.notification.id)">clear</mat-icon> 
+</div>
+<mat-card style="min-height: 250px;">
     <mat-card-header>
-        <div mat-card-avatar>
-          <img src={{data.urlPhoto}} style="width: 50px; height: 50px;"/>
-        </div>
-        <mat-card-title style="font-size: 0.900rem;font-weight: 600;">{{data.objetNotification}}</mat-card-title>
-        <mat-card-subtitle style="font-size: 0.900rem;font-weight: 400;">{{data.dateAjout | date:'short'}}</mat-card-subtitle>
+            <div mat-card-avatar>
+                <div *ngIf="data.notification.generateurNotification.urlPhoto; else SINON_IMG">
+                    <img src={{data.notification.generateurNotification.urlPhoto}} style="width: 50px; height: 50px;"/>
+            </div>
+            <ng-template #SINON_IMG>
+                    <img src="/assets/img/partenaire.png" style="width: 50px; height: 50px;"/>
+            </ng-template>
+            </div>
+            <mat-card-title style="font-size: 0.900rem;font-weight: 600;">{{data.notification.objetNotification}}</mat-card-title>
+            <mat-card-subtitle style="font-size: 0.900rem;font-weight: 400;">{{data.notification.dateAjout | date:'short'}}</mat-card-subtitle>
     </mat-card-header>
-    
 
-    <mat-card-content>
-      <p style="font-size: 0.880rem">
-        {{data.corpstNotification}}
-      </p>
+    <mat-card-content style="font-size: 0.880rem">
+        <!--Partie commune-->
+        {{data.notification.corpstNotification}}
+    
+        <!--Détails du candidat : Notification liée à Ajout Candidat : Formulaire / Linkedin-->
+        <div *ngIf="data.notification.candidatNotification" style="margin-top: 15px;">
+            <div style="font-size: 0.900rem;font-weight: 600;margin-bottom: 15px;text-decoration: underline;">Détails du candidat :</div>
+            <b>Identité : </b>{{data.notification.candidatNotification.identite}}<br>
+            <b>Email : </b>{{data.notification.candidatNotification.email}}<br>
+            <div dir="rtl" >
+                <div *ngIf="data.notification.candidatNotification.urlPhoto;else SINON_IMG_CANDIDAT" style="margin-top: 15px;">
+                    <img src={{data.notification.candidatNotification.urlPhoto}}  style="width: 50px; height: 50px;"/>
+                </div>
+                <ng-template #SINON_IMG_CANDIDAT>
+                    <img src="/assets/img/candidat.png" style="width: 50px; height: 50px;"/>
+                </ng-template>
+            </div>
+        </div>
+
+        <!--Détails du Partenaire Temporaire : Notification liée à Ajout Partenaire Temporaire : Formulaire -->
+        <div *ngIf="data.notification.partenaireTemporaireNotification" style="margin-top: 15px;">
+            <div style="font-size: 0.900rem;font-weight: 600;margin-bottom: 15px;text-decoration: underline">Détails du partenaire en attente :</div>
+            <b>Identité : </b>{{data.notification.partenaireTemporaireNotification.identite}}<br>
+            <b>Email : </b>{{data.notification.partenaireTemporaireNotification.email}}<br>
+        </div>
+
+        <!--Détails de l'opportunité : Notification liée à Ajout / Modification Opportunité via un Partenaire -->
+        <div *ngIf="data.notification.opportuniteNotification" style="margin-top: 15px;">
+            <div style="font-size: 0.900rem;font-weight: 600;margin-bottom: 15px;text-decoration: underline;">Détails de l'opportunité :</div>
+            <b>Titre : </b>{{data.notification.opportuniteNotification.titreOpportunite}}<br>
+            <b>Visibilité : </b>{{data.notification.opportuniteNotification.visibiliteOpportunite}}<br>
+            <b>TJM : </b>{{data.notification.opportuniteNotification.tjmOpportunite}}<br>
+            <b>Responsable : </b>{{data.notification.generateurNotification.identite}}<br>
+            <div dir="rtl" >
+                <div *ngIf="data.notification.opportuniteNotification.responsableOpportunite.urlPhoto;else SINON_IMG_OPPORTUNITE" style="margin-top: 15px;">
+                    <img src={{data.notification.opportuniteNotification.responsableOpportunite.urlPhoto}}  style="width: 50px; height: 50px;"/>
+                </div>
+                <ng-template #SINON_IMG_OPPORTUNITE>
+                    <img src="/assets/img/opportunite.png" style="width: 50px; height: 50px;"/>
+                </ng-template>
+            </div>
+        </div>
+
     </mat-card-content>
 </mat-card>

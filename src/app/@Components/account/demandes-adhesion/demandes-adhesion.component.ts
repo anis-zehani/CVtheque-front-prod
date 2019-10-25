@@ -8,6 +8,7 @@ import { PartenairesTemporairesService } from 'src/app/@Services/partenaires-tem
 import { ActivationConfirmationComponent } from '../../dialogs/activation-confirmation/activation-confirmation.component';
 import { UtilService } from 'src/app/@Util/util.service';
 import { ValidationEntrepriseComponent } from '../../dialogs/validation-entreprise/validation-entreprise.component';
+import { MatSpinnerComponent } from '../../dialogs/mat-spinner/mat-spinner.component';
 
 @Component({
   selector: 'app-demandes-adhesion',
@@ -49,14 +50,17 @@ export class DemandesAdhesionComponent implements OnInit {
 
   // Activer le nouveau Partenaire : appel au Service
   activatePartenaireController(email, idEntreprise) {
+    this.openDialogSpinner();
     this.partenairesTemporairesService.activatePartenaireService(email, idEntreprise)
     .subscribe
       (
       result => {
         if (result) {
           this.getAllPartenairesTemporairesController();
+          this.closeDialogSpinner();
           this.utilService.openSnackBar('Partenaire activé avec succès', 'OK');
         } else {
+          this.closeDialogSpinner();
           this.utilService.openSnackBar('Une erreur a eu lieu durant l\activation', 'Erreur');
         }
       }
@@ -85,7 +89,13 @@ export class DemandesAdhesionComponent implements OnInit {
     // Fonction qui s'éxècute quand je ferme la modale
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-          this.idEntreprise = result.idEntreprise;
+          // On traite le cas ou y a pas d'entreprise validée, et là on met idEntriprise à 0
+          // Puis en BackEnd on teste s'il est (!= null et != 0)
+          if (result.idEntreprise == null) {
+            this.idEntreprise = 0;
+          } else {
+            this.idEntreprise = result.idEntreprise;
+          }
           this.openDialogActivationPartenaires(result.email);
       }
     });
@@ -122,4 +132,23 @@ export class DemandesAdhesionComponent implements OnInit {
       this.listePartenairesTemporaires.filter = filterValue.trim().toLowerCase();
   }
 
+  openDialogSpinner(): void {
+    // Objet pour configurer la modale Spinner : le temps de l'upload
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = false;
+    const dialogRef = this.dialog.open(MatSpinnerComponent, {
+      width: '450px',
+      height: '200px',
+      data: {
+          // texte : "Afficher Message."
+        }
+      });
+  }
+
+  closeDialogSpinner(): void {
+    // Ferme toutes les modales Spinner : upload is out
+    this.dialog.closeAll();
+  }
 }

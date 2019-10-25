@@ -1,6 +1,6 @@
 <div *ngIf="matBadgeValue > 0; else SINON_NOTIFICATION">
   <a class="pointer" [matMenuTriggerFor]="menuNotifications" matTooltip="Mes notifications">
-      <mat-icon matBadge="{{matBadgeValue}}" matBadgeColor="primary" style="color: #fff;">notifications</mat-icon>
+      <mat-icon matBadge="{{matBadgeValue}}" matBadgeColor="warn" style="color: #fff;">notifications</mat-icon>
       <mat-menu #menuNotifications="matMenu" xPosition="before" >
 
           <div style="max-height:400px; height: auto;">
@@ -10,7 +10,12 @@
               <mat-card style="margin: 10px 10px 10px 10px;">
                   <mat-card-header>
                       <div mat-card-avatar>
-                        <img src={{notification.generateurNotification.urlPhoto}} style="width: 45px; height: 45px;"/>
+                          <div *ngIf="notification.generateurNotification.urlPhoto; else SINON_IMG">
+                            <img src={{notification.generateurNotification.urlPhoto}} style="width: 45px; height: 45px;"/>
+                        </div>
+                        <ng-template #SINON_IMG>
+                            <img src="/assets/img/partenaire.png" style="width: 45px; height: 45px;"/>
+                        </ng-template>
                       </div>
                       <mat-card-title style="font-size: 0.840rem;font-weight: 600;">{{notification.objetNotification}}</mat-card-title>
                       <mat-card-subtitle style="font-size: 0.840rem;font-weight: 400;">{{notification.dateAjout | date:'short'}}</mat-card-subtitle>
@@ -24,17 +29,13 @@
                   </mat-card-content>
                 
                   <mat-card-actions fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <mat-icon style="color:#f7c341;cursor: pointer;" matTooltip="Afficher les détails" (click)="openDialogShowNotification(notification.id,notification.objetNotification, notification.corpstNotification, notification.dateAjout, notification.generateurNotification.urlPhoto)">visibility</mat-icon> 
+                    <mat-icon style="color:#f7c341;cursor: pointer;" matTooltip="Afficher les détails" (click)="openDialogShowNotification(notification)">visibility</mat-icon> 
                     <mat-icon style="color:#f7c341;cursor: pointer;background-color: black;" matTooltip="Marquer comme lue" (click)="deactivateNotificationController(notification.id)">clear</mat-icon> 
                   </mat-card-actions>
                   
               </mat-card>
             </div>
-
-
-
           </div>
-          
       </mat-menu>
   </a>
 </div> 
