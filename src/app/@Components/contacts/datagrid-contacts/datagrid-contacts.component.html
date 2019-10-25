@@ -1,3 +1,4 @@
+<div style="margin-top: 20px;">
 <mat-form-field appearance="outline">
   <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
   <mat-icon matSuffix >search</mat-icon>
@@ -66,3 +67,4 @@
 </table>
 
 <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+</div>

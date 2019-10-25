@@ -1,4 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="space-around start" >
+<!--Grands écrans-->
+<div fxLayout="row" fxLayoutAlign="space-around start" fxHide.lt-md="true">
     <div fxFlex="60%">
         <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON1">
             <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | titlecase}} : {{data.posteOccupe}}</div>
@@ -28,7 +29,7 @@
      fxLayout.xs="row"
      fxLayoutAlign="space-between start"
      fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
+     fxLayoutGap.xs="0" fxHide.lt-md="true">
 
 <!-- Container : Partie Gauche -->
 <div fxFlex="75%">  
@@ -371,3 +372,299 @@
 </div>
 
 </div>
+
+<!--Petits écrans-->
+<div fxLayout="column" xLayoutAlign="space-between stretch" fxHide.gt-sm="true">
+    <div>
+        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON1_SMALL">
+            <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | titlecase}} : {{data.posteOccupe}}</div>
+        </div>
+        <ng-template #SINON1_SMALL>
+            <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | hideFullPhrase}} : {{data.posteOccupe}}</div>
+        </ng-template>
+    </div>
+  
+    <div style="text-align: center;">
+        <div *ngIf="data.urlPhoto && role === 'ROLE_ADMINISTRATEUR' ;else SINON_CANDIDAT_SMALL">
+            <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}} >
+        </div>
+        <ng-template #SINON_CANDIDAT_SMALL>
+            <img src="/assets/img/candidat.png"> 
+        </ng-template>
+    </div>
+
+    <div style="text-align: center;margin-bottom: 15px;">
+        <a *ngIf="candidatExistsDansFavoris === false" (click)="addCandidatToFavorite(idUtilisateur, data.id, data.identite)" 
+        matTooltip="Ajouter aux Favoris" class="favoris">
+        Ajouter aux favoris</a>
+    </div> 
+
+
+<!-- Container : Partie Gauche -->
+
+<div>
+    <div class="titleCandidat" style="font-weight: bold">
+        Contacts & Rémunération
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Téléphone</mat-label>
+            <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON2_SMALL">
+                <input matInput [(ngModel)]="data.telephone" readonly="true">
+            </div>
+            <ng-template #SINON2_SMALL>
+                <input matInput [(ngModel)]="data.telephone" readonly="true" type="password">
+            </ng-template>
+        <mat-icon matSuffix>local_phone</mat-icon>
+    </mat-form-field>  
+
+    <mat-form-field appearance="fill">
+        <mat-label>Adresse email</mat-label>
+            <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON3_SMALL">
+                <input matInput [(ngModel)]="data.email" readonly="true">
+            </div>
+            <ng-template #SINON3_SMALL>
+                <input matInput [(ngModel)]="data.email" readonly="true" type="password">
+            </ng-template>
+        <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>  
+
+    <mat-form-field appearance="fill">
+        <mat-label>Date de naissance</mat-label>
+        <input matInput [(ngModel)]="data.dateDeNaissance" readonly="true">
+    </mat-form-field>
+
+    <!--Test si Entreprise est définie-->
+    <div *ngIf="data.entreprise && role === 'ROLE_ADMINISTRATEUR' ;else SINON_ENTREPRISE_SMALL">
+        <mat-form-field appearance="fill">
+            <mat-label>Entreprise actuelle</mat-label>
+            <input matInput [(ngModel)]="data.entreprise.nomEntreprise" readonly="true">
+        </mat-form-field>    
+    </div>
+
+    <ng-template #SINON_ENTREPRISE_SMALL>
+        <mat-form-field appearance="fill">
+            <mat-label>Entreprise actuelle</mat-label>
+            <input matInput value="OdixOdix" readonly="true" type="password">
+        </mat-form-field>  
+    </ng-template>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Salaire actuel</mat-label>
+        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON4_SMALL">
+            <input matInput [(ngModel)]="data.salaireActuel" readonly="true">
+        </div>
+        <ng-template #SINON4_SMALL>
+            <input matInput [(ngModel)]="data.salaireActuel" readonly="true" type="password">
+        </ng-template>
+        <mat-icon matSuffix>euro_symbol</mat-icon>
+    </mat-form-field>  
+
+    <mat-form-field appearance="fill">
+        <mat-label>Prétention salariale</mat-label>
+        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON5_SMALL">
+            <input matInput [(ngModel)]="data.pretentionSalariale" readonly="true">
+        </div>
+        <ng-template #SINON5_SMALL>
+            <input matInput [(ngModel)]="data.pretentionSalariale" readonly="true" type="password">
+        </ng-template>
+        <mat-icon matSuffix>euro_symbol</mat-icon>
+    </mat-form-field>  
+
+    <mat-form-field appearance="fill" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
+        <mat-label>Nom d'utilisateur</mat-label>
+        <input matInput [(ngModel)]="data.username" readonly="true">
+        <mat-icon matSuffix>perm_identity</mat-icon>
+    </mat-form-field> 
+
+    <mat-form-field appearance="fill" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput [(ngModel)]="data.password" type="password" readonly="true">
+        <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+
+    <div class="titleCandidat" style="font-weight: bold">
+        Diplômes obtenus
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Type du diplôme</mat-label>
+        <div *ngIf="data.diplome.typeDiplome.toString() != 'Non_Mentionee';else SINON_TYPEDIPLOME_SMALL">
+            <input matInput [(ngModel)]="data.diplome.typeDiplome" readonly="true">
+        </div>
+
+        <ng-template #SINON_TYPEDIPLOME_SMALL>
+            <input matInput readonly="true">
+        </ng-template>
+        <mat-icon matSuffix>school</mat-icon>
+    </mat-form-field>    
+
+    <!--Test si Ecole est définie-->
+    <div *ngIf="data.diplome.ecole;else SINON_ECOLE_SMALL">
+        <mat-form-field appearance="fill">
+            <mat-label>École</mat-label>
+            <input matInput [(ngModel)]="data.diplome.ecole.nomEcole" readonly="true">
+        </mat-form-field>   
+    </div>
+
+    <ng-template #SINON_ECOLE_SMALL>
+        <mat-form-field appearance="fill">
+            <mat-label>École</mat-label>
+            <input matInput readonly="true">
+        </mat-form-field>  
+    </ng-template>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Date obtention du diplôme</mat-label>
+        <input matInput [(ngModel)]="data.diplome.dateObtentionDiplome" readonly="true">
+    </mat-form-field>
+
+    <div class="titleCandidat" style="font-weight: bold">
+        Visas obtenus & Disponibilité
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Type du visa</mat-label>
+            <div *ngIf="data.visa.typeVisa.toString() !='Non_Mentionee';else SINON_TYPEVISA_SMALL">
+                <input matInput [(ngModel)]="data.visa.typeVisa" readonly="true">
+            </div>
+
+            <ng-template #SINON_TYPEVISA_SMALL>
+                <input matInput readonly="true">
+            </ng-template>
+        <mat-icon matSuffix>class</mat-icon>
+    </mat-form-field>    
+
+    <mat-form-field appearance="fill">
+        <mat-label>Date début du visa</mat-label>
+        <input matInput [(ngModel)]="data.visa.dateDebutVisa" readonly="true">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Date fin du visa</mat-label>
+        <input matInput [(ngModel)]="data.visa.dateFinVisa" readonly="true">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Disponibilité</mat-label>
+        <div *ngIf="data.disponibilite.toString() !='Non_Mentionee';else SINON_DISPONIBILITE_SMALL">
+            <input matInput [(ngModel)]="data.disponibilite" readonly="true">
+        </div>
+
+        <ng-template #SINON_DISPONIBILITE_SMALL>
+            <input matInput readonly="true">
+        </ng-template>
+        <mat-icon matSuffix>schedule</mat-icon>
+    </mat-form-field>      
+
+    <mat-form-field appearance="fill">
+        <mat-label>Date démarrage de carrière</mat-label>
+        <input matInput [(ngModel)]="data.dateDemarrageCarriere" readonly="true">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Date épuisement du passeport</mat-label>
+        <input matInput [(ngModel)]="data.dateEpuisementPasseport" readonly="true">
+    </mat-form-field>   
+
+    <div class="titleCandidat" style="font-weight: bold">
+        Informations familiales
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Situation familiale</mat-label>
+        <div *ngIf="data.situationFamiliale.toString() !='Non_Mentionee';else SINON_SITUATIONFAMILIALE_SMALL">
+            <input matInput [(ngModel)]="data.situationFamiliale" readonly="true">
+        </div>
+
+        <ng-template #SINON_SITUATIONFAMILIALE_SMALL>
+            <input matInput readonly="true">
+        </ng-template>
+        <mat-icon matSuffix>wc</mat-icon>
+    </mat-form-field>    
+
+    <mat-form-field appearance="fill">
+        <mat-label>Nombre d'enfants</mat-label>
+        <input matInput [(ngModel)]="data.nombreEnfants" readonly="true">
+        <mat-icon matSuffix>child_care</mat-icon>
+    </mat-form-field>    
+
+    <mat-form-field appearance="fill">
+        <mat-label>Adresse</mat-label>
+        <input matInput [(ngModel)]="data.adresse" readonly="true">
+        <mat-icon matSuffix>add_location</mat-icon>
+    </mat-form-field>  
+
+    <div class="titleCandidat" style="font-weight: bold">
+        Autres détails
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Niveau en français</mat-label>
+        <div *ngIf="data.niveauEnFrancais.toString() !='Non_Mentionee';else SINON_NIVEAUENFRANCAIS_SMALL">
+            <input matInput [(ngModel)]="data.niveauEnFrancais" readonly="true">
+        </div>
+
+        <ng-template #SINON_NIVEAUENFRANCAIS_SMALL>
+            <input matInput readonly="true">
+        </ng-template>
+        <mat-icon matSuffix>business</mat-icon>
+    </mat-form-field>      
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Niveau en anglais</mat-label>
+        <div *ngIf="data.niveauEnAnglais.toString() !='Non_Mentionee';else SINON_NIVEAUENANGLAIS_SMALL">
+            <input matInput [(ngModel)]="data.niveauEnAnglais" readonly="true">
+        </div>
+
+        <ng-template #SINON_NIVEAUENANGLAIS_SMALL>
+            <input matInput readonly="true">
+        </ng-template>
+        <mat-icon matSuffix>business</mat-icon>
+    </mat-form-field>       
+
+    <mat-form-field appearance="fill">
+        <mat-label>Note globale</mat-label>
+        <div *ngIf="data.noteGlobale.toString() !='Non_Mentionee';else SINON_NOTEGLOBALE_SMALL">
+            <input matInput [(ngModel)]="data.noteGlobale" readonly="true">
+        </div>
+
+        <ng-template #SINON_NOTEGLOBALE_SMALL>
+            <input matInput readonly="true">
+        </ng-template>
+        <mat-icon matSuffix>business</mat-icon>
+    </mat-form-field>       
+
+
+    <mat-form-field appearance="fill" >
+        <mat-label>Description détaillée</mat-label>
+        <textarea matInput [(ngModel)]="data.descriptionDetaillee" placeholder="Description détaillée" readonly="true" style="height: 80px;overflow-y: auto"></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+
+    
+    <div *ngIf="data.curriculum.urlCvOriginal && role === 'ROLE_ADMINISTRATEUR'"><!--Affiche CV Original s'il existe--> 
+        <div class="titleCandidat">CV Original <a href="{{storageUrl}}{{data.curriculum.urlCvOriginal}}" target="_blank"><mat-icon class="pointer" matSuffix>link</mat-icon></a></div>
+    </div>
+
+    <div *ngIf="data.curriculum.urlCvOdix"><!--Affiche CV Odix s'il existe-->
+        <div class="titleCandidat">CV Odix <a href="{{storageUrl}}{{data.curriculum.urlCvOdix}}" target="_blank"><mat-icon class="pointer" matSuffix>link</mat-icon></a></div>
+    </div>
+  
+</div>
+
+<!-- Container : Partie Droite --> 
+<div>
+    <!-- Liste Technologies du Candidat --> 
+    <app-liste-technologies-for-show [listeTechnologies]="data.listeTechnologies"></app-liste-technologies-for-show>
+    
+    <!-- Liste Opportunités du Candidat --> 
+    <app-liste-opportunites-for-show [listeOpportunites]="data.listeOpportunites"></app-liste-opportunites-for-show>
+
+    <!-- Liste Certifications du Candidat --> 
+    <app-liste-certifications-for-show [listeCertifications]="data.listeCertifications"></app-liste-certifications-for-show>
+</div>
+
+<button mat-flat-button mat-dialog-close style="margin-bottom: 20px;">Quitter</button>
+</div>
+

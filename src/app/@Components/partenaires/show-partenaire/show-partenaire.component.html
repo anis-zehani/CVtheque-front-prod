@@ -1,10 +1,11 @@
 <h2 mat-dialog-title>Détails du partenaire</h2>
 
+<!--Grands écrans-->
 <div  fxLayout
       fxLayout.xs="row"
       fxLayoutAlign="space-between start"
       fxLayoutGap="10px"
-      fxLayoutGap.xs="0">
+      fxLayoutGap.xs="0" fxHide.lt-md="true"> 
      
 <!-- Container : Partie Gauche -->
 <div fxFlex="70%"> 
@@ -109,4 +110,86 @@
         </table>
 </div>
     
+</div>
+
+<!--Petits écrans-->
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxHide.gt-sm="true"> 
+     
+<!-- Container : Partie Gauche -->
+<div> 
+    <!--Photo-->  
+    <div style="text-align: center;margin-bottom: 15px;">
+        <div *ngIf="data.urlPhoto; else SINON_PARTENAIRE_SMALL">
+            <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
+        </div>
+        <ng-template #SINON_PARTENAIRE_SMALL>
+            <img src="/assets/img/partenaire.png" matTooltip={{data.identite}}>
+        </ng-template>
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Identité du partenaire</mat-label>
+        <input matInput [(ngModel)]="data.identite" readonly="true">
+        <mat-icon matSuffix>account_circle</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Téléphone</mat-label>
+        <input matInput [(ngModel)]="data.telephone" readonly="true">
+        <mat-icon matSuffix>local_phone</mat-icon>
+    </mat-form-field>     
+
+    <mat-form-field appearance="fill">
+        <mat-label>Adresse email</mat-label>
+        <input matInput [(ngModel)]="data.email" readonly="true">
+        <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+
+    <!--Test si Entreprise est définie-->
+    <div *ngIf="data.entreprise;else SINON_SMALL">
+        <mat-form-field appearance="fill">
+        <mat-label>Entreprise actuelle</mat-label>
+            <input matInput [(ngModel)]="data.entreprise.nomEntreprise" readonly="true">
+        </mat-form-field>        
+    </div>
+    <ng-template #SINON_SMALL>
+        <mat-form-field appearance="fill">
+        <mat-label>Entreprise</mat-label>
+            <input matInput readonly="true">
+        </mat-form-field>  
+    </ng-template>    
+                
+    <mat-form-field appearance="fill">
+        <mat-label>Poste occupé</mat-label>
+        <input matInput [(ngModel)]="data.posteOccupe" readonly="true">
+        <mat-icon matSuffix>edit</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Login</mat-label>
+        <input matInput [(ngModel)]="data.username" readonly="true">
+        <mat-icon matSuffix>perm_identity</mat-icon>
+    </mat-form-field>     
+
+    <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="data.password" readonly="true" type="password">
+        <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+        <mat-label>Description détaillée</mat-label>
+        <textarea matInput [(ngModel)]="data.descriptionDetaillee" readonly="true" style="height: 80px;overflow-y: auto"></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+
+</div>
+
+<!-- Container : Partie Droite -->
+<div>
+     <!-- Liste Opportunités liées à ce partenaire --> 
+     <app-liste-opportunites-for-show [idPartenaire]=data.id></app-liste-opportunites-for-show>
+</div>
+
+<button mat-flat-button mat-dialog-close style="margin-bottom: 20px;">Quitter</button>  
 </div>

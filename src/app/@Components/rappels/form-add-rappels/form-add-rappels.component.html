@@ -1,7 +1,8 @@
-<div class="title">
+<div class="title" style="margin-bottom: 10px;">
     Ajouter un rappel
 </div>
-<form [formGroup]="formRappel" (ngSubmit)="addRappelController()">
+<!--Grands écrans-->
+<form [formGroup]="formRappel" (ngSubmit)="addRappelController()" fxHide.lt-md="true">
 
     <mat-form-field appearance="outline">
         <mat-label>Détails du rappel</mat-label>
@@ -59,3 +60,60 @@
     </div>
 </form>
   
+<!--Petits écrans-->
+<form [formGroup]="formRappel" (ngSubmit)="addRappelController()" fxHide.gt-sm="true">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Détails du rappel</mat-label>
+        <textarea matInput formControlName="detailsRappel" rows="4" required></textarea>
+        <mat-icon matSuffix>add_circle</mat-icon>
+    </mat-form-field>
+
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" >
+
+    <div>
+        <app-liste-deroulante-projets
+            (projetIdEvent)="projetIdEventListner($event)">
+        </app-liste-deroulante-projets>
+    </div>
+
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Priorité</mat-label>
+            <mat-select formControlName="priorite">
+                <mat-option value="Haute">Haute</mat-option>
+                <mat-option value="Normale">Normale</mat-option>
+                <mat-option value="Basse">Basse</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>priority_high</mat-icon>
+        </mat-form-field> 
+    </div>
+
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="pickerSmall" formControlName="dateEcheance">
+            <mat-datepicker-toggle matSuffix [for]="pickerSmall"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #pickerSmall></mat-datepicker>
+        </mat-form-field>
+    </div>      
+
+    </div>
+
+    <div> 
+        <div>
+            <label for="urlFichier">
+                <mat-icon class="pointer">attachment</mat-icon>
+            </label>
+            <input id="urlFichier" type="file" style="display:none;" (change)="selectFile($event)">
+        </div>
+        <div class="file-upload" dir="ltr">{{namePJ}}</div>
+        <mat-slide-toggle [checked]="false" formControlName="remindMe">Remind Me</mat-slide-toggle>
+    </div>
+
+    <br>
+    
+    <button mat-flat-button (click)="save()" [disabled]="!formRappel.valid">Valider</button>
+    <button mat-stroked-button mat-dialog-close style="margin-top: 10px;margin-bottom: 20px;">Annuler</button>
+
+</form>

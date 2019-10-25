@@ -41,21 +41,9 @@
 
         <!-- Container : DataGrid -->
         <div fxFlex="100%">
-          <!-- Visible sur grands écrans seulement -->
-          <div class="title" fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true">
-              <!--Gestion des partenaires
-              <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()">Nouveau partenaire</button>-->
-          </div>
-
-          <!-- Visible sur petit écrans seulement -->
-          <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxHide.gt-sm="true">
-              <!--<div class="title-xs-higher">Gestion des partenaires</div>
-              <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()">Nouveau partenaire</button>-->
-          </div>
-
           <app-datagrid-partenaires></app-datagrid-partenaires>
-
         </div>
+        
         </div>
     </div>
 

@@ -7,11 +7,11 @@
     
     <!-- Visible sur grands écrans seulement -->
     <div fxFlex="20%" style="background-color: #222;color: white" fxLayout="column" fxLayoutAlign="start stretch">
-            <div class="title-blanc">
-                Gestion des contacts
-            </div>
+        <div class="title-blanc">
+            Gestion des contacts
+        </div>
 
-            <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()" matTooltip="Ajouter un nouveau contact" style="margin-bottom: 15px;margin-top:5px;margin-right: 15px;margin-left: 15px;">Nouveau contact</button>
+        <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()" matTooltip="Ajouter un nouveau contact" style="margin-bottom: 15px;margin-top:5px;margin-right: 15px;margin-left: 15px;">Nouveau contact</button>
     </div>
 
     <div fxFlex="80%">
@@ -41,18 +41,6 @@
 
         <!-- Container : DataGrid -->
         <div fxFlex="100%">
-          <!-- Visible sur grands écrans seulement -->
-          <div class="title" fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true">
-              <!--Gestion des contacts
-              <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()">Nouveau contact</button>-->
-          </div>
-
-          <!-- Visible sur petit écrans seulement -->
-          <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxHide.gt-sm="true">
-              <!--<div class="title-xs-higher">Gestion des contacts</div>
-              <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()">Nouveau contact</button>-->
-          </div>
-
           <app-datagrid-contacts></app-datagrid-contacts>
         </div>
 
