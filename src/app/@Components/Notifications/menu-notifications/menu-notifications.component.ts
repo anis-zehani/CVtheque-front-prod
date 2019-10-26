@@ -54,8 +54,7 @@ export class MenuNotificationsComponent implements OnInit {
   }
 
   // Ouvre le pop-up pour afficher une Notification
-  openDialogShowNotification(notification): void {
-
+  openDialogShowNotification(id, generateurNotification, objetNotification, corpstNotification, dateAjout, etatNotification, candidatNotification, partenaireTemporaireNotification, opportuniteNotification): void {
     // Objet pour configurer la modale
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -68,7 +67,15 @@ export class MenuNotificationsComponent implements OnInit {
         height: '330px',
         data:
         {
-          notification
+          id,
+          generateurNotification,
+          objetNotification,
+          corpstNotification,
+          dateAjout,
+          etatNotification,
+          candidatNotification,
+          partenaireTemporaireNotification,
+          opportuniteNotification
         }
     });
     }
