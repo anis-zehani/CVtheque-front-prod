@@ -18,3 +18,19 @@ STYLE : SIDENAV : obligatoire ici
     padding-right: 10px;
   }
 
+/*
+STYLE : SMALL SCREENS
+*/
+.sidenav-container-small {
+  position: absolute;
+  background-color: white;
+  top: 10px;
+  bottom: 0;
+  left: 8;
+  right: 5;
+}
+
+.sidenav-content-small {
+  display: flex;
+  min-width: 340px;
+}

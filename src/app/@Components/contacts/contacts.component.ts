@@ -10,16 +10,15 @@ import { DatagridContactsComponent } from '../../@Components/contacts/datagrid-c
 
 export class ContactsComponent implements OnInit {
 
-  //Afin d'appeler la fonction de Refrech Table chez le fils
+  // Afin d'appeler la fonction de Refrech Table chez le fils
   @ViewChild(DatagridContactsComponent, {static: false}) Datagrid: DatagridContactsComponent;
 
   constructor() {}
 
   ngOnInit() {}
 
-  //Afin de rafraichir la table quand on ajoute une technologie
-  onRefreshTableEvent($event) 
-  {
+  // Afin de rafraichir la table quand on ajoute une technologie
+  onRefreshTableEvent($event) {
     this.Datagrid.getAllContactsController();
   }
 

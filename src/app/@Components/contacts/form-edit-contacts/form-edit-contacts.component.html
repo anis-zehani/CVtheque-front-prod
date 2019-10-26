@@ -1,6 +1,7 @@
 <h2 mat-dialog-title>Modifier le contact</h2>
 
-<div>
+<!--Grands écrans-->
+<div fxHide.lt-md="true">
     <table>
         <tr>
             <td>
@@ -86,4 +87,78 @@
       <button mat-stroked-button mat-dialog-close style="margin-left: 10px; width: 30%">Annuler</button>
     </div>
 
+</div>
+
+<!--Petits écrans-->
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxHide.gt-sm="true">
+
+    <input matInput [(ngModel)]="data.id" hidden>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Identité du contact</mat-label>
+        <input matInput [(ngModel)]="data.identite" required>
+        <mat-icon matSuffix>account_circle</mat-icon>
+    </mat-form-field>
+
+    <!--Photo-->  
+    <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 20px"> 
+        <div class="image-upload"> 
+            <label for="photodeprofilEdit">
+                <mat-icon class="pointer">add_a_photo</mat-icon>
+            </label>
+        <input id="photodeprofilEdit" type="file" style="display: none;" (change)="selectFile($event)" >
+        </div>
+        <div class="file-upload">{{namePhoto}}</div>
+        <div *ngIf="data.urlPhoto;else SINON_CONTACT_SMALL">
+            <img src="{{storageUrl}}{{data.urlPhoto}}" matTooltip={{data.identite}}>
+        </div>
+        <ng-template #SINON_CONTACT_SMALL>
+            <img src="/assets/img/contact.png" matTooltip={{data.identite}}> 
+        </ng-template>
+    </div>
+
+   
+
+    <mat-form-field appearance="outline">
+        <mat-label>Téléphone</mat-label>
+        <input matInput [(ngModel)]="data.telephone">
+        <mat-icon matSuffix>local_phone</mat-icon>
+    </mat-form-field>     
+
+    <mat-form-field appearance="outline">
+        <mat-label>Adresse email</mat-label>
+        <input matInput [(ngModel)]="data.email" required>
+        <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+
+    <!--Test si Entreprise est définie-->
+    <div *ngIf="data.entreprise;else SINON_SMALL">
+        <app-liste-entreprises 
+            [entrepriseId]="data.entreprise.idEntreprise" 
+            (entrepriseIdEvent)="entrepriseIdEventListner($event)">
+        </app-liste-entreprises>   
+    </div>
+    <ng-template #SINON_SMALL>
+        <app-liste-entreprises 
+            (entrepriseIdEvent)="entrepriseIdEventListner($event)">
+        </app-liste-entreprises>    
+    </ng-template>
+                
+
+    <mat-form-field appearance="outline">
+        <mat-label>Poste occupé</mat-label>
+        <input matInput [(ngModel)]="data.posteOccupe" placeholder="Poste occupé">
+        <mat-icon matSuffix>edit</mat-icon>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Description détaillée</mat-label>
+        <textarea matInput [(ngModel)]="data.descriptionDetaillee" placeholder="Description détaillée" style="height: 80px;overflow-y: auto"></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+    
+
+    <button mat-flat-button [mat-dialog-close]="data" (click)="editPhotoController(data.id)" style="margin-bottom: 10px;">Confirmer</button>
+    <button mat-stroked-button mat-dialog-close style="margin-bottom: 20px;">Annuler</button>
 </div>

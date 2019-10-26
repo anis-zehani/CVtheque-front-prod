@@ -1,19 +1,22 @@
+<!--Grands écrans-->
 <div class="container"
     fxLayout
     fxLayout.xs="column"
     fxLayoutAlign="space-between stretch"
     fxLayoutGap="10px"
-    fxLayoutGap.xs="0">
-    
-    <!-- Visible sur grands écrans seulement -->
+    fxLayoutGap.xs="0" fxHide.lt-md="true">
+
+    <!-- Colonne Gauche -->
     <div fxFlex="20%" style="background-color: #222;color: white" fxLayout="column" fxLayoutAlign="start stretch">
         <div class="title-blanc">
             Gestion des contacts
         </div>
-
-        <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()" matTooltip="Ajouter un nouveau contact" style="margin-bottom: 15px;margin-top:5px;margin-right: 15px;margin-left: 15px;">Nouveau contact</button>
+        <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()" matTooltip="Ajouter un nouveau contact" style="margin: 5px 15px 15px 15px">Nouveau contact</button>
     </div>
 
+    
+
+    <!-- Colonne Droite -->
     <div fxFlex="80%">
         <div 
             fxLayout
@@ -46,4 +49,41 @@
 
         </div>
     </div>
+</div>
+
+
+<!--Petits écrans-->
+<div fxLayout="column" class="container" fxLayoutAlign="start stretch" fxHide.gt-sm="true"> 
+
+    <!-- Colonne Gauche -->
+    <div style="background-color: #222;color: white" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="title-blanc">
+            Gestion des contacts
+        </div>
+        <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()" matTooltip="Ajouter un nouveau contact" style="margin: 5px 15px 15px 15px">Nouveau contact</button>
+    </div>
+
+    
+
+<!-- Colonne Droite -->
+
+        <!-- Container : Formulaire -->
+        <mat-sidenav-container class="sidenav-container-small">
+            
+            <mat-sidenav #sidenav mode="side" class="sidenav-content-small"
+                            [fixedInViewport]="false" [opened]="false" [fixedTopGap]="50"
+                            [fixedBottomGap]="50">
+                            <button class="toggleButtonFermer" mat-flat-button (click)="sidenav.toggle()">Fermer</button>
+                            <div class="title">
+                                Ajouter un contact
+                            </div>
+                            
+                            <app-form-add-contacts (refreshTableEvent)="onRefreshTableEvent($event)" [inputSideNav]="sidenav"></app-form-add-contacts>
+                      
+            </mat-sidenav>
+        </mat-sidenav-container>
+
+
+        <!-- Container : DataGrid -->
+        <app-datagrid-contacts></app-datagrid-contacts>
 </div>

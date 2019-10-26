@@ -1,9 +1,9 @@
 <div style="margin-top: 20px;">
-<mat-form-field appearance="outline">
-  <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
-  <mat-icon matSuffix >search</mat-icon>
-</mat-form-field>
-<!--<table mat-table [dataSource]="listeContacts" class="mat-elevation-z2" matSort>-->
+  <mat-form-field appearance="outline">
+    <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
+    <mat-icon matSuffix >search</mat-icon>
+  </mat-form-field>
+
 <table mat-table [dataSource]="listeContacts" matSort>
 
   <ng-container matColumnDef="urlPhoto">
