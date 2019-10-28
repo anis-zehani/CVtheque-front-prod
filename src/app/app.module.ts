@@ -158,6 +158,8 @@ import { ActivationConfirmationComponent } from './@Components/dialogs/activatio
 import { ValidationEntrepriseComponent } from './@Components/dialogs/validation-entreprise/validation-entreprise.component';
 import { MenuNotificationsComponent } from './@Components/Notifications/menu-notifications/menu-notifications.component';
 import { ShowNotificationComponent } from './@Components/Notifications/show-notification/show-notification.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -339,7 +341,8 @@ import { ShowNotificationComponent } from './@Components/Notifications/show-noti
     ChartsModule,
     MatListModule,
     MatTooltipModule,
-    MatTabsModule
+    MatTabsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     TechnologiesService,

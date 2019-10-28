@@ -15,7 +15,4 @@ export class Notification {
     candidatNotification: Candidat;
     partenaireTemporaireNotification: PartenaireTemporaire;
     opportuniteNotification: Opportunite;
-
-    /** Pour Faire un contournement au Bug du création du Build PROD */
-    notification: Notification;
   }
