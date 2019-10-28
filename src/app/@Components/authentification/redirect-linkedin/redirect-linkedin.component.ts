@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthentificationService } from 'src/app/@Services/authentification.service';
+import { UtilService } from 'src/app/@Util/util.service';
 
 @Component({
   selector: 'app-redirect-linkedin',
@@ -21,7 +22,7 @@ export class RedirectLinkedinComponent implements OnInit {
   urlPhoto: string;
 
 
-  constructor(private router: Router, private authentificationService: AuthentificationService) { }
+  constructor(private router: Router, private authentificationService: AuthentificationService, private utilService: UtilService) { }
 
   ngOnInit() {
     this.managerLinkedInRedirection();
@@ -64,8 +65,15 @@ export class RedirectLinkedinComponent implements OnInit {
               this.router.navigate(['/accueil']);
             } else {
               // Rediriger vers Login et Afficher Message d'erreur
+              this.utilService.openSnackBar('Une panne au niveau de l\'API Linkedin a eu lieu, veuillez ressayer plus tard ou bien essayer une autre méthode d\'authentification. ', 'Erreur');
               this.router.navigate(['/login']);
             }
+        },
+        error => {
+              // Rediriger vers Login et Afficher Message d'erreur
+              this.router.navigate(['/erreur']);
+              console.log('Erreur = ' + error.error.message);
+              this.utilService.openSnackBar('Une panne au niveau de l\'API Linkedin a eu lieu, veuillez ressayer plus tard ou bien essayer une autre méthode d\'authentification. ', 'Erreur');
         }
       );
   }

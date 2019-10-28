@@ -156,10 +156,12 @@ import { RedirectActivationCompteComponent } from './@Components/authentificatio
 import { DemandesAdhesionComponent } from './@Components/account/demandes-adhesion/demandes-adhesion.component';
 import { ActivationConfirmationComponent } from './@Components/dialogs/activation-confirmation/activation-confirmation.component';
 import { ValidationEntrepriseComponent } from './@Components/dialogs/validation-entreprise/validation-entreprise.component';
-import { MenuNotificationsComponent } from './@Components/Notifications/menu-notifications/menu-notifications.component';
-import { ShowNotificationComponent } from './@Components/Notifications/show-notification/show-notification.component';
+import { MenuNotificationsComponent } from './@Components/notifications/menu-notifications/menu-notifications.component';
+import { ShowNotificationComponent } from './@Components/notifications/show-notification/show-notification.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { PageIntrouvableComponent } from './@Components/message/page-introuvable/page-introuvable.component';
+import { PageErreurComponent } from './@Components/message/page-erreur/page-erreur.component';
 
 @NgModule({
   declarations: [
@@ -269,7 +271,9 @@ import { environment } from '../environments/environment';
     ActivationConfirmationComponent,
     ValidationEntrepriseComponent,
     MenuNotificationsComponent,
-    ShowNotificationComponent
+    ShowNotificationComponent,
+    PageIntrouvableComponent,
+    PageErreurComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,

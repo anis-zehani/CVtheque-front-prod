@@ -22,6 +22,8 @@ import { AccountComponent } from './@Components/account/account.component';
 import { FormResetPasswordComponent } from './@Components/authentification/form-reset-password/form-reset-password.component';
 import { RedirectActivationCompteComponent } from './@Components/authentification/redirect-activation-compte/redirect-activation-compte.component';
 import { DemandesAdhesionComponent } from './@Components/account/demandes-adhesion/demandes-adhesion.component';
+import { PageIntrouvableComponent } from './@Components/message/page-introuvable/page-introuvable.component';
+import { PageErreurComponent } from './@Components/message/page-erreur/page-erreur.component';
 
 // Toute personne authentifiée
 import { AuthGuardService } from './@Services/auth-guard.service';
@@ -29,7 +31,6 @@ import { AuthGuardService } from './@Services/auth-guard.service';
 import { Level1GuardService } from './@Services/level1-guard.service';
 // Administrateur ou Partenaire seulement
 import { Level2GuardService } from './@Services/level2-guard.service';
-
 
 const routes: Routes = [
 
@@ -59,8 +60,11 @@ const routes: Routes = [
   // OAuth2 LinkedIn
   { path: 'redirect-linkedin', component: RedirectLinkedinComponent},
 
+  // Page d'erreur
+  { path: 'erreur', component: PageErreurComponent },
+
   // URL Introuvable renvoi finalement vers le composant Accueil
-  { path: '**', component: AuthentificationComponent }
+  { path: '**', component: PageIntrouvableComponent }
 
 ];
 
