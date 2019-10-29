@@ -87,11 +87,10 @@ export class FormAddRappelsComponent implements OnInit {
       this.namePJ =  this.selectedFiles.item(0).name;
   }
 
-  addFileController(id) {
+  async addFileController(id) {
     if (this.selectedFiles !=  null) {
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.uploadService.addFichierRappel(this.currentFileUpload, id).subscribe(event => {
-      });
+    const result = await this.uploadService.addFichierRappel(this.currentFileUpload, id);
     this.selectedFiles = undefined;
     }
   }

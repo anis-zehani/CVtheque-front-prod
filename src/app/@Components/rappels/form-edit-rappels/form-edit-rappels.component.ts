@@ -53,19 +53,19 @@ export class FormEditRappelsComponent implements OnInit {
   }
 
   // FileUpload
-  selectFile($event) {
+  selectFile($event, id) {
     this.selectedFiles = $event.target.files;
     this.namePJ =  this.selectedFiles.item(0).name;
+    this.addFileController(id);
   }
 
-  addFileController(id) {
+  async addFileController(id) {
     // On ouvre la modale Spinner
     this.openDialogSpinner();
 
     if (this.selectedFiles != null) {
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.uploadService.addFichierRappel(this.currentFileUpload, id).subscribe(event => {
-      });
+    const result = await this.uploadService.addFichierRappel(this.currentFileUpload, id);
     this.selectedFiles = undefined;
     }
 

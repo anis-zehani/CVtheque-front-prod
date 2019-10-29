@@ -17,7 +17,7 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
 
-  addFichierRappel(file: File, id: any): Observable<HttpEvent<{}>> {
+  async addFichierRappel(file: File, id: any) {
 
     const formdata: FormData = new FormData();
 
@@ -28,7 +28,7 @@ export class FileUploadService {
       responseType: 'text'
     });
 
-    return this.http.request(req);
+    return this.http.request(req).toPromise();
   }
 
   addPhotoContact(file: File, id: any): Observable<HttpEvent<{}>> {

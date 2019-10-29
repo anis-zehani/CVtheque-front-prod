@@ -50,7 +50,7 @@
             <label for="urlFichier">
                 <mat-icon class="pointer">attachment</mat-icon>
             </label>
-            <input id="urlFichier" type="file" style="display:none;" (change)="selectFile($event)">
+            <input id="urlFichier" type="file" style="display:none;" (change)="selectFile($event, data.id)">
         
         </div>
         <div class="file-upload" dir="ltr">{{namePJ}}</div>
@@ -72,7 +72,7 @@
     <br>
 
     <div style="display: flex;justify-content: end;">
-        <button mat-flat-button [mat-dialog-close]="data" (click)="addFileController(data.id)"  style="width: 25%;margin-right: 5%">Valider</button>
+        <button mat-flat-button [mat-dialog-close]="data" style="width: 25%;margin-right: 5%">Valider</button>
         <button mat-stroked-button mat-dialog-close style="width: 25%">Annuler</button>
     </div>
     

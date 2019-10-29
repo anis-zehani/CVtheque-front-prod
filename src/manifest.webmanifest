@@ -1,8 +1,8 @@
 {
-  "name": "cvtheque",
-  "short_name": "cvtheque",
+  "name": "Odix",
+  "short_name": "Odix",
   "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "background_color": "#f7c341",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
