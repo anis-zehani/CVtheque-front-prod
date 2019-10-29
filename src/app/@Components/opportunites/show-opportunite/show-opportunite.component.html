@@ -9,7 +9,7 @@
         favorite</mat-icon>
     </div>
 </div>  
-<!--Grands écrans-->
+
 <div  fxLayout
       fxLayout.xs="row"
       fxLayoutAlign="space-between start"
@@ -101,13 +101,13 @@
     <div fxFlex="30%">
         <table>
                 <tr>
-                    <!-- Liste Technologies de l'opportunité --> 
-                    <app-liste-technologies-for-show [listeTechnologies]="data.listeTechnologies"></app-liste-technologies-for-show>
+                    <!-- Liste Candidats de l'opportunité --> 
+                    <app-liste-candidats-for-show [idOpportunite]=data.id></app-liste-candidats-for-show>
                 </tr>
 
                 <tr>
-                    <!-- Liste Candidats de l'opportunité --> 
-                    <app-liste-candidats-for-show [idOpportunite]=data.id></app-liste-candidats-for-show>
+                    <!-- Liste Technologies de l'opportunité --> 
+                    <app-liste-technologies-for-show [listeTechnologies]="data.listeTechnologies"></app-liste-technologies-for-show>
                 </tr>
 
                 <tr>
@@ -198,11 +198,11 @@
 
 <!-- Container : Partie Droite -->
 <div>
-    <!-- Liste Technologies de l'opportunité --> 
-    <app-liste-technologies-for-show [listeTechnologies]="data.listeTechnologies"></app-liste-technologies-for-show>
-
     <!-- Liste Candidats de l'opportunité --> 
     <app-liste-candidats-for-show [idOpportunite]=data.id></app-liste-candidats-for-show>
+
+    <!-- Liste Technologies de l'opportunité --> 
+    <app-liste-technologies-for-show [listeTechnologies]="data.listeTechnologies"></app-liste-technologies-for-show>
 
     <!-- Liste Certifications de l'opportunité --> 
     <app-liste-certifications-for-show [listeCertifications]="data.listeCertifications"></app-liste-certifications-for-show>

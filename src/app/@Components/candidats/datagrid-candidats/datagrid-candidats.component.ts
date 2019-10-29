@@ -494,7 +494,23 @@ export class DatagridCandidatsComponent implements OnInit {
 
       listeTechnologies,
       listeOpportunites,
-      listeCertifications
+      listeCertifications,
+      telephoneAutoFill,
+      emailAutoFill,
+      posteOccupeAutoFill,
+      salaireActuelAutoFill,
+      pretentionSalarialeAutoFill,
+      dateDeNaissanceAutoFill,
+      entrepriseAutoFill,
+      urlPhotoAutoFill,
+      disponibiliteAutoFill,
+      dateDemarrageCarriereAutoFill,
+      dateEpuisementPasseportAutoFill,
+      situationFamilialeAutoFill,
+      nombreEnfantsAutoFill,
+      adresseAutoFill,
+      descriptionDetailleeAutoFill
+
 
       ): void {
         // Objet pour configurer la modale
@@ -566,7 +582,22 @@ export class DatagridCandidatsComponent implements OnInit {
             // Les 3 listes
             listeTechnologies,
             listeOpportunites,
-            listeCertifications
+            listeCertifications,
+            telephoneAutoFill,
+            emailAutoFill,
+            posteOccupeAutoFill,
+            salaireActuelAutoFill,
+            pretentionSalarialeAutoFill,
+            dateDeNaissanceAutoFill,
+            entrepriseAutoFill,
+            urlPhotoAutoFill,
+            disponibiliteAutoFill,
+            dateDemarrageCarriereAutoFill,
+            dateEpuisementPasseportAutoFill,
+            situationFamilialeAutoFill,
+            nombreEnfantsAutoFill,
+            adresseAutoFill,
+            descriptionDetailleeAutoFill
           }
         });
   }

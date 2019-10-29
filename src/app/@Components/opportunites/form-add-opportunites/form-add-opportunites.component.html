@@ -2,7 +2,8 @@
     Ajouter une opportunité
 </div>
 
- <form [formGroup]="formOpportunite" (ngSubmit)="addOpportuniteController()">
+<!--Grands écrans-->
+<form [formGroup]="formOpportunite" (ngSubmit)="addOpportuniteController()" fxHide.lt-md="true">
     <div fxLayout
          fxLayout.xs="row"
          fxLayoutAlign="space-between start"
@@ -82,11 +83,11 @@
     <div fxFlex="30%">
         <table>
             <tr>
-                <app-liste-technologies-for-add (listeTechnologiesEvent)="listeTechnologiesOpportunitesEventListner($event)"></app-liste-technologies-for-add>
+                <app-liste-candidats-for-add (listeCandidatsEvent)="listeCandidatsOpportunitesEventListner($event)"></app-liste-candidats-for-add>
             </tr>
 
             <tr>
-                <app-liste-candidats-for-add (listeCandidatsEvent)="listeCandidatsOpportunitesEventListner($event)"></app-liste-candidats-for-add>
+                <app-liste-technologies-for-add (listeTechnologiesEvent)="listeTechnologiesOpportunitesEventListner($event)"></app-liste-technologies-for-add>
             </tr>
 
             <tr>
@@ -95,4 +96,76 @@
         </table>
     </div>
 </div>
+</form>
+
+<!--Petits écrans-->
+<form [formGroup]="formOpportunite" (ngSubmit)="addOpportuniteController()" fxHide.gt-sm="true">
+    <div fxLayout
+             fxLayout.xs="column"
+             fxLayoutAlign="start stretch"
+             fxLayoutGap="10px"
+             fxLayoutGap.xs="0">
+         
+        <!-- Container : Partie Gauche -->
+    
+   
+        <mat-form-field appearance="outline">
+            <mat-label>Titre de l'opportunite</mat-label>
+            <input matInput formControlName="titreOpportunite" required>
+            <mat-icon matSuffix>title</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>TJM</mat-label>
+            <input matInput formControlName="tjmOpportunite">
+            <mat-icon matSuffix>euro_symbol</mat-icon>
+        </mat-form-field> 
+  
+        <div class="title-visibilite">
+            Visibilité de l'opportunité * : 
+        </div>
+
+
+        <mat-radio-group appearance="outline" formControlName="visibiliteOpportunite" required>
+            <mat-radio-button value="Public" matTooltip="Visible par tout le monde">Publique  </mat-radio-button>
+            <mat-radio-button value="Private" matTooltip="Visible par moi uniquement">  Privée</mat-radio-button>
+        </mat-radio-group> 
+
+        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'">
+            <app-liste-partenaires
+                (partenaireIdEvent)="partenaireIdEventListner($event)">
+            </app-liste-partenaires>
+        </div>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Date de démarrage</mat-label>
+            <input matInput [matDatepicker]="pickerSmall" formControlName="dateDemarrageSouhaitee">
+            <mat-datepicker-toggle matSuffix [for]="pickerSmall"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #pickerSmall></mat-datepicker>
+        </mat-form-field>
+    
+
+         
+        <mat-form-field appearance="outline" >
+            <mat-label>Description détaillée</mat-label>
+            <textarea matInput formControlName="descriptionOpportunite" style="height: 80px;overflow-y: auto"></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+        </mat-form-field>
+        
+        
+        <button mat-flat-button [disabled]="!formOpportunite.valid" type="submit" (click)="inputSideNav.toggle();" style="margin-top: 10px">Ajouter une opportunité</button>
+        
+        <button mat-stroked-button type="reset"  style="margin-top: 10px">Tout réinitialiser</button>
+  
+    
+        <!-- Container : Partie Droite -->
+
+        <app-liste-candidats-for-add (listeCandidatsEvent)="listeCandidatsOpportunitesEventListner($event)"></app-liste-candidats-for-add>
+ 
+        <app-liste-technologies-for-add (listeTechnologiesEvent)="listeTechnologiesOpportunitesEventListner($event)"></app-liste-technologies-for-add>
+  
+        <app-liste-certifications-for-add (listeCertificationsEvent)="listeCertificationsOpportunitesEventListner($event)"></app-liste-certifications-for-add>
+
+    </div>
+
 </form>

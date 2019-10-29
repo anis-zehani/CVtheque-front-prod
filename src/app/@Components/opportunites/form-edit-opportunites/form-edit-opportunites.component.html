@@ -1,5 +1,6 @@
 <h2 mat-dialog-title>Modifier l'opportunité</h2>
 
+<!--Grands écrans-->
 <div fxLayout
      fxLayout.xs="row"
      fxLayoutAlign="space-between start"
@@ -93,11 +94,11 @@
 <div fxFlex="30%">
     <table>
         <tr>
-            <app-liste-technologies-for-edit [selectedOptionsTechnologie]="data.listeTechnologies"></app-liste-technologies-for-edit>
+            <app-liste-candidats-for-edit [idOpportunite]=data.id ></app-liste-candidats-for-edit>
         </tr>
 
         <tr>
-            <app-liste-candidats-for-edit [idOpportunite]=data.id ></app-liste-candidats-for-edit>
+            <app-liste-technologies-for-edit [selectedOptionsTechnologie]="data.listeTechnologies"></app-liste-technologies-for-edit>
         </tr>
 
         <tr>
@@ -107,3 +108,5 @@
 </div>
 
 </div>
+
+<!--Petits écrans-->
