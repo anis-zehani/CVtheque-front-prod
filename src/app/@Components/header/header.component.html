@@ -1,3 +1,12 @@
+<!--Google Analytics-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-38615240-8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-38615240-8');
+</script>
+
 <div class="header" style="height: 45px;border-bottom: 1px solid white;">
   
   <div  fxLayout 
@@ -6,8 +15,12 @@
       fxLayoutGap="20px"
       fxLayoutGap.xs="20px">
 
-      <div fxFlex="15%" fxHide.lt-md="true">
+      <div fxFlex="15%" fxHide.lt-md="true" matTooltip="Accueil">
           <a routerLink="accueil"><img src="assets/img/logo.png" class="logo"></a>
+      </div>
+
+      <div fxFlex="5%" fxHide.gt-sm="true" matTooltip="Accueil">
+          <a routerLink="accueil"><mat-icon style="color:#fff">home</mat-icon></a>
       </div>
       
       <!-- Visible sur BIG SCREENS -->
@@ -38,7 +51,7 @@
       <div fxFlex="5%" fxHide.lt-md="true">
           <a class="pointer" [matMenuTriggerFor]="menu5" matTooltip="Vous">
             <mat-icon style="color:#f7c341">account_circle</mat-icon> 
-            <mat-icon style="color:white">arrow_drop_down</mat-icon>
+            <mat-icon style="color:#f7c341">arrow_drop_down</mat-icon>
           </a>
           <mat-menu #menu5="matMenu">
             <div style="width: 300px;">
@@ -62,7 +75,7 @@
       <div fxHide.gt-sm="true" >
           <a class="pointer" [matMenuTriggerFor]="menu5" matTooltip="Vous">
             <mat-icon style="color:#f7c341">account_circle</mat-icon> 
-            <mat-icon style="color:white">arrow_drop_down</mat-icon>
+            <mat-icon style="color:#f7c341">arrow_drop_down</mat-icon>
           </a>
           <mat-menu #menu5="matMenu">
               <button mat-menu-item routerLink="account">Gérer mon compte</button>
@@ -72,11 +85,11 @@
               <app-logout></app-logout>
           </mat-menu>
       </div>
-      <div class="liste-small" fxHide.gt-sm="true" >
+      <div class="liste-small" fxHide.gt-sm="true">
           <b>{{identite | titlecase}}</b>
       </div>
       <div fxShow="true" fxHide.gt-sm="true" fxFlex="10%">
-          <button mat-icon-button [matMenuTriggerFor]="menu" >
+          <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Navigation">
             <mat-icon style="color: #fff !important">more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" xPosition="before">
@@ -97,13 +110,3 @@
 
   </div>
 </div>
-
-<!--Google Analytics
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-38615240-8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-38615240-8');
-</script>
--->
