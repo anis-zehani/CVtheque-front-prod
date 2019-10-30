@@ -67,7 +67,7 @@
         <table mat-table [dataSource]="listePartenairesTemporaires" matSort>
               
                 <ng-container matColumnDef="dateAjout">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Informations fournies</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Détails de la demande</th>
                     <td mat-cell *matCellDef="let element" width="95%">
                         <b class="label-datagrid">Date : </b>{{element.dateAjout | date: 'short'}}<br>
                         <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>

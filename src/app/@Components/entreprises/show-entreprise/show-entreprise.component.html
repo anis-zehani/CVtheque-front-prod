@@ -1,9 +1,10 @@
 <h2 mat-dialog-title>Détails de l'entreprise</h2> 
+<!--Grands écrans--> 
 <div  fxLayout
       fxLayout.xs="row"
       fxLayoutAlign="space-between start"
       fxLayoutGap="10px"
-      fxLayoutGap.xs="0">
+      fxLayoutGap.xs="0" fxHide.lt-md="true">
      
 <!-- Container : Partie Gauche -->
 <div fxFlex="40%"> 
@@ -34,4 +35,30 @@
             <!-- Liste Candidats liés à cette entreprise-->
             <app-liste-candidats-for-show [idEntreprise]=data.idEntreprise></app-liste-candidats-for-show>
     </div>
+</div>
+
+<!--Petits écrans-->
+<div fxLayout="column" fxLayoutAlign="start stretch" fxHide.gt-sm="true">
+     
+<!-- Container : Partie Gauche -->
+
+    <mat-form-field appearance="fill">
+        <mat-label>Nom de l'entreprise</mat-label>
+        <input matInput [(ngModel)]="data.nomEntreprise" readonly="true">
+        <mat-icon matSuffix></mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+        <mat-label>Description de l'entreprise</mat-label>
+        <textarea matInput [(ngModel)]="data.descriptionDetaillee" rows="10" style="overflow-y: auto"  readonly="true"></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+
+    <button mat-flat-button mat-dialog-close style="margin-bottom: 10px;">Quitter</button>
+
+    <!-- Container : Partie Droite -->
+
+    <app-liste-partenaires-for-show [idEntreprise]=data.idEntreprise></app-liste-partenaires-for-show>
+
+    <app-liste-candidats-for-show [idEntreprise]=data.idEntreprise></app-liste-candidats-for-show>
 </div>

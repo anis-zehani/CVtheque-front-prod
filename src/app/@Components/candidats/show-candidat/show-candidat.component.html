@@ -1024,7 +1024,7 @@
                 </mat-form-field>    
             </div>
 
-            <ng-template #SINON_ENTREPRISE_SMAL_PUBLIQUEL>
+            <ng-template #SINON_ENTREPRISE_SMALL_PUBLIQUE>
                 <mat-form-field appearance="fill">
                     <mat-label>Entreprise actuelle</mat-label>
                     <input matInput value="OdixOdix" readonly="true" type="password">
@@ -1117,13 +1117,13 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Disponibilité</mat-label>
-                <div *ngIf="data.disponibiliteAutoFill;else SINON_DISPONIBILITE_SMALL_PUBLIQUE">
-                    <input matInput [(ngModel)]="data.disponibiliteAutoFill" readonly="true">
-                </div>
+                    <div *ngIf="data.disponibiliteAutoFill; else SINON_DISPO_SMALL_PUBLIQUE">
+                        <input matInput [(ngModel)]="data.disponibiliteAutoFill" readonly="true">
+                    </div>
 
-                <ng-template #SINON_DISPONIBILITE_SMALL_PUBLIQUE>
-                    <input matInput readonly="true">
-                </ng-template>
+                    <ng-template #SINON_DISPO_SMALL_PUBLIQUE>
+                        <input matInput readonly="true">
+                    </ng-template>
                 <mat-icon matSuffix>schedule</mat-icon>
             </mat-form-field>      
 
