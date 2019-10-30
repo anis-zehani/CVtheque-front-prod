@@ -1,9 +1,10 @@
+<!--Grands écrans-->
 <div class="container"
     fxLayout
-    fxLayout.xs="column"
+    fxLayout.xs="row"
     fxLayoutAlign="space-between stretch"
     fxLayoutGap="10px"
-    fxLayoutGap.xs="0">
+    fxLayoutGap.xs="0" fxHide.lt-md="true">
     
     <div fxFlex="20%" style="background-color: #222;color: white" fxLayout="column" fxLayoutAlign="start stretch">
             <div class="title-blanc" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
@@ -42,6 +43,70 @@
                                 <button class="toggleButtonFermer" mat-flat-button (click)="sidenav.toggle()">Fermer</button>
             
                                 <app-form-add-candidats (refreshTableEvent)="onRefreshTableEvent($event)" [inputSideNav]="sidenav"></app-form-add-candidats>
+                    </mat-sidenav>
+                </mat-sidenav-container> 
+            </div>
+            
+            <!-- Container : DataGrid -->
+            <div fxFlex="100%">
+            <!-- Visible sur grands écrans seulement -->
+            <div class="title" fxLayout="row" fxLayoutAlign="space-between stretch" fxHide.lt-md="true">
+                
+            </div>
+            
+            <!-- Visible sur petit écrans seulement -->
+            <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxHide.gt-sm="true">
+                
+            </div>
+            
+            <app-datagrid-candidats></app-datagrid-candidats>
+            
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!--Petits écrans-->
+<div fxLayout="column" class="container" fxLayoutAlign="start stretch" fxHide.gt-sm="true">
+    
+    <div style="background-color: #222;color: white" fxLayout="column" fxLayoutAlign="start stretch">
+            <div class="title-blanc" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
+                Gestion des candidats
+            </div>
+
+            <button class="toggleButton"  *ngIf="role === 'ROLE_ADMINISTRATEUR'" mat-flat-button (click)="sidenavSmall.toggle()" style="margin: 5px 15px 15px 15px">Nouveau candidat</button>
+
+            <div class="title-blanc" *ngIf="role === 'ROLE_PARTENAIRE'">
+                Recherche avancée
+            </div>
+            
+            <app-liste-technologies-for-search (listeTechnologiesForSearchEvent)="onListeTechnologiesForSearchEvent($event)"></app-liste-technologies-for-search>
+            
+            <div class="title-blanc">
+                Mes Top candidats
+            </div>
+            <app-liste-top-candidats></app-liste-top-candidats>
+    </div>
+
+    <div>
+        <div 
+            fxLayout
+            fxLayout.xs="row"
+            fxLayoutAlign="space-between stretch"
+            fxLayoutGap="10px"
+            fxLayoutGap.xs="0">
+     
+            <!-- Container : Formulaire -->
+            <div fxFlex="0%">
+                <mat-sidenav-container class="sidenav-container-small">
+                    <mat-sidenav #sidenavSmall mode="side" class="sidenav-content-small"
+                                [fixedInViewport]="false" [opened]="false" [fixedTopGap]="50"
+                                [fixedBottomGap]="50">
+            
+                                <button class="toggleButtonFermer" mat-flat-button (click)="sidenavSmall.toggle()">Fermer</button>
+            
+                                <app-form-add-candidats (refreshTableEvent)="onRefreshTableEvent($event)" [inputSideNav]="sidenavSmall"></app-form-add-candidats>
                     </mat-sidenav>
                 </mat-sidenav-container> 
             </div>

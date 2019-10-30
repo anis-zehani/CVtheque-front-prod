@@ -378,7 +378,7 @@
         </div>
 
         <!--Petits écrans-->
-        <div fxLayout="column" xLayoutAlign="space-between stretch" fxHide.gt-sm="true">
+        <div fxLayout="column" fxLayoutAlign="space-between stretch" fxHide.gt-sm="true">
             <div>
                 <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON1_SMALL">
                     <div mat-dialog-title style="font-weight: bold;text-decoration:underline">{{data.identite  | titlecase}} : {{data.posteOccupe}}</div>
@@ -1184,4 +1184,5 @@
         <button mat-flat-button mat-dialog-close style="margin-bottom: 20px;">Quitter</button>
         </div>
     </mat-tab>
+    
 </mat-tab-group>
