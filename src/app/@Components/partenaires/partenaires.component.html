@@ -57,22 +57,22 @@
         <div class="title-blanc">
             Gestion des partenaires
         </div>
-        <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()" matTooltip="Ajouter un nouveau partenaire" style="margin: 5px 15px 15px 15px">Nouveau partenaire</button>
+        <button class="toggleButton" mat-flat-button (click)="sidenavSmall.toggle()" matTooltip="Ajouter un nouveau partenaire" style="margin: 5px 15px 15px 15px">Nouveau partenaire</button>
     </div>
 
     <!-- Colonne Droite -->
 
         <!-- Container : Formulaire -->
             <mat-sidenav-container class="sidenav-container-small">
-                <mat-sidenav #sidenav mode="side" class="sidenav-content-small"
+                <mat-sidenav #sidenavSmall mode="side" class="sidenav-content-small"
                             [fixedInViewport]="false" [opened]="false" [fixedTopGap]="50"
                             [fixedBottomGap]="50">
-                            <button class="toggleButtonFermer" mat-flat-button (click)="sidenav.toggle()">Fermer</button>
+                            <button class="toggleButtonFermer" mat-flat-button (click)="sidenavSmall.toggle()">Fermer</button>
                             <div class="title">
                                 Ajouter un partenaire
                             </div>
                             
-                            <app-form-add-partenaires (refreshTableEvent)="onRefreshTableEvent($event)" [inputSideNav]="sidenav"></app-form-add-partenaires>
+                            <app-form-add-partenaires (refreshTableEvent)="onRefreshTableEvent($event)" [inputSideNav]="sidenavSmall"></app-form-add-partenaires>
                       
                 </mat-sidenav>
               </mat-sidenav-container>

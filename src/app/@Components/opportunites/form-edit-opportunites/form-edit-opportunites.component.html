@@ -5,7 +5,7 @@
      fxLayout.xs="row"
      fxLayoutAlign="space-between start"
      fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
+     fxLayoutGap.xs="0" fxHide.lt-md="true">
      
 <!-- Container : Partie Gauche -->
 <div fxFlex="70%"> 
@@ -110,3 +110,81 @@
 </div>
 
 <!--Petits écrans-->
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxHide.gt-sm="true">
+     
+<!-- Container : Partie Gauche -->
+
+    <mat-form-field appearance="outline">
+        <mat-label>Titre de l'opportunité</mat-label>
+        <input matInput [(ngModel)]="data.id" hidden>
+        <input matInput [(ngModel)]="data.titreOpportunite">
+        <mat-icon matSuffix>title</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>TJM</mat-label>
+        <input matInput [(ngModel)]="data.tjmOpportunite">
+        <mat-icon matSuffix>euro_symbol</mat-icon>
+    </mat-form-field> 
+
+    <div class="title-visibilite">
+        Visibilité de l'opportunité : 
+    </div>
+
+    <div *ngIf="data.visibiliteOpportunite === 'Public'; else notShowSmall">
+        <mat-radio-group appearance="outline" [(ngModel)]="data.visibiliteOpportunite" fxLayout="row" fxLayoutAlign="space-between stretch" style="margin-bottom: 15px;">
+            <mat-radio-button value="Public" matTooltip="Visible par tout le monde" [checked]="true">Publique  </mat-radio-button>
+            <mat-radio-button value="Private" matTooltip="Visible par moi uniquement">  Privée</mat-radio-button>
+        </mat-radio-group> 
+    </div>
+                        
+    <ng-template #notShowSmall>
+        <mat-radio-group appearance="outline" [(ngModel)]="data.visibiliteOpportunite" fxLayout="row" fxLayoutAlign="space-between stretch" style="margin-bottom: 15px;">
+            <mat-radio-button value="Public" matTooltip="Visible par tout le monde">Publique  </mat-radio-button>
+            <mat-radio-button value="Private" matTooltip="Visible par moi uniquement" [checked]="true">  Privée</mat-radio-button>
+        </mat-radio-group> 
+    </ng-template>
+
+    <!--Test si Partenaire est défini-->
+    <div *ngIf="data.responsableOpportunite;else SINONSMALL">
+        <app-liste-partenaires  *ngIf="role === 'ROLE_ADMINISTRATEUR'"
+            [partenaireId]="data.responsableOpportunite.id"
+            (partenaireIdEvent)="partenaireIdEventListner($event)">
+        </app-liste-partenaires>    
+    </div>
+    <ng-template #SINONSMALL>
+        <app-liste-partenaires  *ngIf="role === 'ROLE_ADMINISTRATEUR'"
+            (partenaireIdEvent)="partenaireIdEventListner($event)">
+        </app-liste-partenaires>   
+    </ng-template>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Date de démarrage</mat-label>
+        <input matInput [matDatepicker]="pickerSmall" [(ngModel)]="data.dateDemarrageSouhaitee">
+        <mat-datepicker-toggle matSuffix [for]="pickerSmall"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #pickerSmall></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Description détaillée</mat-label>
+        <textarea matInput [(ngModel)]="data.descriptionOpportunite" style="height: 80px;overflow-y: auto"></textarea>
+        <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+
+    
+    <button mat-flat-button [mat-dialog-close]="data" style="margin-bottom: 10px">Confirmer</button>
+
+    <button mat-stroked-button mat-dialog-close style="margin-bottom: 10px">Annuler</button>
+
+
+
+<!-- Container : Partie Droite -->
+
+    <app-liste-candidats-for-edit [idOpportunite]=data.id ></app-liste-candidats-for-edit>
+  
+    <app-liste-technologies-for-edit [selectedOptionsTechnologie]="data.listeTechnologies"></app-liste-technologies-for-edit>
+
+    <app-liste-certifications-for-edit [selectedOptionsCertification]="data.listeCertifications" ></app-liste-certifications-for-edit>
+
+</div>

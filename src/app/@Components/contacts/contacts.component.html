@@ -1,7 +1,7 @@
 <!--Grands écrans-->
 <div class="container"
     fxLayout
-    fxLayout.xs="column"
+    fxLayout.xs="row"
     fxLayoutAlign="space-between stretch"
     fxLayoutGap="10px"
     fxLayoutGap.xs="0" fxHide.lt-md="true">
@@ -60,7 +60,7 @@
         <div class="title-blanc">
             Gestion des contacts
         </div>
-        <button class="toggleButton" mat-flat-button (click)="sidenav.toggle()" matTooltip="Ajouter un nouveau contact" style="margin: 5px 15px 15px 15px">Nouveau contact</button>
+        <button class="toggleButton" mat-flat-button (click)="sidenavSmall.toggle()" matTooltip="Ajouter un nouveau contact" style="margin: 5px 15px 15px 15px">Nouveau contact</button>
     </div>
 
     
@@ -70,15 +70,15 @@
         <!-- Container : Formulaire -->
         <mat-sidenav-container class="sidenav-container-small">
             
-            <mat-sidenav #sidenav mode="side" class="sidenav-content-small"
+            <mat-sidenav #sidenavSmall mode="side" class="sidenav-content-small"
                             [fixedInViewport]="false" [opened]="false" [fixedTopGap]="50"
                             [fixedBottomGap]="50">
-                            <button class="toggleButtonFermer" mat-flat-button (click)="sidenav.toggle()">Fermer</button>
+                            <button class="toggleButtonFermer" mat-flat-button (click)="sidenavSmall.toggle()">Fermer</button>
                             <div class="title">
                                 Ajouter un contact
                             </div>
                             
-                            <app-form-add-contacts (refreshTableEvent)="onRefreshTableEvent($event)" [inputSideNav]="sidenav"></app-form-add-contacts>
+                            <app-form-add-contacts (refreshTableEvent)="onRefreshTableEvent($event)" [inputSideNav]="sidenavSmall"></app-form-add-contacts>
                       
             </mat-sidenav>
         </mat-sidenav-container>

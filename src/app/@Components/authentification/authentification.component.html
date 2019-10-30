@@ -23,8 +23,8 @@
         <div class="text-small-login">
             Utilisez votre compte Linkedin pour rejoindre la plateforme en un seul clic et vous n'aurez plus à vous rappeler d'un mot de passe supplémentaire.
         </div>
-        <div class="text-small-login-confidentiel" matTooltip="Nous utilisons uniquement : nom, prénom, email et photo de profil. Aucun accès à vos contacts ni aucune modification sur votre profil." >100% confidentiel 
-            <mat-icon matSuffix style="color: green;">verified_user</mat-icon>
+        <div class="text-small-login-confidentiel" matTooltip="Nous utilisons uniquement : nom, prénom, email et photo de profil. Aucun accès à vos contacts ni aucune modification sur votre profil." >
+            100% confidentiel <mat-icon matSuffix style="color: green;">verified_user</mat-icon>
         </div>
         <div fxLayout="column" fxLayoutAlign="start stretch" style="margin-top: 15px"> 
             <img src="assets/img/linkedin.png" (click)="authenticateWithLinkedIn()" class="pointer" style="height: 35px"/>
@@ -40,10 +40,10 @@
             Connectez-vous sur votre compte
         </div>
         <app-login ></app-login>
-        <!--<div class="text-small-login" style="margin-top: 100px">
-            Solution fournie par la société Odix <br>
-            Siret : 838 170 306 00016 - www.odix.fr
-        </div>-->
+        <div class="text-small-login" style="margin-top: 30px; text-align: center;">
+            Solution élaborée par la société Odix. <br>
+            https://www.odix.fr/
+        </div>
   </div>
   <div fxFlex="1%" class="container"></div>
 </div>
@@ -57,10 +57,10 @@
     <div class="text-small-login">
         Utilisez votre compte Linkedin pour rejoindre la plateforme en un seul clic et vous n'aurez plus à vous rappeler d'un mot de passe supplémentaire.
     </div>
-    <div class="text-small-login-confidentiel" matTooltip="Nous utilisons uniquement : nom, prénom, email et photo de profil. Aucun accès à vos contacts ni aucune modification sur votre profil." >100% confidentiel 
-        <mat-icon matSuffix style="color: green;">verified_user</mat-icon>
+    <div class="text-small-login-confidentiel" matTooltip="Nous utilisons uniquement : nom, prénom, email et photo de profil. Aucun accès à vos contacts ni aucune modification sur votre profil." >
+        100% confidentiel <mat-icon matSuffix style="color: green;">verified_user</mat-icon>
     </div>
-    <img src="assets/img/linkedin.png" style="margin-bottom: 20px; margin-top: 10px;height: 40px" (click)="authenticateWithLinkedIn()" class="pointer"/> 
+    <img src="assets/img/linkedin.png" style="margin: 10px 0 20px 0;height: 40px" (click)="authenticateWithLinkedIn()" class="pointer"/> 
     <mat-divider></mat-divider> 
     <div class="title-login" style="margin-top: 10px; text-align: center;color: rgb(39, 37, 37);">
         Ou bien
@@ -69,7 +69,12 @@
         Connectez-vous sur votre compte
     </div>
     <app-login></app-login>
-    
+
     <button mat-flat-button (click)="openDialogCreerCompteCandidat()" style="margin-bottom: 20px;margin-top: 20px;font-weight: 550;background-color: white; border-color: #f7c341; border-width: 1px; border-style: solid;">Nouveau candidat</button>  
     <button mat-flat-button (click)="openDialogCreerCompteRecruteur()" style="margin-bottom: 50px;font-weight: 550;background-color: white; border-color: #f7c341; border-width: 1px; border-style: solid;">Nouveau recruteur</button>
+
+    <div class="text-small-login" style="margin-top: 30px; text-align: center;">
+        Solution élaborée par la société Odix. <br>
+        https://www.odix.fr/
+    </div>
 </div>

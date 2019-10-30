@@ -24,7 +24,7 @@ STYLE : SMALL SCREENS
 .sidenav-container-small {
   position: absolute;
   background-color: white;
-  top: 10px;
+  top: 0;
   bottom: 0;
   left: 8;
   right: 5;

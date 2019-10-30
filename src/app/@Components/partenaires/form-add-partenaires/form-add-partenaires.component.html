@@ -95,10 +95,10 @@
    
       <div fxLayout="column" fxLayoutAlign="space-between center" > 
           <div class="image-upload" dir="ltr">
-              <label for="file-input">
+              <label for="file-input-small">
                   <mat-icon class="pointer">add_a_photo</mat-icon>
               </label>
-              <input id="file-input" type="file" style="display: none;" (change)="selectFile($event)">
+              <input id="file-input-small" type="file" style="display: none;" (change)="selectFile($event)">
           </div>
           <div class="file-upload" dir="rtl">{{namePhoto}}</div>
       </div>
