@@ -1,8 +1,10 @@
 <div class="title-xs-higher" fxLayout="row" fxLayoutAlign="space-between stretch" >
     Gestion des fichiers téléchargés
 </div>
-<div class="container">
-        <mat-form-field appearance="outline">
+
+<!-- Grands écrans -->
+<div class="container" fxHide.lt-md="true">
+              <mat-form-field appearance="outline">
                 <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
                 <mat-icon matSuffix >search</mat-icon>
               </mat-form-field>
@@ -10,7 +12,7 @@
               <table mat-table [dataSource]="listeFichiers" matSort>
               
                 <ng-container matColumnDef="nomFichier">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom Fichier</th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom du Fichier</th>
                   <td mat-cell *matCellDef="let element" width="55%">
                     <a href="{{storageUrl}}/{{element.urlFichier}}" target="_blank">
                         {{element.nomFichier}}
@@ -44,4 +46,54 @@
               </table>
               
               <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+</div>
+
+<!-- Petits écrans -->
+<div class="container" fxHide.gt-sm="true">
+    <mat-form-field appearance="outline">
+      <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
+      <mat-icon matSuffix >search</mat-icon>
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="listeFichiers" matSort>
+    
+      <ng-container matColumnDef="nomFichier">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom du Fichier</th>
+        <td mat-cell *matCellDef="let element" width="95%">
+          <a href="{{storageUrl}}/{{element.urlFichier}}" target="_blank">
+              <b class="label-datagrid">Fichier : </b>{{element.nomFichier}}
+          </a>
+          <br>
+              <b class="label-datagrid">Date de création : </b>{{element.dateCreationFichier}}
+          <br>
+              <b class="label-datagrid">Taille : </b>{{element.tailleFichier}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateCreationFichier">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" width="0%">
+              {{element.dateCreationFichier}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tailleFichier">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" width="0%">
+              {{element.tailleFichier}}
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="more">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" width="5%" class="pointer">
+          <button mat-menu-item (click)="openDialogDeleteFichier(element.nomFichier)" matTooltip="Supprimer le fichier" matTooltipPosition="right"><mat-icon>delete_forever</mat-icon></button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
 </div>
