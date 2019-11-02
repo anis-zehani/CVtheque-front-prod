@@ -60,7 +60,7 @@
     </div>
 </form>
   
-<!--Petits écrans-->
+<!--Petits écrans--> 
 <form [formGroup]="formRappel" (ngSubmit)="addRappelController()" fxHide.gt-sm="true">
 
     <mat-form-field appearance="outline">
@@ -111,9 +111,9 @@
         <mat-slide-toggle [checked]="false" formControlName="remindMe">Remind Me</mat-slide-toggle>
     </div>
 
-    <br>
     
     <button mat-flat-button (click)="save()" [disabled]="!formRappel.valid">Valider</button>
+    
     <button mat-stroked-button mat-dialog-close style="margin-top: 10px;margin-bottom: 20px;">Annuler</button>
 
 </form>

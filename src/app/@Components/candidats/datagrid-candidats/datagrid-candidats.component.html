@@ -1,4 +1,4 @@
-<!-- Visible sur grands écrans seulement -->
+<!--Grands écrans-->
 <div fxLayout
      fxLayout.xs="row"
      fxLayoutAlign="space-between center"
@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<!-- Visible sur petit écrans seulement -->
+<!--Petits écrans--> 
 <div fxLayout.xs="column"
      fxLayoutAlign="space-evenly stretch"
      fxHide.gt-sm="true">
@@ -49,226 +49,22 @@
 </div>
 
 
-<table mat-table [dataSource]="listeCandidats" matSort>
 
-  <ng-container matColumnDef="urlPhoto">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Candidat</th>
-    <td mat-cell *matCellDef="let element" width="15%" matTooltip="Consulter la fiche du candidat">
+<!--Grands écrans-->
+<table mat-table [dataSource]="listeCandidats" matSort fxHide.lt-md="true">
 
-
-      <div *ngIf="element.urlPhoto; else SINON_CANDIDAT">
-          <img src="{{element.urlPhoto}}" style="cursor: pointer"
-          (click)="openDialogShowCandidat(
-          element.id, 
-          element.identite, 
-          element.username,
-          element.password,
-          element.telephone, 
-          element.email, 
-          element.posteOccupe, 
-          element.descriptionDetaillee, 
-          element.urlPhoto, 
-          element.etatCandidat, 
-          element.entreprise,
-          
-          element.salaireActuel, 
-          element.pretentionSalariale,
-          element.situationFamiliale,
-
-          element.nombreEnfants, 
-          element.adresse,
-          element.dateDeNaissance, 
-          element.niveauEnFrancais,
-          element.niveauEnAnglais,
-          element.noteGlobale, 
-          element.disponibilite,
-          element.dateDemarrageCarriere, 
-          element.dateEpuisementPasseport,
-
-          element.diplome, 
-          element.visa,
-          element.curriculum,
-          
-          element.listeTechnologies,
-          element.listeOpportunites,
-          element.listeCertifications,
-          element.telephoneAutoFill,
-          element.emailAutoFill,
-          element.posteOccupeAutoFill,
-          element.salaireActuelAutoFill,
-          element.pretentionSalarialeAutoFill,
-          element.dateDeNaissanceAutoFill,
-          element.entrepriseAutoFill,
-          element.urlPhotoAutoFill,
-          element.disponibiliteAutoFill,
-          element.dateDemarrageCarriereAutoFill,
-          element.dateEpuisementPasseportAutoFill,
-          element.situationFamilialeAutoFill,
-          element.nombreEnfantsAutoFill,
-          element.adresseAutoFill,
-          element.descriptionDetailleeAutoFill
-
-          )"
-          >
-      </div> 
-      <ng-template #SINON_CANDIDAT>
-          <img src="/assets/img/candidat.png" style="cursor: pointer"
-          (click)="openDialogShowCandidat(
-          element.id, 
-          element.identite, 
-          element.username,
-          element.password,
-          element.telephone, 
-          element.email, 
-          element.posteOccupe, 
-          element.descriptionDetaillee, 
-          element.urlPhoto, 
-          element.etatCandidat, 
-          element.entreprise,
-          
-          element.salaireActuel, 
-          element.pretentionSalariale,
-          element.situationFamiliale,
-
-          element.nombreEnfants, 
-          element.adresse,
-          element.dateDeNaissance, 
-          element.niveauEnFrancais,
-          element.niveauEnAnglais,
-          element.noteGlobale, 
-          element.disponibilite,
-          element.dateDemarrageCarriere, 
-          element.dateEpuisementPasseport,
-
-          element.diplome, 
-          element.visa,
-          element.curriculum,
-          
-          element.listeTechnologies,
-          element.listeOpportunites,
-          element.listeCertifications,
-          element.telephoneAutoFill,
-          element.emailAutoFill,
-          element.posteOccupeAutoFill,
-          element.salaireActuelAutoFill,
-          element.pretentionSalarialeAutoFill,
-          element.dateDeNaissanceAutoFill,
-          element.entrepriseAutoFill,
-          element.urlPhotoAutoFill,
-          element.disponibiliteAutoFill,
-          element.dateDemarrageCarriereAutoFill,
-          element.dateEpuisementPasseportAutoFill,
-          element.situationFamilialeAutoFill,
-          element.nombreEnfantsAutoFill,
-          element.adresseAutoFill,
-          element.descriptionDetailleeAutoFill
-
-          )"
-          >
-      </ng-template>
-
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="candidat">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Coordonnées</th>
-    <td mat-cell *matCellDef="let element" width="30%">
-      <b class="label-datagrid">ID : </b>{{element.id}}<br>
-      <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON1">
-          <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>
-          <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
-          <b class="label-datagrid">Email : </b>{{element.email}}<br>
-          <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
-          <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel}}<br>
-      </div>
-      <ng-template #SINON1>
-          <b class="label-datagrid">Identité : </b>{{element.identite | hideFullPhrase}}<br>
-          <b class="label-datagrid">Tél : </b>{{element.telephone  | hideFullWord}}<br>
-          <b class="label-datagrid">Email : </b>{{element.email  | hideFullWord}}<br>
-          <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
-          <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel | hideFullWord}}<br>
-      </ng-template>
-      
-      <div style="display: flex;justify-content: flex-start;">
-          <div *ngIf="element.curriculum.urlCvOdix">
-            <b class="label-datagrid">CV Odix : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOdix}}" target="_blank" style="text-decoration: none">Afficher  </a>
-          </div>
-
-          <div *ngIf="element.curriculum.urlCvOriginal && role === 'ROLE_ADMINISTRATEUR'">
-            <b class="label-datagrid">  - CV Original : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOriginal}}" target="_blank"  style="text-decoration: none">Afficher</a>
-          </div>
-      </div>
-      
-      
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="details">
-    <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
-    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="45%">
-
-      <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON2">
-            <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
-      </div>
-      <ng-template #SINON2>
-            <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale | hideFullWord}}<br>
-      </ng-template>
-
-      <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
-      
-      <div *ngIf="element.entreprise; else SINON_ENTREPRISE">
-            <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
-      </div>
-      <ng-template #SINON_ENTREPRISE>
-            <b class="label-datagrid">Entreprise : </b>N.D<br>
-      </ng-template>
-
-      <div *ngIf="element.disponibilite != 'Non_Mentionee'; else SINON3">
-          <b class="label-datagrid">Disponibilité : </b>{{element.disponibilite}}<br>
-      </div>
-      <ng-template #SINON3>
-          <b class="label-datagrid">Disponibilité : </b>N.D<br>
-      </ng-template>
-
-      <div *ngIf="element.situationFamiliale != 'Non_Mentionee'; else SINON4">
-          <b class="label-datagrid">Situation familiale : </b>{{element.situationFamiliale}}<br>
-      </div>
-      <ng-template #SINON4>
-          <b class="label-datagrid">Situation familiale : </b>N.D<br>
-      </ng-template>
-      
-      <div class="details-datagrid">
-          <b class="label-datagrid">Détails : </b>{{element.descriptionDetaillee}}<br>
-      </div>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="etat" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
-    <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
-    <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%">
-
-        <div *ngIf="element.etatCandidat === 'True'; else notShow">
-            <mat-slide-toggle (change)="editEtatCandidat(element.id, element.etatCandidat)" [checked]="true" matTooltip="Désactiver le candidat"></mat-slide-toggle>
-        </div>
-        
-        <ng-template #notShow>
-            <mat-slide-toggle (change)="editEtatCandidat(element.id, element.etatCandidat)" [checked]="false" matTooltip="Activer le candidat"></mat-slide-toggle>
-        </ng-template>
-        
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="more" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-      <td mat-cell *matCellDef="let element" class="pointer" width="5%">
-        <a mat-button [matMenuTriggerFor]="menuCandidats" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
-          <mat-menu #menuCandidats="matMenu">
-            <button mat-menu-item 
-            (click)="openDialogEditCandidat(
+    <ng-container matColumnDef="urlPhoto">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Candidat</th>
+      <td mat-cell *matCellDef="let element" width="15%" matTooltip="Consulter la fiche du candidat">
+  
+  
+        <div *ngIf="element.urlPhoto; else SINON_CANDIDAT">
+            <img src="{{element.urlPhoto}}" style="cursor: pointer"
+            (click)="openDialogShowCandidat(
             element.id, 
-            element.identite,
+            element.identite, 
             element.username,
-            element.password,  
+            element.password,
             element.telephone, 
             element.email, 
             element.posteOccupe, 
@@ -280,7 +76,7 @@
             element.salaireActuel, 
             element.pretentionSalariale,
             element.situationFamiliale,
-      
+  
             element.nombreEnfants, 
             element.adresse,
             element.dateDeNaissance, 
@@ -290,24 +86,498 @@
             element.disponibilite,
             element.dateDemarrageCarriere, 
             element.dateEpuisementPasseport,
-      
+  
             element.diplome, 
             element.visa,
             element.curriculum,
             
             element.listeTechnologies,
             element.listeOpportunites,
-            element.listeCertifications
-            )" 
-            matTooltip="Modifier le candidat" matTooltipPosition="right">Modifier le candidat</button>
+            element.listeCertifications,
+            element.telephoneAutoFill,
+            element.emailAutoFill,
+            element.posteOccupeAutoFill,
+            element.salaireActuelAutoFill,
+            element.pretentionSalarialeAutoFill,
+            element.dateDeNaissanceAutoFill,
+            element.entrepriseAutoFill,
+            element.urlPhotoAutoFill,
+            element.disponibiliteAutoFill,
+            element.dateDemarrageCarriereAutoFill,
+            element.dateEpuisementPasseportAutoFill,
+            element.situationFamilialeAutoFill,
+            element.nombreEnfantsAutoFill,
+            element.adresseAutoFill,
+            element.descriptionDetailleeAutoFill
+  
+            )"
+            >
+        </div> 
+        <ng-template #SINON_CANDIDAT>
+            <img src="/assets/img/candidat.png" style="cursor: pointer"
+            (click)="openDialogShowCandidat(
+            element.id, 
+            element.identite, 
+            element.username,
+            element.password,
+            element.telephone, 
+            element.email, 
+            element.posteOccupe, 
+            element.descriptionDetaillee, 
+            element.urlPhoto, 
+            element.etatCandidat, 
+            element.entreprise,
             
-            <button mat-menu-item (click)="openDialogDeleteCandidat(element.id)" matTooltip="Supprimer le candidat" matTooltipPosition="right">Supprimer le candidat</button>
-          </mat-menu>
+            element.salaireActuel, 
+            element.pretentionSalariale,
+            element.situationFamiliale,
+  
+            element.nombreEnfants, 
+            element.adresse,
+            element.dateDeNaissance, 
+            element.niveauEnFrancais,
+            element.niveauEnAnglais,
+            element.noteGlobale, 
+            element.disponibilite,
+            element.dateDemarrageCarriere, 
+            element.dateEpuisementPasseport,
+  
+            element.diplome, 
+            element.visa,
+            element.curriculum,
+            
+            element.listeTechnologies,
+            element.listeOpportunites,
+            element.listeCertifications,
+            element.telephoneAutoFill,
+            element.emailAutoFill,
+            element.posteOccupeAutoFill,
+            element.salaireActuelAutoFill,
+            element.pretentionSalarialeAutoFill,
+            element.dateDeNaissanceAutoFill,
+            element.entrepriseAutoFill,
+            element.urlPhotoAutoFill,
+            element.disponibiliteAutoFill,
+            element.dateDemarrageCarriereAutoFill,
+            element.dateEpuisementPasseportAutoFill,
+            element.situationFamilialeAutoFill,
+            element.nombreEnfantsAutoFill,
+            element.adresseAutoFill,
+            element.descriptionDetailleeAutoFill
+  
+            )"
+            >
+        </ng-template>
+  
       </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </ng-container>
+  
+    <ng-container matColumnDef="candidat">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Coordonnées</th>
+      <td mat-cell *matCellDef="let element" width="30%">
+        <!--<b class="label-datagrid">ID : </b>{{element.id}}<br>-->
+        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON1">
+            <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>
+            <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
+            <b class="label-datagrid">Email : </b>{{element.email}}<br>
+            <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
+            <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel}}<br>
+        </div>
+        <ng-template #SINON1>
+            <b class="label-datagrid">Identité : </b>{{element.identite | hideFullPhrase}}<br>
+            <b class="label-datagrid">Tél : </b>{{element.telephone  | hideFullWord}}<br>
+            <b class="label-datagrid">Email : </b>{{element.email  | hideFullWord}}<br>
+            <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
+            <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel | hideFullWord}}<br>
+        </ng-template>
+        
+        <div style="display: flex;justify-content: flex-start;">
+            <div *ngIf="element.curriculum.urlCvOdix">
+              <b class="label-datagrid">CV Odix : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOdix}}" target="_blank" style="text-decoration: none">Afficher  </a>
+            </div>
+  
+            <div *ngIf="element.curriculum.urlCvOriginal && role === 'ROLE_ADMINISTRATEUR'">
+              <b class="label-datagrid">  - CV Original : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOriginal}}" target="_blank"  style="text-decoration: none">Afficher</a>
+            </div>
+        </div>
+        
+        
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="details">
+      <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
+      <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="45%">
+  
+        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON2">
+              <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
+        </div>
+        <ng-template #SINON2>
+              <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale | hideFullWord}}<br>
+        </ng-template>
+  
+        <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
+        
+        <div *ngIf="element.entreprise; else SINON_ENTREPRISE">
+              <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
+        </div>
+        <ng-template #SINON_ENTREPRISE>
+              <b class="label-datagrid">Entreprise : </b>N.D<br>
+        </ng-template>
+  
+        <div *ngIf="element.disponibilite != 'Non_Mentionee'; else SINON3">
+            <b class="label-datagrid">Disponibilité : </b>{{element.disponibilite}}<br>
+        </div>
+        <ng-template #SINON3>
+            <b class="label-datagrid">Disponibilité : </b>N.D<br>
+        </ng-template>
+  
+        <div *ngIf="element.situationFamiliale != 'Non_Mentionee'; else SINON4">
+            <b class="label-datagrid">Situation familiale : </b>{{element.situationFamiliale}}<br>
+        </div>
+        <ng-template #SINON4>
+            <b class="label-datagrid">Situation familiale : </b>N.D<br>
+        </ng-template>
+        
+        <div class="details-datagrid">
+            <b class="label-datagrid">Détails : </b>{{element.descriptionDetaillee}}<br>
+        </div>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="etat" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
+      <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
+      <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%">
+  
+          <div *ngIf="element.etatCandidat === 'True'; else notShow">
+              <mat-slide-toggle (change)="editEtatCandidat(element.id, element.etatCandidat)" [checked]="true" matTooltip="Désactiver le candidat"></mat-slide-toggle>
+          </div>
+          
+          <ng-template #notShow>
+              <mat-slide-toggle (change)="editEtatCandidat(element.id, element.etatCandidat)" [checked]="false" matTooltip="Activer le candidat"></mat-slide-toggle>
+          </ng-template>
+          
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="more" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element" class="pointer" width="5%">
+          <a mat-button [matMenuTriggerFor]="menuCandidats" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+            <mat-menu #menuCandidats="matMenu">
+              <button mat-menu-item 
+              (click)="openDialogEditCandidat(
+              element.id, 
+              element.identite,
+              element.username,
+              element.password,  
+              element.telephone, 
+              element.email, 
+              element.posteOccupe, 
+              element.descriptionDetaillee, 
+              element.urlPhoto, 
+              element.etatCandidat, 
+              element.entreprise,
+              
+              element.salaireActuel, 
+              element.pretentionSalariale,
+              element.situationFamiliale,
+        
+              element.nombreEnfants, 
+              element.adresse,
+              element.dateDeNaissance, 
+              element.niveauEnFrancais,
+              element.niveauEnAnglais,
+              element.noteGlobale, 
+              element.disponibilite,
+              element.dateDemarrageCarriere, 
+              element.dateEpuisementPasseport,
+        
+              element.diplome, 
+              element.visa,
+              element.curriculum,
+              
+              element.listeTechnologies,
+              element.listeOpportunites,
+              element.listeCertifications
+              )" 
+              matTooltip="Modifier le candidat" matTooltipPosition="right">Modifier le candidat</button>
+              
+              <button mat-menu-item (click)="openDialogDeleteCandidat(element.id)" matTooltip="Supprimer le candidat" matTooltipPosition="right">Supprimer le candidat</button>
+            </mat-menu>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
+
+<!--Petits écrans--> 
+<div style="max-width: 360px;overflow-x: scroll;display: flex;">
+<table mat-table [dataSource]="listeCandidats" matSort fxHide.gt-sm="true">
+
+    <ng-container matColumnDef="urlPhoto">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Candidat</th>
+      <td mat-cell *matCellDef="let element" width="10%" matTooltip="Consulter la fiche du candidat">
+  
+  
+        <div *ngIf="element.urlPhoto; else SINON_CANDIDAT_SMALL">
+            <img src="{{element.urlPhoto}}" style="cursor: pointer;height: 50px;width: 50px;"
+            (click)="openDialogShowCandidat(
+            element.id, 
+            element.identite, 
+            element.username,
+            element.password,
+            element.telephone, 
+            element.email, 
+            element.posteOccupe, 
+            element.descriptionDetaillee, 
+            element.urlPhoto, 
+            element.etatCandidat, 
+            element.entreprise,
+            
+            element.salaireActuel, 
+            element.pretentionSalariale,
+            element.situationFamiliale,
+  
+            element.nombreEnfants, 
+            element.adresse,
+            element.dateDeNaissance, 
+            element.niveauEnFrancais,
+            element.niveauEnAnglais,
+            element.noteGlobale, 
+            element.disponibilite,
+            element.dateDemarrageCarriere, 
+            element.dateEpuisementPasseport,
+  
+            element.diplome, 
+            element.visa,
+            element.curriculum,
+            
+            element.listeTechnologies,
+            element.listeOpportunites,
+            element.listeCertifications,
+            element.telephoneAutoFill,
+            element.emailAutoFill,
+            element.posteOccupeAutoFill,
+            element.salaireActuelAutoFill,
+            element.pretentionSalarialeAutoFill,
+            element.dateDeNaissanceAutoFill,
+            element.entrepriseAutoFill,
+            element.urlPhotoAutoFill,
+            element.disponibiliteAutoFill,
+            element.dateDemarrageCarriereAutoFill,
+            element.dateEpuisementPasseportAutoFill,
+            element.situationFamilialeAutoFill,
+            element.nombreEnfantsAutoFill,
+            element.adresseAutoFill,
+            element.descriptionDetailleeAutoFill
+  
+            )"
+            >
+        </div> 
+        <ng-template #SINON_CANDIDAT_SMALL>
+            <img src="/assets/img/candidat.png" style="cursor: pointer;height: 50px;width: 50px;"
+            (click)="openDialogShowCandidat(
+            element.id, 
+            element.identite, 
+            element.username,
+            element.password,
+            element.telephone, 
+            element.email, 
+            element.posteOccupe, 
+            element.descriptionDetaillee, 
+            element.urlPhoto, 
+            element.etatCandidat, 
+            element.entreprise,
+            
+            element.salaireActuel, 
+            element.pretentionSalariale,
+            element.situationFamiliale,
+  
+            element.nombreEnfants, 
+            element.adresse,
+            element.dateDeNaissance, 
+            element.niveauEnFrancais,
+            element.niveauEnAnglais,
+            element.noteGlobale, 
+            element.disponibilite,
+            element.dateDemarrageCarriere, 
+            element.dateEpuisementPasseport,
+  
+            element.diplome, 
+            element.visa,
+            element.curriculum,
+            
+            element.listeTechnologies,
+            element.listeOpportunites,
+            element.listeCertifications,
+            element.telephoneAutoFill,
+            element.emailAutoFill,
+            element.posteOccupeAutoFill,
+            element.salaireActuelAutoFill,
+            element.pretentionSalarialeAutoFill,
+            element.dateDeNaissanceAutoFill,
+            element.entrepriseAutoFill,
+            element.urlPhotoAutoFill,
+            element.disponibiliteAutoFill,
+            element.dateDemarrageCarriereAutoFill,
+            element.dateEpuisementPasseportAutoFill,
+            element.situationFamilialeAutoFill,
+            element.nombreEnfantsAutoFill,
+            element.adresseAutoFill,
+            element.descriptionDetailleeAutoFill
+  
+            )"
+            >
+        </ng-template>
+  
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="candidat">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Coordonnées</th>
+      <td mat-cell *matCellDef="let element" width="35%">
+        <!--<b class="label-datagrid">ID : </b>{{element.id}}<br>-->
+        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON1_SMALL">
+            <b class="label-datagrid">Identité : </b>{{element.identite | titlecase}}<br>
+            <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
+            <b class="label-datagrid">Email : </b>{{element.email}}<br>
+            <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
+            <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel}}<br>
+        </div>
+        <ng-template #SINON1_SMALL>
+            <b class="label-datagrid">Identité : </b>{{element.identite | hideFullPhrase}}<br>
+            <b class="label-datagrid">Tél : </b>{{element.telephone  | hideFullWord}}<br>
+            <b class="label-datagrid">Email : </b>{{element.email  | hideFullWord}}<br>
+            <b class="label-datagrid">Poste : </b>{{element.posteOccupe | titlecase}}<br>
+            <b class="label-datagrid">Salaire actuel : </b>{{element.salaireActuel | hideFullWord}}<br>
+        </ng-template>
+        
+        <div style="display: flex;justify-content: flex-start;">
+            <div *ngIf="element.curriculum.urlCvOdix">
+              <b class="label-datagrid">CV Odix : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOdix}}" target="_blank" style="text-decoration: none">Afficher</a>
+            </div>
+  
+            <div *ngIf="element.curriculum.urlCvOriginal && role === 'ROLE_ADMINISTRATEUR'">
+              <b class="label-datagrid">  - CV Original : </b><a href="{{storageUrl}}{{element.curriculum.urlCvOriginal}}" target="_blank"  style="text-decoration: none">Afficher</a>
+            </div>
+        </div>
+        
+        
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="details">
+      <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
+      <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="45%">
+  
+        <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else SINON2_SMALL">
+              <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale}}<br>
+        </div>
+        <ng-template #SINON2_SMALL>
+              <b class="label-datagrid">Prétention salariale : </b>{{element.pretentionSalariale | hideFullWord}}<br>
+        </ng-template>
+  
+        <b class="label-datagrid">Date de naissance : </b>{{ element.dateDeNaissance | date: 'dd-MM-yyyy' }}<br>
+        
+        <div *ngIf="element.entreprise; else SINON_ENTREPRISE">
+              <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
+        </div>
+        <ng-template #SINON_ENTREPRISE>
+              <b class="label-datagrid">Entreprise : </b>N.D<br>
+        </ng-template>
+  
+        <div *ngIf="element.disponibilite != 'Non_Mentionee'; else SINON3">
+            <b class="label-datagrid">Disponibilité : </b>{{element.disponibilite}}<br>
+        </div>
+        <ng-template #SINON3>
+            <b class="label-datagrid">Disponibilité : </b>N.D<br>
+        </ng-template>
+  
+        <div *ngIf="element.situationFamiliale != 'Non_Mentionee'; else SINON4">
+            <b class="label-datagrid">Situation familiale : </b>{{element.situationFamiliale}}<br>
+        </div>
+        <ng-template #SINON4>
+            <b class="label-datagrid">Situation familiale : </b>N.D<br>
+        </ng-template>
+        
+        <div class="details-datagrid">
+            <b class="label-datagrid">Détails : </b>{{element.descriptionDetaillee}}<br>
+        </div>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="etat" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
+      <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
+      <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%">
+  
+          <div *ngIf="element.etatCandidat === 'True'; else notShow_Small">
+              <mat-slide-toggle (change)="editEtatCandidat(element.id, element.etatCandidat)" [checked]="true" matTooltip="Désactiver le candidat"></mat-slide-toggle>
+          </div>
+          
+          <ng-template #notShow_Small>
+              <mat-slide-toggle (change)="editEtatCandidat(element.id, element.etatCandidat)" [checked]="false" matTooltip="Activer le candidat"></mat-slide-toggle>
+          </ng-template>
+          
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="more" *ngIf="role === 'ROLE_ADMINISTRATEUR'">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element" class="pointer" width="5%">
+          <a mat-button [matMenuTriggerFor]="menuCandidats" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+            <mat-menu #menuCandidats="matMenu">
+              <button mat-menu-item 
+              (click)="openDialogEditCandidat(
+              element.id, 
+              element.identite,
+              element.username,
+              element.password,  
+              element.telephone, 
+              element.email, 
+              element.posteOccupe, 
+              element.descriptionDetaillee, 
+              element.urlPhoto, 
+              element.etatCandidat, 
+              element.entreprise,
+              
+              element.salaireActuel, 
+              element.pretentionSalariale,
+              element.situationFamiliale,
+        
+              element.nombreEnfants, 
+              element.adresse,
+              element.dateDeNaissance, 
+              element.niveauEnFrancais,
+              element.niveauEnAnglais,
+              element.noteGlobale, 
+              element.disponibilite,
+              element.dateDemarrageCarriere, 
+              element.dateEpuisementPasseport,
+        
+              element.diplome, 
+              element.visa,
+              element.curriculum,
+              
+              element.listeTechnologies,
+              element.listeOpportunites,
+              element.listeCertifications
+              )" 
+              matTooltip="Modifier le candidat" matTooltipPosition="right">Modifier le candidat</button>
+              
+              <button mat-menu-item (click)="openDialogDeleteCandidat(element.id)" matTooltip="Supprimer le candidat" matTooltipPosition="right">Supprimer le candidat</button>
+            </mat-menu>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+</div>
+
+
 <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+

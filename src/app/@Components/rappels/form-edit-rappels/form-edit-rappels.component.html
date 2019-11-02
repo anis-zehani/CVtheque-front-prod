@@ -1,5 +1,7 @@
 <h2 mat-dialog-title>Modifier le rappel</h2>
 
+<!--Grands écrans-->
+<div fxHide.lt-md="true">
     <mat-form-field appearance="outline">
         <mat-label>Détails du rappel</mat-label>
         <input matInput [(ngModel)]="data.id" hidden>
@@ -75,4 +77,82 @@
         <button mat-flat-button [mat-dialog-close]="data" style="width: 25%;margin-right: 5%">Valider</button>
         <button mat-stroked-button mat-dialog-close style="width: 25%">Annuler</button>
     </div>
+
+</div>
+
+<!--Petits écrans--> 
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxHide.gt-sm="true">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Détails du rappel</mat-label>
+        <input matInput [(ngModel)]="data.id" hidden>
+        <textarea matInput [(ngModel)]="data.detailsRappel" rows="4"></textarea>
+        <mat-icon matSuffix>add_circle</mat-icon>
+    </mat-form-field>
+
+
+    <!--Test si Projet est défini-->
+    <div *ngIf="data.projet;else SINON">
+                    <app-liste-deroulante-projets
+                        [projetId]="data.projet.id"
+                        (projetIdEvent)="projetIdEventListner($event)">
+                    </app-liste-deroulante-projets>
+    </div>
+    <ng-template #SINON>
+                    <app-liste-deroulante-projets
+                        (projetIdEvent)="projetIdEventListner($event)">
+                    </app-liste-deroulante-projets> 
+    </ng-template>
+
+    <mat-form-field appearance="outline">
+                    <mat-label>Priorité</mat-label>
+                    <mat-select [(ngModel)]="data.priorite">
+                        <mat-option value="Haute">Haute</mat-option>
+                        <mat-option value="Normale">Normale</mat-option>
+                        <mat-option value="Basse">Basse</mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>priority_high</mat-icon>
+    </mat-form-field> 
+   
+
+
+    <mat-form-field appearance="outline">
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]="pickerSmall" [(ngModel)]="data.dateEcheance">
+                    <mat-datepicker-toggle matSuffix [for]="pickerSmall"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #pickerSmall></mat-datepicker>
+    </mat-form-field>
+
+
+    <div> 
+        <div>
+            <label for="urlFichier">
+                <mat-icon class="pointer">attachment</mat-icon>
+            </label>
+            <input id="urlFichier" type="file" style="display:none;" (change)="selectFile($event, data.id)">
+        
+        </div>
+        <div class="file-upload" dir="ltr">{{namePJ}}</div>
+        
+        <div *ngIf="data.urlFichier"><!--Affiche uniquement le nom du ficier sans arborescence dossier-->
+            <a href="{{storageUrl}}{{data.urlFichier}}" target="_blank">{{data.nomFichier | titlecase}}</a>
+        </div>
+       
+        <div *ngIf="data.remindMe === true ; else notShow"> <!--Compare 2 booleans : so without ''-->
+            <mat-slide-toggle [checked]="true" (change)="remindMe($event)">Remind Me</mat-slide-toggle>
+        </div>
+        
+        <ng-template #notShow>
+            <mat-slide-toggle [checked]="false" (change)="remindMe($event)">Remind Me</mat-slide-toggle>
+        </ng-template>
+
+    </div>
+
+  
+
+    <button mat-flat-button [mat-dialog-close]="data" style="margin-top: 10px;">Valider</button>
+    
+    <button mat-stroked-button mat-dialog-close style="margin-top: 10px;margin-bottom: 20px;">Annuler</button>
+
+</div>
     

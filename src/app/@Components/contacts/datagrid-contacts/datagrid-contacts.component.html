@@ -4,7 +4,8 @@
     <mat-icon matSuffix >search</mat-icon>
   </mat-form-field>
 
-<table mat-table [dataSource]="listeContacts" matSort>
+<!--Grands écrans-->
+<table mat-table [dataSource]="listeContacts" matSort fxHide.lt-md="true">
 
   <ng-container matColumnDef="urlPhoto">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
@@ -65,6 +66,72 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+
+<!--Petits écrans--> 
+<div style="max-width: 360px;overflow-x: scroll;display: flex;">
+<table mat-table [dataSource]="listeContacts" matSort fxHide.gt-sm="true">
+
+    <ng-container matColumnDef="urlPhoto">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
+      <td mat-cell *matCellDef="let element" width="10%" matTooltip="Consulter les détails du contact">
+  
+          <div *ngIf="element.urlPhoto;else SINON_CONTACT_SMALL">
+            <img src="{{storageUrl}}{{element.urlPhoto}}" style="cursor: pointer;height: 50px;width: 50px;"
+            (click)="openDialogShowContact(element.id, element.identite, element.telephone, element.email, element.posteOccupe, element.descriptionDetaillee, element.urlPhoto, element.entreprise)"
+            >
+          </div>
+          <ng-template #SINON_CONTACT_SMALL>
+            <img src="/assets/img/contact.png" style="cursor: pointer;height: 50px;width: 50px;"
+            (click)="openDialogShowContact(element.id, element.identite, element.telephone, element.email, element.posteOccupe, element.descriptionDetaillee, element.urlPhoto, element.entreprise)"
+            >
+          </ng-template>
+          
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="contact">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Coordonnées</th>
+      <td mat-cell *matCellDef="let element" width="35%">
+        <b class="label-datagrid">Identité : </b>{{element.identite  | titlecase}}<br>
+        <b class="label-datagrid">Tél : </b>{{element.telephone}}<br>
+        <b class="label-datagrid">Email : </b>{{element.email}}<br>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="details">
+      <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
+      <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="50%">
+        <b class="label-datagrid">Poste : </b>{{element.posteOccupe}}<br>
+        <div *ngIf="element.entreprise; else SINON_SMALL">
+          <b class="label-datagrid">Entreprise : </b>{{element.entreprise.nomEntreprise}}<br>
+        </div>
+        <ng-template #SINON_SMALL>
+            <b class="label-datagrid">Entreprise : </b>N.D<br>
+        </ng-template>
+        <div class="details-datagrid">
+          <b class="label-datagrid">Détails : </b>{{element.descriptionDetaillee}}
+        </div>
+    </td>
+      
+    </ng-container>
+  
+    <ng-container matColumnDef="more">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let element" class="pointer" width="5%">
+        <a mat-button [matMenuTriggerFor]="menuContacts" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+          <mat-menu #menuContacts="matMenu">
+            <button mat-menu-item (click)="openDialogEditContact(element.id, element.identite, element.telephone, element.email, element.posteOccupe, element.descriptionDetaillee, element.urlPhoto, element.entreprise)" matTooltip="Modifier le contact" matTooltipPosition="right">Modifier le contact</button>
+      
+            <button mat-menu-item (click)="openDialogDeleteContact(element.id)" matTooltip="Supprimer le contact" matTooltipPosition="right">Supprimer le contact</button>
+          </mat-menu> 
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
 
 <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
 </div>

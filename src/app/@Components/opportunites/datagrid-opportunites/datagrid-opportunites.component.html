@@ -1,4 +1,4 @@
-<!-- Visible sur grands écrans seulement -->
+<!--Grands écrans-->
 <div  fxLayout
       fxLayout.xs="row"
       fxLayoutAlign="space-between center"
@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<!-- Visible sur petit écrans seulement -->
+<!--Petits écrans--> 
 <div  fxLayout
       fxLayout.xs="column"
       fxLayoutAlign="space-evenly stretch"
@@ -49,8 +49,8 @@
     </div>
 </div>
 
-<!--<table mat-table [dataSource]="listeOpportunites" class="mat-elevation-z2" matSort>-->
-<table mat-table [dataSource]="listeOpportunites" matSort>
+<!--Grands écrans-->
+<table mat-table [dataSource]="listeOpportunites" matSort fxHide.lt-md="true">
   <ng-container matColumnDef="responsableOpportunite">
     <th mat-header-cell *matHeaderCellDef >Responsable</th>
     <td mat-cell *matCellDef="let element" width="15%" matTooltip="Consulter les détails de l'opportunité">
@@ -194,5 +194,153 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<!--Petits écrans--> 
+<div style="max-width: 360px;overflow-x: scroll;display: flex;">
+<table mat-table [dataSource]="listeOpportunites" matSort fxHide.gt-sm="true">
+    <ng-container matColumnDef="responsableOpportunite">
+      <th mat-header-cell *matHeaderCellDef >Responsable</th>
+      <td mat-cell *matCellDef="let element" width="10%" matTooltip="Consulter les détails de l'opportunité">
+  
+          <div *ngIf="element.responsableOpportunite; else SINON_OPPORTUNITE_SMALL">
+            
+              <div *ngIf="element.responsableOpportunite.urlPhoto; else SINON_OPPORTUNITE_INSIDE_SMALL">
+                  <img src="{{storageUrl}}{{element.responsableOpportunite.urlPhoto}}" style="cursor: pointer;height: 50px;width: 50px;"
+                  (click)="openDialogShowOpportunite(element.id, element.titreOpportunite, element.descriptionOpportunite, element.dateAjout, element.dateDemarrageSouhaitee, element.tjmOpportunite, element.etatOpportunite, element.visibiliteOpportunite, element.responsableOpportunite, element.listeTechnologies, element.listeCertifications)"
+                  >
+              </div> 
+              <ng-template #SINON_OPPORTUNITE_INSIDE_SMALL>
+                  <img src="/assets/img/opportunite.png" style="cursor: pointer;height: 50px;width: 50px;"
+                  (click)="openDialogShowOpportunite(element.id, element.titreOpportunite, element.descriptionOpportunite, element.dateAjout, element.dateDemarrageSouhaitee, element.tjmOpportunite, element.etatOpportunite, element.visibiliteOpportunite, element.responsableOpportunite , element.listeTechnologies, element.listeCertifications)"
+                  >
+              </ng-template>
+  
+          </div> 
+          <ng-template #SINON_OPPORTUNITE_SMALL>
+            <img src="/assets/img/opportunite.png" style="cursor: pointer;height: 50px;width: 50px;"
+            (click)="openDialogShowOpportunite(element.id, element.titreOpportunite, element.descriptionOpportunite, element.dateAjout, element.dateDemarrageSouhaitee, element.tjmOpportunite, element.etatOpportunite, element.visibiliteOpportunite, element.responsableOpportunite, element.listeTechnologies, element.listeCertifications)"
+            >
+          </ng-template>
+  
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Détails</th>
+      <td mat-cell *matCellDef="let element" style="padding-right: 2%;" width="55%">
+        <b class="label-datagrid">TJM : </b>{{element.tjmOpportunite}}<br>
+        <b class="label-datagrid">Mission : </b>{{element.titreOpportunite | titlecase}}<br>
+        <!--NgIf Responsable opportunité-->
+        <div *ngIf="element.responsableOpportunite; else SINON_SMALL">
+          <b class="label-datagrid">Responsable : </b>
+          
+          <a class="pointer" (click)="openDialogShowPartenaire(element.responsableOpportunite.id, element.responsableOpportunite.identite, element.responsableOpportunite.telephone, element.responsableOpportunite.email, element.responsableOpportunite.posteOccupe, element.responsableOpportunite.descriptionDetaillee, element.responsableOpportunite.urlPhoto, element.responsableOpportunite.username, element.responsableOpportunite.password, element.responsableOpportunite.etatPartenaire, element.responsableOpportunite.entreprise)">
+              {{element.responsableOpportunite.identite | titlecase}}
+          </a>
+          
+          <br>
+        </div>
+        <ng-template #SINON_SMALL>
+          <b class="label-datagrid">Responsable : </b>Odix<br>
+        </ng-template>
+          
+        <div class="details-datagrid">
+          <b class="label-datagrid">Description : </b>{{element.descriptionOpportunite}}
+        </div>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dateAjout">
+        <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Insérée le</th>
+        <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="10%">
+          <b>{{element.dateAjout | date:"dd/MM/yyyy"}}</b>
+        </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dateDemarrageSouhaitee">
+        <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef mat-sort-header>Démarre le</th>
+        <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="10%" >
+          <b>{{element.dateDemarrageSouhaitee | date:"dd/MM/yyyy"}}</b>
+        </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="visibiliteOpportunite">
+        <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef><mat-icon matSuffix>remove_red_eye</mat-icon></th>
+        <td fxHide.lt-md="true" mat-cell *matCellDef="let element" width="5%" >
+            <div *ngIf="element.visibiliteOpportunite === 'Public'; else notShowVisibilite_SMALL">
+                <mat-icon matSuffix matTooltip="Opportunité publique">public</mat-icon>
+            </div>
+            
+            <ng-template #notShowVisibilite_SMALL>
+                <mat-icon matSuffix matTooltip="Opportunité privée">https</mat-icon>
+            </ng-template>
+        </td>
+    </ng-container>
+  
+    <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else notAdmin1_SMALL">
+      <ng-container matColumnDef="etat">
+      <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
+      <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%" >
+        <div *ngIf="element.etatOpportunite === 'True'; else notShowEtat_SMALL">
+          <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true"  matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
+        </div>
+        
+        <ng-template #notShowEtat_SMALL>
+          <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="false" matTooltip="Activer l'opportunité"></mat-slide-toggle>
+        </ng-template>
+      </td>
+      </ng-container>
+    </div>
+          
+    <ng-template #notAdmin1_SMALL>
+        <ng-container matColumnDef="etat">
+        <th fxHide.lt-md="true" mat-header-cell *matHeaderCellDef>État</th>
+        <td fxHide.lt-md="true" mat-cell *matCellDef="let element" class="pointer" width="5%" >
+          <div *ngIf="element.etatOpportunite === 'True'; else notShowEtat_SMALL">
+            <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="true" *ngIf="idUtilisateur === element.utilisateur.id" matTooltip="Désactiver l'opportunité"></mat-slide-toggle>
+          </div>
+          
+          <ng-template #notShowEtat_SMALL>
+            <mat-slide-toggle (change)="editEtatOpportunite(element.id, element.etatOpportunite)" [checked]="false" *ngIf="idUtilisateur === element.utilisateur.id" matTooltip="Activer l'opportunité"></mat-slide-toggle>
+          </ng-template>
+        </td>
+        </ng-container>
+    </ng-template>
+  
+    <div *ngIf="role === 'ROLE_ADMINISTRATEUR'; else notAdmin2_SMALL">
+        <ng-container matColumnDef="more">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element" class="pointer" width="5%">
+          <a mat-button [matMenuTriggerFor]="menuOpportunites" matTooltip="Plus d'options"><mat-icon>more_vert</mat-icon></a>
+            <mat-menu #menuOpportunites="matMenu">
+              <button mat-menu-item (click)="openDialogEditOpportunite(element.id, element.titreOpportunite, element.descriptionOpportunite, element.dateAjout, element.dateDemarrageSouhaitee, element.tjmOpportunite, element.etatOpportunite, element.visibiliteOpportunite, element.responsableOpportunite, element.listeTechnologies, element.listeCertifications)" matTooltip="Modifier l'opportunité" matTooltipPosition="right">Modifier l'opportunité</button>
+  
+              <button mat-menu-item (click)="openDialogDeleteOpportunite(element.id)" matTooltip="Supprimer l'opportunité" matTooltipPosition="right">Supprimer l'opportunité</button>
+            </mat-menu>
+        </td>
+        </ng-container>
+    </div>
+          
+    <ng-template #notAdmin2_SMALL>
+        <ng-container matColumnDef="more" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element" class="pointer" width="5%">
+            <a mat-button [matMenuTriggerFor]="menuOpportunites" matTooltip="Plus d'options" 
+              *ngIf="idUtilisateur === element.utilisateur.id">
+              <mat-icon>more_vert</mat-icon>
+            </a>
+            <mat-menu #menuOpportunites="matMenu">
+              <button mat-menu-item (click)="openDialogEditOpportunite(element.id, element.titreOpportunite, element.descriptionOpportunite, element.dateAjout, element.dateDemarrageSouhaitee, element.tjmOpportunite, element.etatOpportunite, element.visibiliteOpportunite, element.responsableOpportunite, element.listeTechnologies, element.listeCertifications)" matTooltip="Modifier l'opportunité" matTooltipPosition="right">Modifier l'opportunité</button>
+  
+              <button mat-menu-item (click)="openDialogDeleteOpportunite(element.id)" matTooltip="Supprimer l'opportunité" matTooltipPosition="right">Supprimer l'opportunité</button>
+            </mat-menu>
+        </td>
+        </ng-container>
+    </ng-template>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
 
 <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
