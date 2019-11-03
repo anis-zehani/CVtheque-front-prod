@@ -47,6 +47,7 @@
 </div>
 
 <!-- Petits écrans -->
+<div style="width: auto;overflow-x: auto;display: flex;">
 <div class="container" fxHide.gt-sm="true">
     <mat-form-field appearance="outline">
       <input matInput (keyup)="filtrerTable($event.target.value)" placeholder="Recherche rapide">
@@ -94,6 +95,8 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+</div> 
 </div>
+
 
 <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
