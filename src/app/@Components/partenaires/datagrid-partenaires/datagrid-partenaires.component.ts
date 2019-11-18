@@ -151,7 +151,7 @@ export class DatagridPartenairesComponent implements OnInit {
       // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(FormEditPartenairesComponent, {
         width: '1000px',
-        height: '650px',
+        height: '550px',
         data: {
           id,
           identite,
@@ -200,7 +200,7 @@ export class DatagridPartenairesComponent implements OnInit {
     // Objet pour déclencher l'ouverture de la modale
     const dialogRef = this.dialog.open(ShowPartenaireComponent, {
       width: '1000px',
-      height: '650px',
+      height: '550px',
       data: {
         id,
         identite,

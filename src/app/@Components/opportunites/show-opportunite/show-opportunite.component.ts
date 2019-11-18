@@ -74,8 +74,8 @@ export class ShowOpportuniteComponent implements OnInit {
 
       // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(ShowPartenaireComponent, {
-        width: '850px',
-        height: '650px',
+        width: '1000px',
+        height: '550px',
         data: {
           id,
           identite,

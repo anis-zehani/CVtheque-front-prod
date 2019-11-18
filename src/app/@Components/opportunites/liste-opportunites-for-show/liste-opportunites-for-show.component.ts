@@ -174,8 +174,8 @@ export class ListeOpportunitesForShowComponent implements OnInit {
 
       // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(FormEditOpportunitesComponent, {
-        width: '900px',
-        height: '500px',
+        width: '1000px',
+        height: '550px',
         data: {
           id,
           titreOpportunite,
@@ -255,8 +255,8 @@ export class ListeOpportunitesForShowComponent implements OnInit {
 
       // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(ShowOpportuniteComponent, {
-        width: '900px',
-        height: '500px',
+        width: '1000px',
+        height: '550px',
         data: {
           id,
           titreOpportunite,

@@ -37,7 +37,6 @@ export class RappelsComponent implements OnInit {
   onRefreshListeScrollEvent($event) {
     // ici je ne refresh le Datagrid que lorsqu'un rappel est ajouté pour éviter une boucle infinie
     if ($event === 'addRappel') {
-      console.log('onRefreshListeScrollEvent');
       // Refresh du Datagrid pour afficher la nouvelle ligne via appel ViewChild
       this.Datagrid.getAllRappelsController();
     }

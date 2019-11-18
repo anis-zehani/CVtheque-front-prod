@@ -11,9 +11,9 @@ import { Partenaire } from 'src/app/@Models/partenaire';
 })
 export class ShowPartenaireComponent implements OnInit {
 
-  //URL du serveur de stockage
+  // URL du serveur de stockage
   storageUrl = environment.storageUrl;
-  
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: Partenaire) { }
 
   ngOnInit() {

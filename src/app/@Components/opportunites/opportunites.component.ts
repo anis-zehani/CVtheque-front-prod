@@ -28,8 +28,7 @@ export class OpportunitesComponent implements OnInit {
   }
 
   // Afin de rafraichir la table quand on ajoute un Opportunite
-  onRefreshTableEvent($event)
-  {
+  onRefreshTableEvent($event) {
     this.Datagrid.getAllOpportunitesController(this.Datagrid.etatOpportunite);
   }
 

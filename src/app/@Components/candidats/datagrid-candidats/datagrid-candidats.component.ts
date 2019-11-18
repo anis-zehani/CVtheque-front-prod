@@ -287,8 +287,8 @@ export class DatagridCandidatsComponent implements OnInit {
 
       // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(FormEditCandidatsComponent, {
-        width: '1050px',
-        height: '650px',
+        width: '1000px',
+        height: '550px',
         data: {
           id,
           identite,
@@ -540,8 +540,8 @@ export class DatagridCandidatsComponent implements OnInit {
 
         // Objet pour déclencher l'ouverture de la modale
         const dialogRef = this.dialog.open(ShowCandidatComponent, {
-          width: '1050px',
-          height: '650px',
+          width: '1000px',
+          height: '550px',
           data: {
             id,
             identite,

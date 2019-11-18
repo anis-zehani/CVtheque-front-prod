@@ -97,17 +97,17 @@
         <mat-icon matSuffix>description</mat-icon>
     </mat-form-field>
 
-    <button mat-flat-button mat-dialog-close style="width: 30%">Quitter</button>
+    <button mat-flat-button mat-dialog-close style="width: 30%; margin-bottom: 20px;">Quitter</button>
 </div>
 
 <!-- Container : Partie Droite -->
 <div fxFlex="30%">
-        <table>
-                <tr>
-                    <!-- Liste Opportunités liées à ce partenaire --> 
-                    <app-liste-opportunites-for-show [idPartenaire]=data.id></app-liste-opportunites-for-show>
-                  </tr>
-        </table>
+    <table>
+        <tr>
+            <!-- Liste Opportunités liées à ce partenaire --> 
+            <app-liste-opportunites-for-show [idPartenaire]=data.id></app-liste-opportunites-for-show>
+        </tr>
+    </table>
 </div>
     
 </div>

@@ -105,7 +105,7 @@ export class DatagridContactsComponent implements OnInit {
       // Objet pour déclencher l'ouverture de la modale
       const dialogRef = this.dialog.open(FormEditContactsComponent, {
         width: '750px',
-        height: '600px',
+        height: '550px',
         data: {
           id,
           identite,
@@ -148,7 +148,7 @@ export class DatagridContactsComponent implements OnInit {
     // Objet pour déclencher l'ouverture de la modale
     const dialogRef = this.dialog.open(ShowContactComponent, {
       width: '750px',
-      height: '600px',
+      height: '550px',
       data: {
         id,
         identite,
