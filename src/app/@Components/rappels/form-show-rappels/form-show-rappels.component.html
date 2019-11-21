@@ -13,13 +13,11 @@
                 <!--Test si Projet est défini-->
                 <div *ngIf="data.projet;else SINON">
                     <app-liste-deroulante-projets
-                        [projetId]="data.projet.id"
-                        (projetIdEvent)="projetIdEventListner($event)">
+                        [projetId]="data.projet.id">
                     </app-liste-deroulante-projets>
                 </div>
                 <ng-template #SINON>
-                    <app-liste-deroulante-projets
-                        (projetIdEvent)="projetIdEventListner($event)">
+                    <app-liste-deroulante-projets>
                     </app-liste-deroulante-projets> 
                 </ng-template>
             </div>
@@ -50,11 +48,11 @@
         </div>
        
         <div *ngIf="data.remindMe === true ; else notShow"> <!--Compare 2 booleans : so without ''-->
-            <mat-slide-toggle [checked]="true" (change)="remindMe($event)">Remind Me</mat-slide-toggle>
+            <mat-slide-toggle [checked]="true">Remind Me</mat-slide-toggle>
         </div>
         
         <ng-template #notShow>
-            <mat-slide-toggle [checked]="false" (change)="remindMe($event)">Remind Me</mat-slide-toggle>
+            <mat-slide-toggle [checked]="false">Remind Me</mat-slide-toggle>
         </ng-template>
     </div>
 
@@ -77,13 +75,11 @@
     <!--Test si Projet est défini-->
     <div *ngIf="data.projet;else SINON">
                     <app-liste-deroulante-projets
-                        [projetId]="data.projet.id"
-                        (projetIdEvent)="projetIdEventListner($event)">
+                        [projetId]="data.projet.id">
                     </app-liste-deroulante-projets>
     </div>
     <ng-template #SINON>
-                    <app-liste-deroulante-projets
-                        (projetIdEvent)="projetIdEventListner($event)">
+                    <app-liste-deroulante-projets>
                     </app-liste-deroulante-projets> 
     </ng-template>
 
@@ -111,11 +107,11 @@
         </div>
        
         <div *ngIf="data.remindMe === true ; else notShow"> <!--Compare 2 booleans : so without ''-->
-            <mat-slide-toggle [checked]="true" (change)="remindMe($event)">Remind Me</mat-slide-toggle>
+            <mat-slide-toggle [checked]="true">Remind Me</mat-slide-toggle>
         </div>
         
         <ng-template #notShow>
-            <mat-slide-toggle [checked]="false" (change)="remindMe($event)">Remind Me</mat-slide-toggle>
+            <mat-slide-toggle [checked]="false">Remind Me</mat-slide-toggle>
         </ng-template>
     </div>
 

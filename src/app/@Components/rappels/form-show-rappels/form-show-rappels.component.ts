@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Rappel } from 'src/app/@Models/rappel';
+import { environment } from '../../../../environments/environment';
 import { MAT_DIALOG_DATA } from '@angular/material';
+
+import { Rappel } from 'src/app/@Models/rappel';
 
 @Component({
   selector: 'app-form-show-rappels',
@@ -8,6 +10,9 @@ import { MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./form-show-rappels.component.css']
 })
 export class FormShowRappelsComponent implements OnInit {
+
+  // URL du serveur de stockage
+  storageUrl = environment.storageUrl;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Rappel) { }
 
