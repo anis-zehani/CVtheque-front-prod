@@ -7,6 +7,7 @@ import { DatePipe } from '@angular/common';
 
 import { environment } from '../../../../environments/environment';
 import { RappelsService } from '../../../@Services/rappels.service';
+import { FormShowRappelsComponent } from '../form-show-rappels/form-show-rappels.component';
 import { Rappel } from '../../../@Models/rappel';
 import { FormEditRappelsComponent } from '../form-edit-rappels/form-edit-rappels.component';
 import { DeleteConfirmationComponent } from '../../../@Components/dialogs/delete-confirmation/delete-confirmation.component';
@@ -169,6 +170,31 @@ export class DatagridRappelsComponent implements OnInit {
     this.getAllRappelsByPrioriteController(event.value);
 
   }
+
+  // Ouvre le pop-up pour afficher un rappel
+  openDialogShowRappel(id, detailsRappel, dateEcheance, remindMe, priorite, projet, urlFichier, nomFichier): void {
+      // Objet pour configurer la modale
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = false;
+      dialogConfig.hasBackdrop = true;
+      dialogConfig.closeOnNavigation = true;
+
+      // Objet pour déclencher l'ouverture de la modale
+      const dialogRef = this.dialog.open(FormShowRappelsComponent, {
+        width: '700px',
+        height: '450px',
+        data: {
+          id: id,
+          detailsRappel: detailsRappel,
+          dateEcheance : this.datePipe.transform(dateEcheance, 'yyyy-MM-dd'),
+          remindMe : remindMe,
+          priorite : priorite,
+          projet : projet,
+          urlFichier : urlFichier,
+          nomFichier : nomFichier,
+        }
+      });
+  }
   // Ouvre le pop-up pour modifier un rappel
   openDialogEditRappel(id, detailsRappel, dateEcheance, remindMe, priorite, projet, urlFichier, nomFichier): void {
       // Objet pour configurer la modale
@@ -212,7 +238,7 @@ export class DatagridRappelsComponent implements OnInit {
             this.refreshDatagridFunction('editRappel');
             }
       });
-    }
+  }
 
   // Ouvre le pop-up pour supprimer un rappel
   openDialogDeleteRappel(id): void {

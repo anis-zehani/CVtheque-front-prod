@@ -162,6 +162,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PageIntrouvableComponent } from './@Components/message/page-introuvable/page-introuvable.component';
 import { PageErreurComponent } from './@Components/message/page-erreur/page-erreur.component';
+import { FormShowRappelsComponent } from './@Components/rappels/form-show-rappels/form-show-rappels.component';
 
 @NgModule({
   declarations: [
@@ -273,7 +274,8 @@ import { PageErreurComponent } from './@Components/message/page-erreur/page-erre
     MenuNotificationsComponent,
     ShowNotificationComponent,
     PageIntrouvableComponent,
-    PageErreurComponent
+    PageErreurComponent,
+    FormShowRappelsComponent
   ],
   entryComponents: [
     FormEditTechnologiesComponent,
@@ -289,6 +291,7 @@ import { PageErreurComponent } from './@Components/message/page-erreur/page-erre
     FormAddProjetsComponent,
     FormAddRappelsComponent,
     FormEditRappelsComponent,
+    FormShowRappelsComponent,
     ShowCandidatComponent,
     DialogAddTechnologiesComponent,
     DialogAddEntreprisesComponent,
