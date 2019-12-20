@@ -113,7 +113,7 @@ export class DatagridPartenairesComponent implements OnInit {
       .subscribe
         (
         res => {
-          if (res) {
+          if (res != false) {
             this.getAllPartenairesController(this.etatPartenaire);
             this.utilService.openSnackBar('Partenaire supprimé', 'OK');
           } else {
