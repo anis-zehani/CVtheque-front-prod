@@ -46,9 +46,10 @@ export class FormEditContactsComponent implements OnInit {
   }
 
   // FileUpload
-  selectFile($event) {
+  selectFile($event, idContact) {
     this.selectedFiles = $event.target.files;
     this.namePhoto = this.selectedFiles.item(0).name;
+    this.editPhotoController(idContact);
   }
 
   // Click sur le bouton "Confirmer"

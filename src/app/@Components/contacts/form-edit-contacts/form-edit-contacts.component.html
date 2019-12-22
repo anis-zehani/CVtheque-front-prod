@@ -19,7 +19,7 @@
                         <label for="photodeprofilEdit">
                             <mat-icon class="pointer">add_a_photo</mat-icon>
                         </label>
-                        <input id="photodeprofilEdit" type="file" style="display: none;" (change)="selectFile($event)">
+                        <input id="photodeprofilEdit" type="file" style="display: none;" (change)="selectFile($event, data.id)">
                     </div>
                     <div class="file-upload" dir="rtl">{{namePhoto}}</div>
                     <label>
@@ -83,7 +83,7 @@
     
 
     <div style="display: flex;justify-content: space-between;margin-bottom: 20px;">
-      <button mat-flat-button [mat-dialog-close]="data" (click)="editPhotoController(data.id)" style="margin-right: 10px; width: 30%">Confirmer</button>
+      <button mat-flat-button [mat-dialog-close]="data" style="margin-right: 10px; width: 30%">Confirmer</button>
       <button mat-stroked-button mat-dialog-close style="margin-left: 10px; width: 30%">Annuler</button>
     </div>
 
@@ -106,7 +106,7 @@
             <label for="photodeprofilEdit">
                 <mat-icon class="pointer">add_a_photo</mat-icon>
             </label>
-        <input id="photodeprofilEdit" type="file" style="display: none;" (change)="selectFile($event)" >
+        <input id="photodeprofilEdit" type="file" style="display: none;" (change)="selectFile($event, data.id)" >
         </div>
         <div class="file-upload">{{namePhoto}}</div>
         <div *ngIf="data.urlPhoto;else SINON_CONTACT_SMALL">
@@ -158,7 +158,6 @@
         <mat-icon matSuffix>description</mat-icon>
     </mat-form-field>
     
-
-    <button mat-flat-button [mat-dialog-close]="data" (click)="editPhotoController(data.id)" style="margin-bottom: 10px;">Confirmer</button>
+    <button mat-flat-button [mat-dialog-close]="data" style="margin-bottom: 10px;">Confirmer</button>
     <button mat-stroked-button mat-dialog-close style="margin-bottom: 20px;">Annuler</button>
 </div>
