@@ -147,7 +147,7 @@
                         <td>
                             <mat-form-field appearance="fill">
                                 <mat-label>Type du diplôme</mat-label>
-                                <div *ngIf="data.diplome.typeDiplome.toString() != 'Non_Mentionee';else SINON_TYPEDIPLOME">
+                                <div *ngIf="data.diplome && data.diplome.typeDiplome.toString() != 'Non_Mentionee';else SINON_TYPEDIPLOME">
                                     <input matInput [(ngModel)]="data.diplome.typeDiplome" readonly="true">
                                 </div>
 
