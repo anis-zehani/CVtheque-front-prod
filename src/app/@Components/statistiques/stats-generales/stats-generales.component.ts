@@ -3,7 +3,7 @@ import { ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
-import { ChiffresClesService } from '../../../@Services/chiffres-cles.service';
+import { StatistiquesService } from '../../../@Services/statistiques.service';
 
 @Component({
   selector: 'app-stats-generales',
@@ -44,14 +44,14 @@ export class StatsGeneralesComponent implements OnInit {
     },
   ];
 
-  constructor(private chiffresClesService: ChiffresClesService) { }
+  constructor(private statistiquesService: StatistiquesService) { }
 
   ngOnInit() {
-    this.getAllChiffresClesController();
+    this.getAllStatistiquesController();
   }
 
-  getAllChiffresClesController() {
-    this.chiffresClesService.getAllChiffresClesService()
+  getAllStatistiquesController() {
+    this.statistiquesService.getAllStatistiquesService()
     .subscribe
       (
       res => {

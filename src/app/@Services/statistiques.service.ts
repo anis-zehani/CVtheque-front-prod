@@ -7,9 +7,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ChiffresClesService {
+export class StatistiquesService {
 
-private serviceUrl = environment.baseUrl + '/chiffrescles';
+private serviceUrl = environment.baseUrl + '/statistiques';
 
 private httpOptions = {
     headers: new HttpHeaders({
@@ -20,7 +20,7 @@ private httpOptions = {
 constructor(private http: HttpClient) { }
 
 // //Retourne les 6 chiffres clés de base
-getAllChiffresClesService(): Observable<Map<string, number>> {
+getAllStatistiquesService(): Observable<Map<string, number>> {
   return this.http.get<Map<string, number>>(this.serviceUrl + '/all', this.httpOptions);
 }
 }
