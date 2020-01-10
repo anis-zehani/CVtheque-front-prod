@@ -13,7 +13,7 @@ import { Utilisateur } from '../@Models/utilisateur';
 
 export class ContactsService {
 
-  private serviceUrl = environment.baseUrl + '/contact';
+  private serviceUrl = environment.baseUrl + '/gateway/contact';
 
   private httpOptions = {
     headers: new HttpHeaders({

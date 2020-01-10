@@ -11,7 +11,7 @@ import { Utilisateur } from '../@Models/utilisateur';
 })
 export class UtilisateurService {
 
-  private serviceUrl = environment.baseUrl + '/utilisateur';
+  private serviceUrl = environment.baseUrl + '/gateway/utilisateur';
 
   private httpOptions = {
     headers: new HttpHeaders({

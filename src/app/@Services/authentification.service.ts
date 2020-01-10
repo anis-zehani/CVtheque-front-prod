@@ -12,9 +12,9 @@ import { Utilisateur } from '../@Models/utilisateur';
 })
 export class AuthentificationService {
 
-  private serviceUrl = environment.baseUrl + '/utilisateur';
+  private serviceUrl = environment.baseUrl + '/gateway/utilisateur';
   // Authentification via login / via Reset du Password
-  private serviceUrlAuthenticationController = environment.baseUrl + '/authentication-controller';
+  private serviceUrlAuthenticationController = environment.baseUrl + '/gateway/authentication-controller';
 
   utilisateur: Utilisateur;
 

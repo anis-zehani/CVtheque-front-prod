@@ -13,7 +13,7 @@ import { Utilisateur } from '../@Models/utilisateur';
 
 export class CandidatsService {
 
-  private serviceUrl = environment.baseUrl + '/candidat';
+  private serviceUrl = environment.baseUrl + '/gateway/candidat';
 
   private httpOptions = {
     headers: new HttpHeaders({

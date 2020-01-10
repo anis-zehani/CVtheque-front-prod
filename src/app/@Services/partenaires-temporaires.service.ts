@@ -9,7 +9,7 @@ import { PartenaireTemporaire } from '../@Models/partenaire-temporaire';
 })
 export class PartenairesTemporairesService {
 
-  private serviceUrl = environment.baseUrl + '/partenaire-temporaire-controller';
+  private serviceUrl = environment.baseUrl + '/gateway/partenaire-temporaire-controller';
 
   private httpOptions = {
     headers: new HttpHeaders({

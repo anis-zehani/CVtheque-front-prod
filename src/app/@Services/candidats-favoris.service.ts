@@ -10,7 +10,7 @@ import { CandidatsFavoris } from '../@Models/candidats-favoris';
 })
 export class CandidatsFavorisService {
 
-  private serviceUrl = environment.baseUrl + '/candidatsfavoris';
+  private serviceUrl = environment.baseUrl + '/gateway/candidatsfavoris';
 
   private httpOptions = {
     headers: new HttpHeaders({

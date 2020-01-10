@@ -11,7 +11,7 @@ import { Partenaire } from '../@Models/partenaire';
 
 export class PartenairesService {
 
-  private serviceUrl = environment.baseUrl + '/partenaire';
+  private serviceUrl = environment.baseUrl + '/gateway/partenaire';
 
   private httpOptions = {
     headers: new HttpHeaders({
