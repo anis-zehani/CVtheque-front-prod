@@ -1,0 +1,39 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: cvtheque-front-deployment
+  labels:
+    app: cvtheque-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cvtheque-front
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: cvtheque-front
+    spec:
+      containers:
+      - name: cvtheque-front-container
+        image: registry.gitlab.com/gitlabodix/cvtheque-front-prod
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: gitlab-secrets-cvtheque-front
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cvtheque-front-service
+spec:
+  selector:
+    app: cvtheque-front
+  type: LoadBalancer
+    ports:
+      - port: 80
+        targetPort: 80
+        nodePort: 30000

@@ -1,6 +1,5 @@
 export const environment = {
-  // Appel à la base PROD
-  production: false,
-  baseUrl: 'http://plateforme.odix.fr:8090/api',
-  storageUrl: 'http://plateforme.odix.fr'
+  production: true,
+  baseUrl: 'http://gateway-ms:30080/api',
+  storageUrl: 'http://gateway-ms:30080'
 };

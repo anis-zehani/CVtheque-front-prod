@@ -1,0 +1,11 @@
+apiVersion: skaffold/v2beta2
+kind: Config
+metadata:
+  name: cvtheque
+build:
+  artifacts:
+  - image: registry.gitlab.com/gitlabodix/cvtheque-front-prod
+deploy:
+  kubectl:
+    manifests:
+    - Kubernetes.yml
