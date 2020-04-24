@@ -20,11 +20,11 @@ spec:
       containers:
       - name: cvtheque-front-container
         image: registry.gitlab.com/gitlabodix/cvtheque-front-prod
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
       imagePullSecrets:
-      - name: gitlab-secrets-cvtheque-front
+      - name: gitlab-secrets-front-prod
 #################### Service ####################      
 ---
 apiVersion: v1
@@ -38,4 +38,4 @@ spec:
     ports:
       - port: 80
         targetPort: 80
-        nodePort: 30800
+        nodePort: 30000
