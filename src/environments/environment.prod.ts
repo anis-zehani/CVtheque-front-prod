@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://gateway-ms:30080/api',
-  storageUrl: 'http://gateway-ms:30080'
+  baseUrl: 'http://34.67.125.188:30080/api',
+  storageUrl: 'http://34.67.125.188:30080/'
 };
