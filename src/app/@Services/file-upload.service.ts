@@ -10,10 +10,10 @@ export class FileUploadService {
 
   // Attention : chaque écran possède ses propres coordonnées : serviceUrl + fonction Upload
 
-  private serviceUrlContact = environment.baseUrl + '/contact';
-  private serviceUrlPartenaire = environment.baseUrl + '/partenaire';
-  private serviceUrlCandidat = environment.baseUrl + '/candidat';
-  private serviceUrlRappel = environment.baseUrl + '/rappel';
+  private serviceUrlContact = environment.baseUrl + '/gateway/contact';
+  private serviceUrlPartenaire = environment.baseUrl + '/gateway/partenaire';
+  private serviceUrlCandidat = environment.baseUrl + '/gateway/candidat';
+  private serviceUrlRappel = environment.baseUrl + '/gateway/rappel';
 
   constructor(private http: HttpClient) { }
 
