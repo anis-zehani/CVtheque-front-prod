@@ -43,14 +43,14 @@ export class StatsTechnologiesComponent implements OnInit {
     },
   };
 
-  public pieChartLabels: Label[] = [];
-  public pieChartData: number[] = [];
+  public pieChartLabels: Label[] = ['Données insuffisantes'];
+  public pieChartData: number[] = [1];
   public pieChartType: ChartType = 'doughnut';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-       backgroundColor: ['#39CCCC', '#FFDC00', '#FF4136', '#7FDBFF', '#FF851B', '#dfdace'],
+       backgroundColor: ['#3D9970', '#FFDC00', '#FF4136', '#dfdace', '#FF851B', '#39CCCC'],
     },
   ];
 
@@ -69,10 +69,10 @@ export class StatsTechnologiesComponent implements OnInit {
       (
       res => {
       for (const [key, value] of Object.entries(res)) {
-          if (key === 'sumCandidatsLies') {
+          if (key === 'sumCandidatsLies' && value > 0) {
             this.sumCandidatsLies = value;
           }
-          if (key === 'sumOpportunitesLiees') {
+          if (key === 'sumOpportunitesLiees' && value > 0) {
             this.sumOpportunitesLiees = value;
           }
       }

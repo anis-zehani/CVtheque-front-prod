@@ -33,14 +33,14 @@ export class StatsGeneralesComponent implements OnInit {
     }
   };
 
-  public pieChartLabels: Label[] = [];
-  public pieChartData: number[] = [];
+  public pieChartLabels: Label[] = ['Données insuffisantes'];
+  public pieChartData: number[] = [1];
   public pieChartType: ChartType = 'doughnut';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['#39CCCC', '#FFDC00', '#FF4136', '#3D9970', '#001f3f', '#FF851B'],
+      backgroundColor: ['#3D9970', '#FFDC00', '#FF4136', '#001f3f', '#39CCCC', '#FF851B'],
     },
   ];
 
@@ -57,27 +57,27 @@ export class StatsGeneralesComponent implements OnInit {
       res => {
       for (const [key, value] of Object.entries(res)) {
 
-          if (key === 'totalCandidats') {
+          if (key === 'totalCandidats' && value > 0) {
             this.pieChartLabels.push('Candidats');
             this.pieChartData.push(value);
           }
-          if (key === 'totalOpportunites') {
+          if (key === 'totalOpportunites' && value > 0) {
             this.pieChartLabels.push('Opportunités');
             this.pieChartData.push(value);
           }
-          if (key === 'totalPartenaires') {
+          if (key === 'totalPartenaires' && value > 0) {
             this.pieChartLabels.push('Partenaires');
             this.pieChartData.push(value);
           }
-          if (key === 'totalContacts') {
+          if (key === 'totalContacts' && value > 0) {
             this.pieChartLabels.push('Contacts');
             this.pieChartData.push(value);
           }
-          if (key === 'totalTechnologies') {
+          if (key === 'totalTechnologies' && value > 0) {
             this.pieChartLabels.push('Technologies');
             this.pieChartData.push(value);
           }
-          if (key === 'totalEntreprises') {
+          if (key === 'totalEntreprises' && value > 0) {
             this.pieChartLabels.push('Entreprises');
             this.pieChartData.push(value);
           }
