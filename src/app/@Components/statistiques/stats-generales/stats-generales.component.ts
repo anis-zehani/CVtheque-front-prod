@@ -40,7 +40,7 @@ export class StatsGeneralesComponent implements OnInit {
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['#3D9970', '#FFDC00', '#FF4136', '#001f3f', '#39CCCC', '#FF851B'],
+      backgroundColor: ['#238c8c', '#FFDC00', '#FF4136', '#001f3f', '#39CCCC', '#FF851B'],
     },
   ];
 
