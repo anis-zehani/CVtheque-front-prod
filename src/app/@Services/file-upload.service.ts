@@ -13,7 +13,8 @@ export class FileUploadService {
   private serviceUrlContact = environment.baseUrl + '/gateway/contact';
   private serviceUrlPartenaire = environment.baseUrl + '/gateway/partenaire';
   private serviceUrlCandidat = environment.baseUrl + '/gateway/candidat';
-  private serviceUrlRappel = environment.baseUrl + '/gateway/rappel';
+  //MS à part
+  private serviceUrlRappel = environment.baseUrl + '/rappel';
 
   constructor(private http: HttpClient) { }
 
