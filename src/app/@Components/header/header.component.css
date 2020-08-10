@@ -3,6 +3,12 @@
     background-color: #222;
   }
   
+  .header-devops{
+    width:100%; 
+    -background-color: #857b64;
+    background-color: #f7c341;
+  }
+
   mat-toolbar{
     background-color: #222;
   }

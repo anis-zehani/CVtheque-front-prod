@@ -50,19 +50,21 @@ export class UtilService {
   }
 
     // Récupére tout le Token sans décodage à partir de la session Storage
-    getTheWholeTokenFromSessionStorage() {
+    getTheWholeTokenFromsessionStorage() {
       // Je récupère tout le Token sans décodage
       const token = sessionStorage.getItem('token');
 
       return token;
     }
 
-    // Récupére signInOdix à partir du local Storage
-    getTheWholeTokenFromLocalStorage() {
-      // sign-in-odix : indique que l'utilisateur n'a pas cliqué sur : se déconneter
-      // Quand il réouvre son navigateur on le reconnait
-      const signInOdix = localStorage.getItem('sign-in-odix');
-
-      return signInOdix;
+  //on retourne true si le token is Expired
+  tokenIsExpired() {
+    //Par défaut on considère que le token is Expired
+    var expired = true;
+    var token = sessionStorage.getItem('token');
+    if(token != null){
+      expired = (Math.floor((new Date).getTime() / 1000)) >= (JSON.parse(atob(token.split('.')[1]))).exp;
     }
+    return expired;
+  }
 }

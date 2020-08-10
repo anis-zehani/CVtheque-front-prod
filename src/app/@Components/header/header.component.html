@@ -7,6 +7,19 @@
   gtag('config', 'UA-38615240-8');
 </script>
 
+<div style="height: 45px;border-bottom: 1px solid white;" *ngIf="role==='ROLE_ADMINISTRATEUR'">
+    <mat-toolbar style="height: 45px" class="header-devops" fxLayout="row" fxLayoutAlign="space-around center"> 
+      <a href="http://dashboard.k8s.odix.fr:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#/overview?namespace=default" target="_blank" mat-button>Kubernetes</a>
+      <a href="http://erp.grafana.k8s.odix.fr/" target="_blank" mat-button>Grafana</a>
+      <a href="http://zipkin.odix.fr:30011/zipkin/" target="_blank" mat-button>Zipkin</a>
+      <a href="http://graylog.k8s.odix.fr:9000/" target="_blank" mat-button>Graylog</a>
+      <a href="http://jenkins.gcp.odix.fr:8080/" target="_blank" mat-button>Jenkins</a>
+      <a href="http://kafka.odix.fr:30090/" target="_blank" mat-button>Kafka</a>
+      <a href="http://express.odix.fr:30081/" target="_blank" mat-button>Express</a>
+      <a href="http://erp.argocd.k8s.odix.fr:30020/" target="_blank" mat-button>ArgoCD</a>
+    </mat-toolbar>
+</div>
+
 <div class="header" style="height: 45px;border-bottom: 1px solid white;">
   
   <div  fxLayout 
@@ -110,3 +123,4 @@
 
   </div>
 </div>
+

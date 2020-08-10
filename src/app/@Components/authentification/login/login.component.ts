@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['accueil']);
         this.invalidLogin = false;
         // local storage : valable en dehors du Scope de la session
-        // localStorage.setItem('sign-in-odix', 'Plateforme Odix');
+        // sessionStorage.setItem('sign-in-odix', 'Plateforme Odix');
       },
       error => {
         // Afficher un message d'erreur d'authentification

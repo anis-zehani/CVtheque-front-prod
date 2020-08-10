@@ -6,6 +6,6 @@ export const environment = {
   //storageUrl: 'http://ks8.odix.fr'
 
   /* Server Odix Smartgraphe*/
-  baseUrl: 'http://ats.odix.fr:8090/api',
-  storageUrl: 'http://ats.odix.fr'
+  baseUrl: 'http://ats.back.k8s.odix.fr/api',
+  storageUrl: 'http://ats.k8s.odix.fr'
 };

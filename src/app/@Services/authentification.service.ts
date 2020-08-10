@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import * as jwt_decode from 'jwt-decode';
 
 import { Utilisateur } from '../@Models/utilisateur';
 
@@ -79,20 +80,29 @@ export class AuthentificationService {
     );
   }
 
+  // Récupére Rôle Utilisateur à partir du Token stocké dans le Local Storage
+  getRolesUserFromToken() {
+    return jwt_decode(sessionStorage.getItem('token')).roles;
+  }
+
+  isUserAdmin() {
+    const role = jwt_decode(sessionStorage.getItem('token')).roles;
+    return !(role === 'ROLE_ADMINISTRATEUR');
+  }
+
   /* Vérifie si le client est logged In
     en vérifiant si y a une variable 'token'
     dans la session
   */
   isUserLoggedIn() {
-    const user = sessionStorage.getItem('token');
-    return !(user === null);
+    return (sessionStorage.getItem('token') !== null);
   }
 
     /* Vérifie si l'utilisateur est reconnu
     en vérifiant que signInOdix existe dans le local Storage
   */
- isUserExistsInLocalStorage() {
-  const signInOdix = localStorage.getItem('sign-in-odix');
+ isUserExistsInsessionStorage() {
+  const signInOdix = sessionStorage.getItem('sign-in-odix');
   return !(signInOdix === null);
 }
 
